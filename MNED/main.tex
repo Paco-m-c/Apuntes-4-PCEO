@@ -1,0 +1,270 @@
+\documentclass[openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage[hypertexnames=false]{hyperref}
+\usepackage{amstext} 
+\usepackage{array}   
+\newcolumntype{C}{>{$}c<{$}} 
+
+
+\input{structure}
+\usepackage{geometry}
+\geometry{
+    top=3cm,
+    bottom=3cm,
+    left=3cm,
+    right=3cm,
+    headheight=14pt, 
+    footskip=1.4cm,
+    headsep=10pt,
+}
+\usepackage{graphicx}
+\title{Ejercicios MNED}
+\author{Paco Mora Caselles}
+\date{\today}
+
+\begin{document}
+
+    \maketitle
+    \chapter{Tema 1}
+
+
+    \begin{exercise}
+        $$ A_1 = \begin{pmatrix} 0.5 & 1 \\ -1 & 0.5 \end{pmatrix} \to \sigma(A) = \{0.5+i,0.5-i\} $$
+        $ x,y $ son combinaciones lineales de $ e^{(0.5\pm i)t} $ es decir de $ \{e^{0.5t}e^{i},e^{0.5}e^{-i}\} $
+    \end{exercise}
+
+    \setcounter{ex}{4}
+    \begin{exercise}
+        $$ 
+        \left\{
+        \begin{array}{l}
+            x'''(t) = \cos(x(t))+ \sin(x'(t)) - e^{x''(t)}+t^2\\
+            x(0) = 3\\
+            x'(0) = 7\\
+            x''(0) = 13
+        \end{array}
+        \right.
+        $$
+        Consideramos 
+        $$ 
+        \left\{
+        \begin{array}{l}
+            x(t)\\
+            u(t) = x'(t)\\
+            v(t) = x''(t)
+        \end{array}
+        \right.
+        $$
+        Entonces la ecuación queda:
+        $$ v'(t) = (x'''(t)) = (\cos(x(t)))+\sin(u(t))-e^{v(t)}+t^2 $$
+        $$ \begin{pmatrix} x(t)\\u(t)\\v(t) \end{pmatrix} = \begin{pmatrix} 3 \\ 7 \\13 \end{pmatrix}  $$
+        En versión matricial:
+        $$ X(t) = \begin{pmatrix} x(t)\\u(t)\\v(t) \end{pmatrix}  $$
+        $$ \dfrac{d}{dt} X(t) = F(t,X(t)) = \begin{pmatrix} u \\ v \\ \cos(x)+\sin(u)-e^{v}+t^2 \end{pmatrix}  $$
+    \end{exercise}
+
+    \setcounter{ex}{8}
+
+    \begin{exercise}
+        $$ e^{at}(y'+ay) = e^{at}y' + ae^{at}y = \dfrac{d}{/dt}(e^{at}y(t)) $$
+        $$ e^{\int_{0}^{t}a(s)ds}\left(y'(t)-a(t)y(t)) = e^{\int_{0}^{t}a(s)ds}  y'(t)+a(t)e^{\int_{0}^{t}a(s)ds}y(t) \right) \dfrac{d}{dt}(e^{\int_{0}^{t}a(s)ds}y(t)) $$
+        $$ \int_{0}^{t}\dfrac{d}{dt}(e^{at}y(t)) = e^{at}y(t)|_{t=0} ^{(t = t)} $$
+        $$ \dfrac{d}{dt}(e^{at}y(t)) = d e^{at-bt} $$
+        % No entiendo ni media de esto
+    \end{exercise}
+
+    \chapter{Tema 2}
+    \setcounter{ex}{7}
+    \begin{exercise}
+        % \textbf{Ejercicio 8}\\
+        a)
+        $$ y_n = \dfrac{1-h}{1+(n-1)h}\ n = 0,..,N = \dfrac{1}{h}$$
+        b)\\
+        Utilizando que es una ecuación de variables separables, llegamos a:
+        $$ y(t) = \dfrac{1}{1+t}  $$
+        %no se que hace yo copio
+        Dado $ t_{*}= nh  $ fijo, calculamos el límite estacionario:
+        $$ \lim_{h \to 0\ n\to +\infty\ hn = t_{*}}y_{n}^{h}  = \lim \dfrac{1-h}{1+nh-h} = \lim \dfrac{1-h}{1+t_{*}-h} = \dfrac{1}{1+t_{*}} = y(t_{*})$$
+        Es decir la solución exacta que hemos calculado.\\
+        c)\\
+        El resultado es:
+        $$ y(t_{*})-y_{n}^h = \dfrac{-t_{*}h}{1+t_{*}^2+2t_{*}-h-ht_{*}} = O(h)_{h \to 0}$$
+        con $ hn = t_{*} $.\\
+        Que el error sea una $ O(h) $ significa que $ |y(t_{*}-y_{n}^h| \leq_{h\to 0} kh $
+        Con $ k $ independiente de $ h $.\\
+        Comprobaremos que el error sea una $ O(h) $:
+        $$ |y(t_{*}-y_n^h| = h \dfrac{t_{*}}{|1+t_{*}^2+2t_{*}-h-ht_{*}|} $$
+        Teniendo:
+        $$ \dfrac{t_{*}}{1+t_{*}^2+2t_{*}-h-ht_{*}}\sim _{h\to 0} \dfrac{t_{*}}{1+t_{*}^2+2t_{*}} \leq \dfrac{1}{1} = 1 $$ 
+        Luego el error lo podemos acotar por $ hk $ con $ k = 1 $ cuando $ h \to 0 $.\\
+        
+        Comprobaremos la optimalidad de esta cota.
+        $$ y(t_{*})-y_{n}^h = \dfrac{-t_{*}h}{1+t_{*}^2+2t_{*}-h-ht_{*}} \leq ? k h^2 $$
+        $$ \dfrac{1}{h^2} y(t_{*})-y_{n}^h = \dfrac{-t_{*}h}{1+t_{*}^2+2t_{*}-h-ht_{*}} \to_{h\to 0} \infty $$
+        Luego el error es mayor o igual que $ h $ y menor que $ h^2 $.
+        
+
+    \end{exercise}
+    
+
+    \setcounter{ex}{5}
+    \begin{exercise}
+        $$ \left\{
+        \begin{array}{l}
+            y'(t) = t\\
+            y(0) = 0
+        \end{array}
+        \right. $$
+        Con solución exacta $ y(t) = \dfrac{t^2}{2} $
+        El método de Euler explícito queda:
+        $$ \left\{
+        \begin{array}{l}
+            y_0 = 0\\
+            y_{n+1} = y_n + hf(t_n,g_n) = y_n +ht_n 
+        \end{array}
+        \right. $$
+
+        Entonces:
+        $$ y_0 =0\hspace{5mm}y_1 = y_0 +ht_0 = 0+0h = 0 $$
+        $$ y_2 = 0 + hh = h^2\hspace{5mm}y_3 = h^2+2h^2 = 3h^2 $$
+        $$ y_4 = (1+2+3) = 6h^2 \hspace{5mm} y_5 = (1+2+3+4)h^2 = 10h^2  $$
+        En general:
+        $$ y_n = (1+2+...+n-1)h^2  = \dfrac{(n-1)n}{2}h^2 = \dfrac{n^2-n}{2}h^2 = \dfrac{1}{2}n^2h^2-\dfrac{1}{2}nhh = \dfrac{1}{2}t_{*}^2-\dfrac{1}{2}t_{*}h \to \dfrac{1}{2}t_{*}^2$$
+        Con lo que tenemos un error del orden de $ O(h) $
+        
+        \begin{flushright}
+            \textbf{Variación del ejercicio}
+        \end{flushright}
+        $$ \left\{
+        \begin{array}{l}
+            y'(t) = 1\\
+            y(0) = 0
+        \end{array}
+        \right. $$
+        Con solución exacta $ y(t) = t $
+        El método de Euler explícito queda:
+        $$ \left\{
+        \begin{array}{l}
+            y_0 = 0\\
+            y_{n+1} = y_n +h f(t_n,y_n) = y_n+h
+        \end{array}
+        \right. $$
+        Con lo que:
+        $$ y_0 = 0 \hspace{5mm} y_1 = h \hspace{5mm} y_2 = 2h\ ... $$
+        $$ y_n = nh = t_{*} = y(t_{*}) $$
+        Con lo que hemos obtenido la solución exacta, $ \forall t_{*} = nh\ y(t_{*}) - y_n^{h} = 0 $.
+        ¿Por qué no hay error en el método de Euler en este caso? Porque la segunda derivada de la solución exacta, $ y'' \equiv 0 $ y porque hemos tomado un $ t_0 $ que forma parte de la solución.
+
+        Si en vez de tomar 0 tomamos $ t_0 = \varepsilon $:
+        $$ y_0 = \varepsilon \hspace{5mm} y_1 = \varepsilon +h \hspace{5mm} y_2 = \varepsilon +2h $$
+        $$ y_n = \varepsilon +nh $$
+        En este caso al no tomar un $ y_0  $ exacto el error se desvía por $ \varepsilon $
+
+    \end{exercise}
+
+    \setcounter{ex}{2}
+    $$ (1+hL)^{n} \sim? e ^{Lt} $$
+    con $ t = nh $
+    O equivalentemente, que $ \lim_{t = nh} (1+hL)^{n} = e^{Lt}$
+    $$ (1+hL)^{n} = e^{n \log(1+hL)} = e^{hn \dfrac{\log(1+hL)}{h}} \to e^{Lt} $$
+    
+    \textbf{c)}\\
+    $$ (1+O(h^{p+1}))^{n} = exp(n \log(1+O(h ^{p+1}))) = exp(hn \dfrac{\log(1+O(h^{p+1}))}{n}) = e ^{t \dfrac{\log(1+O(h^{p+1}))}{n}} = ...$$
+    Hacemos el desarrollo de Taylor en el exponente y nos queda $  = exp(t(O(h^{p})+...)) $
+    
+    \setcounter{ex}{9}
+    \begin{exercise}
+        Calculamos primero la solución exacta aunque no nos lo pida el ejercicio.
+        $$ \left\{
+        \begin{array}{l}
+            y'(t) = \alpha y(t)+\beta\\
+            y(0) = y_0
+        \end{array}
+        \right. $$
+        $$ y' = -\alpha y = \beta $$
+        $$ e^{-\alpha t}- \alpha e ^{-\alpha t} y = e ^{-\alpha t}y $$
+        $$  \dfrac{d}{dt}(e^{-\alpha t }) y = e^{-\alpha t}\beta  $$
+        $$ e^{-\alpha t}y -y_0 = \int_{0}^{t}e^{-\alpha s} \beta ds $$
+        % $$ e^{-\alpha t}-y_0 = \dfrac{e^{-\alpha t}-1}{-\alpha}\beta $$
+        $$ y(t) = e^{-\alpha t} y_0 - \dfrac{\beta}{\alpha}(1-e^{\alpha t}) $$
+        Hacemos ahora Euler explícito:
+        $$ \left\{
+        \begin{array}{ll}
+            u_{n+1} = y_n +h f(t_n,u_n) & n=0,...,\dfrac{N}{T}-1\\
+            u_0 = A & \text{podemos asumir $ A = y_0 $}
+        \end{array}
+        \right. $$
+        Recordemos que cada $ u_n $ es una aproximación a $ y(t_n) $.
+        También podemos usar $ y_n $ como aproximación a $ y(t_n) $\\
+        Es importante saber que $ y_n \ne y(t_n) $.\\
+        En nuestro caso, $ f(t,y) = \alpha y +\beta $, luego $ u_{n+1} = u_n+h(\alpha y_n+\beta) $\\
+        Tenemos entonces dos opciones:
+        \begin{itemize}
+            \item $ u_1=u_0+h(\alpha u_0+\beta) $\\
+            $ u_2 =  u_1h \alpha( u_1+\beta) = u_1+h \alpha(u_0+h(\alpha u_0+\beta)+\beta) = $\\$ = u_1 + u_0 (h \alpha(h \alpha)^2+\beta (h^2alfa h \alpha)) = u_1 +h \alpha (1+h \alpha ) u_0+h \alpha (h+1) \beta$
+            \item $ u_{n+1} = (1+h \alpha ) u_n+\beta h $, lo que nos queda:
+                $ u_1 = (1+h \alpha ) u_0 + \beta h $\\ $ u_2 = (1+h \alpha )u_1+\beta h (1+h \alpha )u_0+ \beta h(1+(1+h \alpha))\\ u_3 = (1+h \alpha )u_2 + \beta h = (1+h \alpha) ((1+h \alpha)^2 u_0 + \beta h (1+(1+h \alpha))) + \beta h = (1+h \alpha) ^3 + \beta h(1(1+h \alpha )+ (1+h \alpha )^2) $\\
+                $ u_n = (1+ h \alpha) ^{n} u_0 + \beta h (1+(1+h \alpha)+...+(1+h \alpha )^{n-1}) $\\
+                $   = (1+h \alpha ) ^{n}u_0+ \dfrac{\beta}{\alpha}[(1+h \alpha )^{n}-1] $
+        \end{itemize}
+        
+        Podemos observar que la convergencia del segundo método es mejor.
+
+        Vamos a comprobar que $ u_n \to_{h \to 0,\ n \to +\infty,\ hn = t} y(t) $ cuando $ t = hn $ fijo.
+
+        Sabemos que $ \lim_{x \to +\infty} \left(1+\dfrac{a}{x}\right) = e^{a} $. Entonces, $ (1+h \alpha)^{n} (1+\dfrac{h n}{n}\alpha) \to e ^{t \alpha}$, el valor que toma la solución exacta en el punto $ t_0 $.
+
+        Calculemos ahora el error, sabemos que:
+        $$ \int_{}^{} \dfrac{1}{1+x} = 1-x+x+x ^2-x^3 +... $$
+        $$ \log{1+x} = x-\dfrac{x^2}{2} + \dfrac{x^3}{3}+... \hspace{5mm} \text{Desarrollo de Taylor de $ \log{1+x} $ alrededor de $ x=0 $ } $$
+        
+        El desarrollo de $ \dfrac{\log{(1+x)}}{x} = 1-\dfrac{x}{2}+O(x^2) $ con $ |x| \to 0 $
+
+        Tomando entonces una $ x $ adecuada:
+
+        $$ (1+h \alpha) ^{n} = e ^{n \log{(1+h \alpha)}} = e ^{n h \alpha \dfrac{\log{(1+h \alpha)}}{h \alpha}} = e ^{t \alpha (1- \dfrac{h \alpha}{2}+O(h^2))} = e ^{t \alpha }e^{-\dfrac{h \alpha ^2 t}{2}+ O(h^2)}$$
+
+        Entonces, $ (1+h \alpha )^{n} = -e^{t \alpha} = e^{t \alpha} e^{...}-e^{t \alpha} = e^{t \alpha}(e ^{...}-1) = e ^{t \alpha }(... + \dfrac{[...]^2}{2!}+...) = $\\
+        $ e ^{\alpha t} (-\dfrac{h \alpha ^2 t}{2}) + O(h^2) $
+
+        Hemos llegado a:
+        $$ (1+h \alpha) ^{n} - e^{t \alpha} = -\dfrac{h \alpha ^2 t}{2} e ^{\alpha t} + O(h ^2) $$
+        
+        Y el error es:
+        $$ u_n-y_n = ((1+ h \alpha) ^{n}- e ^{ \alpha t})u_0 + \dfrac{\beta}{\alpha}((1+h \alpha)^{n}- e ^{\alpha t}) = -\dfrac{h \alpha ^2 t}{2}(u_0+ \dfrac{\beta}{\alpha}) e ^{\alpha t}+ O(h ^2)\hspace{5mm}h \to 0$$
+
+
+
+        
+
+    \end{exercise}
+
+    \setcounter{ex}{12}
+
+    \begin{exercise}
+        $ n\geq N-1\\ 0 < \theta < 1,\ h=\dfrac{T}{N} $
+        $$ \left\{
+        \begin{array}{l}
+            y_{n+1} = y_n+h f(t_n+ \theta h, y_n+ \theta f(t_n,y_n) )\\
+            y_0\ dado
+        \end{array}
+        \right. $$
+
+        Los pasos ahora son:
+        \begin{enumerate}
+            \item Obtenemos $ f(t_n,y_n) $
+            \item Avanzamos desde $ (t_n,y_n) $ con pendiente $ f(t_n,y_n) $ hasta el punto $ t_{n+\theta} = t_n+ \theta h $ y obtenemos la abscisa $ y_{n+\theta} = y_n+\theta hf(t_n,y_n) $
+            \item Sobre el punto $ (t_{n+\theta},y_{n+\theta}) $ obtenemos una nueva pendiente $ f(t_{n+\theta},y_{n+\theta}) $
+            \item Aquí disponemos ya de dos pendientes, lo ideal es tomar $ k = b_1k_1+b_2k_2  $ con $ b_1+b_2 = 1 $ promedio y entonces avanzar desde $ t_n $ a $ t_{n+1} $ con esta pendiente:
+                $$ y_{n+1} = y_n + hk \hspace{5mm} \text{con } k = b_1k_1+b_2+k_2 $$
+            \item en el caso de este ejercicio es $ b_1 = 0,\ b_2 = 1 $ 
+
+
+        \end{enumerate}
+    
+    \end{exercise}
+
+    
+
+\end{document}
