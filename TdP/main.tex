@@ -3,7 +3,11 @@
 \usepackage{verbatim}
 \usepackage[hypertexnames=false]{hyperref}
 \usepackage{amstext} 
-\usepackage{array}   
+\usepackage{array}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
 \newcolumntype{C}{>{$}c<{$}} 
 
 
@@ -75,5 +79,35 @@
 
 
 \end{exercise}
+
+\chapter{Hoja 4}
+
+\begin{exercise}
+    $$ f_{X} (x) = 2(1-x) I_{(0,1)}(x) $$
+    \textbf{a)} $ Y = aX-b $ con $ a \ne 0 $
+
+    La función usada es la $ g(x) = ax-b $, esta función es continua, biyectiva (al ser monótona). Será creciente o decreciente dependiendo del valor de $ a $. Si $ h(y) = g ^{-1}(x) = \dfrac{y+b}{a} $, recordemos que:
+    $$ f_{Y}(y) = f_{X}(h(y)) |h'(y)|\ si\ y \in g((0,1))\hspace{5mm}f_{Y}(y) = 0\ resto $$
+
+    Calculamos $ h'(y) = \dfrac{1}{a} $ y $ g((0,1)) $:
+    $$ g((0,1)) = \left\{
+    \begin{array}{ll}
+        (-b,a-b) & a>0\\
+        (a-b,-b) & a<0
+    \end{array}
+    \right. $$
+    
+    Con lo que:
+    $$ a > 0\hspace{5mm}f_{Y}(y) = 2\left(1-\dfrac{y+b}{a}\right)\dfrac{1}{a} = 2 \dfrac{a-y-b}{a^2}I_{(-b,a-b)} $$
+    $$ a < 0\hspace{5mm}f_{Y}(y) = 2\left(1-\dfrac{y+b}{a}\right)-\dfrac{1}{a} = 2 \dfrac{y+b-a}{a^2}I_{(a-b,-b)} $$
+    \textbf{b)} $ Z = 3X^2-X $
+
+    Usaremos la función $ g(x) = 3x^2-x $, esta función no es biyectiva, tendremos que usar dos intervalos $ E_1,E_2 $ para hacer el cambio de variable.
+
+
+    En primer lugar, vemos que el mínimo de la parábola está en $ x = \dfrac{1}{6} $, con lo que tenemos los conjuntos $ E_1 = (0,\dfrac{1}{6}),\ E_2 = (\dfrac{1}{6},1) $, tenemos que:
+    $$ E_1 \to (-\dfrac{1}{12},0) = F_1 \hspace{5mm}E_2 = (\dfrac{1}{6},1) \to (-\dfrac{1}{12},2) = F_2 $$
+\end{exercise}
+
 
 \end{document}
