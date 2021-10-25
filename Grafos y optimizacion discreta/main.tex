@@ -176,6 +176,39 @@
 \end{exercise}
 
 
+\begin{exercise}
+    {\color{turquoise} \textbf{El problema del camino más corto entre dos vértices} $ s $ \textbf{ y } $ j $} 
+
+    Usaremos longitudes no negativas, y sea $ x_{ij} = 1  $ si el camino atraviesa el nodo $ i $ y a continuación el $ j $.
+    $$ \left\{
+    \begin{array}{llrr}
+        Min & \sum\limits_{i \in V}^{}\sum\limits_{j \in V: (i,j) \in E}^{} l_{ij}x_{ij}\\
+        s.a. & x_{ij} \in \{0,1\} & \forall i,j: (i,j) \in E\\
+        & \sum\limits_{j:(j,s) \in E}^{}x_{sj} = 1 \\
+        & x_{js} = 0 & \forall j : (j,s) \in E\\
+        & \sum\limits_{j:(j,t) \in E}^{} x_{jt} = 1\\
+        & x_{tj} = 0 & \forall j : (j,t) \in E\\
+        & \sum\limits_{i:(i,j) \in E}^{} x_{ij} = \sum\limits_{i:(i,j) \in E}^{} x_{ji} & \forall j \ne s,t & \text{Para todo nodo por el que entres, sales}
+    \end{array}
+    \right. $$
+    Podemos ver que la tercera y la cuarta restricción no son necesarias ya que se obtienen de las otras.
+
+    Veamos ahora otra formulación, si tenemos la estructura de árbol con raíz en $ s $ que contiene los caminos más cortos, supongamos que tenemos que enviar canicas desde la raíz de forma que llegue una a cada nodo. Las variables serán las canicas que pasan por cada arista.
+
+    $$ x_{ij} = \text{nº de items (canicas) que circulan desde $ i $ hasta $ j $} \equiv $$$$ \equiv\text{nº de caminos más cortos desde $ s = 1 $ que contienen el subcamino $ i,(i,j),j $}$$
+
+
+    $$ \left\{
+    \begin{array}{llr}
+        min & \sum\limits_{i}^{} \sum\limits_{j:(i,j)\in E}^{} l_{ij}x_{ij}\\
+        s.a. & \sum\limits_{j:(1,j) \in E}^{} x_{1j} = n-1 \\
+        & \sum\limits_{j: (i,j)}^{} x_{ij} = \sum\limits_{j:(j,i) \in E}^{} x_{ji}-1 & \forall i \ne 1\\
+        & x_{ij},x_{ji} \in \mathbb{Z} ^{+} & \forall (i,j) \in E i<j
+    \end{array}
+    \right. $$
+
+\end{exercise}
+
 
 \chapter{Caminos más cortos. Recorridos por artistas y vértices}
 
@@ -198,13 +231,33 @@
 %teorema con el vector d, esta es la dem
 
 \begin{demonstration}
-    $ \implies $
+    $ \impliedby $
 
     Supongamos $ d_j > d_i + l_{ij} $, entonces, podemos crear un camino más corto a $ j $ yuxtaponiendo el camino a $ i $ y la arista que une $ i $ con $ j $ si no se forman ciclos, si se formaran, basta con quitarlo y aún así tendríamos un camino más corto a $ j $. En ambos casos tenemos una contradicción.
     
+    $ \implies $
+
+    Sea $ j \in V $ cualquiera, sea $ P $ un camino cualquiera de $ s $ a $ j $, ¿se cumple que $ l(p) \geq d_j $? Si $ P = (s = i_0,i_1,...,i_{q}=j) $ tenemos que:
+
+    $$ d_{i_1}-d_{i_0} \leq l_{i_0i_1} \hspace{5mm} d_{i_2}-d_{i_1} \leq l_{i_1i_2} \hspace{5mm} ...$$
+
+    Sumando todo obtenemos que $d_j-\underbrace{d_{s}}_{0} = d_{i_q}-d_{i_0} \leq \sum\limits_{k}^{}l_{i_{k}i_{k+1}} = l(P)$
+
 \end{demonstration}
 
+%el siguiente con el vector d
 
+%dem dijkstra
+
+\begin{demonstration}
+    Sea $ P $ camino entre $ s $ y $ j  $, ¿ $ l(p)\geq d_j $ ? De este camino $ (v_{s},v_{a},v_{b},...,v_{j}) $ sabemos que:
+    \begin{itemize}
+        \item $ v_{s} \not \in V' $
+        \item $ v_j \in V' $
+    \end{itemize}
+    Si $ P_{2} $ es el subcamino desde $ s $ hasta el primer nodo de $ V' $ con último coste $ (v_{i_1},v_{i_2}) \in w(V') $, entonces:
+    $$ l(P) \geq l(P_2) =\underbrace{l(P_1)}_{\text{longitud del sucamino que une $ s $ y $ v_{ij} $}}+l_{i_1i_2} \geq d_{i_1} + l_{i_1}l_{i_2} \geq _{(c)} d_{i_2} \geq d_j$$
+\end{demonstration}
 
 
 \end{document}

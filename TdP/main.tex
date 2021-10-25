@@ -105,8 +105,92 @@
     Usaremos la función $ g(x) = 3x^2-x $, esta función no es biyectiva, tendremos que usar dos intervalos $ E_1,E_2 $ para hacer el cambio de variable.
 
 
-    En primer lugar, vemos que el mínimo de la parábola está en $ x = \dfrac{1}{6} $, con lo que tenemos los conjuntos $ E_1 = (0,\dfrac{1}{6}),\ E_2 = (\dfrac{1}{6},1) $, tenemos que:
-    $$ E_1 \to (-\dfrac{1}{12},0) = F_1 \hspace{5mm}E_2 = (\dfrac{1}{6},1) \to (-\dfrac{1}{12},2) = F_2 $$
+    En primer lugar, vemos que el mínimo de la parábola está en $ x = \dfrac{1}{6} $, con lo que tenemos los conjuntos $ E_1 = \left(0,\dfrac{1}{6}\right),\ E_2 = \left(\dfrac{1}{6},1\right) $, tenemos que:
+    $$ E_1 \to \left(-\dfrac{1}{12},0\right) = F_1 \hspace{5mm}E_2 = \left(\dfrac{1}{6},1\right) \to \left(-\dfrac{1}{12},2\right) = F_2 $$
+
+    Para cada intervalo, definimos $ g_i $:
+    $$ g_1 = g|_{(0,\frac{1}{6})}:\left(0,\dfrac{1}{6}\right) \to \left(-\dfrac{1}{12},0\right) \hspace{1cm} g_2 = g|_{(\frac{1}{6},1)}:\left(\dfrac{1}{6},1\right) \to \left(-\dfrac{1}{12},2\right)$$
+
+    Entonces tenemos que:
+    $$ f_{Z}(z) = \sum\limits_{r}^{} f_{X}(h_{r}(z)) |h'_{r}(z)|  $$
+    
+    Siendo $ h_{r}(z) $ la inversa de $ g_{r}(z) $, las calculamos:
+    $$ z = 3x^2-x \iff 3x^2-x-z = 0 \iff x = \dfrac{1 \pm \sqrt{1+12z}}{6} = \left\{
+    \begin{array}{lr}
+        \dfrac{1+\sqrt{1+12z}}{6} = h_2(z) & (creciente)\\
+        \dfrac{1-\sqrt{1+12z}}{6} = h_1(z) & (decreciente)
+    \end{array}
+    \right. $$
+
+    $$ h_1'(z) = -\dfrac{12}{26 \sqrt{1+12z}} = -\dfrac{1}{\sqrt{1+12z}} $$
+    $$ h_2'(z) = \dfrac{1}{\sqrt{1+12z}} $$
+
+    Entonces tenemos que:
+    $$z \in \left(-\dfrac{1}{12},0\right) \implies f_{Z}(z) = 2\left(1-\dfrac{1-\sqrt{1+12z}}{6}\right) \dfrac{1}{\sqrt{1+12z}} + 2\left(1-\dfrac{1+\sqrt{1+12z}}{6}\right) \dfrac{1}{\sqrt{1+12z}} =  $$
+    $$ = 2 \dfrac{1}{\sqrt{1+12z}} \left( 2-\dfrac{2}{6} \right) = \dfrac{2 \cdot 10}{6\sqrt{1+12z}} = \dfrac{10}{3 \sqrt{1+12z}} $$
+
+    $$ z \in (0,2) \implies f_{Z}(z) = 2\left(1-\dfrac{1+\sqrt{1+12z}}{6}\right) \dfrac{1}{\sqrt{1+12z}} $$
+
+
+\end{exercise}
+
+\begin{exercise}
+    $$ f(x,y) = \dfrac{2}{(2-x-y)^3}I_{E}(x,y)\hspace{5mm} \text{con $ E $ el cuadrilátero de vértices (0,0),(1,0),($ \dfrac{2}{3},\dfrac{2}{3} $),(0,1)} $$
+
+    Y los cambios de variable:
+
+    $$ \left\{
+    \begin{array}{l}
+        U = \dfrac{X}{2-X-Y}\\
+        V = \dfrac{Y}{2-X-Y}
+    \end{array}
+    \right. $$
+
+    $$ \left\{
+    \begin{array}{l}
+        u(x,y) = \dfrac{x}{2-x-y}\\
+        v(x,y) = \dfrac{y}{2-x-y}
+    \end{array}
+    \right. $$
+
+    Esta transformación es biyectiva.
+    
+    Como comentario, recordar que los cambios de variable de la forma:
+
+    $$ u = \dfrac{ax+by+c}{dx+ey+f} \hspace{5mm} v = \dfrac{a'x+b'y+c'}{dx+ey+f} $$
+
+    Además de ser biyectivos transforman rectas en rectas.
+
+    Entonces tenemos que:
+    $$ f_{U,V} (u,v) = f(x(u,v),y(u,v)) \left| \dfrac{\partial (x,y)}{\partial(u,v)} \right|$$
+
+    Vemos en qué se transforman los vértices del cuadrilátero con estas transformaciones:
+    \begin{enumerate}
+        \item $ (0,0) \to (0,0) $
+        \item $ (1,0) \to (1,0) $
+        \item $ ( \dfrac{2}{3},\dfrac{2}{3}) \to (1,1)$
+        \item $ (0,1) \to (0,1) $
+    \end{enumerate}
+
+    Calculamos ahora las inversas:
+
+    $$ u(2-x-y) = x \iff -2u+ux+uy+x = 0 \iff (1+u)x+uy-2u = 0 $$
+    $$ v(2-x-y) = v \iff -2v+vx+vy+y = 0 \iff (1+v)y+ux-2v = 0 $$
+
+    Espectacular sistema de ecuaciones lineales del que sacamos que $ x = \dfrac{2u}{1+u+v}\ y = \dfrac{2v}{1+u+v} $
+
+    Ahora,
+    $$ \dfrac{\partial x}{\partial u} = \dfrac{2(1+u+v)-2u}{(1+u+v)^2} = \dfrac{2(1+v)}{(1+u+v)^2} $$
+    $$ \dfrac{\partial x}{\partial v} = -\dfrac{2u}{(1+u+v)^2} $$
+    $$ \dfrac{\partial y}{\partial u} = -\dfrac{2v}{(1+u+v)^2} $$
+    $$ \dfrac{\partial y}{\partial v} = \dfrac{2(1+u)}{(1+u+v)^2} $$
+
+    El Jacobiano entonces es $ \dfrac{4}{(1+u+v)^3} $, con lo que la función de densidad $ f_{(U,V)} $ es:
+    $$ f_{(U,V)}(u,v) = \dfrac{2}{\left(2-\dfrac{2u}{1+u+v}\right)^3} \dfrac{4}{\left( 1+u+v \right)^3} = 1 \hspace{5mm} Si\ (u,v)\in (0,1)\times(0,1) $$
+    $$ f_{(U,V)}(u,v) = 0\ Si (u,v) \not \in (0,1) \times (0,1) $$
+
+    
+
 \end{exercise}
 
 
