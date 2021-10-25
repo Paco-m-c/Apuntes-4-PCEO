@@ -123,4 +123,88 @@
 \end{theorem}
 
 
+
+
+%%%22/10 ESTO ES PARTE DEL TEMA 6
+
+\section{Problemas de optimización sobre grafos}
+
+\begin{exercise}
+    {\color{turquoise} \textbf{El problema del árbol generador del peso mínimo} }
+    $$ x_{e} = 1\ \text{si la arista $ e $ pertenece al árbol $ \forall e \in E $} $$
+
+    $$ min\ \sum\limits_{e \in E}^{} l_{e}x_{e} $$
+    $$ \left\{
+    \begin{array}{llcc}
+        s.a. & x_{e} \in \{0,1\} \forall e \in E & \\
+        & \sum\limits_{e \in E}^{}x_{e} = n-1 & \\
+        & \sum\limits_{e \in E(V ^{3})}^{} x_{e} \leq 2 & \forall V ^3 \subset V & |V^3| = 3\\
+        & \sum\limits_{e \in E(V ^{4})}^{} x_{e} \leq 3 & \forall V ^4 \subset V & |V^4| = 4\\
+        &  \vdots\\
+        & \sum\limits_{e \in E(S}^{} x_{e} \leq |S|-1 & \forall S \subset V & 3 \leq |S| \leq n-1\\
+        
+    \end{array}
+    \right. $$
+
+    Haremos ahora la llamada formulación MTZ, que utiliza ''una especie de árbol dirigido'' comenzamos definiendo las variables:
+
+    %TODO añadir un dibujo (está copiado 22/10)
+
+    $$ u_i = \text{algo parecido al nivel del nodo $ i $ en la arborescencia} $$
+    $$ x_{ij} = \left\{
+    \begin{array}{ll}
+        1 & \text{si $ i $ es el predecesor inmediato de $ j $ en el árbol con raíz en 1}\\
+        0 & oc 
+    \end{array}
+    \right. $$
+
+    $$ \left\{
+    \begin{array}{llcc}
+        min & \sum\limits_{i}^{}\sum\limits_{j=(i,j) \in E}^{} l_{ij}x_{ij}\\
+        s.a. & x_{ij} \in \{0,1\} & \forall i,j: (i,j) \in E\\
+        & \sum\limits_{i}^{}x_{ij} = 1 & \forall j \ne 1\\
+        & x_{ij} + x_{ji} \leq 1 & \forall (i,j) \in E\\
+        & u_i \in \mathbb{Z}^{+} & \forall i\\
+        & u_1 = 0\\
+        & u_j \geq u_i +1 - M (1-x_{ij}) & \forall i,j : (i,j) \in E & (x_{ij}=1 \implies u_j \geq u_i +1)
+
+    \end{array}
+    \right. $$
+
+    Podemos cambiar la $ M $ por $ n-1 $ ya que $ u_j \leq n-1\ \forall j $, creando una mejor formulación del problema.
+
+\end{exercise}
+
+
+
+\chapter{Caminos más cortos. Recorridos por artistas y vértices}
+
+%Chito, supongo que esto lo tendrás copiado, si no se copia en un momento.
+
+%def de longitud de un camino
+
+%El problema del camino más corto
+
+%lema del subcamino mas corto, sigue la demostracion
+
+\begin{demonstration}
+    Si hubiera un camino más corto $ P_1 $ entre $ v_i $ y $ v_j $ que el subcamino $ P_2 $ entre $ v_i,v_j $, reemplazando $ P_2 $ por $ P_1 $ obtenemos o bien 1. o 2.:
+    \begin{enumerate}
+        \item Un camino más corto que el camino más corto con lo que tenemos una contradicción.
+        \item Un paseo que contiene ciclos, la eliminación de estos ciclos nos deja un camino más corto que el camino más corto, de nuevo una contradicción.
+    \end{enumerate}
+\end{demonstration}
+
+%teorema con el vector d, esta es la dem
+
+\begin{demonstration}
+    $ \implies $
+
+    Supongamos $ d_j > d_i + l_{ij} $, entonces, podemos crear un camino más corto a $ j $ yuxtaponiendo el camino a $ i $ y la arista que une $ i $ con $ j $ si no se forman ciclos, si se formaran, basta con quitarlo y aún así tendríamos un camino más corto a $ j $. En ambos casos tenemos una contradicción.
+    
+\end{demonstration}
+
+
+
+
 \end{document}
