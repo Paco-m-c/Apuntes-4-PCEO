@@ -84,7 +84,7 @@
 
 
 
-% A partir de aqui son cosas mienras el ordenador de chito enciende
+% A partir de aqui son cosas mientras el ordenador de chito enciende
 
 
 \begin{theorem}
@@ -207,6 +207,19 @@
     \end{array}
     \right. $$
 
+    Vamos a modificar esta formulación un poco para obtener otra equivalente que tendrá una matriz de restricciones totalmente unimodular.
+
+    La restricción 1 la podemos intercambiar por $ \sum\limits_{j}^{}x_{1j}-x_{j_1} = n-1 $, entonces esta restricción $ R_1 = - \sum\limits_{i=2}^{n} R_i $, con lo que la podemos eliminar. Ahora, por un razonamiento análogo al visto en teoría para la matriz de incidencia del grafo bipartito, $ A $ es $ TU $ y, como $ b $ es entero, podemos eliminar la restricción de integridad. Es equivalente solucionar su problema dual:
+
+    $$ \left\{
+    \begin{array}{llr}
+        Max & \sum\limits_{j\ne_1}^{}d_j\\
+        s.a. & d_j \leq l_{1j} & \forall j:(1,j) \in E\\
+        & d_j-d_i \leq l_{ij} & \forall i, \forall j \ne 1\ : (i,j) \in E
+    \end{array}
+    \right. $$
+    
+
 \end{exercise}
 
 
@@ -256,8 +269,48 @@
         \item $ v_j \in V' $
     \end{itemize}
     Si $ P_{2} $ es el subcamino desde $ s $ hasta el primer nodo de $ V' $ con último coste $ (v_{i_1},v_{i_2}) \in w(V') $, entonces:
-    $$ l(P) \geq l(P_2) =\underbrace{l(P_1)}_{\text{longitud del sucamino que une $ s $ y $ v_{ij} $}}+l_{i_1i_2} \geq d_{i_1} + l_{i_1}l_{i_2} \geq _{(c)} d_{i_2} \geq d_j$$
+    $$ l(P) \geq l(P_2) =\underbrace{l(P_1)}_{\text{longitud del subcamino que une $ s $ y $ v_{ij} $}}+l_{i_1i_2} \geq d_{i_1} + l_{i_1}l_{i_2} \geq _{(c)} d_{i_2} \geq d_j$$
 \end{demonstration}
 
+
+
+%grafo euleriano. Definicion de tour y grafo euleariano
+
+%teorema grafo conexo euleriano sii todo los vertices son pares
+
+\begin{demonstration}
+    
+    $ \implies $
+    
+    Como $ G $ es conexo, $ |g(v)| \geq 1 \forall v$, el paseo no repite aristas y atraviesa cada nodo añadiéndole grado 2 hasta cerrarse por lo que todos los nodos tienen grado par.
+
+    $ \impliedby $
+    
+    Iniciamos un tour en $ v_1, (v_1,v_2)$ (la arista existe porque el grafo tiene que ser conexo). Como $ g(v_2) = \dot{2},\ \exists v_3,\ (v_2,v_3) \in E$, así podemos construir la sucesión $ (v_1,v_2),(v_2,v_3),(v_3,v_4),...,(v_i,v_{k}) $. Solo se detiene el proceso si se encuentra la arista $ v_{t},v_1 $ y no existen más aristas incidentes en $ v_1 $ que no estén en el paseo. En este caso pueden haber pasado dos cosas:
+
+    \begin{enumerate}
+        \item Si ya hemos recorrido todas las aristas hemos terminado.
+        \item No hemos recorrido todas las aristas. Como $ G $ es conexo, $ \exists $ arista que no está en el paseo $ (v_{s},v_{x}) $ con $ v_{s} $ en el paseo. En este caso, podemos empezar un nuevo paseo empezando en $ v_{s} $ formado por la concatenación del que hemos formado antes reordenado para que empiece y acabe en el $ v_{s} $ y el que se genera de la misma forma que antes pero comenzando en $ (v_{s},v_{x}) $. Iteramos hasta agotar las aristas
+    \end{enumerate}
+
+\end{demonstration}
+
+%algoritmo de Heissenbergz y el de Fleury
+
+%definicion problema del cartero chino
+
+%algoritmo de dancing
+
+%%%%%%METODO PARA RESOLVER EL PROBLEMA DEL CARTERO CHINO
+
+%usar alg de dancing
+
+%calclar el coste de todos los emparejamientos de nodos impares
+
+%seleccionar el emparejamiento de menor coste
+
+%duçplicar todas las aristas perteneceientes a los caminos mas cortos para el emparejamiento elegido
+
+%en el multigrafo euleraino obtenido, encontrar un ciclo euleriano usando el alg de Fleury
 
 \end{document}

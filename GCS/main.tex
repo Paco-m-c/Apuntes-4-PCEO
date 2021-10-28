@@ -1,0 +1,118 @@
+\documentclass[openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage[hypertexnames=false]{hyperref}
+\usepackage{amstext} 
+\usepackage{array}   
+\newcolumntype{C}{>{$}c<{$}} 
+
+
+\input{structure}
+\usepackage{geometry}
+\geometry{
+    top=3cm,
+    bottom=3cm,
+    left=3cm,
+    right=3cm,
+    headheight=14pt, 
+    footskip=1.4cm,
+    headsep=10pt,
+}
+\usepackage{graphicx}
+\title{Ejercicios de Geometría de Curvas y Superficies}
+\author{Paco Mora Caselles}
+\date{\today}
+
+\begin{document}
+
+
+\maketitle
+
+\chapter{Hoja 2}
+
+\setcounter{ex}{1}
+
+\begin{exercise}
+    
+    $$ f(p) = d(p,p_0) = |p-p_0| $$
+    $$ F: \mathbb{R}^3 \to \mathbb{R}\ F(x,y,z) = \sqrt{(x-a)^2+(y-b)^2+(z-c)^2}$$
+    F es diferenciable salvo si $ p = p_0 $, entonces $ f = F|_{S} $ es $ C^{\infty} $ en todo $ p \ne p_0 $.
+
+    Sea $  p \in S,\ p \ne p_0 $
+
+    $$ df_{p}(v) = \dfrac{d}{dt}|_{t=0} \underbrace{f(\alpha (t))}_{|\alpha (t)-p| = <\alpha (t)-p_0,\alpha (t)-p_0>^{\frac{1}{2}}} = \dfrac{1}{2} <\alpha (t)-p_0,\alpha (t)-p_0>^{-\dfrac{1}{2}} 2 <\alpha'(t),\alpha(t)-p_0>|_{t=0} $$
+    $$ = \dfrac{<v,p-p_0>}{|p-p_0|} $$
+\end{exercise}
+
+\begin{exercise}
+
+    \textbf{i)}
+
+    Es un difeomorfismo ya que es diferenciable, biyectiva y la inversa es diferenciable (es ella misma).
+
+    $$ dA_{p}(v) = -v \hspace{5mm} \text{(lo vimos en un ejemplo)}  $$
+
+    Como comentario, se puede ver que las diferenciales de las funciones lineales son ellas mismas.
+
+    \textbf{ii)}
+
+    $$ C = \{x^2+y^2=1\}\longrightarrow_{F} H = \{x^2+y^2-z^2 = 1\}\hspace{5mm}F(x,y,z) = (\sqrt{1+z^2}x,\sqrt{1+z^2}y,z)$$
+
+    $$ \widetilde{F}: \mathbb{R} ^3 \to \mathbb{R} ^3\ \mathcal{C}^{\infty} \implies F|_{C} : C \to \mathbb{R} ^3\ \mathcal{C}^{\infty} \implies F\ \mathcal{C} ^{\infty}$$
+    
+    donde $ \widetilde{F}|_{C} = i \circ F $, con $ i $ la inclusión canónica. 
+
+    $$ (\overline{x},\overline{y},\overline{z}) \in H \iff \overline{x} ^2 +\overline{y} ^2 -\overline{z} ^2  = (1+z^2)x^2 + (1+z^2)y^2-z^2 = (1+z^2)\underbrace{(x^2+y^2)}_{1}-z ^2  = 1 $$
+
+
+    $$ F ^{-1}: H \to C\ F ^{-1}(u,v,w) = (\dfrac{u}{\sqrt{1+w^2}},\dfrac{v}{\sqrt{1+w^2}},w) $$
+
+    Con lo que la inversa es también diferenciable.
+
+    \textbf{iii)}
+
+    Vemos primero la expresión de $ F $:
+    $$ p = (x,y,z) \in \mathbb{S}^2 \setminus \{N,S\} \to F(p) \in H $$
+    
+    La recta con la que definimos $ F $ es $ r(t) = (0,0,z) + t(z,y,0) = (tx,ty,z) \in H $ para $ t > 0 $.
+    $$ 1 = (tx)^2+(ty)^2-z^2 = t^2(x^2+y^2)-z^2\hspace{5mm}t^2=\dfrac{1+z^2}{x^2+y^2}= \dfrac{1+z^2}{1-z^2} $$
+    Entonces, $ F(x,y,z) = \left(x \sqrt{\dfrac{1+z^2}{1-z^2}},y \sqrt{\dfrac{1+z^2}{1-z^2}},z\right) $
+
+    Tomamos un abierto de $ W \subset \mathbb{R}^3 $ abierto donde exista $ \widetilde{F}$, entonces:
+    $$ W = \{(x,y,z) \in \mathbb{R} ^3\ :\ -1<z<1 \} \equiv \mathbb{R}^2_{x}(-1,1)$$
+    $$ \widetilde{F}(x,y,z) = \left(x \sqrt{\dfrac{1+z^2}{1-z^2}},y \sqrt{\dfrac{1+z^2}{1-z^2}},z\right)\ (x,y,z) \in W $$
+    $$ \widetilde{F}\ \mathcal{C}^{\infty}\ \text{y}\ \widetilde{F}|_{\mathbb{S}^2 \setminus \{N,S\}} = F \implies  F\ es\ \mathcal{C}^{\infty}$$ 
+
+    Tomamos $ H_1 = H \cap W = F(\mathbb{S}^2 \setminus \{N,S\}) $, $ H_1 \subset H $ es abierto $ \implies  H_1$ es una superficie.
+
+    $$ G: \mathbb{S}^2 \setminus \{N,S\} \to H_1,\ G(x,y,z) = F(x,y,z) $$
+
+    $$ G ^{-1}(x,y,z) = \left(x \sqrt{\dfrac{1-z^2}{1+z^2}},y \sqrt{\dfrac{1-z^2}{1+z^2}},z\right) \implies \text{ $ G $ es un difeomorfismo} $$
+ 
+
+\end{exercise}
+
+
+\begin{exercise}
+    El argumento para ver que $ F $ es diferenciable seguiremos el mismo procedimiento de los dos ejercicios anteriores, obtendremos que es diferenciable en todo punto menos en $ p_0 $.
+    $$ \widetilde{F}: \mathbb{R}^3 \setminus \{p_0\} \to \mathbb{R}^3 \ \widetilde{F}(p) = \widetilde{F}(x,y,z) = \dfrac{p-p_0}{|p-p_0|}\ \widetilde{F}|_{S}\ es\ \mathcal{C}^{\infty}$$
+
+    $$ dFp(v) = (F \circ \alpha)' (0) = \dfrac{d}{dt}|_{t=0} |\alpha(t) - p_0 | ^{-1} (\alpha (t)-p_0) =$$$$= -\dfrac{1}{2}<\alpha(t)-p_0,\alpha(t)-p_0> ^{-\frac{3}{2}} 2<\alpha'(t),\alpha(t)-p_0>(\alpha(t)-p_0) + \dfrac{1}{|\alpha(t)-p_0|}\alpha'(t)|_{t=0} = $$
+    $$ \dfrac{v}{|p-p_0|}- \dfrac{<v,p-p_0>}{|p-p_0|^3}(p-p_0)  $$
+
+    Veamos la caracterización del núcleo:
+
+    $$ \dfrac{v}{|p-p_0|}- \dfrac{<v,p-p_0>}{|p-p_0|^3}(p-p_0) = 0 \iff v = \lambda(p-p_0)  $$
+
+    $$ \impliedby\ \text{Directo} $$
+    $$ \implies  $$
+    $$ v = \dfrac{<c,p-p_0>}{|p-p_0|^2}(p-p_0) $$
+
+    Con lo que $ Ker(dFp) = <p-p_0> $
+    
+
+
+\end{exercise}
+
+
+\end{document}
