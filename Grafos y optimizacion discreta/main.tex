@@ -222,6 +222,26 @@
 
 \end{exercise}
 
+\begin{exercise}
+    {\color{turquoise} \textbf{El problema de convertir un grafo en euleriano}}
+
+    $$ x_{e} \equiv \text{número de veces que se recorre la arista } e $$
+
+    $$ \left\{
+    \begin{array}{llrr}
+        min & \sum\limits_{e \in E}^{} \mathcal{l}_{e}x_{e}\\
+        s.a. & x_{e} \in \mathbb{Z}^{+} & \forall e \in E\\
+        & x_{e} \geq 1   & \forall e \in E\\
+        & \sum\limits_{e \in E\ :\ e = (i,-)}^{} x_{e} = 2z_{i} & \forall i \in V\\
+        & z_i \in \mathbb{Z}^{+} & \forall i\\
+        & z_i \leq 2g(i) & & \text{Opcional, es para tener una mejor formulación}
+    \end{array}
+    \right. $$
+\end{exercise}
+
+
+
+
 
 \chapter{Caminos más cortos. Recorridos por artistas y vértices}
 
@@ -312,5 +332,60 @@
 %duçplicar todas las aristas perteneceientes a los caminos mas cortos para el emparejamiento elegido
 
 %en el multigrafo euleraino obtenido, encontrar un ciclo euleriano usando el alg de Fleury
+
+
+%Definicion de ciclo hamiltoniano y camino hamiltoniano
+%def grafo clausura
+
+\begin{theorem}
+    {\color{turquoise} \textbf{Bondy-Chvatal}}
+\end{theorem}
+
+\begin{demonstration}
+
+    $ \implies $
+
+    Directo.
+
+    $ \impliedby $
+
+    Reducción al absurdo: supongamos que existe un grafo no hamiltonianos cuya clausura sí es hamiltoniana.
+    
+    Sea $ G_0,...,G_k = [G] $ con $ j $ el primer índice tal que $ G_{j} $ no es hamiltoniano pero $ G_{j+1} $ sí lo es. La última arista añadida, digamos que es $ (v_1,v_n) \not \in E_j $ y $ (v_1,v_n) \in E_{j+1} $, tiene que estar en el ciclo hamiltoniano de $ G_{j+1} $. Sea este ciclo $ v_1,...,v_n,v_1 $.
+    
+    Retirando $ (v_1,v_n) $ de nuevo, se sigue que en $ G_j $ existía un camino hamiltoniano $ (v_1,v_2,...,v_n) $.
+    
+    Sean $ Y = \{i \in \{3,...,n-1\} : (v_1,v_i) \in E_j\} $ (algunos de los vecinos de $ v_1 $) y $ X = \{i \in \{3,...,n+1\}:(v_n,i) \in E_j\} $ (los nodos a la derecha de algunos de los vectores de $ v_n $). Entonces $ |Y| = g_{G_j}(v_1) -1$ y $ |X| = g_{Gj}(v_n)-1 $ y $ |X| + |Y| \geq_{\text{por la contrucción de $ G_{j+1} $}} n-2  $.
+
+    Como $ X,Y \subset \{3,4,...,n-1\}_{\text{con cardinal $ n-3 $}} $ y sus cardinales suman $ n-2 \implies X \cap Y \ne \emptyset \implies \exists v_{k} \in X \cap Y \implies $
+    $$ \implies \left\{
+    \begin{array}{l}
+        (v_{k},v_1) \in E_j\\
+        (v_{k-1},v_n) \in E_j
+    \end{array}
+    \right. $$
+    Y tenemos que $ (v_1,..,v_{k-1},v_{n},v_{n-1},...,v_{k},v_{1}) $ es un ciclo hamiltoniano.
+\end{demonstration}
+
+
+%teorema de chavtal
+
+\begin{demonstration}
+    
+    $ \implies $
+
+    Utilizaremos el contrarrecíproco, si tenemos un $ i < \dfrac{n}{2} $ tal que $ a_i \leq 1 $ y $ a_{n-1} < n-1 $
+
+    %dibujo 4/11
+
+    $ \impliedby $
+
+    Supongamos que no es hamiltoniano. Sea $ G(V,E) $ un grafo con el mayor número posible de aristas que no es hamiltoniano con grafos $ g_{1}\leq...\leq g_n $. Esta grafo satisface la condición 
+
+    $$ g_i \leq i \implies a_i\leq i \implies a_{n-i} \leq n-1 \implies g_{n-i} \geq n-i \forall i < n/2 $$
+
+    Sean $ u,v \in V $m con $ (u,v) \not \in E $ y $ g(u)+g(v) $ lo mayor posible.
+
+\end{demonstration}
 
 \end{document}

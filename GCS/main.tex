@@ -114,5 +114,173 @@
 
 \end{exercise}
 
+\begin{exercise}
+    $$ F(x,y,z) = \left( \dfrac{x}{\sqrt{1-z^2}},\dfrac{y}{\sqrt{1-z^2}},z \right) $$
+    \textbf{i)}
+
+    Sea $  (x,y,z) \in \mathbb{S}^2 \setminus \{N,S\} $, veamos que $ F(x,y,z) \in C $:
+    $$ \dfrac{x^2}{1-z^2}+\dfrac{y^2}{1-z^2} = \dfrac{x^2+y^2}{1-z^2} = \dfrac{1-z^2}{1-z^2} = 1 $$    
+
+    Para comprobar que $ F $ es diferenciable, tomamos $ f: W \to \mathbb{R}^2\ W = \{(x,y,z) \in \mathbb{R}^3\ -1<z<1\}$ abierto. Como $F =  f|_{\mathbb{S}^2 \setminus \{N,S\}} = f \circ i $ y $ f $ es diferenciable, $ F $ es diferenciable.
+
+    \textbf{ii)}
+
+    Tomamos $ p \in \mathbb{S}^2 \setminus \{N,S\},\ v \in TpS  $ y $ \alpha: I \to \mathbb{S}^2 \setminus \{N,S\}\ \alpha(0) = p,\ \alpha'(0) = v $.
+
+    $$ dFp(v) = \dfrac{d}{dt}|_{t=0}(F\circ \alpha)(t) = \dfrac{d}{dt}|_{t=0} \left( \dfrac{x(t)}{\sqrt{1-z^2(t)}},\dfrac{y(t)}{\sqrt{1-z^2(t)}},z(t) \right)=$$
+     $$= \left( \dfrac{x'(t)(1-z^2(t)+x(t)z'(t)z(t))}{(1-z^2(t))^{1/2}}, \dfrac{y'(t)(1-z^2(t)+y(t)z'(t)z(t))}{(1-z^2(t))^{\frac{1}{2}}}, z'(t)\right) $$=$$ \left( \dfrac{v_1(1-z^2)+zv_3}{(1-z^2)^{\frac{2}{3}}},\dfrac{v_2(1-z^2)+zv_3}{(1-z^2)^{\frac{2}{3}}},v_3 \right)$$
+
+
+
+\end{exercise}
+
+
+\begin{exercise}
+
+    Hay una errata en el enunciado, necesitamos la hipótesis $ <p,e_3> = 0 $ para el segundo apartado.
+
+    \textbf{i)}
+
+    Sea $ A = \mathbb{R}^3 \setminus \{(0,0,z)\} $ si $ F:A->\mathbb{R} $ tal que $ F(p) = \dfrac{1}{|p \times (0,0,1|} $ y $ F $ diferenciable, con lo que $ f $ es diferenciable ya que $ f = F|_{S} $.
+
+    $$ dfp(v) = (f \circ \alpha) ' (0) = \dfrac{d}{dt}|_{t=0} <\dfrac{\alpha} (t) \wedge (0,0,1),\alpha(t) \wedge (0,0,1)> ^{\frac{1}{2}} =$$
+    $$ = -\dfrac{1}{2} 2 <\alpha (t) \wedge (0,0,1),\alpha(t) (0,0,1)>^{\dfrac{3}{2}} <\alpha'(t) \wedge (0,0,1),\alpha (t) \wedge (0,0,1)> $$$$= \dfrac{-<\alpha'(t) \wedge (0,0,1),\alpha(t) \wedge (0,0,1)>}{|\alpha(t) \wedge (0,0,1)|^3}|_{t=0} = \dfrac{-<v \wedge (0,0,1),p \wedge (0,0,1)>}{|p \wedge (0,0,1)|^3} $$
+
+    \textbf{ii)}
+
+    Probaremos que $ <p,v> = 0 $
+
+    $$ dfp = 0 \iff <v \wedge (0,0,1), p \wedge (0,0,1)> = 0 $$
+
+    Si $ p = (x,y,z), v = (a,b,c) $, entonces la expresión anterior es:
+
+    $$ <(a,b,c) \wedge (0,0,1),(x,y,z) \wedge (0,0,1)> = <(b,a,,0),(y,x,0)> = by+ax = 0 $$
+
+    Volviendo a lo que queríamos probar:
+
+    $$ <p,v> = 0 \iff xa+by+zc = zc = 0 $$
+    que es cierto ya que $ <p,e_3> = 0 $
+
+\end{exercise}
+
+\begin{exercise}
+    
+    \textbf{i)}
+
+    $ L = <n> $ $ n $ vector unitario base de $ L $, $ H_{\lambda} = \{p = (x,y,z) \in \mathbb{R} ^3: <p,n> = \lambda\} $
+    
+    $ S \subset H_{\lambda} $ para algún $ \lambda  \iff <p,n> cte\ Sea\ f: S \to \mathbb{R}\ f(p) = <p,n>$
+
+    
+    Para comprobar que es constante, calculamos su diferencial.
+    $$ df_{p}(v) = <v,n> =_{n || N(p)} = 0 $$
+
+    \textbf{ii)}
+
+    Comprobaremos que $ f(p) = |p|^2 - <p,e_3>^2 $ es constante en la superficie.
+
+    $$ df_{p}(v) = 2(<p,v>-<p,e_{3}><v,e_3>) = 2(<p,v> - <<p,e_3>e_3,v>) = $$
+    $$ =2<\underbrace{p-<p,e_3>e_3}_{(x,y,0)||N(p)\footnote{$ p = <p,e_1>e_1 + <p,e_2>e_2 + <p,e_3>e_3 $}},v> = 0 $$
+
+    \textbf{iii)}
+
+    De nuevo comprobamos que $ f(p) = |p-p_0|^2 $ es constante con la diferencial:
+
+    $$ df_{p}(v) = 2<\underbrace{p-p_0}_{||N(p)},v> = 0 $$
+
+\end{exercise}
+
+\begin{exercise}
+    $$ X(u,v) = (\sin(u) \cos(v), \sin(u) \sin(v), \cos(u)) $$
+
+    Usaremos las familias de curvas coordenadas obtenidas al fijar uno de los dos parámetros del mapa $ X $. Si fijamos $ u=u_0 $ obtenemos un paralelo. En el otro caso, si $ v = v_0 $, obtendremos un meridiano. Formamos así $ X_{u}(u,v_0) $
+
+    Si $ \beta $ es el ángulo que forma la loxodroma tenemos que:
+
+    $$ \cos(\beta) = \dfrac{<\alpha '(t),X_{u}(\widetilde{\alpha} (t))>}{|\alpha ' (t)||X_{u}(\widetilde{\alpha} (t)|} $$
+
+    Definiendo $ \alpha (t) = X(u(t),v(t)) $ obtenemos:
+
+    $$ \alpha'(t) = u'(t)X_{u}(\widetilde{\alpha}(t))X_{u}( \widetilde{\alpha (t)}) + v'(t)X_{v}(\widetilde{\alpha}(t)) $$
+
+    Entonces:
+
+    $$ \cos(\beta) = \dfrac{u'E+v'F}{|\alpha ' (t)|\sqrt{E}} $$
+
+    Calculamos $ E,F,G $:
+    $$ X_{u} = (\cos(u) \cos(v), \cos(u) \sin(v),-\sin(u)) \implies E = 1 $$
+    $$ X_{u} = (-\sin(u) \sin(v), \sin(u) \cos(v),0) \implies F = 0 $$
+    $$ G = \sin^2(u) $$
+
+    Volviendo a la expresión anterior:
+
+    $$ \cos(\beta) = \dfrac{u'}{\sqrt{u'^2+v'^2+\sin^2(u)}} $$
+
+    $$ \cos^2(\beta) (u'^2+v'^2 \sin^2(u))=u'^2  $$
+    $$ v'^2 \sin^2(u) = \left( \dfrac{1}{\cos^2(\beta)} -1\right)u'^2 = \tan^2(\beta )u'^2 $$
+    $$ v' = \tan(\beta) \dfrac{u'}{\sin(u)} \implies_{integrando} v+cte = \pm \log{\tan\left(\dfrac{u}{2}\right)} \tan(\beta ) $$
+
+    Con lo que $ \alpha (t) = X\left(t,\pm\log{\dfrac{t}{2}}\tan(\beta )+cte\right) $
+
+\end{exercise}
+
+\begin{exercise}
+    $$ X(u,v) = (\cos(u)\cosh(v), \sin(u),\cosh(v),v) $$
+    $$ X_{u}(u,v) = (-\sin((u)\cosh(v), \cos(u)\cosh(v),0) $$
+    $$ X_{v}(u,v) = (\cos((u)\sinh(v), \sin(u)\sinh(v),1) $$
+    $$ E = \cosh^2(v)\hspace{5mm}F = 0 \hspace{5mm}G = \cosh ^2 (v) $$
+
+    Aplicaremos la misma estrategia que usamos para el toro, calcularemos el área para una serie de regiones que aproximan al catenoide:
+
+    $$ A(R_{\varepsilon}) = \int\limits_{-1}^{1}\int\limits_{\varepsilon}^{2 \pi - \varepsilon} \cosh ^2(v)dudv= (2 \pi-2 \varepsilon) \left( 1 + \dfrac{\sinh(2)}{2} \right)$$
+    
+    Y solo hay que tomar límites para $ \varepsilon \to 0 $
+\end{exercise}
+
+\begin{exercise}
+
+    \textbf{i)}
+
+    $$ X_{u}(u,v) = \left(\cos(u)\cos(v), \cos(u)\sin(v),-\sin(u)+\dfrac{1}{\sin(u)}\right) = $$
+    $$=  \left(\cos(u)\cos(v),\cos(u) \sin(v), \dfrac{\cos^2(u)}{\sin(v)}\right) $$
+    $$ E = \dfrac{\cos^2(u)}{\sin^2(u)} = \cot^2(u) $$
+    $$ F = 0 $$
+    $$ G = \sin^2(u)\sin^2(v) + \sin^2(u)\cos^2(v)= \sin^2(u) $$
+
+    \textbf{ii)}
+
+    Tomamos la región $ R_{\varepsilon} = X((\varepsilon,\dfrac{\pi}{2}-\varepsilon)\times [\varepsilon,2\pi-\varepsilon]) $
+
+    $$ A(R_{\varepsilon}) = \int\limits_{\varepsilon}^{{\pi}/{2}-\varepsilon} \int\limits_{\varepsilon}^{2 \pi-\varepsilon} \sqrt{EG-F^2}dudv = \int\limits_{\varepsilon}^{\dfrac{\pi}{2}-\varepsilon} \cos(u)du (2\pi-2 \varepsilon) = 2 (\sin(\dfrac{\pi}{2}-\varepsilon)-\sin(\varepsilon)) (\pi-\varepsilon) $$
+
+    $$ A(R) = \lim_{\varepsilon \to 0} A(R_{\varepsilon}) = 2 \pi $$
+
+\end{exercise}
+
+\begin{exercise}
+    
+    \textbf{i)}
+
+    $$ X_{u}(u,v) = \alpha' (s) + r(\cos(\theta)n'(s)+\sin(\theta)b'(s)) = $$
+    $$_= {Frenet} t(s)+ r(\cos(\theta)(-k(s)t(s)-\tau(s)bs(s))+\sin(\theta)\tau(s)n(s)) = $$
+    $$ = t(s)(1-r \cos(\theta)k(s))- r \cos(\theta)\tau(s)b(s) + r\sin(\theta)\tau(s)n(s) $$
+    $$ X_{v}(u,v) = r(-\sin(\theta)n(s)+\cos(\theta)b(s)) $$
+
+    Como $ \{t,n,b\} $ es una base ortonormal podemos calcular $ E =  <X_{s},X_{s}> $ como la suma de los coeficientes de los vectores de la base al cuadrado. Lo mismo ocurre para $ G $:
+
+    $$ E = <X_{s},X_{s}> = (1-r \cos(\theta)k(s))^2+r^2(\tau(s))^2 $$
+    $$ F = <X_{u},X_{\theta}> = ... = -r^2\tau(s)$$
+    $$ G = <X_{\theta},X_{\theta}> = r^2(\sin^2(\theta)+\cos^2(\theta)) = r^2$$
+
+    \textbf{ii)}
+
+    $$ I = (a,b) \to I_{\varepsilon} = [a+\varepsilon,b-\varepsilon] \to R_{\varepsilon} = X(I_{\varepsilon} \times [\varepsilon,2 \pi- \varepsilon]) $$
+    $$ A(R_{\varepsilon}) = \int\limits_{\varepsilon}^{2 \pi- \varepsilon} \int\limits_{I_{\varepsilon}}^{} \sqrt{EG-F^2}dsd \theta = r \iint (1- \cos(\theta)k(s)r)dsd \theta =  $$
+    Tendremos que probar que $ r^2 \int\limits_{I_{\varepsilon}}^{}k(s)ds \int\limits_{\varepsilon}^{2\pi - \varepsilon}\cos(\theta) = 0$
+
+    $$ EG-F^2 = ... = r^2(1-r \cos(\theta)k(s))^2 \implies \sqrt{EG-F^2} = r(1-k(s)r \cos(\theta))\footnote{Sabemos por el enunciado que no tenemos que poner valores absolutos al ser $ 1-rk(s)\cos(\theta)>0 $} $$
+
+\end{exercise}
+
 
 \end{document}

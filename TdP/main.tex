@@ -210,4 +210,109 @@
 \end{exercise}
 
 
+\begin{exercise}
+
+    Vemos los puntos para los que $ p((i,j)) = cte $:
+    \begin{enumerate}
+        \item $ p((i,j)) = k \cdot 2 \to (i,j) = (1,1)$
+        \item $ p((i,j)) = k \cdot 3 \to (i,j) = (1,2),(2,1)$
+
+        \hspace{2cm}\vdots
+        \item $ p((i,j)) = k \cdot h \to (i,j) = (i,h-i) $
+    \end{enumerate}
+
+    Para cada caso hay $ h-1 $ parejas.
+
+    Entonces, 
+    
+    $$ \sum\limits_{}^{}p(i,j) = \sum\limits_{}^{} k (i+j) = \sum\limits_{h=2}^{n} \sum\limits_{i=1}^{h-1}k \cdot h = \sum\limits_{h=2}^{n} k (h-1) h = k \sum\limits_{h=2}^{n}(h^2-h) = $$
+    $$ = k (\sum\limits_{h=2}^{n}h ^2- \sum\limits_{h=2}^{n}h) = k\left(\dfrac{n(n+1)(2n+1)}{6}-\cancel{1}-\dfrac{n(n+1)}{2}+\cancel{1}\right) = k \dfrac{n(n+1)(2n-2)}{6} = $$
+    $$= k \dfrac{n(n+1)(n-1)}{3} = 1 \iff k = \dfrac{3}{n(n-1)(n+1)}$$
+
+    Calcularemos ahora $ p_1(i) $:
+    $$ p_1(i) = \sum\limits_{j}^{}p((i,j)) = \sum\limits_{j=1}^{n-i}k(i+j) = k \left( \sum\limits_{j=1}^{n-1}i + \sum\limits_{j=1}^{n-1}j \right) = k \left(i(n-i)+\dfrac{(n-i+1)(n-i)}{2}\right)  $$
+    $$ p_1(i) = k \dfrac{(n-i)(n+i+1)}{2} $$
+
+    Vemos ahora la familia de distribuciones $ p_{2|1}(j|i) $:
+    $$ p_{2|1}(j|i) = \dfrac{p((i,j))}{p_1(i)} = \dfrac{k(i+j)}{\dfrac{k(n-i)(n+i+1)}{2}} = 2\dfrac{i+j}{(n-i)(n+i+1)}\ si\ j=1,2,...,n-i$$
+
+\end{exercise}
+
+\begin{exercise}
+    $$ f(x,y) = \left\{
+    \begin{array}{ll}
+        k(1-x-y) & (x,y) \in T\\
+        0 & (x,y) \not \in T
+    \end{array}
+    \right. $$
+
+    $$ T = \{(x,y) \in \mathbb{R} ^2:\ x>0,y>0,x+y<1\} $$
+
+    $$ f_{1}(x) = \left\{
+    \begin{array}{ll}
+        \int\limits_{0}^{1-x} k(1-x-y)dy & x \in (0,1)\\
+        0 & x \not \in (0,1)
+    \end{array}
+    \right. $$
+
+    $$ \int\limits_{0}^{1-x} k(1-x-y)dy = k (1-x)y - \dfrac{y^2}{2} \Biggr|_{0}^{1-x} = k \dfrac{(1-x)^2}{2} $$
+
+    
+    $$ f_{1}(x) = \left\{
+        \begin{array}{ll}
+            k \dfrac{(1-x)^2}{2} & x \in (0,1)\\
+            0 & x \not \in (0,1)
+        \end{array}
+        \right. 
+    $$
+
+    Con esto podemos calcular el valor de $ k $:
+    $$ \int\limits_{0}^{1}k \dfrac{(1-x)^2}{2} = \dfrac{k}{2} -\dfrac{(1-x)^3}{3} \Biggr|_{0}^{1} = \dfrac{k}{6} = 1 \iff k = 6 $$
+
+    Sea $ x \in (0,1) $, calculemos $ f_{2|1}(y|x) $
+
+    $$ f_{2|1}(y|x) = \dfrac{f(x,y)}{f_{1}(x)} = \dfrac{6(1-x-y)}{3(1-x^2)} = \dfrac{2(1-x-y)}{(1-x)^2}\ si\ y \in (0,1-x) $$
+    $$ f_{2|1}(y|x) = 0\ si\ y \not \in (0,1-x) $$
+
+    Vemos ahora $ F_{1}(x) $:
+    $$ F_{1}(x) = \left\{
+    \begin{array}{ll}
+        0 & x < 0\\
+        \int\limits_{0}^{x} k \dfrac{(1-u)^2}{2} du = 1-(1-x)^3 & x \in (0,1)\\
+        1 & x > 1
+    \end{array}
+    \right. $$
+
+    $$ F_{2|1}(y|x) = \left\{
+    \begin{array}{ll}
+        0 & y < 0\\
+        \int\limits_{0}^{y} \dfrac{2(1-x-v)}{(1-x)^2}dv = 1- \dfrac{(1-x-y)^2}{(1-x)^2} & y \in (0,1-x)\\
+        1 & y > 1-x
+    \end{array}
+    \right. $$
+
+
+\end{exercise}
+
+\chapter{Hoja 5}
+
+    \setcounter{ex}{3}
+
+\begin{exercise}
+
+    \textbf{a)}
+
+    Los valores que se pueden tomar son los que cumplen que $ i\leq j $. El caso $ (i,j) $ con $ i<j $ se cumple cuando se saca ese par en el orden $ (i,j) $ o en el orden $ (j,i) $. Para el caso $ i=j $, solo hay un modo de sacarlo. Entonces:
+    $$ p(i,j) = P(X=i,Y=j) = \left\{
+    \begin{array}{ll}
+        \dfrac{2}{n^2} & i<j \\\\
+        \dfrac{1}{n^2} & i = j \\ \\
+        0 & i > j 
+    \end{array}
+    \right. $$
+
+
+\end{exercise}
+
+
 \end{document}
