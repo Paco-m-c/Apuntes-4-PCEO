@@ -296,14 +296,114 @@
 
 \chapter{Hoja 5}
 
-    \setcounter{ex}{3}
+\setcounter{ex}{1}
 
 \begin{exercise}
+    $$ F_{x}(t) = P(x\leq t) = P(x+y\leq t) $$
+    $$ F_{x}(t) = \left\{
+    \begin{array}{ll}
+        0 & t\leq 0\\
+         \text{área del triangulo con catetos } t = \dfrac{t^2}{2} & 0 < t < 1\\
+         1-\text{ área triánglo cateto } (2-t) = 1-\dfrac{(2-t)^2}{2} = \dfrac{2-(2-t)^2}{2} & 1\leq t < 2\\
+         1 & t \geq 2
+    \end{array}
+    \right. $$
+    Derivando obtenemos que:
+    $$ f_{x}(t) = \left\{
+    \begin{array}{ll}
+        t & 0 < t < 1\\
+        2-t & 1 < t < 1 \\
+        0 & resto
+    \end{array}
+    \right. $$
+
+    Este problema lo podríamos ver de otra forma: Sean $ U,V $ variables aleatorias independientes ambas con distribución uniforme en $ (0,1) $. Calcular la función de densidad de $ U+V $. En este caso podremos usar las convoluciones.
+
+    $$ f_{U}(u) = I_{(0,1)}(u) \hspace{5mm} f_{V}(v) = I_{(0,1)}(v) $$
+
+    $$ F_{U}(u) = \left\{
+        \begin{array}{ll}
+            0 & u < 0\\
+            u & 0<u<1\\
+            1 & u>1
+        \end{array}
+        \right. \hspace{5mm} F_{V}(v) = \left\{
+    \begin{array}{ll}
+        0 & v < 0\\
+        v & 0<v<1\\
+        1 & v>1
+    \end{array}
+    \right. $$
+
+    Si $ Z = U+V $
+
+$$ f_{Z}(z) = \int\limits_{\mathbb{R}}^{}f_{u}(z-t)f_{V}(t)dt = \int\limits_{\mathbb{R}}^{}I_{(0,1)}(z-t)I_{(0,1)}(t)dt  = \int\limits_{0}^{1}I_{(0,1)}(z-t)dt $$
+
+Como $ 0<z-t<1 \implies z-1<t<z $, luego tendremos:
+$$ f_{Z}(z) = \left\{
+\begin{array}{ll}
+    0 & z< 0 \\
+    \int\limits_{0}^{z}dt = z & 0<z<1 \\
+    \int\limits_{z-1}^{1}dt = 1-(z-1) = 2-z & 1<z<2\\
+    0 & z>2 
+\end{array}
+\right. $$
+
+Lo que es igual a lo que hemos calculado antes.
+
+\textbf{Otra forma análoga)}
+
+Sea $ (U,V) $ uniforme, se obtiene una nueva variable $ (X,Y) $ mediante la siguiente transformación:
+$$ \left\{
+    \begin{array}{l}
+        X = U+V\\
+        Y = V
+    \end{array}
+    \right. $$
+    
+    Calcular la función de distribución marginal de la v.a. $ X $
+    
+    $$ f_{(X,Y)}(x,y) = f_{(U,V)} (u(x,y),v(x,y)) |\dfrac{\partial (x,y)}{\partial (u,v)}| $$
+    Y luego calcularíamos $ f_{X} $
+
+\end{exercise}
+
+
+\begin{exercise}
+    $$ f_{X}(t) = I_{(0,1)}(t) = \left\{
+    \begin{array}{ll}
+        1 & t \in (0,1)\\
+        0 & t \not \in (0,1)
+    \end{array}
+    \right. $$
+    $$ f_{Z}(z) = \int\limits_{}^{}f_{X}(z-t)dF_{Y}(t) = \int\limits_{}^{}I_{(0,1)}(z-t)dF_{Y}(t) =  $$
+    Como $ Y $ es discreta y toma valores en $ t = 0,1 $, la integral la podemos calcular como:
+    $$ = I_{(0,1)}(z) \dfrac{1}{2} + I_{(0,1)}(z-1)\dfrac{1}{2} = I_{(0,1)}(z) \dfrac{1}{2} + I_{(1,2)}(z)\dfrac{1}{2} = \dfrac{1}{2}(I_{(0,1)}(z) + I_{(1,2)}(z)) = I_{(0,2)}(z)\dfrac{1}{2}$$
+    $$ f_{Z}(z) = \left\{
+    \begin{array}{ll}
+        \dfrac{1}{2} & z \in (0,2)\\\\
+        0 & z \not \in (0,2)
+    \end{array}
+    \right. $$
+    
+    Integrando llegamos a:
+    $$ F_{Z}(z) = \left\{
+    \begin{array}{ll}
+        0 & z < 0\\\\
+        \dfrac{1}{2}z & 0<z<2\\\\
+        1 & z > 2
+
+    \end{array}
+    \right. $$
+\end{exercise}
+
+\begin{exercise}
+    $$  $$
 
     \textbf{a)}
 
     Los valores que se pueden tomar son los que cumplen que $ i\leq j $. El caso $ (i,j) $ con $ i<j $ se cumple cuando se saca ese par en el orden $ (i,j) $ o en el orden $ (j,i) $. Para el caso $ i=j $, solo hay un modo de sacarlo. Entonces:
-    $$ p(i,j) = P(X=i,Y=j) = \left\{
+    $$ p((i,j)) = P(X=i,Y=j) = \left\{
     \begin{array}{ll}
         \dfrac{2}{n^2} & i<j \\\\
         \dfrac{1}{n^2} & i = j \\ \\
@@ -311,6 +411,37 @@
     \end{array}
     \right. $$
 
+    \textbf{b)}
+    
+
+    $$ p_1(i) = \sum\limits_{j=1}^{n}  p((i,j)) = \sum\limits_{j=i}^{n} p((i,j)) = p(i,i) + \sum\limits_{j=i+1}^{n}p((i,j)) = \dfrac{1}{n^2}(n-i)\dfrac{2}{n^2}\hspace{5mm} \forall i$$
+    $$ p_1(i) = \dfrac{2n-2i+1}{n^2} $$
+
+    \textbf{c)}
+    $$ p_2(j) = \sum\limits_{i=1}^{j}p((i,j)) = \sum\limits_{i=1}^{j-1}p((i,j)) + p((j,j)) = (j-1)\dfrac{2}{n^2}+\dfrac{1}{n^2}\hspace{5mm} \forall j$$
+    $$  p_2(j) = \dfrac{2j-1}{n^2} $$
+
+    \textbf{d)}
+
+    $$ p_{2|1}(j|i) = \dfrac{p((i,j))}{p_1(i)}  $$
+
+    Sea $  i \in \{1,2,...,n\} $\\
+    Si $ j = i+1,...,n $
+    $$ p_{2|1}(j|i) = \dfrac{2/n^2}{(2n-2i+1)/n^2} = \dfrac{2}{2(n-i)+1} $$
+    Si $ j = i $
+    $$ p_{2|1}(j|i) = \dfrac{1/n^2}{(2n-2i+1)/n^2} = \dfrac{1}{2(n-i)+1} $$
+    En el resto de casos
+    $$ p_{2|1}(j|i) = 0 $$
+
+    \textbf{e)}
+
+    Sea $ j \in \{1,2,...,n\} $\\
+    Si $ i = 1,...,j-1 $
+    $$ p_{1|2}(i|j) = \dfrac{((i,j))}{p_2(j)} = \dfrac{2/n^2}{(2j-1)/n^2} = \dfrac{2}{2j-1}$$
+    Si $ i = j $
+    $$ p_{1|2}(i|j) = \dfrac{((i,j))}{p_2(j)} = \dfrac{1}{2j-1}$$
+    En el resto de casos
+    $$ p_{1|2}(i|j) = 0 $$
 
 \end{exercise}
 
