@@ -222,22 +222,6 @@
 
 \end{exercise}
 
-\begin{exercise}
-    {\color{turquoise} \textbf{El problema de convertir un grafo en euleriano}}
-
-    $$ x_{e} \equiv \text{número de veces que se recorre la arista } e $$
-
-    $$ \left\{
-    \begin{array}{llrr}
-        min & \sum\limits_{e \in E}^{} \mathcal{l}_{e}x_{e}\\
-        s.a. & x_{e} \in \mathbb{Z}^{+} & \forall e \in E\\
-        & x_{e} \geq 1   & \forall e \in E\\
-        & \sum\limits_{e \in E\ :\ e = (i,-)}^{} x_{e} = 2z_{i} & \forall i \in V\\
-        & z_i \in \mathbb{Z}^{+} & \forall i\\
-        & z_i \leq 2g(i) & & \text{Opcional, es para tener una mejor formulación}
-    \end{array}
-    \right. $$
-\end{exercise}
 
 
 
@@ -382,9 +366,26 @@
 
     Supongamos que no es hamiltoniano. Sea $ G(V,E) $ un grafo con el mayor número posible de aristas que no es hamiltoniano con grafos $ g_{1}\leq...\leq g_n $. Esta grafo satisface la condición 
 
-    $$ g_i \leq i \implies a_i\leq i \implies a_{n-i} \leq n-1 \implies g_{n-i} \geq n-i \forall i < n/2 $$
+    % $$ g_i \leq i \implies a_i\leq i \implies a_{n-i} \leq n-1 \implies g_{n-i} \geq n-i \forall i < n/2 $$
+    % Sean $ u,v \in V $m con $ (u,v) \not \in E $ y $ g(u)+g(v) $ lo mayor posible.
 
-    Sean $ u,v \in V $m con $ (u,v) \not \in E $ y $ g(u)+g(v) $ lo mayor posible.
+    $$ g_i \leq i \implies a_i \leq g_i \leq 1 \implies a_{n-i} \geq n-1 \implies g_{n-i} \geq a_{n-i} \geq n-i $$
+    
+    De todos los $ G $ en estas condiciones elegimos uno con número máximo de aristas. Sean $ u,v \in V $ con $ (u,v) \not \in E $ con máxima suma de $ g(u)+g(v) $. Sea $ u $ el de menor grado: $ g(u) \leq g(v) $. Como $ G $ es maximal, al añadir la arista $ (u,v) $ pasa a ser hamiltoniano, luego $ \exists $ camino hamiltoniano $ u \sim v $ en $ G $:
+    $$ u = v_1-v_2-...-v_n = v $$
+    
+    Como vimos ayer si $ u $ es vecino de $ v_{i} $, no puede darse que $ v $ sea vecino de $ v_{j} $, $ j<i $. 
+
+    Consideremos el conjunto de vecinos de $ u $ ($ N(u) \subset \{v_1,...,v_{n-1}\} $) y el conjunto de nodos de $ v_i $ que preceden inmediatamente en el camino a un vecino de $ u\subset \{v_1,..,v_{n-1}\} $. La existencia de un nodo en la intersección de estos 2 conjuntos implica la existencia de un ciclo ham. en $ G $, luego son disjuntos.
+    
+    La unión de estos dos conjuntos está incluida en $ \{v_1,...,v_{n-1}\} $. Uno de los conjuntos tiene cardinal $ g(u) $ y el otro $ g(v) $, como la unión es disjunta el cardinal es $ g(u) + g(v) $. Por tanto, tenemos que $ g(u)+g(v) < n \implies g(u) < \dfrac{n}{2} $
+
+    Sea $ x \in V $ un nodo que precede en el camino a un vecino de $ u $ (y que por tanto no es vecino de $ v $). Como tomamos $ u,v $ que no fueran vecinos con máximo $ g(u)+g(v) $, tenemos que $ g(x) \leq g(u) $. En las condiciones de $ x $ tengo tantos nodos como $ |N(u)| = g(u) $. Sea $ i = g(u) $, entonces $ i<\dfrac{n}{2}, g(i) \leq i \implies g_{n-i} \geq n-i $
+
+    Luego al menos hay  $ i+1 $ nodos  con grado  $ \geq n-i $. Como $ i = g(u) $ no todos estos nodos pueden ser vecinos de $ n $. Sea $ w \not \in N(u) $ con hgrado $ \geq n-i $.
+    $$ g(w) \geq n-g(u)\ \implies \text{Contradicción con la elección de $ v $} $$
+
+    %definicion de problema del viajante de comercio
 
 \end{demonstration}
 
