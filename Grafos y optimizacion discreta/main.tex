@@ -389,4 +389,33 @@
 
 \end{demonstration}
 
+\chapter{Coloración}
+
+%%formula de euler
+
+\begin{demonstration}
+    $ G $ es conexo planar.
+    
+    Si $ G $ es bosque, entonces $ c = 1 $, luego $ n-m+c = n-(n-1)+1=2 $.
+    
+    Si $ G $ no es un bosque, aplicamos inducción. Si $ c\geq 2 $:
+    Habrá una arista $ e $ que no sea puente, la retiramos para obtener un nuevo grafo con $ m = m-1 $ aristas y $ c' = c-1 $ caras (al formarse 2 caras a cuyos entornos pertenecía $ e $) $ \implies $ aplicamos inducción.
+
+\end{demonstration}
+
+%%lema des m
+%perdone maestro me reperdí
+% \begin{demonstration}
+%     $ G $ planar y $ n \geq 3 \implies m\leq 3n-6$
+
+%     Si $ m = 1,2 $ es trivial, si $ m $ es más grande:
+
+%     \begin{itemize}
+%         \item Al menos hay 3 aristas en el contorno de una cara
+%         \item A lo sumo una arista pertenece a 2 caras
+%             $$ 3c \leq 3m $$
+%     \end{itemize}
+
+% \end{demonstration}
+
 \end{document}
