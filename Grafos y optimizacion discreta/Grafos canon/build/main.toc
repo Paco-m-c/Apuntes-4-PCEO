@@ -1,0 +1,27 @@
+\babel@toc {spanish}{}
+\contentsline {part}{I\hspace {1em}Grafos y optimización discreta}{3}{part.1}%
+\contentsline {chapter}{\numberline {1}Conceptos básicos en Teoría de Grafos}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Primeros conceptos}{5}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Conexión}{11}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Algoritmo basado en las potencias de la matriz de adyacencia}{11}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Algoritmo basado en sumas lógicas (Tarjan)}{11}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Arboles}{14}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Algoritmo de Kruskal}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Algoritmo de Prim}{17}{section.3.2}%
+\contentsline {chapter}{\numberline {4}Caminos más cortos, recorridos por arsitas y vértices}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Algoritmo de Dijkstra}{21}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Algoritmo de Fleury}{21}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Algoritmo de Hierholzer}{21}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Algoritmo de Dantzig}{22}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Grafos planos. Coloración de grafos.}{25}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Algoritmo austero para colorear (no es óptimo)}{26}{section.5.1}%
+\contentsline {chapter}{\numberline {6}Modelo de Programación Entera (Optimización Discreta)}{30}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Problemas de optimización sobre grafos}{36}{section.6.1}%
+\contentsline {chapter}{\numberline {7}Ramificación y acotación. Hiperplanos de corte}{39}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Algoritmo de ramificación y acotación}{39}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Algoritmo de Ramificación y Acotación (Branch-and-bound)}{40}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Hiperplanos de corte}{40}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Hiperplano de corte todo entero}{40}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Hiperplano de corte mixto}{41}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Ejercicios}{43}{chapter.8}%
+\contentsfinish 
