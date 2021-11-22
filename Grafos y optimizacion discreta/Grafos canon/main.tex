@@ -20,7 +20,7 @@
 %FIN MODIFICAR
 
 \title{Grafos y Optimización Discreta}
-\author{Colaboración estelar entre Paco Mora y Chito Belmonte}
+\author{Colaboración estelar entre Paco Mora \includegraphics[scale=0.02]{cosmo} y Chito Belmonte \includegraphics[scale=0.13]{wanda}}
 \date{\today}
 
 \begin{document}
@@ -1235,6 +1235,22 @@ Admitiremos las siguientes propiedades de cualquier embutido de $G$ :
   Si además ningún subgrafo inducido de $G$ es $K_{3}$, entonces $m \leq 2 n-4$.
 \end{proposition}
 
+\begin{demonstration}
+  Si $ m=1,2 $ es obvio. Si $m \geq 3$, entonces hay $2m$ 'lados disponibles'. Hay un mínimo de tres aristas en el contorno de una cara, por lo que tienes $3c \leq 2m\ \text{(disponibles)}$ caras.
+
+  Aplicamos la fórmula de Euler:
+  $$ n-m+c=2 \hspace{1cm}\to \hspace{1cm}3c=(m-n+2)3 \leq 2m $$
+  $$ m \leq 3n-6 $$
+
+
+  \begin{minipage}[l]{0.1\textwidth}
+    \includegraphics[scale=0.15]{wanda}
+  \end{minipage}
+  \begin{minipage}[l]{0.8\textwidth}
+    La demostración es un poco terrible pero las culpas al teacher que nosotros nos hemos dedicado a copiar.
+  \end{minipage}
+\end{demonstration}
+
 \begin{proposition}
   $K_{5}$ y $K_{3.3}$ no son grafos planares.
 \end{proposition}
@@ -1243,6 +1259,9 @@ Admitiremos las siguientes propiedades de cualquier embutido de $G$ :
   Si $G$ es planar, el grado medio de sus nodos es menor que 6 .
 \end{proposition}
 
+\begin{demonstration}
+    $$ \overline{g} = \dfrac{\sum\limits_{v}^{}g(v)}{n} = \dfrac{2m}{n} \leq \dfrac{2(3n-6)}{n} = 6-\dfrac{12}{n} $$
+\end{demonstration}
 
 \begin{definition}
   { \color{turquoise} \textbf{Maximal}}
@@ -1258,16 +1277,36 @@ Admitiremos las siguientes propiedades de cualquier embutido de $G$ :
 
 \end{proposition}
 
+\begin{demonstration}
+
+  \begin{center}
+    \custincfig{0.5\textwidth}{grafos1}
+  \end{center}
+
+  Si $A$ y $B$ fueran adyancentes su arista en el embutido estaría contenida en el exterior de la cara. Igual pasa con $C$ y $D$.
+
+  En tal caso, añadiendo un vértice en el interior de la cara, añadiendo aristas entre este vértice y  los del contorno, con lo que tendríamos un embutido de $K_5$, lo que es una contradicción.
+\end{demonstration}
+
 \begin{proposition}
   Si $G$ es un grafo planar maximal con $n \geq 3$, el contorno de cada cara del embutido plano de $G$ tiene exactamente tres aristas.
 
 \end{proposition}
+
+\begin{demonstration}
+  DPD. \footnote{Daniel Pedro Duque fue un importante matemático riojano que tuvo que viajar a la Unión Soviética, ya que fue destinado a un campo de concentración. Ahí, desarrolló importantes avances en teoría de grafos y optimización discreta, optimizando la cantidad óptima de judíos que ejecutar a cada día.
+
+  En realidad, DPD significa 'demostrado por dibujito'}
+\end{demonstration}
 
 \begin{proposition}
   En todo grafo planar maximal con $n \geq 3$ se verifica $m=3 n-6$.
 
 \end{proposition}
 
+\begin{demonstration}
+  Basta aplicar una demostración hecho previamente pero en este caso tomamos $3c = 2m$ por la proposición anterior.
+\end{demonstration}
 
 \begin{definition}
   { \color{turquoise} \textbf{Subdividir}}
@@ -1283,6 +1322,8 @@ Admitiremos las siguientes propiedades de cualquier embutido de $G$ :
 \end{definition}
 
 \begin{theorem}
+  { \color{turquoise} \textbf{Teorema de Kuratowski}} {\color{red} \tiny \textbf{TEOREMA IMPORTANTE DE LA REHOSTIA}}
+
   Un grafo es planar si y sólo si no contiene como subgrafo ninguna subdivisión de $K_{5}$ ni $K_{3,3}$.
 
 \end{theorem}
@@ -1293,6 +1334,27 @@ Admitiremos las siguientes propiedades de cualquier embutido de $G$ :
   (aunque demostraremos el teorema del mapa de los cinco colores)
 
 \end{theorem}
+
+\begin{demonstration}
+  \begin{flushright}
+    (con cinco colores porque no tenemos la picha tan gorda)
+  \end{flushright}
+
+  Supongamos que existen grafos planares con $\chi(G) \geq 6$. Tomamos el menor grafo que requiera 6 o más colores. De ellos, elegimos un grafo planar $G$ con $\chi(G)=6$ cuyos subgrafos tienen todos número cromático 5 o menos (crítico).
+
+  Utilizando un resultado anterior, planar implica que $\overline{g} < 6 \implies \exists v \in V \ : \ g(v) \leq 5$. Si $g(v) \leq 4$, G no es crítico.
+
+  Luego elegimos $v$ son $ g(v) = 5 $. Cualquier coloración del grafo $ G $ tiene que cumplir que $ c(u_1) \ne c(u_2) \forall u_1 \ne u_2\ u_1,u_2 \in N(v)  $. En otro caso $ G $ no sería crítico.
+
+  Ordenamos los vecinos de $v$ por el ángulo de la arista $(v, u_i)$. El nodo $ u_i $ recibe en la coloración el color i-ésimo.
+
+  Nos fijamos en el subgrafo inducido por los nodos coloreados con los colores 1 y 3. Este grafo conecta $u_1$ y $u_3$ ya que si no fuera así podríamos alternar los colores de una de las componentes conexas. Entonces dos vecinos de $ v $ tendrían el mismo color, lo cual ya hemos visto que no puede ser.
+
+  Podemos formar un ciclo entonces  que pasa por $v,u_1,u_3$ que contiene al menos una cara que a su vez contiene a $ u_2 $ o a $u_4$ y al otro no. Con lo queseparamos en el embutido a $ u_2 $ de $ u_4 $.
+
+  Por el mismo razonamiento, existe un camino entre $ u_2$ y $ u_4 $. Pero ese camino tendría intersección con el que acabamos de crear, luego el grafo no sería planar y hemos llegado a una contradicción.
+
+\end{demonstration}
 
 \chapter{Modelo de Programación Entera (Optimización Discreta)}
 
