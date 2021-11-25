@@ -283,4 +283,58 @@
 \end{exercise}
 
 
+\chapter{Hoja 3}
+
+\begin{exercise}
+    Por ser $ S_1 $ orientable, tenemos un atlas en $ S_1 $ formado por cartas compatibles $ \{(U_{\alpha},X_{\alpha})\}_{\alpha} $.
+    
+    Si $ f:S_1 \to S_2 $ difeomorfismo, comprobaremos que $ \{U_{\alpha},f(X_{\alpha})=\overline{X}_{\alpha}\} $ es un atlas compatible de $ S_2 $.
+
+    Si $ (U_{\alpha_1},\overline{X}_{\alpha_1}), (U_{\alpha_2},\overline{X}_{\alpha_2}) $ son dos parametrizaciones, tenemos:
+    \begin{itemize}
+        \item Si $ \overline{X}_{\alpha_1}(U_{1}) \cap \overline{X}_{\alpha_2}(U_2) = \emptyset $, entonces son compatibles.
+        \item En otro caso, $ \overline{X}_{\alpha_1}(U_1) \cap \overline{X}_{\alpha_2}(U_2)= R$
+        
+        $$ h: \overline{X}_{\alpha_1}^{-1}(R) \to \overline{X}_{\alpha_2} ^{-1}(R)$$
+        $$ h = \overline{X}_{\alpha_2}^{-1} \circ \overline{X}_{\alpha_1} = (f \circ X_{\alpha_2}) ^{-1} \circ (f\circ X_{\alpha_1}) = X_{\alpha_2} ^{-1} \circ X_{\alpha_1}$$
+        Luego son compatibles al ser compatibles $ X_{\alpha_1},X_{\alpha_2} $
+    \end{itemize}
+\end{exercise}
+
+
+% \setcounter{ex}{6}
+
+% \begin{exercise}
+%     Si $ P \in r $, entonces $ P $ tiene direcciones asintóticas (basta tomar como curva la recta y ver que su segunda derivada es 0). Usamos ahora el ejercicio 5 para ver que no puede darse que $ K(P)>0 $
+
+
+% \end{exercise}
+
+\setcounter{ex}{11}
+
+\begin{exercise}
+    Si $ \alpha(v) = (h(v),0,\phi(v)) $ y $ |\alpha'(v)|=1 $:
+    $$ X(u,v) = (h(v),\cos(u),h(v)\sin(u), \phi (v)) $$
+    $$ X_{u} = (-h(v)\sin(u),h(v)\cos(u),0) $$
+    $$ X_{v} = (h'(v)\cos(u),h'(v)\sin(u),\phi ' (v)) $$
+    $$ X_{uu} = (-h(v)\cos(u),-h(v)\sin(u),0) $$
+    $$ X_{uv} = (-h'(v) \sin(u),h'(v)\cos(u),0) $$
+    $$ X_{vv} = (h''(v)\cos(u),h''(v)\sin(u),\phi ''(v)) $$
+    $$ E = h^2(v) \hspace{5mm} F = 0 \hspace{5mm} G = 1$$
+    $$ e = <A_{X(u,v)}X_{u},X_{u}> = -<dN_{X(u,v)}(X_{u}),X_{u}> = -<N_{u},X_{u}> = \footnote{$ <N,X_{u}> = 0 \implies <N_{u},X_{u}>+<N,X_{uu}> = 0 $ y otras igualdades que usaremos derivando con respecto de $ v $} = <N,X_{uu}>$$
+    $$ f = <N,X_{uv}> \hspace{5mm} g = <N,X_{vv}> $$
+    Desarrollamos ahora $ e $:
+    $$ e = <\dfrac{X_{u} \wedge X_{v}}{|X_{u} \wedge X_{v}|},X_{uu}> = \dfrac{1}{\sqrt{EG-F^2}} <X_{u}\wedge X_{v},X_{uu}> = \dfrac{1}{\sqrt{EG-F^2}} det(X_{u},X_{v},X_{uu}) = $$
+    $$ = \dfrac{1}{h}det(X_{u},X_{v},X_{uv}) $$
+    $$ f = \dfrac{1}{h}det(X_{u},X_{v},X_{uv})\hspace{5mm}g = \dfrac{1}{h}det(X_{u},X_{v},X_{vv}) $$
+
+    A partir de aquí son cuentas para sacar $ e,f,g $ con estos determinantes, nos queda:
+    $$ e = - \phi' \cdot  h \hspace{5mm} f = 0 \hspace{5mm} g = h'' \phi' - h' \phi ''$$
+
+    Aplicaremos ahora las fórmulas que obtuvimos para $ K,H,k_1,k_2 $ en función de los componentes de la primera y la segunda forma fundamental.
+    $$ K = -\dfrac{h''}{h} \hspace{5mm} H = \dfrac{1}{2} \left( h'' \phi' -h' \phi'' - \dfrac{\phi'}{h} \right) $$
+    $$ k_1 = -\dfrac{\phi '}{h} \hspace{5mm} k_2 = h'' \phi' -h' \phi '' $$
+
+\end{exercise}
+
 \end{document}

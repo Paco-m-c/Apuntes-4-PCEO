@@ -1842,6 +1842,173 @@ Experimentar con distintas formulaciones es muy importante a la hora de usar un 
 
 \end{exercise}
 
+\section{Algunas indicaciones para formular}
+
+Hay que probar varias formulaciones es muy importante a la hora de usar un mñetodo de optimización discreta para resolver un problema. Una buena cota inferior (en el caso de minimización) lo es todo. La cota puede ser realmente mala si no se presta atención a la formulación.
+
+\begin{example}
+  Calcular la cota inferior que aporta la relajación lineal y el valor óptimo del problema siguiente:
+
+  $$ 
+  \left\{
+  \begin{array}{llr}
+    min &  -x_1\\
+    s.a. & x_3-\sqrt{2}(x_1-x_2) = 0 \\
+    & x_2+x_4 = 1 \\
+    & x_i \in \mathbb{Z}^{+} & \forall i
+  \end{array}
+  \right.
+  $$
+
+  Podemos observar que $ x_1 = x_2 \implies x_3 = 0 $ y la solución óptima es (1,1,0,0) con valor óptimo -1.
+
+  No podemos acotar inferiormente la solución la solución:
+  $$ x_{1}^* = M,\ x_2^* = 0,\ x_3^* = \sqrt{2}M,\ x_4^* = 1 $$
+  
+  Conta inf = $ -\infty $
+
+
+\end{example}
+
+\begin{example}
+  El uso de desigualdades válidas puede mejorar mucho el comportamiento de una formulación. Consideremos: 
+
+  $$ 
+  \left\{
+  \begin{array}{llr}
+    min & x_1+x_2+x_3\\
+    s.a. & x_1+x_2 \geq 1\\
+    & x_2+x_4 \geq 1 \\
+    & x_1+x_3 \geq 1 \\
+    & x_i \in \mathbb{Z}^{+} & \forall i
+  \end{array}
+  \right. 
+  $$
+
+  La adición de la desigualdad válida $ x_1+x_2+x_3\geq 2 $ hace desaparecer el salto de dualidad.
+\end{example}
+
+
+\begin{example}
+  Encontrar desigualdades válidas para esta formulación en la que $ M $ es un número grande:
+
+  $$ 
+  \left\{
+  \begin{array}{llr}
+    max & x_2 \\
+    s.a. & x_2 \leq Mx_1 \\
+    & Mx_1+x_2 \leq M+1 \\
+    & x_i \in \mathbb{Z} ^{+} & \forall i
+  \end{array}
+  \right.
+  $$
+
+  La cota superior alcanzable da $ (M+1)/2 $ pero solo tenemos 3 posibles soluciones enteras (0,0), (1,0), (1,1). 
+
+\end{example}
+
+\begin{exercise}
+Si tenemos dos restricciones $ x\leq a,\ y\leqb $ y queremos que se cumpla al menos una de ellas, ¿cómo lo formulamos?
+
+Para ello usamos una variable binaria $ z \in \{0,1\} $. Podemos hacer entonces:
+
+$$ 
+\left\{
+\begin{array}{l}
+  x\leq a +M(1-z)\\
+  y\leq b+Mz
+\end{array}
+\right.
+$$
+
+Comprobemos que hemos hecho esto bien:
+
+\begin{enumerate}
+  \item $ z = 0 \implies x \leq a+M $ (se cumple siempre) y $ y\leq b $
+  \item $ z=1 \implies x \leq a $ y $ y\leq b+M $ (se cumple siempre)
+\end{enumerate}
+
+Recordemos que tenemos que tratar de acotar la $ M $ y que podemos poner distintas $ M's $ en cada restricción dependiendo de como podemos acotarla.
+
+\end{exercise}
+
+\begin{exercise}
+  ¿Si en este caso tenemos $ x\geq a $ y $ y = b $ y queremos que se cumpla al menos una?
+
+  De nuevo usamos $ z  $ binaria y ponemos las restricciones:
+
+  $$ \left\{
+  \begin{array}{l}
+    x \geq a-Mz\\
+    y\leq b +M(1-z)\\
+    y\geq b-M(1-z)
+  \end{array}
+  \right. $$
+\end{exercise}
+
+\begin{exercise}
+  Ahora queremos garantizar que se satisfagan al menos $ k $ de las restricciones:
+  $$ g_i(x_1,...) \leq 0 $$
+
+
+  Definimos $ z_i \in \{0,1\} $ con $ i = 1,...,n $ y usamos las restricciones:
+
+  $$ 
+  \left\{
+  \begin{array}{l}
+    g_i(x_1,...) \leq M(1-z_i)\\
+    \sum\limits_{i=1}^{n}z_i \geq k
+  \end{array}
+  \right.
+  $$
+
+\end{exercise}
+
+
+\begin{exercise}
+  ¿Cómo expresamos de forma lineal que $ z \leq \min \{x,y\} $? 
+  
+  $$ \left\{
+  \begin{array}{l}
+    z\leq x \\
+    z\leq y
+  \end{array}
+  \right. $$
+  
+  ¿Y $ z \geq \max \{x,y\} $?
+
+  $$ \left\{
+  \begin{array}{l}
+    z\geq x \\
+    z \geq y
+  \end{array}
+  \right. $$
+
+  ¿Y $ z \geq \min \{x,y\} $? Que se cumpla al menos una de $ z\geq x, z\geq y $
+
+  ¿Y $ x\ ne y $? Al menos una de $ x \leq y - \varepsilon ,\ x \geq y+ \varepsilon $
+
+  Podemos formular también una implicación $ r_1 \implies r_2 $ por que se cumple el contrario de $ r_1 $ o que se cumpla $ r_2 $.
+
+
+  Si nuestras variable son binarias : $ z = \max \{x,y\} $ usamos $ z \geq x\ z \geq y,\ z\leq x+y $ y para $ z = \min \{x,y\} $ usamos :
+
+  $$ \left\{
+  \begin{array}{l}
+    z \leq x \\
+    z \leq y \\
+    z \geq x+y-1
+  \end{array}
+  \right. $$
+
+  Para variables binarias : $ z = 1 \iff x \ne y $
+
+\end{exercise}
+
+
+
+
+
 \chapter{Ramificación y acotación. Hiperplanos de corte}
 
 \section{Algoritmo de ramificación y acotación}
