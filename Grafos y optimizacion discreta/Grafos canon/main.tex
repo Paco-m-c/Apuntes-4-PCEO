@@ -2001,7 +2001,18 @@ Recordemos que tenemos que tratar de acotar la $ M $ y que podemos poner distint
   \end{array}
   \right. $$
 
-  Para variables binarias : $ z = 1 \iff x \ne y $
+  Para variables binarias : $ z = 1 \iff x \ne y $.
+
+  Para resolverlo de forma óptima, tomamos los puntos en $ \mathbb{R}^3 $ que cumple esta restricción y tomamos la envolvente convexa. Los puntos son $ (0,0,0), (0,1,1), (1,0,1), (1,1,0) $. La envolvente convexa es:
+
+  $$ \left\{
+  \begin{array}{ll}
+    z \leq x +y \\
+    z \leq 2-x-y \\
+    z \geq -x+y \\
+    z\geq x-y
+  \end{array}
+  \right. $$
 
 \end{exercise}
 

@@ -18,11 +18,11 @@
 \contentsline {chapter}{\numberline {6}Modelo de Programación Entera (Optimización Discreta)}{31}{chapter.6}%
 \contentsline {section}{\numberline {6.1}Problemas de optimización sobre grafos}{37}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Algunas indicaciones para formular}{39}{section.6.2}%
-\contentsline {chapter}{\numberline {7}Ramificación y acotación. Hiperplanos de corte}{42}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Algoritmo de ramificación y acotación}{42}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Algoritmo de Ramificación y Acotación (Branch-and-bound)}{43}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Hiperplanos de corte}{43}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Hiperplano de corte todo entero}{43}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Hiperplano de corte mixto}{44}{section.7.5}%
-\contentsline {chapter}{\numberline {8}Ejercicios}{46}{chapter.8}%
+\contentsline {chapter}{\numberline {7}Ramificación y acotación. Hiperplanos de corte}{43}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Algoritmo de ramificación y acotación}{43}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Algoritmo de Ramificación y Acotación (Branch-and-bound)}{44}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Hiperplanos de corte}{44}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Hiperplano de corte todo entero}{44}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Hiperplano de corte mixto}{45}{section.7.5}%
+\contentsline {chapter}{\numberline {8}Ejercicios}{47}{chapter.8}%
 \contentsfinish 
