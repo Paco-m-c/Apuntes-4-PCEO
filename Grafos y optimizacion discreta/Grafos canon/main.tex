@@ -2057,15 +2057,16 @@ se pueden considerar los subproblemas obtenidos al añadir a la formulación res
 $$
 
 $$
-P(1)\ (P) + \{x_1 \geq 5\} \left\{ \begin{array}{l}
+(P_1)\ (P) + \{x_1 \geq 5\} \left\{ \begin{array}{l}
   (P_{10})\ (P_1)+\{x_2 \leq 0\}\\
   \\
   (P_{11})\ (P_1) + \{x_2 \geq 1\}
 \end{array} \right.
 $$
 
-
+Obtendremos un árbol binario en el cada nodo hoja calcularemos la solución de la relajación lineal que nos dará una cota de la solución.
 \end{example}
+
 
 
 Supondremos por simplicidad que la región factible de la relajación lineal es acotada.
@@ -2102,6 +2103,29 @@ Si $L=\emptyset$, fin. La solución óptima es $x^{*}$. En otro caso, se vuelve 
 
 Obsérvese que en dos lugares del algoritmo se debe llevar a cabo una elección y que en los ejemplos anteriores no siempre hemos procedido de la misma forma al elegir. No hay una forma de actuar que sea siempre mejor. Para elegir el subproblema de la lista se puede optar por usar el de menor cota inferior, y para elegir la variable de ramiticación es recomendable usar la que tome en el óptimo el valor con parte fraccional más cercana a 0.5.
 
+
+\begin{example}
+  $$ \left\{
+  \begin{array}{ll}
+    min & 7x_1+3x_2+2x_3+x_4+2x_5\\
+    s.a. & -4x_1-2x_2+x_3-2x_4 -x_5 \leq 3\\
+    & -4x_1-2x_2-4x_3+x_4+2x_5 \leq -7 \\
+    & x_i \in \{0,1\} \ \forall i
+  \end{array}
+  \right. $$
+  La solución óptima de la relajación lineal es $ (1/3,1,1,1/3,0) $ con valor $ 7.67 $.
+  \begin{itemize}
+    \item $ P_0: $ Añadimos $ x_4 \leq 0 $ cuya solución es $ (0.45,1,0.8,0,0)$ con valor 7.75. Ramificamos.
+    \item $ P_{00}: $ Añadimos $ x_3 \leq 0 $ que es un problema infactible. Podamos esta parte del árbol.
+    \item $ P_{01} $ Añadimos $ x_{3} \geq 1 $ con solución (0.5,1,1,0,0) con valor $ 8.5 $. Ramificamos.
+    \item $ P_{010} $ Añadimos $ x_1 \leq 0 $ que da un problema infactible. Podamos esta rama.
+    \item $ P_{011} $ Añadimos $ x_1 \geq 1 $ con solución óptima entera \textbf{(1,0,1,0,0)} con valor óptimo 9. Apuntamos $ z_{UB} = 9  $. Vamos ahora a otra rama del árbol.
+    \item $ P_1: $ Añadimos $ x_4 \geq 1 $ con solución óptima (0.5,1,1,0) con valor óptimo 9.5. Descartamos el nodo por la cota ($ z_{UB} \geq 9.5 $)
+  \end{itemize}
+  Hemos terminado el árbol y la solución óptima es la asociada a $ z_{UB} $
+\end{example}
+
+
 \section{Hiperplanos de corte}
 
 Los métodos de hiperplanos de corte son métodos algebraicos que se utilizan en ocasiones para resolver el problema de programación lineal entera pero fundamentalmente para mejorar las cotas inferiores de las relajaciones lineales en los distintos nodos del árbol de ramificación.
@@ -2112,7 +2136,7 @@ Partimos del problema de optimización lineal entero (puro) de la forma
 
 $$
 \begin{aligned}
-(P) \min & c x \\
+(P) \min &\ c x \\
 \text { s.a } & A x=b \\
 & x_{j} \in \mathbb{Z}^{+} \quad \forall j
 \end{aligned}
@@ -2138,6 +2162,15 @@ x_{k}+\sum_{j \notin B}\left(\left\lfloor y_{k j}\right\rfloor+f_{k j}\right) x_
 $$
 
 Esta desigualdad no es satisfecha por la solución óptima de la relajación lineal, que toma el valor 0 en las variables no básicas, pero sí por todas las soluciones enteras.
+
+% \begin{example}
+%   $$ \left\{
+%   \begin{array}{ll}
+%     max & \\
+%     s.a. & 
+%   \end{array}
+%   \right. $$
+% \end{example}
 
 \section{Hiperplano de corte mixto}
 
@@ -2187,7 +2220,6 @@ $$
 $$
 
 no es satisfecha por la solución óptima de la relajación lineal, que toma el valor 0 en las variables no básicas, pero sí por todas las soluciones enteras.
-
 
 
 

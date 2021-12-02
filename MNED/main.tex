@@ -296,7 +296,123 @@
     \setcounter{ex}{15}
 
     \begin{exercise}
+        $$ \left\{
+        \begin{array}{l}
+            x''(t) = f(t,x(t),x'(t)) \\
+            x(0) = x_0\\
+            x'(0) = v_0
+        \end{array}
+        \right. $$
+        Usando el método
+        $$ \left\{
+        \begin{array}{l}
+            y_{n+1} = y_n+hz_n+\dfrac{h^2}{2}f_n\\
+            z_{n+1} = z_n+hf_n\\
+            y_0=x_0\\
+            z_0=v_0
+        \end{array}
+        \right. $$
+        Se aproxima entonces $ y_n \sim x(t_n) $ y $ z_n \sim x'(t_n) $.
         
+        Tomamos $ y(t) = x(t) $ y $ z(t) $. El sistema se escribe entonces como:
+        $$ \dfrac{d}{dt} \binom{y(t)}{z(t)} = \left[ \begin{matrix}
+            z(t) \\ f(t,y(t),z(t))
+        \end{matrix} \right] $$
+        con $ y(0) = x_0,\ z(0) = v_0 $.
+
+        Si usamos la notación $ X = \binom{y(t)}{z(t)} $ tenemos:
+        $$ \left\{
+        \begin{array}{l}
+            \dfrac{d}{dt}X(t) = F(t,X(t))\\
+            X(0) = X_0 = \binom{x_0}{v_0}
+        \end{array}
+        \right. $$
+        con
+        $$ F(t,X(t)) = \binom{X_2(t)}{f(t,X_1(t),X_2(t))} $$
+
+        Si usamos, por ejemplo, Euler explícito sería:
+        $$ \left\{
+        \begin{array}{l}
+            X_{n+1} = X_n + h F(t_n,X_n) \to \left\{
+            \begin{array}{l}
+                y_{n+1} = y_n+h z_n\\
+                z_{n+1} = z_n+h\underbrace{f(t_n,y_n,z_n)}_{f_n}
+            \end{array}
+            \right.\\
+            X_0\ dado
+        \end{array}
+        \right. $$
+
+        En el caso de nuestro ejercicio, la parte de $ z_{n+1} $ es igual a Euler explícito, mientras que $ y_{n+1} $ sí cambia. Tendremos un error de segundo orden en $ y $ uno de primer orden en $ z $
+
+        % Comprobamos el orden de $ y $ viendo la relación que tiene su expresión con el desarrollo de Taylor:
+        % $$ y_{n+1} = y_n+hz_n+\dfrac{h^2}{2}f(t_n,z_n,y_n)  \to \ell(t;h) = O(h^3) $$
+        % (recordemos que el orden del método es una unidad menor que el del error local, $ \ell $)
+
+        $$ \ell(t;h) = \binom{\ell_{y}(t;h)}{\ell_{z}(t;h)}  $$
+        
+        Para calcular $ \ell $ suponemos la hipótesis de localización $ z_n = z(t),\ y_n = y(t),\  z(t) = y'(t)$:
+        $$ \ell_{y}(t;h) = y(t+h)-y(t)-hz(t) - \dfrac{h^2}{2}f(t,y(t),z(t)) = y(t+h)-y(t)-hy'(t)-\dfrac{h^2}{2}y''(t) = $$
+        $$  = \dfrac{h^3}{3!}y'''(\xi) $$
+        Y utilizando el desarrollo de la primera derivada:
+        $$ \ell_{z}(t;h) = z(t+h)-z(t)-hf(t,y(t),z(t)) = y'(t+h)-y'(t)-hy''(t) = \dfrac{h^2}{2}y'''(\eta) $$
+
+        Por tanto el orden del error local del método será el mínimo entre estos dos:
+        $$ ||\ell||_{\infty} = \max \{|\ell_{y}|,|\ell_{z}|\} = O(h^2)  $$
+        Y el método será de orden 1 (uno menor que su error local).
+
+        Vemos ahora la estabilidad del método, recordemos que $ ||\ell||_{1} = \dfrac{h^3}{6}||y'''||_{\infty} + \dfrac{h^2}{2} ||y''||_{\infty} $:
+
+        $$ \left\{
+        \begin{array}{l}
+            y_{n+1} = y_n +hz_n +\dfrac{h^2}{2}f_n\\
+            z_{n+1} = z_n+hf_n
+        \end{array}
+        \right. $$
+
+        $$ \left\{
+            \begin{array}{l}
+                \tilde{y}_{n+1} = \tilde{y}n +h\tilde{z}_n +\dfrac{h^2}{2}f_n\\
+                \tilde{z}_{n+1} = \tilde{z}_n+hf_n
+            \end{array}
+            \right. $$
+        
+            $$ y_{n+1}-\widetilde{y}_{n+1} = y_n-\widetilde{y}_{n} + h(z_n-\widetilde{z}_{n}) + \dfrac{h^2}{2}(f_n-\widetilde{f}_{n})$$
+            $$ z_{n+1}-\widetilde{z}_{n+1} = z_n-\widetilde{z}_{n}h(f_n-\widetilde{f}_{n}) $$
+
+            Suponemos que:
+            $$ |f(t,y,z)-f(t,\widetilde{y},\widetilde{z}| \leq L(|y-\widetilde{y}|+ |z-\widetilde{z}|) $$
+            equivale a tener $ \dfrac{\partial f}{\partial y}, \dfrac{\partial f}{\partial z} $ acotadas por $ L $.
+
+            Entonces:
+            $$ |y_{n+1}-\widetilde{y}_{n+1}| \leq |y_n-\widetilde{y}_{n}| + h|z_n-\widetilde{z}_{n}| + \dfrac{h^2}{2}L(|y_n-\widetilde{y}_{n}| + |z_n-\widetilde{z}_{n}|) $$
+            $$ \leq (1+\dfrac{h^2}{2}L) |y_n-\widetilde{y}_{n}| +h(1+\dfrac{h}{2}L)|z_n-\widetilde{z}_{n}|  $$
+            $$ |z_{n+1}-\widetilde{z}_{n+1}| \leq |z_n-\widetilde{z}_{n}| +hL(|y_n-\widetilde{y}_{n}|+|z_n-\widetilde{z}_{n}|) \leq (1+hL) |z_n-\widetilde{z}_{n}| + hL|y_n-\widetilde{y}_{n}| $$
+
+            Entonces tendremos que:
+            $$ \underbrace{|y_{n+1}-\widetilde{y}_{n+1}|+|z_{n+1}-\widetilde{z}_{n+1}|}_{\tilde{\theta}_{n+1}} \leq (1+hL+\dfrac{h^2}{2}L) |y_n-\widetilde{y}_{n}| + (1+h+\dfrac{h}{2}L+hL) |z_n-\widetilde{z}_{n}| $$
+            $$ \tilde{\theta}_{n+1} \leq (1+h\Lambda) \tilde{\theta}_n\ (\text{con $ \Lambda = O(1) $ y $ \Lambda = \max\{1+\dfrac{h}{2}L,\dfrac{h}{2}L\} $}) $$
+
+            Iterando llegamos a $ \tilde{\theta}_{n} \leq (1+h\Lambda)^{n}\tilde{\theta}_{0} \leq e^{t_n \Lambda}\tilde{\theta}_{0} $
+
+        Vamos ahora al error global del método:
+        $$ \theta_{n} = |y(t_n)-y_n| + |z(t_n)-z_n| $$
+        
+        Usamos:
+        $$ \left\{
+        \begin{array}{l}
+            \widetilde{y}_{n} = y(t_n)+hz(t_n)+hf(t_n,y(t_n),z(t_n)) \\
+            \widetilde{z}_{n} = z(t_n) + hf(t_n,y(t_n),z(t_n))
+        \end{array}
+        \right. $$
+
+        Tendremos entonces:
+        $$ \theta_{n} = |y(t_n)+\widetilde{y}_{n}+\widetilde{y}_{n}-y_n| + |z(t_n)-\widetilde{z}_{n}+\widetilde{z}_{n}+z_n| \leq |y(t_n)-\widetilde{y}_{n}|+|z(t_n)-\widetilde{z}_{n}| + |\widetilde{y}_{n}-y_n| + |\widetilde{z}_{n}-z_n| \leq $$
+        $$\leq\underbrace{\dfrac{h^3}{6}||y'''||_{\infty}+ \dfrac{h^2}{2}||y'''||_{\infty}}_{\ell(h)}  + (1+h\Lambda)\theta_{n+1}$$
+        $$ \theta_{n} \leq \ell(h) + (1+h\Lambda)\theta_{n-1} $$
+        Iterando:
+        $$ \theta_{n} \leq (1+h\Lambda)^{n}\theta_{0} + \dfrac{(1+h\Lambda)^{n}-1}{1+h\Lambda -1}\ell(h) \leq e^{T\Lambda}\theta_{0}+ \dfrac{e^{T\Lambda}-1}{\Lambda} \dfrac{\ell(h)}{h} = O(1) $$
+
     \end{exercise}
 
 
@@ -421,13 +537,88 @@
     Hay principalmente tres tipos de ejercicios en este tema:
 
     \begin{enumerate}
-        \item Polinomio característico $ \rho(z) $ de segundo o tercer orden. Recordamos que $ \rho (1) = 0, \rho'(1) \ne 0 \implies \rho (z)= (z-1) \widetilde{\rho}(t)$. Normalmente hay un parámetro en los coeficientes de $ \rho(z) $, $ a $ y se piden condiciones sobre $ a $ para que se cumplan las condiciones de Dalhquist.
+        \item Polinomio característico $ \rho(z) $ de segundo o tercer orden. Recordamos que $ \rho (1) = 0, \rho'(1) \ne 0 \implies \rho (z)= (z-1) \widetilde{\rho}(t)$. Normalmente hay un parámetro en los coeficientes de $ \rho(z) $, $ a $ y se piden condiciones sobre $ a $ para que se cumplan las condiciones de Dahlquist.
         \item Usar $ \rho(z) $ y $ \sigma (z) $ para determinar el orden del método. Recordemos que $ \ell(h) = C_0y(t) + C_1hy'(t) + C_2\dfrac{h^2}{2}y ^{(2)}(t) + C_3\dfrac{h^3}{3}y'''(t)+... $ y se tiene $ \ell(h) = O(h^2) \implies C_0 = C_1 = 0 $ ya que $ C_0 = \rho (1) = 0,\ C_1 = \rho'(1)-\sigma (1) = 0$ y $ C_{q} = \sum\limits_{j=0}^{k}j^{q}a_j - q \sum\limits_{j=0}^{k}j^{q-1}b_j $
         \item Usando fórmulas de interpolación determinar un método multipaso. Dado $ y_0,y_1,y_2 $ obtener $ \ell(s) $ usando $ L'(t)= hf(t_n,y_n) $.
     \end{enumerate}
 
-    \chapter{Anexo: otros ejercicios}
+    \section{Ejercicios}
 
+    \setcounter{ex}{7}
+
+    \begin{exercise}
+       $$  y_{n+2} + (\alpha -1)y_{n+1} - \alpha y_n = \dfrac{h}{4}((\alpha+3)f_{n+2}+(3 \alpha +1 )f_n) $$
+       $$ \rho(z) = z^2+(\alpha -1 )z -\alpha \hspace{5mm} \sigma(z) = (\alpha +3)\dfrac{z^2}{4} + 0\cdot z + (3 \alpha +1 ) $$
+
+       Sabemos para garantizar la convergencia de al menos orden 1:
+       \begin{itemize}
+           \item $ \rho(1) = 0 $
+           \item $ 0 \ne \rho'(1) = \sigma(1) $
+       \end{itemize}
+
+       $$ \ell(t;h) = c_0y(t)+c_1hy'(t)+c_2\dfrac{h^2}{2} y''(t) + c_3 \dfrac{h^3}{3!}y'''(t) $$
+
+       $$ \left\{
+       \begin{array}{l}
+           c_0 = \rho(1)\\
+           c_1 = \rho'(1)-\sigma(1)\\
+           c_2 = \sum\limits_{j=0}^{2}j ^2 a_j - 2 \sum\limits_{j=0}^{2}jb_j
+       \end{array}
+       \right. $$
+
+       Como tenemos:
+       $$ \left\{
+       \begin{array}{l}
+           a_2 = 1\\
+           a_1 = \alpha-1 \\
+           a_0 = \alpha \\
+           b_2 = (\alpha +3)\\
+           b_1 = 0 \\
+           b_0 = 3 \alpha +1 
+       \end{array}
+       \right. $$
+
+       Podemos comprobar que 
+       $$ \left\{
+       \begin{array}{lr}
+           c_0 = \rho(1) = 1 +(\alpha-1)1 - \alpha  = 0\\ 
+           c_1 = \rho(1)-\sigma(1) = \alpha+1- \dfrac{4(\alpha +1)}{4} = 0 &  \text{ (con lo que tenemos estabilidad de primer orden)}\\
+           c_2 = \sum\limits_{j=0}^{2}j^2a_j -2 \sum\limits_{j=0}^{2}jb_j = \alpha-1+4-4 \dfrac{\alpha+3}{4} = \alpha +3 - ()\alpha +3) = 0 & \text{ tenemos entonces que el orden es al menos dos}\\
+           c_3 = \sum\limits_{j=0}^{2}j^3a_j - 3 \sum\limits_{j=0}^{2}j^2b_j = 8+ \alpha -1 -12 \dfrac{\alpha+3}{4} = 7+ \alpha -3 \alpha -9 = -2 \alpha -2 = 0 \iff \alpha = -1
+       \end{array}
+       \right. $$
+
+       Entonces si $ \alpha \ne -1 \implies c_3 \ne 0 \implies \ell(h) = O(h^3)  \implies $ el error del método es de orden 2. Y si $ \alpha = -1 \implies c_3 = 0 \implies \ell(h) = O(h^{4}) $ al menos y el error del método sería de orden 3 al menos.
+       
+       Para comprobar que efectivamente el método es de orden 3 para $ \alpha = -1 $ calculamos $ c_4 $ y comprobamos que es distinto de 0:
+       $$ c_4 = \sum\limits_{j=0}^{2}j^{4}-4 \sum\limits_{j=0}^{2}j^3b_j = -2+16 -4(8\cdot \dfrac{2}{4}) = -2 \ne 0 $$
+ 
+       Para el caso de $ \alpha = -1 $ con $ y' = 0 = f(t,y(t)) $ el método es:
+       
+       $$ y_{n+2} = -2y_{n+1} + y_n = 0 $$
+
+       Con $ y_0=0,\ y_1 = h,\ y_{n+2}-2y_{n+1}+y_n = 0 $ tomamos $ y_n = r^{n} \to r^{n+2}-2r^{n+1}+r^{n} = 0 \implies r^2 -2r +1 = 0 \iff (r-1)^2 = 0 \to r_1 = 1$ raíz doble. Entonces:
+       $$ y_n = r_1^{n}(An+B) \text{ con $ A,B $ por determinar} \implies y_n = An+B$$
+       Y tomando los valores iniciales llegamos a:
+       $$ \left\{
+       \begin{array}{l}
+           y_0= 0 \to B = 0\\
+           y_1 = h \to A = h
+       \end{array}
+       \right. $$
+
+       Sin embargo, el problema $ y'(t) = 0, y(0) = 0 $ tiene solución $ y(t) = 0 $, lo que difiere con nuestros cálculos. ¿A qué se debe esto?
+
+       El esquema $ y_{n+2}-y_{n+1}+y_n = 0 $ tiene como raíces de $ \rho(z)=z^2-2z+1 $, $ z = 1 $ doble. Por tanto el esquema no es estable.
+
+       Dados $ y_0,y_1,\ y_n = An+B \implies B = y_0,\ A =y_1-y_0$ y el esquema será $ y_n = (y_1-y_0)n +y_0$. La convergencia implica que $ h \to 0 \implies t_1 \to t_0$ que son fijos (y a su vez esto implica que $ y^{h}_1 \to y_0^{h}$)
+
+       Como en nuestro caso $ y_0 = 0,\ y_1 = h $ tenemos que $ y_1-y_0 = h \implies y_n = nh \to  $ No hay convergencia.
+
+       Tendríamos que tomar $ y_1 = h \phi(h) $ con $ \phi(h) \to 0 $ tal que $ y_1-y_0 = t_n \phi(h) \to 0 $.
+
+       Todo esto se debe a que $ r_1 = 1 $ es raíz doble y por tanto no se cumple la condición de Dahlquist.
+    \end{exercise}
 
 
 
