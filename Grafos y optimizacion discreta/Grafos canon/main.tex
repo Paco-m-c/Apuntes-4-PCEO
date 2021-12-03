@@ -1908,7 +1908,7 @@ Hay que probar varias formulaciones es muy importante a la hora de usar un mñet
 \end{example}
 
 \begin{exercise}
-Si tenemos dos restricciones $ x\leq a,\ y\leqb $ y queremos que se cumpla al menos una de ellas, ¿cómo lo formulamos?
+Si tenemos dos restricciones $ x\leq a,\ y\leq b $ y queremos que se cumpla al menos una de ellas, ¿cómo lo formulamos?
 
 Para ello usamos una variable binaria $ z \in \{0,1\} $. Podemos hacer entonces:
 
@@ -2174,6 +2174,9 @@ Esta desigualdad no es satisfecha por la solución óptima de la relajación lin
 
 \section{Hiperplano de corte mixto}
 
+
+
+
 Partimos del problema de optimización lineal entero-mixto de la forma
 
 $$
@@ -2196,10 +2199,16 @@ $$
 de donde
 
 $$
-x_{k}+\sum_{j \notin B} y_{k j} x_{j}=\left\lfloor\bar{x}_{k}\right\rfloor+f_{k}
+x_{k}+\sum_{j \notin B} y_{k j} x_{j}=\left\lfloor\bar{x}_{k}\right\rfloor+f_{k} \equiv x_{k}-[\overline{x}_{k}] = f_{k}- \sum\limits_{j \notin B}^{y_{kj}x_j}
 $$
 
-donde como antes $f_{k}$ es la parte fraccional de $\bar{x}_{k}$.
+Como $ x_{k} \in \mathbb{Z}$ hay dos casos:
+
+\begin{enumerate}
+  \item $ x_{k} \in [\overline{x}_{k}] :\ f_{k} - \sum\limits_{j  \not \in B}y_{kj}x_{j} \leq 0 \equiv - \sum\limits_{j \notin B}^{}y_{kj}x_j \leq -f_{k}$
+  \item $ x_{k} \geq [\overline{x}_{k}]:\ f_{k} - \sum\limits_{\not \in B}^{} y_{kj} x_j \geq 1 \equiv \sum\limits_{j \not \in B}^{}y_{kj}x_j \leq -f_{k}-1 $
+\end{enumerate}
+
 
 Llamamos
 
@@ -2212,27 +2221,50 @@ $\mathrm{y}$
 $$
 \bar{B}^{-}:=\left\{j \notin B: y_{k j}<0\right\} .
 $$
+Seguimos desarrolando estos dos casos
+\begin{enumerate}
+  \item $ \equiv \underbrace{-\sum\limits_{j \in B ^{+}}^{} y_{kj} x_j}_{\leq 0} -\underbrace{ \sum\limits_{j \in B^{-}}^{} y_{kj}x_j}_{\geq 0} \leq -f_{k} \implies - \sum\limits_{j \in B^{+}}y_{kj}x_j \leq -f_{k}$
+  \item $ \equiv \underbrace{-\sum\limits_{j \in B ^{+}}^{} y_{kj} x_j}_{\geq 0} -\underbrace{ \sum\limits_{j \in B^{-}}^{} y_{kj}x_j}_{\leq 0} \leq f_{k} -1 \implies - \sum\limits_{j \in B^{+}}y_{kj}x_j \leq f_{k}-1$
 
-Esta desigualdad
+\end{enumerate}
 
+Si multiplicamos la segunda desigualdad por $ -\dfrac{f_{k}}{f_{k}-1} $ (que es positivo)
+
+$$ 
+\left\{
+\begin{array}{l}
+  - \sum\limits_{j \in B^{+}}y_{kj}x_j \leq -f_{k}\\
+  \sum\limits_{j \in B ^{-}}^{} \dfrac{f_{k}}{1-f_{k}}y_{kj}x_j \leq -f_{k}
+\end{array}
+\right.
 $$
-\sum_{j \in \bar{B}^{-}} \frac{f_{k}}{1-f_{k}} y_{k j} x_{j}-\sum_{j \in \bar{B}^{+}} y_{k j} x_{j} \leq-f_{k}
-$$
+Y podemos reunir estas dos desigualdades en una:
 
-no es satisfecha por la solución óptima de la relajación lineal, que toma el valor 0 en las variables no básicas, pero sí por todas las soluciones enteras.
+$$ - \sum\limits_{j \in B^{+}}^{} y_{kj}x_j + \sum\limits_{j \in B^{-}}^{} \dfrac{f_{k}}{1-f_{k}} y_{kj}x_j \leq -f_{k} $$
+
+Esta desigualdad se sigue de las dos anteriores, es válida para la formulación y observamos que no es satisfecha por la solución óptima de la relajación lineal, que toma el valor 0 en las variables no básicas, pero sí por todas las soluciones enteras.
+
+% donde como antes $f_{k}$ es la parte fraccional de $\bar{x}_{k}$.
+
+% Esta desigualdad
+
+% $$
+% \sum_{j \in \bar{B}^{-}} \frac{f_{k}}{1-f_{k}} y_{k j} x_{j}-\sum_{j \in \bar{B}^{+}} y_{k j} x_{j} \leq-f_{k}
+% $$
 
 
 
 
 
-\chapter{Ejercicios}
 
-\begin{exercise}
-  (Hoja 2, ejercicio 21)
-\end{exercise}
+% \chapter{Ejercicios}
 
-$$ G = (\{ 1,2,3,4 \}, \{ (1,2), (1,3), (1,4), (2,4), (2,3), (3,4) \}) $$
-$$ L(G)= (\{ 12, 13, 14, 23, 34 \}, \{ (12, 13), (12, 23), (12,14), (13,34), (13,23), (23, 34), (34, 14) \}) $$
+% \begin{exercise}
+%   (Hoja 2, ejercicio 21)
+% \end{exercise}
+
+% $$ G = (\{ 1,2,3,4 \}, \{ (1,2), (1,3), (1,4), (2,4), (2,3), (3,4) \}) $$
+% $$ L(G)= (\{ 12, 13, 14, 23, 34 \}, \{ (12, 13), (12, 23), (12,14), (13,34), (13,23), (23, 34), (34, 14) \}) $$
 
 
 
