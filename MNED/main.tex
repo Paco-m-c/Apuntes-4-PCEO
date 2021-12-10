@@ -544,6 +544,140 @@
 
     \section{Ejercicios}
 
+    \begin{exercise}
+        $$ y_{n+2}-y_{n+1} = \dfrac{h}{12}(4f_{n+2}+8f_{n+1}f_n) $$
+        Aplicarlo a:
+        $$ 
+        \left\{
+        \begin{array}{l}
+            y'(t) = t = f(t,y)\\
+            y(0) = 0
+        \end{array}
+        \right. $$
+        (la solución es $ y(t) = \dfrac{t^2}{2} $)
+
+        Al aplicar el esquema obtenemos:
+        $$ y_{n+2}-y_{n+1} = \dfrac{h}{12}(4t_{n+2}+8t_{n+1}-t_n) $$
+        
+        Como $ t_n = nh $:
+        $$ y_{n+2} = y_{n+1} = \dfrac{h}{12}(4(n+2)h+8h(n+1)-hn) = \dfrac{h^2}{12}(4n+8+8n+8-n) = $$
+        $$ =\dfrac{h^2}{12}(11n+16) $$
+
+        Tratamos de obtener la ecuación en diferencias:
+        $$ y_{n+2}-y_{n+1} = \dfrac{h^2}{12}(11n+16) $$
+
+        $$ n=0 \hspace{5mm} y_2-y_1 = \dfrac{h^2}{12}(11\cdot 0+16) $$
+        $$ n=1 \hspace{5mm} y_3-y_2 = \dfrac{h^2}{12}(11\cdot 1+16) $$
+        $$ n=1 \hspace{5mm} y_4-y_3 = \dfrac{h^2}{12}(11\cdot 2+16) $$
+
+        $$ \sum\limits_{n=0}^{N-2}(y_{n+2}-y_{n+1}) = \sum\limits_{n=0}^{N-2}\dfrac{h^2}{12}(11 n +16) $$
+        $$ y_{N}-y_1 = \dfrac{h^2}{12} \left( 11 \sum\limits_{n=0}^{N-2} n+16(N-1) \right) $$
+        $$ y_{N} -y_1 = \dfrac{h^2}{12} \left( 11 \dfrac{(N-2)(N-1)}{2}+16N-16 \right) $$
+        $$ y_{N} = y_1+\dfrac{h^2}{24} (11N^2-33N+22+32N-32) = y_1+\dfrac{h^2}{24}(11N^2-N-10) $$
+
+        La solución exacta es $ y(t) = \dfrac{t^2}{2} $ entonces $ y(t_{N}) = \dfrac{N^2h^2}{2} $. Siempre comparamos $ y_n  $ con $ y(t_n) $. Siendo $ y_n $ la aproximación en $ t_n $:
+        $$ E(t_N) = y(t_{N})-y_{N} = \dfrac{N^2h^2}{2}- \dfrac{11}{24}h^2N^2 + \dfrac{1}{24}h^2N^2-\dfrac{h^2}{12} $$
+        
+        En el límite estacionario:
+        $$ \lim_{N \to \infty\ h \to 0\ Nh=tN} E(t_{N}) = \dfrac{t_{N}^2}{2} - \dfrac{11}{24}t_{N}^2 + \underbrace{\dfrac{1}{24}ht_{N} -\dfrac{h^2}{12}}_{ \to 0} = \dfrac{1}{24}t_{N}^2 \ne 0 $$
+
+        Entonces $ y_{N} = \dfrac{11}{24}h^2N^2 - \dfrac{h^2N^2}{24}+\dfrac{h^2}{12} $ converge en el límite estacionario pero no a la solución exacta. $ y_N $ converge a $ z(t) \ne y(t) = \dfrac{t^2}{2} $.
+
+        ¿Qué le sucede al esquema numérico para que haga esto?
+
+        $$ y_{n+2}-y_{n+1} = \dfrac{h}{12}(4f_{n+2}+8f_{n+1}-f_n) $$
+
+        Método de 2 pasos. Hace falta conocer $ y_0,y_1 $ para obtener $ y_2 $. Es un método de dos pasos \textbf{implícito} (para calcular $ y_2 $ usamos $ f_{2} $). Los polinomios son:
+        $$ \rho(z) = z^2-z \hspace{5mm} \sigma(z) = \dfrac{1}{12}(4z^2+8z-1) $$
+
+        Se cumple la condición de estabilidad ($ \rho(1)=0,\ \rho'(1) \ne 0 $). Se debe cumplir que $ \sigma(1) = \rho'(1) $ para la consistencia:
+        $$ \sigma(1)=\dfrac{1}{12}(4+8-1) = \dfrac{11}{12} \ne \rho'(1) = 1 $$.
+        
+        Por tanto, el método no es consistente.
+
+        Una forma de solucionar esto es cambiando el 12 del denominador por un 11.
+
+
+        \begin{flushright}
+            \textbf{Comentario extra}
+        \end{flushright}
+
+        En el cálculo de $ y_{N} $ hemos usado una suma telescópica. Esto es algo que en principio no lo vamos a poder usar en cualquier problema, vamos a usar otro método más general ahora:
+
+        $$ y_{n+2}-y_{n+1} = \dfrac{h^2}{12}(1(n+2)+8(n+1)-n) = \dfrac{h^2}{12}(11n+16) $$
+
+        Hacemos $ y_n = An^2+Bn $ para buscar una solución particular del problema no homogéneo.
+
+        \textbf{Nota:} en el caso de tener el problema $ y_{n+2}-y_{n+1} = 0 $, tendríamos $ y_n = A 0^{n}+B 1^{n} $ para que el método tenga sentido obviamente necesitamos $ y_0=y_1=B $ y tendremos $ y_n = B $
+
+        Volviendo al no homogéneo:
+        $$ y_{n+2}-y_{n+1} = A(n+2)^2+B(n+2) - A(n+1)^2-B(n+1) =$$
+        $$ =  An^2 + 2An +4A +Bn +2B - A n^2-2An-A-Bn-B= 2An +3A+B $$
+
+        Entonces tendremos:
+        $$ 2An+3A+B=\dfrac{h^2}{12}(11n+16) = \dfrac{11}{12}h^2n +\dfrac{16}{12}h^2 \implies $$
+        $$ A = 11 \dfrac{h^2}{24}\hspace{5mm} B = \dfrac{16h^2}{12}-\dfrac{33}{24}h^2 = -\dfrac{1}{24}h^2 $$
+
+        Con lo que llegamos a:
+        $$ y_n ^{(P)} = \dfrac{11}{24}h^2n^2 - \dfrac{1}{24}h^2n $$
+        
+        A lo que tenemos que sumar aún la parte homogénea, hemos llegado a la solución particular para el no homogéneo solamente.
+        $$ y_1 ^{(P)} = \dfrac{11}{24}h^2-\dfrac{1}{24}h^2 = \dfrac{10}{24}h^2 \ne y_1 = \dfrac{h^2}{2} $$
+        
+        La solución de la homogénea es $ y_n ^{(H)} = \dfrac{h^2}{2} $
+
+        La solución general es entonces la suma de ambas partes:
+        $$ y_n = y_n ^{(P)} y_n ^{(H)} = \dfrac{11}{24}h^2n^2-\dfrac{1}{24}h^2n + \dfrac{h^2}{2} $$
+    \end{exercise}
+
+    \setcounter{ex}{4}
+
+    \begin{exercise}
+        $$ y_{n+2}-(1+a)y_{n+1}+ay_n = h(\beta_1f_{n+1}+\beta_0f_n)  $$
+        
+        En este caso tenemos un método de dos pasos explícito, necesitamos $ y_0,y_1 $. Vamos a ver las condiciones para la convergencia.
+        $$ \rho(z)=z^2-(1+a)z+a \hspace{5mm} \sigma(z) = \beta_1z+\beta_0$$
+
+        0-estabilidad: $ \rho(1)=1-(1+a)+a=0,\ \rho(z)=(z-1)(z-a) $. Las raíces de $\rho$ son 0 y $ a $. Necesitamos por tanto que $ |a| <1 $ o bien $ |a|=1 $ con $ a\ne1 $ ya que la multiplicad de $ a $ ha de ser 1.
+
+        Valores posibles de $ a $:
+        $$ a=\left\{
+        \begin{array}{l}
+            -1 \\
+            e^{i \theta} \ne 1
+        \end{array}
+        \right. $$
+
+        También necesitamos
+        $$ \rho'(z) = 2z - (1+a) \implies \rho'(1) = 1-a \ne 0 \implies a \ne 1 $$
+        
+        Consistencia:
+        $$ \sigma(1) = \rho'(1) \iff \beta_1+\beta_0 = 1-a $$
+
+        Recordemos que:
+        $$ \ell(t;h) = C_0y(t)+C_1 h y'(t) + C_2 \dfrac{h^2}{2}y''(t) + C_3 \dfrac{h^3}{3!}y ^{(3)}(t) + ... $$
+
+        Como $ C_0 = 0\ $ $C_1 = 0$, el error $ \ell(t;h) = O(h^2)\ \forall y$
+
+        Comprobemos cuando es el método de orden 2 ($ C_2=0 $):
+        $$ C_2 = \sum\limits_{j=0}^{2}(j^2a_j-2jb_j) = -(1+a)+4 -2 \beta_1 = 3-a+2beta_1 = 0 $$
+
+        Para el caso de un orden del error local con orden 4 (o orden del método 3) necesitamos:
+        $$ C_3 = 0 \iff \sum\limits_{j=0}^{3}(j^3a_j-3^2b_j)=7-a-3beta_1=0 $$
+
+        Con las hipótesis que tenemos llegamos a 
+        $$ \left\{
+        \begin{array}{l}
+            \beta_0 =2        \\
+            \beta_1=4\\
+            a=-5
+        \end{array}
+        \right. $$
+
+        Pero en este caso perderemos la 0-estabilidad.
+
+    \end{exercise}
+
     \setcounter{ex}{7}
 
     \begin{exercise}
@@ -582,8 +716,8 @@
        $$ \left\{
        \begin{array}{lr}
            c_0 = \rho(1) = 1 +(\alpha-1)1 - \alpha  = 0\\ 
-           c_1 = \rho(1)-\sigma(1) = \alpha+1- \dfrac{4(\alpha +1)}{4} = 0 &  \text{ (con lo que tenemos estabilidad de primer orden)}\\
-           c_2 = \sum\limits_{j=0}^{2}j^2a_j -2 \sum\limits_{j=0}^{2}jb_j = \alpha-1+4-4 \dfrac{\alpha+3}{4} = \alpha +3 - ()\alpha +3) = 0 & \text{ tenemos entonces que el orden es al menos dos}\\
+           c_1 = \rho(1)-\sigma(1) = \alpha+1- \dfrac{4(\alpha +1)}{4} = 0 &  \\
+           c_2 = \sum\limits_{j=0}^{2}j^2a_j -2 \sum\limits_{j=0}^{2}jb_j = \alpha-1+4-4 \dfrac{\alpha+3}{4} = \alpha +3 - (\alpha +3) = 0 & \\
            c_3 = \sum\limits_{j=0}^{2}j^3a_j - 3 \sum\limits_{j=0}^{2}j^2b_j = 8+ \alpha -1 -12 \dfrac{\alpha+3}{4} = 7+ \alpha -3 \alpha -9 = -2 \alpha -2 = 0 \iff \alpha = -1
        \end{array}
        \right. $$

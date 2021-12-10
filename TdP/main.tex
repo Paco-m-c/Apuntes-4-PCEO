@@ -572,4 +572,44 @@ $$ \int\limits_{0}^{+\infty} \int\limits_{0}^{\pi/4} e^{-v^2}vdu dv = k \dfrac{\
 
 \end{exercise}
 
+\chapter{Hoja 6}
+
+\begin{exercise}
+    $$ X= 0,1,2,...,n \hspace{5mm} P(X=i) = \dfrac{1}{n+1} $$
+    $$ E(X) = \sum\limits_{i=0}^{n}i \dfrac{1}{n+1} = \dfrac{1}{n+1} \sum\limits_{i=0}^{n} i = \dfrac{n(n+1)}{2(n+1)} =  \dfrac{n}{2} $$
+    $$ E(X^2) = \sum\limits_{i=0}^{n} \dfrac{i^2}{n+1} = \dfrac{1}{n+1} \sum\limits_{i=0}^{n}i^2 = \dfrac{n(n+1)(2n+1)}{6(n+1)} = \dfrac{n(2n+1)}{6}  $$
+    $$ Var(X) = E(X^2) - (E(X))^2 = \dfrac{n(2n+1)}{6} - \dfrac{n^2}{4} $$
+
+
+\end{exercise}
+
+\begin{exercise}
+    $  $\\
+    \begin{flushright}
+        \textbf{Primera parte}
+    \end{flushright}
+    Observamos primero que los números de la forma $ i/3^{n} $ son:
+    $$ \dfrac{1}{3^{n}}, \dfrac{2}{3^{n}},\dfrac{3}{3^{n}},\dfrac{4}{3^{n}},...,\dfrac{3^{n-1}}{3^{n}},\dfrac{3^{n}}{3^{n}} $$
+    Y vemos que los numeradores múltiplos de 3 en este conjunto son $ 3^{n-1}:\ 3,2\cdot 3,3\cdot 3,...,3^{n-1}3 $. Luego $ |D|=3^{n}-3^{n-1} = 3^{n-1}\cdot 2 $. Por tanto:
+    $$ k = \dfrac{1}{2\cdot 3^{n-1}} $$
+
+    $$ F(\dfrac{1}{3}) = \sum\limits_{x_i \in D\ x_i \leq 1/3}^{} k $$
+
+    Observamos que el número de sumandos es $ 3^{n-1}-3^{n-2} $(quitamos los numeradores $ 3,2\cdot 3,...,3^{n-2}\cdot 3 $)  para los casos $ n > 1 $. Por tanto:
+    $$ F(\dfrac{1}{3}) = \dfrac{2 \cdot 3^{n-2}}{2 \cdot 3^{n-1}} = \dfrac{1}{3} $$
+
+    Si $ n = 1 $, $ D = \{\dfrac{1}{3},\dfrac{2}{3}\} $ y $ F(\dfrac{1}{3}) = \dfrac{1}{2} $
+
+    \begin{flushright}
+        \textbf{Segunda parte}
+    \end{flushright}
+
+    Para usar el ejercicio anterior, dividimos el sumatorio en dos:
+
+    $$ \sum\limits_{n=1}^{+\infty} \sum\limits_{x_i \in D\ x_i = i/3^{n}}^{} P(\{\dfrac{i}{3^{n}}\}) = \sum\limits_{n=1}^{+\infty} \sum\limits_{x_i = i/3^{n}\ irred}^{} \dfrac{k}{6^{n}} =$$$$= \sum\limits_{n=1}^{\infty} 2\cdot 3^{n-1} \dfrac{k}{6^{n}} = \sum\limits_{n=1}^{+\infty} \dfrac{k}{2^{n-1}3} = \dfrac{k}{3} \sum\limits_{n=1}^{+\infty} \dfrac{1}{2^{n-1}} = \dfrac{2}{3}k = 1 \implies k=\dfrac{3}{2}$$
+
+\end{exercise}
+
+
+
 \end{document}
