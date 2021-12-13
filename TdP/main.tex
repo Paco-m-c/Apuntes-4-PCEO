@@ -611,6 +611,163 @@ $$ \int\limits_{0}^{+\infty} \int\limits_{0}^{\pi/4} e^{-v^2}vdu dv = k \dfrac{\
 
 \end{exercise}
 
+\begin{exercise}
+    $ $
 
+    Integramos para calcular la constante $ C $:
+    $$ \int\limits_{a}^{b} C(x-a)^{p-1}(b-x)^{q-1}dx = C \int\limits_{a}^{b} (x-a)^{p-1}(x-b)^{q-e}dx $$
+    
+    Esta integral nos recuerda a $ B(p,q) $, hacemos el cambio
+    $$ t = \dfrac{x-a}{b-a}\ x = (b-a)t+a\ dx = (b-a)dt\  b-x = b-(b-a)t-a = (b-a)(1-t)$$
+    con límites de integración 0 y 1
+
+    La integral entonces queda:
+    $$ = C\int\limits_{0}^{1} (b-a)^{p-1}t^{p-1} (b-a)^{q-1}(1-t)^{q-1} (b-a)dt =$$
+    $$ = C \int\limits_{0}^{1}(b-a)^{p+q-1} t ^{p-1}(1-t)^{q-1}dt = C(b-a)^{p+q+1}B(p,q) = 1 \iff$$ $$\iff C = \dfrac{1}{(b-a)^{p+q+1}B(p,q)} $$
+
+    Calculamos ahora $ E(X) $
+    $$ E(X) = \int\limits_{}^{} xf(x) dx = \int\limits_{}^{} xC(x-a)^{p-1}(b-x)^{q-1}dx =  $$
+    $$ = C \int\limits_{a}^{b}(x-a+a)(x-a)^{p-1}(b-x)^{q-1}dx = C\int\limits_{}^{} (x-a)^{p}(b-x)^{q-1}dx + \underbrace{C \int\limits_{a}^{b} a(x-a)^{p-1}(b-x)^{q-1}dx}_{a\cdot 1} $$
+    $$ = C(b-a)^{p+q} B(p+1,q)+a = \dfrac{1}{(b-a)^{p+q-1}B(p,q)}(b-a)^{p+q}B(p,q)+a =  $$
+    
+    Utilizando ahora la equivalencia de $ B$ y $\Gamma $, y usando que $ \Gamma(x+1)=x\Gamma(x) $
+    $$ = a + \dfrac{(b-a)\Gamma (p+q) \Gamma(p+1)\Gamma(q)}{\Gamma(p)\Gamma(q)\Gamma(p+q+1)} =$$
+    $$ = a + \dfrac{(b-a)p}{p+q} = \dfrac{\cancel{ap}+aq+bp-\cancel{ap}}{p+q} $$
+    
+\end{exercise}
+
+\begin{exercise}
+    $  $
+    \begin{flushright}
+        \textbf{Apartado a)}
+        
+    \end{flushright}
+    
+    Observamos primero que el área de $ C $ es $ 3/2 $, luego $ f(x,y)=2/3 I_{C}(x,y) $:
+    
+    Ahora:
+    $$ f_{2}(y) = \int\limits_{}^{}f(x,y)dx = \left\{
+    \begin{array}{ll}
+        \int\limits_{0}^{y} \dfrac{2}{3}dx = \dfrac{2}{3}y & y \in (0,1)\\
+        \int\limits_{0}^{1} \dfrac{2}{3}dx = \dfrac{2}{3} & y \in (1,2)\\
+        0 & resto
+    \end{array}
+    \right. $$
+
+    La condicionada se calcula como sigue:
+    $$ f_{2|1}(y|x) = \dfrac{f(x,y)}{f_{1}(x)} $$
+    
+    Los valores de $ x $ donde esta expresión tiene sentido los calculamos ahora junto a $ f_{1}(x) $:
+    $$ f_{1}(x) = \int\limits_{}^{}f(x,y)dy=\left\{
+    \begin{array}{ll}
+        \int\limits_{x}^{2}\dfrac{2}{3}dy = \dfrac{2}{3}(2-x)& x \in (0,1)\\
+        0 & resto
+    \end{array}
+    \right. $$
+
+    Volviendo a la distribución condicionada, fijado $ x \in (0,1) $:
+    $$ f_{2|1}(y|x) = \left\{
+    \begin{array}{ll}
+        \dfrac{2/3}{2/3(2-x)} = \dfrac{1}{2x} & y \in (x,2)\\
+        0 & y \not \in (x,2)
+    \end{array}
+    \right. $$
+
+    Vamos a calcular también $ f_{1|2}(x|y) $ :
+
+    $ \bullet   $ Sea $ y \in (0,1) $:
+    $$ f_{1|2}(x|y) = \left\{
+    \begin{array}{ll}
+        \dfrac{2/3}{2/3y} = \dfrac{1}{y} & x \in (0,y)\\
+        0 & x \not \in (0,y)
+    \end{array}
+    \right. $$
+    
+    $ \bullet   $ Sea $ y \in (1,2) $:
+    $$ f_{1|2}(x|y) = \left\{
+    \begin{array}{ll}
+        \dfrac{2/3}{2/3} = 1 & x \in (0,1)\\
+        0 & x \not \in (0,1)
+    \end{array}
+    \right. $$
+\begin{flushright}
+    \textbf{Apartado b)}
+    
+\end{flushright}
+
+    Dada la transformación:
+    $$ \left\{
+    \begin{array}{l}
+        u=x\\
+        v = \dfrac{y-x}{2-y}
+    \end{array}
+    \right. $$
+
+    Nos sacamos de la manga su inversa:
+    $$ \left\{
+    \begin{array}{l}
+        x=u\\
+        y=\dfrac{u+2v}{1+v}
+    \end{array}
+    \right. $$
+
+    Vemos el Jacobiano:
+    $$\left| \begin{matrix} \dfrac{\partial x}{\partial u} = 1 & \dfrac{\partial x}{\partial v} = 0 \\ \dfrac{\partial y}{\partial u}= & \dfrac{\partial y}{\partial v} = \dfrac{2-u}{(1+v)^2} \end{matrix}\right| = \dfrac{2-u}{(1+v)^2}  $$
+
+    La imagen del recinto $ C $, $ C'= \{(u,v) \in \mathbb{R}^2 \ :\ 0<u<1,\ v>0\} = (0,1) \times (0,+\infty) $
+    
+    Solo queda ver el valor de $ f_{U,V} $:
+    $$ f_{U,V} (u,v)=\left\{
+    \begin{array}{ll}
+        \dfrac{2}{3} \dfrac{2-u}{(1+v)^2} & (u,v) \in C'\\
+        0 & resto
+    \end{array}
+    \right.  $$
+
+    \begin{flushright}
+        \textbf{Apartado c)}
+    \end{flushright}
+
+    $$ g_{1}(u) = \left\{
+    \begin{array}{ll}
+        \dfrac{2}{3} \int\limits_{0}^{+\infty} \dfrac{2-u}{(1+v)^2}dv = \dfrac{2}{3}(2-u) \left[ - \dfrac{1}{1+v} \right]_{0}^{+\infty} = \dfrac{2}{3}(2-u) & u \in (0,1)\\
+        0 & resto
+    \end{array}
+    \right. $$
+    
+    Buscaremos un punto $ m_{e} $ tal que $ F(m_{e}^{-}) = \dfrac{1}{2} = F(m_{e}) $ (ya que $ f_{(U,V)} $ es continua).
+    $$ F(m_{e}) = \int\limits_{0}^{m_{e}} \dfrac{2}{3}(2-u) du = \dfrac{2}{3} \left( 2 m_{e} - \dfrac{m_{e}^2}{2} \right) = $$
+    $$  = \dfrac{4}{3}m_{e} -\dfrac{1}{3}m_{e}^2 = \dfrac{1}{2} $$
+    Resolviendo la ecuación de segundo grado obtenemos las soluciones $ 2 \pm \dfrac{\sqrt{10}}{2} $, el valor $ 2 + \dfrac{\sqrt{10}}{2} \not \in (0,1)$, luego no nos sirve. El otro, sin embargo, sí esta entre 0 y 1, luego $ m_{e} = 2- \dfrac{\sqrt{10}}{2} $
+
+    \begin{flushright}
+        \textbf{Apartado d)}
+
+    \end{flushright}
+
+    $$ g_{2}(v) = \left\{
+    \begin{array}{ll}
+        \int\limits_{0}^{1} \dfrac{2}{3} \dfrac{2-u}{(1+v)^2} du = \dfrac{2}{3} \dfrac{1}{(1+v)^2} \left[ 2u-\dfrac{u^2}{2} \right]_{0}^{1} = \dfrac{2}{3}\dfrac{1}{(1+v)^2} \dfrac{3}{2} = \dfrac{1}{(1+v)^2} & v \in (0,+\infty)\\
+        0 & resto
+    \end{array}
+    \right. $$
+
+    Para empezar, vemos que sí pueden ser independientes porque $ C' $ es un producto de intervalos (y por tanto, rectangular). Además, $ f_{U,V} = f_{U}f_{V} $ luego sí son independientes. De hecho, antes de ver las distribuciones marginales ya podemos saber que son independientes porque $ f_{U,V} = g(u)h(v)$ con $ g $ una función que solo depende de $ u $ y $ h $ una función que solo depende de $ v $.
+
+    Además, $ X,Y $ \textbf{no} son independientes porque $ C $ no es un rectángulo.
+
+    \begin{flushright}
+        \textbf{Apartado e)}
+    \end{flushright}
+
+    $$ E(U^{n}) = \int\limits_{0}^{1} u^{n} \dfrac{2}{3}(2-u) = \dfrac{2}{3} \left[ \dfrac{2u^{n+1}}{n+1}-\dfrac{u^{n+2}}{n+2} \right]^1_{0} = \dfrac{2}{3} \left( \dfrac{2}{n+1}-\dfrac{1}{n+2} \right) $$
+
+    En particular:
+    $$ E(U) = \dfrac{2}{3} \left( 1-\dfrac{1}{3} \right) = \dfrac{4}{9} $$
+
+    Vamos a calcular también la esperanza de $ V $:
+    $$ E(V) = \int\limits_{0}^{+\infty} \dfrac{v}{(1+v)^2}dv = \int\limits_{0}^{+\infty} \dfrac{v+1}{(1+v)^2} dv - \int\limits_{0}^{+\infty}\dfrac{1}{(1+v)^2}dv = $$
+    $$  = \log(1+v) \Biggr|_{0}^{+\infty} + ... = +\infty $$
+\end{exercise}
 
 \end{document}
