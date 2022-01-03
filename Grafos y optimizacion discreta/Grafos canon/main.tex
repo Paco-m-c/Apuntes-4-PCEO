@@ -968,7 +968,7 @@ Dado un grafo $G$ se obtiene el grafo clausura de $G$, denotado por $[G]$, media
 
     Retirando $ (v_1,v_n) $ de nuevo, se sigue que en $ G_j $ existía un camino hamiltoniano $ (v_1,v_2,...,v_n) $.
 
-    Sean $ Y = \{i \in \{3,...,n-1\} : (v_1,v_i) \in E_j\} $ (algunos de los vecinos de $ v_1 $) y $ X = \{i \in \{3,...,n+1\}:(v_n,i) \in E_j\} $ (los nodos a la derecha de algunos de los vectores de $ v_n $). Entonces $ |Y| = g_{G_j}(v_1) -1$ y $ |X| = g_{Gj}(v_n)-1 $ y $ |X| + |Y| \geq_{\text{por la contrucción de $ G_{j+1} $}} n-2  $.
+    Sean $ Y = \{i \in \{3,...,n-1\} : (v_1,v_i) \in E_j\} $ (algunos de los vecinos de $ v_1 $) y $ X = \{i \in \{3,...,n-1\}:(v_n,v_{i-1}) \in E_j\} $ (los nodos a la derecha de algunos de los vectores de $ v_n $). Entonces $ |Y| = g_{G_j}(v_1) -1$ y $ |X| = g_{Gj}(v_n)-1 $ y $ |X| + |Y| \geq_{\text{por la contrucción de $ G_{j+1} $}} n-2  $.
 
     Como $ X,Y \subset \{3,4,...,n-1\}_{\text{con cardinal $ n-3 $}} $ y sus cardinales suman $ n-2 \implies X \cap Y \ne \emptyset \implies \exists v_{k} \in X \cap Y \implies $
     $$ \implies \left\{
