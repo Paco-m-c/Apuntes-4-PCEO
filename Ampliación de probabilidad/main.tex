@@ -1,0 +1,47 @@
+\documentclass[openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage[hypertexnames=false]{hyperref}
+\usepackage{amstext} 
+\usepackage{array}   
+\newcolumntype{C}{>{$}c<{$}} 
+
+
+\input{structure}
+\usepackage{geometry}
+\geometry{
+    top=3cm,
+    bottom=3cm,
+    left=3cm,
+    right=3cm,
+    headheight=14pt, 
+    footskip=1.4cm,
+    headsep=10pt,
+}
+\usepackage{graphicx}
+\title{Ejercicios de Ampliación de Probabilidad}
+\author{Paco Mora Caselles}
+\date{\today}
+
+\begin{document}
+
+\chapter{Relación 1}
+\begin{exercise}
+    $$  C = \{(x,y) \in \mathbb{R} ^2 \ :\ 0<x<1,\ 0<y<1,\ y < (1-x)^2\} $$
+
+    Dejamos por ahora $ f $ en función de $ k $, más tarde calculamos su valor:
+
+    $$ f(x,y) = \left\{
+    \begin{array}{lr}
+        k & (x,y) \in C\\
+        0 & (x,y) \not \in C   
+    \end{array}
+    \right. $$
+
+\end{exercise}
+
+
+
+
+
+\end{document}

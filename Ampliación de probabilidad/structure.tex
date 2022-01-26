@@ -1,0 +1,279 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% HOLA PACO
+% ESTE ES EL ARCHIVO DE LAS DEFINICIONES ESTRUCTURALES
+% VERSION 1.1 NOMÁS
+%
+% AUTOR ORIGINAL:
+% EDUARDO (CHITO) BELMONTE GUILLAMÓN
+%
+% ESTE ARCHIVO ES COMUNISTA, PUEDES COMPARTIRLO SI QUIERES
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------
+%     PAQUETICOS QUE SE USAN
+%----------------------------------
+
+%--------------------------
+%    PARA USAR INKSCAPE
+%---------------------------
+\usepackage{import}
+\usepackage{hyperref}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\newcommand{\custincfig}[2]{%
+    \def\svgwidth{#1}
+    \import{./figures/}{#2.pdf_tex}
+}
+\newcommand{\textnexttofig}[3]{
+  \begin{minipage}[l]{0.45\textwidth}
+    \custincfig{#1}{#2}
+  \end{minipage}
+  \begin{minipage}[l]{0.45\textwidth}
+    #3
+  \end{minipage}
+}
+
+%%%%%%%%% FIN DEL INKSCAPE
+
+\usepackage{parskip} % Pa parrafos wapos
+\setlength{\parindent}{0.5cm} % Pa la sangría
+\usepackage{graphicx} % Pa meter las imágenes
+\graphicspath{{Images/}} % La ruta a las imágenes
+
+\usepackage{tikz} % Pa dibujar cosichuelas guapas
+
+\usepackage[spanish]{babel} % PA QUE ESTÉ EN ESPAÑOL NOMÁS
+
+\usepackage{enumitem} % Para personalizar las LISTAS YEAH
+
+\setlist{nolistsep} % Pa que las listas estén junticas
+
+\usepackage{booktabs} % Esta sirve para hacer tablas fancy con multicolumns y tal pero no tengo ni puta idea de usarla
+
+\usepackage{xcolor} % PA DEFINIR LOS COLORINES
+\definecolor{turquoise}{RGB}{21,103,112} % Es un turquesica así formal
+\definecolor{violet}{RGB}{ 110, 6, 187 } % Color maricón
+
+%-------------------------------------------------
+%     MÁRGENES
+%-------------------------------------------------
+
+\usepackage{geometry}
+\geometry{
+    top=3cm,
+    bottom=3cm,
+    left=3cm,
+    right=3cm,
+    headheight=14pt,
+	footskip=1.4cm,
+	headsep=10pt,
+}
+
+\usepackage{avant} % Esto es una fuente para encabezados
+
+%\usepackage{mathptmx} % Usar simbolitos matemáticos chulos
+
+\usepackage{microtype} % Para fuentes de maricones
+
+\usepackage[utf8]{inputenc} % Pa los acentos
+
+\usepackage[T1]{fontenc}
+
+%-------------------------------------------------
+% Bibliografía e índice
+%-------------------------------------------------
+
+\usepackage{makeidx} % Pa hacer un índice
+\makeindex
+
+\usepackage{titletoc}   % Para manipular la tabla de contenidos
+
+\contentsmargin{0cm}    % Para eliminar el margen por defecto
+
+\usepackage{titlesec} % Pa cambiar los titulos skere
+
+\titleformat
+{\chapter} % command
+[display] % shape
+{\centering\bfseries\Huge\normalfont} % format
+{\color{turquoise}  {\normalsize\MakeUppercase{Capítulo} \thechapter }} % label
+{-0.5cm} % sep
+{
+    \color{turquoise}
+    \rule{\textwidth}{3pt}
+    \vspace{1ex}
+    \centering
+    \setcounter{ex}{0}
+    \setcounter{dummy}{0}
+} % before-code
+[
+\vspace{-0.5cm}%
+\rule{\textwidth}{3pt}
+] % after-code
+
+
+\titleformat{\part}
+[display]
+{\centering\bfseries\Huge\normalfont}
+{\color{turquoise} {\normalsize \MakeUppercase{Asignatura}}}
+{0pt}
+{\color{turquoise}
+\vspace{-0.6cm}
+\rule{\textwidth}{3pt}
+\vspace{1ex}
+\setcounter{chapter}{0}
+\setcounter{section}{0}
+\setcounter{dummy}{0}
+\centering
+}
+
+
+\titleformat{\section}
+{\normalfont\Large\bfseries}{\color{turquoise}\thesection\ - }{0.5em}{}
+
+\usepackage{fancyhdr}   % Necesario para el encabezado y el pie de página
+
+\pagestyle{fancy}   %Para modificar los encabezados
+\fancyhf{}          %Para eliminar los encabezados y pies de página por defecto.
+\fancyhead[LE,RO]{\sffamily\normalsize\thepage}
+\fancyfoot[C]{Geometría de Curvas y Superficies}
+%HACER
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm,cancel} % PARA LAS MATES
+
+%   LINEA 199, HACER CAPULLADAS
+
+\newtheoremstyle{turquoisebox}
+{0pt} %Espacio encima
+{0pt} %Espacio abajo
+{\normalfont} % Fuente del cuerpo
+{} % Cantidad de identado
+{\small\ssfamily\color{turquoise}} % Fuente en la que pone "TEOREMA"
+{:} % Puntuación tras el teorema
+{0.25em} %Espacio tras el teorema
+{\thmname{#1}\thmnumber{#2}} %No sé si esto funciona
+
+
+\newcounter{dummy}
+\newcounter{ex}
+\newtheorem{teoremote}[dummy]{\color{turquoise}Teorema}
+\newtheorem{propositiont}{\color{turquoise}Proposición}[section]
+\newtheorem{lemmat}{\color{turquoise}Lema}[section]
+\newtheorem{definitionT}{\color{turquoise}Definición}[section]
+\newtheorem{exerciseT}[ex]{Ejercicio}
+\newtheorem{examplote}[ex]{\color{turquoise}Ejemplo}
+\newtheorem{methodT}[dummy]{\color{turquoise}Método}
+
+
+\RequirePackage[framemethod=default]{mdframed} % Required for creating the theorem, definition, exercise and corollary boxes
+
+%Caja de teoremas
+
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+backgroundcolor=black!5,
+linecolor=turquoise,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=3pt,
+innerbottommargin=5pt]{tBox}
+
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+backgroundcolor=black!5,
+linecolor=turquoise,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=1pt,
+innerbottommargin=5pt]{pBox}
+
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+backgroundcolor=violet!7,
+linecolor=turquoise,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+rightline=false,
+topline=false,
+bottomline=false,
+linewidth=4pt,
+innerbottommargin=5pt]{mBox}
+
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=turquoise,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=0pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=0pt]{dBox}
+
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+backgroundcolor=black!3,
+linecolor=turquoise!50,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=0pt,
+innerbottommargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt]{eBox}
+
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+leftline=true,
+topline=false,
+rightline=false,
+bottomline=false,
+backgroundcolor=cyan!5,
+linecolor=turquoise,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=0pt,
+innerbottommargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt]{exBox}
+
+\newenvironment{theorem}{\begin{tBox}\begin{teoremote}}{\end{teoremote}\end{tBox}}
+\newenvironment{proposition}{\begin{pBox}\begin{propositiont}}{\end{propositiont}\end{pBox}}
+\newenvironment{lemma}{\begin{pBox}\begin{lemmat}}{\end{lemmat}\end{pBox}}
+\newenvironment{method}{\begin{mBox}\begin{methodT}}{\end{methodT}\end{mBox}}
+\newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
+\newenvironment{exercise}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{black}}\end{exerciseT}\end{eBox}}
+\newenvironment{example}{\begin{exBox}\begin{examplote}}{\end{examplote}\end{exBox}}
+\newenvironment{demonstration}{\begin{flushright}
+      \color{turquoise} \textbf{Demostración}
+\end{flushright}
+}{\begin{flushright}
+  $\square$
+\end{flushright}}
