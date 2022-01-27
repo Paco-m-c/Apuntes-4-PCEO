@@ -1,4 +1,6 @@
 \babel@toc {spanish}{}
 \contentsline {chapter}{\numberline {1}Qué chuchas es una ecuación en derivadas parciales}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Introducción a EDP}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Ejemplos de EDPs}{4}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Ecuación de ondas}{4}{subsection.1.2.1}%
 \contentsfinish 
