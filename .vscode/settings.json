@@ -1,5 +1,12 @@
 {
     "cSpell.words": [
         "multipaso"
+    ],
+    "Vsnips.VarFiles": [
+        "/home/paco/.vscode/extensions/corvofeng.vsnips-0.5.7/Ultisnips/tex.snippets"
+    ],
+    "Vsnips.SnipsDir": [
+        "/home/paco/.vscode/extensions/corvofeng.vsnips-0.5.7/Ultisnips"
     ]
+    
 }
