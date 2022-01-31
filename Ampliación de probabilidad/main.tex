@@ -59,15 +59,98 @@
     Pasamos ahora a $ f_{2}(y) $, cuando $ y \in (0,1) $:
     $$ f_{2}(y) = \int\limits_{}^{}f(x,y)dx = \int\limits_{0}^{1-y^{1/2}} = k (1-y)^{1/2} $$
 
+    $$ f_{2}(y) = \left\{
+    \begin{array}{lr}
+        k(1-\sqrt{y}) & y \in (0,1) \\
+        0 & y \not \in (0,1)
+    \end{array}
+    \right. $$
+
     Calculamos ahora $ E(X^{n}(1-X)^{m}) $ usamos $ f_{1}(x) $:
     $$ E(X^{n}(1-X)^{m}) = \int\limits_{}^{}x^{n}(1-x)^{m}f_{1}(x)dx = \int\limits_{0}^{1} x^{n}(1-x)^{m} k (1-x)^2 dx = k \int\limits_{0}^{1}x^{n}(1-x)^{m+2} =$$
     $$ =  kB(n+1,m+3) = k \dfrac{\Gamma(n+1)\Gamma(m+3)}{\Gamma(n+m+4)} = k \dfrac{n!(m+2)!}{(n+m+3)!} $$
     
     Los momentos de orden $ n $ respecto del origen, la esperanza y la varianza de $ X $ las podemos calcular con esta expresión. Para los primeros casos tomamos $ m=0 $ y para la varianza podemos usar que $ Var(X) = E(X^2)-E(X)^2 $
 
+    $$ k = 3 \hspace{10mm} E(X) = \dfrac{1}{4}\hspace{10mm} E(X^2) = \dfrac{1}{10} \hspace{10mm} Var(X) = \dfrac{3}{80} $$
+    
+    Calculamos $ f_{2|1}(y|x) $, si $ x \in (0,1) $:
+    $$ f_{2|1}(y|x) = \dfrac{f(x,y)}{f_{1}(x)} = \left\{
+    \begin{array}{lr}
+        \dfrac{3}{3(1-x)^2} = \dfrac{1}{(1-x)^2} & y \in (0,(1-x)^2)\\
+        0 & y \not \in (0,(1-x)^2)
+    \end{array}
+    \right. $$
+
+    Podemos calcular ahora $ f_{2|1}(y|x=1/2) $:
+    $$ f_{2|1}(y|1/2) = \left\{
+    \begin{array}{lr}
+        4 & y \in (0,\dfrac{1}{4}) \\\\
+        0 & y \not \in (0,\dfrac{1}{4})
+    \end{array}
+    \right. $$
+
+    Para calcular $ F\left(\dfrac{1}{4},\dfrac{9}{16}\right) $ nos apoyamos en la figura para saber que basta con calcular el área del rectángulo y multiplicar por $ k $:
+    
+    \begin{center}
+        \includegraphics[scale=0.4]{1-1-2.jpg}
+    \end{center}
+    
+
+    $$ F\left(\dfrac{1}{4},\dfrac{9}{16}\right) = 3 \dfrac{1}{4}\cdot \dfrac{9}{16} = \dfrac{3^3}{2^{6}}$$
+
+    Para $ F\left(\dfrac{1}{2},\dfrac{9}{16}\right) = F\left(\dfrac{1}{4},\dfrac{9}{16}\right)+3\cdot Area\ T $, siendo $ T $ la intersección con $ C $. Sabemos entonces que:
+    $$ \int\limits_{1/4}^{1/2}(1-x)^2dx = \int\limits_{1/4}^{1/2}(x^2-2x+1)dx = \dfrac{x^3}{3}-x^2+x \Biggr|_{1/4}^{1/2} = \dfrac{19}{2^{6}3} $$
+    $$ F\left(\dfrac{1}{2},\dfrac{9}{16}\right) = \dfrac{3^3}{2^{6}} + 3 \dfrac{19}{2 ^{6}3} = \dfrac{23}{32} $$
+
+    Tenemos que calcular ahora la recta de regresión de $ Y $ respecto de $ X $:
+    $$ y - \mu_{y} = \dfrac{\sigma _{xy}}{\sigma_{x}^2}(x-\mu_{x}) $$
+    $$ \mu_{y} = E(Y) = \int\limits_{0}^{1} y 3(1-y^{1/2})dy = 3 \int\limits_{0}^{1}(y-y^{3/2}) = \dfrac{3}{10} $$
+    $$ E(XY) = \int\limits_{0}^{1} \int\limits_{0}^{(1-x)^2} 3xy dy dx = 3 \int\limits_{0}^{1} x \left[\dfrac{y^2}{2}\right]_{0} ^{(1-x)^2} d = \dfrac{3}{2} \int\limits_{0}^{1}x(1-x)^{4}dx = $$
+    $$ = B(2,5) = \dfrac{3}{2} \dfrac{\Gamma(2)\Gamma(5)}{\Gamma(7)}= \dfrac{3}{2} \dfrac{1!4!}{6!} = \dfrac{1}{20} $$
+    Recordemos que $ \mu_{X} = E(X) = \dfrac{1}{4} $, entonces:
+    $$ \sigma_{XY}Cov(X,Y) = \dfrac{1}{2^2\cdot 5} -\dfrac{1}{2^2}\cdot \dfrac{3}{2\cdot 5} = \dfrac{2-3}{2^3\cdot 5} = -\dfrac{1}{2^3\cdot 5}$$
+
+    Podemos expresar ya la recta de regresión (recordando que $ \sigma_{X}  = \dfrac{3}{80}$):
+    $$ y-\dfrac{3}{10} = \dfrac{-1/(5\cdot 2^3)}{3/(2^{4}\cdot 5)}(x-\dfrac{1}{4}) $$
+    $$ y = -\dfrac{2}{3}x+\dfrac{7}{15} $$
+
+    Calculamos ahora $ E(Y|X=x) = m_{2|1}(x) $:
+    $$ E(Y|X=x) = \int\limits_{}^{}y f_{2|1}(y|x)dy = \int\limits_{0}^{(1-x)^2}y \dfrac{1}{(1-x)^2}dy = $$
+    $$ =\dfrac{1}{(1-x)^2} \dfrac{y^2}{2} \Biggr|_{0}^{(1-x)^2} = \dfrac{1}{(1-x)^2} \dfrac{(1-x)^{4}}{2} = \dfrac{(1-x)^2}{2} $$
+
+
 \end{exercise}
 
 
+\begin{exercise}
+    $$ E(X) = 2,\ Var(X) = 3\ X\ \text{simétrica} $$
+    
+    $$ \alpha_{3} = E(X^3) = E((X-2+2)^3) = E((X-2)^3+3(X-2)^22+3(X-2)2^2+2^3) = $$
+    $$= E((X-2)^3)+6E((X-2)^2) +12 E(X-2)+E(2^3) = 0 + 6 Var(X)+0+2^3 = 6\cdot 3+8 = 26$$
+\end{exercise}
+
+
+\begin{exercise}
+    $  $
+    El número de de posibilidades totales es claramente $ \binom{N}{n} $, la distribución de probabilidad es entonces:
+
+    $$ P(X_1=r_1,X_2=r_2,X_3=r_3) = \dfrac{\binom{n_1}{r_1}\binom{n_2}{r_2}\binom{n_3}{r_3}}{\binom{N}{n}} $$
+    Claramente necesitamos $ n\leq N,\ r_1+r_2+r_3=n $
+
+    Calculamos ahora $ \alpha_{(3)} $:
+    $$ E(X_1 ^{(3)}) = E(X_1(X_1-1)(X_1-2)) = \sum\limits_{r_1+r_2+r_3=n}^{}r_1(r_1-1)(r_1-2)\dfrac{\binom{n_1}{r_1}\binom{n_2}{r_2}\binom{n_3}{r_3}}{\binom{N}{n}} $$
+
+    Nos fijamos que:
+
+    $$r_1(r_1-1)(r_1-2)  \binom{N_1}{r_1} = r_1(r_1-1)(r_1-2) \dfrac{N_1 ^{(r_1)}}{r_1(r_1-1)(r_1-2)\cdots 2\cdot 1} = $$
+    $$ =\dfrac{N_1 ^{(r_1)}}{(r_1-3)!} = N_1(N_1-1)(N_1-2) \dfrac{(N_1-3) ^{(r_1-3)}}{(r_1-3)!}  = N_1(N_1-1)(N_1-2)\binom{N_1-3}{r_1-3}$$
+
+    Entonces volviendo a la igualdad anterior:
+    $$ P(X_1=r_1) = \sum\limits_{r_1+r_2+r_3=n}^{}N_1(N_1-1)(N_1-2) \dfrac{\binom{N_1-3}{r_1-3}\binom{N_2}{r_2}\binom{N_3}{r_3}}{\binom{N}{n}} =  $$
+    $$ N_1(N_1-1)(N_1-2)\sum\limits_{r_1+r_2+r_3=n}^{} \dfrac{\binom{N_1-3}{r_1-3}\binom{N_2}{r_2}\binom{N_3}{r_3}}{\binom{N}{n}} = N_1(N_1-1)(N_1-2) \dfrac{\binom{N-3}{n-3}}{\binom{N}{n}} =$$
+    $$ = N_1(N_1-1)(N_2-2) \dfrac{(N-3) ^{(n-3)}n!}{(n-3)!N ^{(n)}} = \dfrac{N_1 ^{(3)}n ^{(3)}}{N ^{(3)}} $$
+\end{exercise}
 
 \end{document}
 
