@@ -127,7 +127,7 @@ Con lo que nos queda la ecuación de ondas que vimos anteriormente.
 % Esoera no copies mucho que el payo no sabe por donde empezar
 %introduzco solo
 
-Para ilustrar la ecuación de ondas que cabamos de estudiar creamos un modelo de un recipiente en el que se puede desplazar una barra. La P es la presión y V es el volumen del recipiente.
+Para ilustrar la ecuación de ondas que acabamos de estudiar creamos un modelo de un recipiente en el que se puede desplazar una barra. La P es la presión y V es el volumen del recipiente.
 
 \begin{center}
   \includegraphics[scale=0.3]{EDP1.jpg}
@@ -136,5 +136,39 @@ $$ \cancel{P} = (P-\Delta P)(1+x)= \cancel{P} - \Delta P +xP -\underbrace{\Delta
 $$ \Delta P = -xP $$
 %creo que acaba de decir que va a hacer apuntes decentes
 % Yo si fuera tú sudaría. idk por si acaso, si no comentamos todo
+%no esta haciendo nada no?
+%nop
 
+\begin{minipage}[l]{0.1\textwidth}
+ \includegraphics[scale=0.02]{cosmo}
+ \end{minipage}
+ \begin{minipage}[l]{0.8\textwidth}
+ Seguimos con las introducciones físicas que no sabemos de dónde vienen ni a dónde van.
+ \end{minipage}
+
+
+%no se que hace, yo copio:
+Tenemos un cilindro con un fluido, queremos calcular la presión en función de la altura de un fluido contenido en un cilindro vertical. Para ello calculamos las fuerzas que se ejercen.
+La primera es la generada por la presión atmosférica que se encuentra en el eje vertical, la segunda es (no se cual es la que va hacia arriba tiene que ser otra presión) y luego el peso del fluido. La suma de estas fuerzas tiene que ser 0 pues el fluido esta en reposo por tanto tenemos que la diferencia de presión entre dos puntos($z$ y $\Delta z$) multiplicada por la superficie del agua superficial (que nos da una fuerza), y el peso es $g\rho \Delta x$ donde $g$ es la gravedad y $\rho$ la densidad han de ser iguales.
+%figura del Karbajo
+ $$ p\omega = g \rho S \Delta z $$
+ $$ (P(z)-P(z+\Delta z))\cancel S = g \rho \cancel{S} \Delta z $$
+ Si pasamos el $\Delta x$ dividiendo y hacemos el limite obtenemos:
+ $$ \dfrac{\partial p}{\partial x} = \dfrac{\partial p}{\partial y}=0  \hspace{1cm} \dfrac{\partial p}{\partial z} = \rho g $$
+$$ \triangledown p = (0,0,-\rho g) $$
+
+Vamos a resolver la ecuacion:
+$$ \rho \sim cp $$
+$$ - \dfrac{\partial p}{\partial z} = cp(z) $$
+$$ -p'(z)=cp(z) \hspace{1cm} \dfrac{p'}{p} = -c \hspace{1cm} p(z) = p_0 \rho ^{-cz} $$
+$  $\\
+
+\textbf{Ecuación de los fluidos}\\
+%dibujo del Karbajo
+Tenemos una corriente en un fluido no compresible y nos fijamos en una seccion (S) orientada (tenemos un vector normal) y queremos medir que cantidad de fluido atraviesa S. Tenemos que la velocidad del fluido (v) depende de la posicion (x,y,z) y del tiempo. Y para modelar la masa que atraviesa la seccion (masa saliente de la seccion) por unidad de tiempo hacemos este calculo:
+$$ \underbrace{\rho \overrightarrow{S} \overrightarrow{v}\Delta t }_{\text{masa saliente}} \to \underbrace{\iint_{\partial D} \rho \overrightarrow{v}d \overrightarrow{S}}_{\text{integral de flujo}} $$
+
+Podemos aplicar el teorema de Gauss-Ostrogadsky para convertir esta integral en una integral triple.
+
+$$ \iint_{\partial D}\rho \overrightarrow{v}d \overrightarrow{S} = \iiint_D \rho dV  $$
 \end{document}
