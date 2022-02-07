@@ -26,7 +26,7 @@
 
 \chapter{Qué chuchas es una ecuación en derivadas parciales} %barras
 
-\section{Introducción a EDP}
+\subsection{Introducción a EDP}
 \begin{minipage}[l]{0.6\textwidth}
   Hemos visto teoría sobre \textit{Ecuaciones Diferenciales Ordinarias}. Su característica de \textit{Ordinaria} es que sólo se deriva con respecto a una variable.
 \end{minipage}
@@ -56,8 +56,8 @@ La teoría para ecuaciones en derivadas parciales de primer orden es bastante se
   No vamos a representar en este texto la bonita charla que está dando Matías sobre la primera EDO de la historia y su relación con Sir Isaac Newton, Francisco Misco y el holocausto judío pero es bastante interesante.
 \end{minipage}
 
-\section{Ejemplos de EDPs}
-\subsection{Ecuación de ondas}
+\subsection{Ejemplos de EDPs}
+\subsubsection{Ecuación de ondas}
 \begin{minipage}[l]{0.1\textwidth}
   \includegraphics[scale=0.2]{wanda}
 \end{minipage}
@@ -171,4 +171,126 @@ $$ \underbrace{\rho \overrightarrow{S} \overrightarrow{v}\Delta t }_{\text{masa 
 Podemos aplicar el teorema de Gauss-Ostrogadsky para convertir esta integral en una integral triple.
 
 $$ \iint_{\partial D}\rho \overrightarrow{v}d \overrightarrow{S} = \iiint_D \rho dV  $$
+
+\subsection{Ecuación de calor.Procesos de difusión}
+
+Tomemos una región confinada de moléculas que se mueven de manera caótica, cada partícula tiene una trayectoria propia. Seguimos de forma estadística las trayectorias.
+
+Sean $ X,Y $ una variables aleatorias. Cuando son independientes sus funciones de densidad $ f(x),g(y) $ cumplen que $ f(x)\cdot g(y) $ el densidad conjunta.
+Como consecuencia, si tenemos un conjunto
+$$P((X,Y \in A)) = \iint_A f(x,y) dxdy $$
+
+Para calcular la función de distribución de $ X+Y $ (es decir, $P(X+Y \leq Z$) se procede de este modo:
+
+$$ P (X+Y \leq z) = \iint_{x+y \leq  z} f(x)g(y)dxdy $$
+
+Para calcular esta integral podemos hacer el cambio de variable $ x=s,\ x+y=z $, de forma que la integral queda:
+
+$$ = \int_{-\infty}^{z}\underbrace{ \left(\int_{-\infty}^{+\infty}f(s)g(z-s)ds \right) }_{ \text{densidad de }X+Y\text{, la convolución} } dz $$
+
+% se está fumando un porro
+
+Cuando apliquemos esto a una función $ f(x,t) $ que represente una eucación diferencial, usando una v.a. densidad $\phi$ con varianza proporcional al incremento del tiempo obtenemos lo siguiente:
+
+$$ f(x,t+\tau) = \int_{-\infty}^{+\infty} = f(x+\xi,t)\phi(\xi)d\xi = \int_{-\infty}^{+\infty}\left(f(x,t)+ \dfrac{\partial f}{\partial x}(x,t)\xi + \dfrac{1}{2} \dfrac{\partial ^2 f}{\partial x ^2} (x,t) \xi\right) \phi(\xi) d\xi $$
+$$\simeq f(x,t)+ \dfrac{\partial ^2 f}{\partial x ^2}(x,t)c\tau \implies \dfrac{\partial f}{\partial t} = c \dfrac{\partial ^2f }{\partial x ^2} $$
+
+\begin{minipage}[l]{0.1\textwidth}
+    \includegraphics[scale=0.2]{wanda}
+\end{minipage}
+\begin{minipage}[l]{0.8\textwidth}
+  Ahora olvidaos de toda la \textbf{bullshit} que hemos visto que comienza el espectáculo, empieza el temario.
+\end{minipage}
+
+\section{Qué es una EDP}
+
+\begin{definition}
+  { \color{turquoise} \textbf{Ecuación en Derivadas Parciales}}
+
+  Una \textbf{EDP} es una ecuación de la forma
+
+  $$ F\left(x_1, x_2, x_3,..., \dfrac{ \partial u}{\partial x_1},\dfrac{ \partial u}{\partial x_2}, ..., \dfrac{ \partial^n u}{??} \right) $$
+
+  Con $ u $ una función doblemente derivable.
+\end{definition}
+
+Su diferencia fundamental con las $ EDOs $ es... ª
+
+La expresión general de una EDP es $$ f(x,u)=u' $$
+
+Si se le añade una condición inicial, estamos ante un problema de Cauchy, pero tal cual está expresado sus soluciones no son únicas. Aquí aparecen lo que se llaman 'soluciones singulares'.
+
+\begin{definition}
+  { \color{turquoise} \textbf{EDP de Primer Orden}}
+
+  $$ F \left( x_1, x_2, ... , \dfrac{\partial u}{\partial x_1},\dfrac{\partial u}{\partial x_2},...,u  \right)=0 $$
+\end{definition}
+
+Dice Matías que no le gusta esta ecuación así que en su lugar nos va a explicar otra
+
+\begin{definition}
+  { \color{turquoise} \textbf{Ecuación quasi-lineal en dos variables}}
+
+  $$ A(x,y,u) \dfrac{\partial u}{\partial x}+B(x,y,u)\dfrac{\partial u}{\partial y}=C(x,y,u) $$
+\end{definition}
+
+Estas son las primeras que vamos a resolver y, a partir de estas, veremos las soluciones de una EDP de primer orden. Para una EDP de segundo orden, pueden aparecer derivadas mixtas (cosa que no aparece en los ejemplos), y la teoría nos dice que con los cambios oportunos de variable se pueden hacer desaparecer las derivadas mixtas de problemas de cierta generalidad, y hacerlos semejante a las soluciones de una EDP de primer orden con la que ya estamos familiarizados.
+
+\vspace{1cm}
+
+\begin{minipage}[l]{0.1\textwidth}
+    \includegraphics[scale=0.2]{wanda}
+\end{minipage}
+\begin{minipage}[l]{0.8\textwidth}
+  Han sido unos maravillosos 24 minutos de lucidez de Matías. Ahora ha vuelto a hablar de curvas y dibujitos y está sufriendo una embolia en la pizarra. Aprovecho para contaros un chiste: Un matemático, un físico y un biólogo están mirando una casa. En la casa entran dos personas y salen tres. El físico dice 'Ha debido de ser un error en la medición'. El biólogo dice 'No, es probable que se hayan reproducido'. El matemático dice 'Si entra una persona más, la casa se queda vacía'.
+\end{minipage}
+
+\vspace{1cm}
+
+\begin{definition}
+  Llamamos ecuaciones cuasi-lineales a las que son de la forma:
+
+  $$ A \dfrac{\partial u}{\partial x} + B \dfrac{\partial u}{\partial y} = C $$
+
+  Donde $ A,B,C: \Omega \subset \mathbb{R}^3 \to \mathbb{R}\ C ^{1} $ ($ A,B,C $ son de la forma $ A(x,y,u) $ y $ u $ es de la forma $ u(x,y) $)
+
+\end{definition}
+
+
+
+% Vamos a considerar el siguiente sistema
+%
+% $$ \left\{ \begin{array}{l}
+%   x'=A(x,y,z)\\
+%   y'=B(x,y,z)\\
+%   z'=C(x,y,z)\\
+%   (x(0), y(0), z(0)) = p
+% \end{array} \right. $$
+%
+% PACO AQUÍ NO SÉ LO QUE HA PASADO, SE HA FUMADO CUATRO PORROS
+
+\begin{theorem}
+    Consideremos el sistema autónomo de Cauchy:
+    $$
+    \left\{
+    \begin{array}{l}
+        x'=A(x,y,z)\\
+        y'=B(x,y,z)\\
+        z' = C(x,y,z)\\
+        (x(0),y(0),z(0))=P
+
+    \end{array}
+    \right.
+    $$
+    definido en $ S = \{ (x,y,z)\ :\ z = u(x,y) \} $
+    Entonces si $ p \in S $, toda la órbita solución $ (x(t),y(t),z(t)) \in S $ donde $ u  $ es solución del sistema.
+\end{theorem}
+
+Obtenemos una curva solución del sistema $(x(t), y(t), z(t))$ que pasa por $P$ en $t=0$. Tomamos una curva alternativa $(x(t), y(t), u(x(t)), y(t))$, que en $t=0$ también pasa por $P$. Comprobaremos que  la curva alternativa es solución coordenada a coordenada.
+
+$$ A(x(t),y(t),z(t))=x'(t) =? A(x(t),y(t),u(x(t),y(t))) $$
+
+$$ \dfrac{d}{dt} (u(x(t)),y(t)) = \dfrac{\partial u}{\partial x}(x(t), y(t))\underbrace{ x'(t) }_{ A(x,y,z) } + \dfrac{\partial u}{\partial y}(x(t), y(t))y'(t)$$
+
+
 \end{document}
