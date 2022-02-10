@@ -309,5 +309,130 @@ $$ \dfrac{\partial \Gamma}{\partial t} (t,s) = A(\Gamma(t,s)) \forall s,\forall 
 
 
 
+%%lo que hay hasta ahora de lectures (9/2)
+
+% Tomemos la ecuación cuasi lineal $  A \dfrac{\partial u}{\partial x} + B \dfrac{\partial u}{\partial y} = C $
+
+\begin{example}
+  \textbf{Resolución de ecuación lineal en coeficientes constantes}
+
+  Si tomamos la ecuación lineal de coeficientes constantes:
+
+  $$ \left\{
+  \begin{array}{l}
+    u_{Y}+cu_{X} = 0\\
+    u(x,0) = h(x)
+  \end{array}
+  \right. $$
+  
+  Esta ecuación, transformada a un sistema es:
+  
+  $$ \left\{
+  \begin{array}{l}
+    x'=c\\ 
+    y' = 1\\ 
+    z'=0
+  \end{array}
+  \right. $$
+  
+  Si tomamos la condición de que la solución pase por la curva $ \gamma(s) = (s,0,h(s)) $, es decir, $ x(0) = s,\ y(0) = 0, z(0) = h(s) $. La solución la podemos encontrar de forma inmediata:
+  
+  $$ \left\{
+  \begin{array}{lcl}
+    x = ct+ cte & \to & x(t,s) = ct +s\\ 
+    y = t + cte & \to &  y(t,s) = t \\ 
+    z(t) = cte & \to &  z(t,s) = h(s)
+  \end{array}
+  \right. $$
+  
+  Finalmente podemos concluir que $ s = x -cy \implies z = h(x-cy) $ y la solución es $ u(x,y) = h(x-cy) $
+  
+
+\end{example}
+
+
+\begin{example}
+  Resolvemos un problema de la forma
+
+  $$ \left\{
+  \begin{array}{l}
+    x u_{Y} - y u_{X} = u\\ 
+    u(x,0) = h(x)
+  \end{array}
+  \right. $$
+
+  Escribimos el sistema autónomo:
+
+  $$ \left\{
+  \begin{array}{l}
+    x' = -y\\ 
+    y' = x\\ 
+    z' = z
+  \end{array}
+  \right. $$
+
+  Fácilmente llegamos a la solución:
+  $$ \left\{
+  \begin{array}{l}
+    x(t) = c_1 \cos(t)\\ 
+    y(t) = c_1 \sin(t)\\ 
+    z(t) = c_2 e^{t}
+  \end{array}
+  \right. $$
+
+  Si tomamos la condición inicial $ \gamma (s) = (s,0,h(s)) $ tenemos la solución del sistema:
+  $$ 
+  \left\{
+  \begin{array}{l}
+    x(t,s) = s \cos(t) \\ 
+    y(t,s) = s \sin(t) \\ 
+    z(t,s) = h(s) e^{t}
+  \end{array}
+  \right.
+  $$
+
+  Como $ x^2 +y ^2 = s ^2 \implies s = \sqrt{x^2+y^2} $, tomamos $ t = \dfrac{y}{x} = \dfrac{\sin(t)}{\cos(t)} = \tan(t) \implies t = \arctan(\dfrac{y}{x}) $. La solución es entonces:
+  $$ u(x,y) = h(\sqrt{x^2+y^2})e ^{\arctan(y/x)} $$
+\end{example}
+
+\begin{example}
+  $$ \left\{
+  \begin{array}{l}
+    u_{Y} + u u_{X} = 0\\ 
+    u(x,0) = h(x)
+  \end{array}
+  \right. $$
+
+  El sistema autónomo es:
+  $$ \left\{
+  \begin{array}{ll}
+    x' = z\\ 
+    y' = 1\\ 
+    z' = 0\\ 
+
+  \end{array}
+  \right. $$
+
+  La condición inicial que tenemos es $ (x(0),y(0),z(0)) = (s,0,h(s)) $, con lo que obtenemos:
+  $$ \left\{
+  \begin{array}{l}
+    z = h(s)\\ 
+    x = h(s)t+s\\ 
+    y = t\\ 
+  \end{array}
+  \right. $$
+
+  Tendemos que eliminar ahora los parámetros $ t,s $ para encontrar la función $ u $:
+  $$ s = x-h(s)t = x-yu $$
+  $$ u = h(s) = h(x-yu) $$
+
+  Para tratar de encontrar $ h $, tomamos dos puntos $ s_1,s_2 $:
+  $$ x = h(s_1)y+s_1 \hspace{5mm} x = h(s_2)y+s_2 $$
+  $$ h(s_1)y+s_1 = h(s_2)y+s_2 $$
+  $$ (h(s_1)-h(s_2))y = s_2-s_1 $$
+  $$ y = \dfrac{s_2-s_1}{h(s_1)-h(s_2)} $$
+  
+  Y aquí ya no se qué hacemos, un saludo.
+\end{example}
 
 \end{document}
