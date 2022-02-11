@@ -286,11 +286,28 @@ Estas son las primeras que vamos a resolver y, a partir de estas, veremos las so
     Entonces si $ p \in S $, toda la órbita solución $ (x(t),y(t),z(t)) \in S $ donde $ u  $ es solución del sistema.
 \end{theorem}
 
-Obtenemos una curva solución del sistema $(x(t), y(t), z(t))$ que pasa por $P$ en $t=0$. Tomamos una curva alternativa $(x(t), y(t), u(x(t)), y(t))$, que en $t=0$ también pasa por $P$. Comprobaremos que  la curva alternativa es solución coordenada a coordenada.
+% El porro aqui:
+% Obtenemos una curva solución del sistema $(x(t), y(t), z(t))$ que pasa por $P$ en $t=0$. Tomamos una curva alternativa $(x(t), y(t), u(x(t)), y(t))$, que en $t=0$ también pasa por $P$. Comprobaremos que  la curva alternativa es solución coordenada a coordenada.
+%
+% $$ A(x(t),y(t),z(t))=x'(t) =? A(x(t),y(t),u(x(t),y(t))) $$
+%
+% $$ \dfrac{d}{dt} (u(x(t)),y(t)) = \dfrac{\partial u}{\partial x}(x(t), y(t))\underbrace{ x'(t) }_{ A(x,y,z) } + \dfrac{\partial u}{\partial y}(x(t), y(t))y'(t)$$
 
-$$ A(x(t),y(t),z(t))=x'(t) =? A(x(t),y(t),u(x(t),y(t))) $$
+Dada la ecuación:
+  $$     \left\{
+      \begin{array}{l}
+          x'=A(x,y,z)\\
+          y'=B(x,y,z)\\
+          z' = C(x,y,z)\\
+          (x(0),y(0),z(0))=P
 
-$$ \dfrac{d}{dt} (u(x(t)),y(t)) = \dfrac{\partial u}{\partial x}(x(t), y(t))\underbrace{ x'(t) }_{ A(x,y,z) } + \dfrac{\partial u}{\partial y}(x(t), y(t))y'(t)$$
+      \end{array}
+      \right. $$
+
+Dada $ \Gamma(t,s) $ a la solución de la ecuación y que pasa por $ \gamma(s) $, es decir, $ \Gamma(0,s) = \gamma(s) $, al ser $ \Gamma $ solución sabemos también que:
+$$ \dfrac{\partial \Gamma}{\partial t} (t,s) = A(\Gamma(t,s)) \forall s,\forall t \footnote{que estén dentro de un cierto entorno}$$
+
+
 
 %%lo que hay hasta ahora de lectures (9/2)
 

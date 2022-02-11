@@ -1,0 +1,207 @@
+\documentclass[openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage[hypertexnames=false]{hyperref}
+\usepackage{amstext}
+\usepackage{array}
+\newcolumntype{C}{>{$}c<{$}}
+
+
+\input{structure}
+\usepackage{geometry}
+\geometry{
+    top=3cm,
+    bottom=3cm,
+    left=3cm,
+    right=3cm,
+    headheight=14pt,
+    footskip=1.4cm,
+    headsep=10pt,
+}
+\usepackage{graphicx}
+\title{Demostraciones de Geometría Global de Superficies}
+\author{Paco Mora y Chito Belmonte\\Apuntes PaChito™}
+\date{\today\\ \vspace{1cm}
+\textbf{Pequeño inciso: Estos apuntes apoyan algunas de sus demostraciones en el libro \textit{Un curso de Geometría Diferencial}, con lo cual puede que algunas demostraciones no coincidan con lo visto en clase.}}
+
+\begin{document}
+
+
+\maketitle
+\tableofcontents
+
+\chapter{Capítulo 1}
+
+\begin{center}
+\textbf{Proposición 1.4, la derivada covariante es intrínseca.}
+\end{center}
+
+\begin{demonstration}
+  Desde luego, $D V / d t \in \mathfrak{X}(\alpha)$. Además, para una curva fija $\alpha$, la derivada covariante puede verse como un operador, $D / d t$, de la forma
+  $$
+  \begin{array}{lllllll}
+    \dfrac{D}{dt} : &  \mathfrak{X} & \to & \mathfrak{X} &&&\\
+    & V & \sim & \dfrac{DV}{dt}: & I & \to & \mathbb{R}^{ 3 } \\
+    &&&&t & \sim & V'(t)<V'(t), N(t)>N(t)
+  \end{array}
+  $$
+Este operador es independiente de la orientación elegida para la superficie, pues estamos tomando sólo la parte tangente de $V^{\prime}$ (obsérvese que si cambiamos $N$ por $-N$ en la fórmula, el resultado es el mismo).
+
+Por otro lado, sólo depende de los coeficientes de la primera forma fundamental, afirmación que vamos a probar a continuación.
+
+Para ello, sea $(U, X)$ una parametrización de la superficie $S$ y, como viene siendo habitual, $\alpha(t)=X(u(t), v(t))$. Si $V \in \mathfrak{X}(\alpha)$, entonces $V(t) \in T_{\alpha(t)} S$, por lo que puede expresarse de la forma
+$$
+V(t)=a(t) X_{u}(u(t), v(t))+b(t) X_{v}(u(t), v(t)) .
+$$
+Ahora, calculamos $V^{\prime}(t)$, utilizando las fórmulas de Gauss para expresar $X_{u u}$, $X_{u v}$ y $X_{v v}$ en términos de la base $\left\{X_{u}, X_{v}, N\right\}$ :
+$$
+\begin{aligned}
+V^{\prime}=& a^{\prime} X_{u}+a\left(X_{u u} u^{\prime}+X_{u v} v^{\prime}\right)+b^{\prime} X_{v}+b\left(X_{v u} u^{\prime}+X_{v v} v^{\prime}\right) \\
+=& a^{\prime} X_{u}+a\left[\left(\Gamma_{11}^{1} X_{u}+\Gamma_{11}^{2} X_{v}+e N\right) u^{\prime}+\left(\Gamma_{12}^{1} X_{u}+\Gamma_{12}^{2} X_{v}+f N\right) v^{\prime}\right] \\
+&+b^{\prime} X_{v}+b\left[\left(\Gamma_{12}^{1} X_{u}+\Gamma_{12}^{2} X_{v}+f N\right) u^{\prime}+\left(\Gamma_{22}^{1} X_{u}+\Gamma_{22}^{2} X_{v}+g N\right) v^{\prime}\right] \\
+=&\left(a^{\prime}+a u^{\prime} \Gamma_{11}^{1}+a v^{\prime} \Gamma_{12}^{1}+b u^{\prime} \Gamma_{12}^{1}+b v^{\prime} \Gamma_{22}^{1}\right) X_{u} \\
+&+\left(b^{\prime}+a u^{\prime} \Gamma_{11}^{2}+a v^{\prime} \Gamma_{12}^{2}+b u^{\prime} \Gamma_{12}^{2}+b v^{\prime} \Gamma_{22}^{2}\right) X_{v}+\left(a e u^{\prime}+a f v^{\prime}+b f u^{\prime}+b g v^{\prime}\right) N .
+\end{aligned}
+$$
+
+
+En consecuencia, la derivada covariante $D V / d t=\left(V^{\prime}\right)^{\top}$ se escribe como
+$$
+\begin{aligned}
+\frac{D V}{d t}=&\left(a^{\prime}+a u^{\prime} \Gamma_{11}^{1}+\left(a v^{\prime}+b u^{\prime}\right) \Gamma_{12}^{1}+b v^{\prime} \Gamma_{22}^{1}\right) X_{u} \\
+&+\left(b^{\prime}+a u^{\prime} \Gamma_{11}^{2}+\left(a v^{\prime}+b u^{\prime}\right) \Gamma_{12}^{2}+b v^{\prime} \Gamma_{22}^{2}\right) X_{v}
+\end{aligned}
+$$
+Obsérvese que $D V / d t$ depende sólo de los símbolos de Christoffel y, por tanto, de la primera forma fundamental exclusivamente. En otras palabras, la derivada covariante es algo intrínseco; sus propiedades permanecen invariantes por isometrías.
+\end{demonstration}
+
+\begin{center}
+\textbf{Proposición 1.5, linealidad y regla de Leibniz para la derivada covariante.}
+\end{center}
+\begin{demonstration}
+  Las tres propiedades se demuestran trivialmente \footnote{Tu puta madre por si acaso.} :
+    $$ I $$
+ $\frac{D}{d t}(V+W)=\left[(V+W)^{\prime}\right]^{\top}=\left(V^{\prime}+W^{\prime}\right)^{\top}=\left(V^{\prime}\right)^{\top}+\left(W^{\prime}\right)^{\top}=\frac{D V}{d t}+\frac{D W}{d t}$.
+  $$ II $$
+ $\frac{D}{d t}(f V)=\left[(f V)^{\prime}\right]^{\top}=\left(f^{\prime} V+f V^{\prime}\right)^{\top}=\left(f^{\prime} V\right)^{\top}+\left(f V^{\prime}\right)^{\top}=f^{\prime} V+f \frac{D V}{d t}$,
+pues $V^{\top}=V$, ya que $V \in \mathcal{X}(\alpha)$.
+
+$$ III $$
+La propiedad se prueba de forma similar: como $V, W \in \mathfrak{X}(\alpha)$, entonces $\left\langle\left(V^{\prime}\right)^{\perp}, W\right\rangle=\left\langle V,\left(W^{\prime}\right)^{\perp}\right\rangle=0$, de donde
+$$
+\begin{aligned}
+\langle V, W\rangle^{\prime} &=\left\langle V^{\prime}, W\right\rangle+\left\langle V, W^{\prime}\right\rangle=\left\langle\left(V^{\prime}\right)^{\top}+\left(V^{\prime}\right)^{\perp}, W\right\rangle+\left\langle V,\left(W^{\prime}\right)^{\top}+\left(W^{\prime}\right)^{\perp}\right\rangle \\
+&=\left\langle\frac{D V}{d t}, W\right\rangle+\left\langle V, \frac{D W}{d t}\right\rangle
+\end{aligned}
+$$
+\end{demonstration}
+
+\begin{center}
+\textbf{Proposición 1.7}
+\end{center}
+\begin{demonstration}
+  La parte $I$ es trivial \footnote{Cada vez que lea 'es trivial' voy a meter un 'tu puta madre por si acaso'.}
+    $$ II $$
+  Al ser $D V / d t=\mathbf{0}$, sabemos que $V^{\prime}(t)$ está en la dirección del normal a la superficie, y análogamente $W^{\prime}(t)$. En consecuencia, como $V, W \in \mathfrak{X}(\alpha)$, se tiene que $\left\langle V, W^{\prime}\right\rangle=\left\langle V^{\prime}, W\right\rangle=0$ y, por tanto, $\langle V, W\rangle^{\prime}=\left\langle V^{\prime}, W\right\rangle+\left\langle V, W^{\prime}\right\rangle=0$.
+
+  Esto demuestra que $\langle V, W\rangle$ es constante.
+\end{demonstration}
+
+\begin{center}
+\textbf{Proposición 1.8, la ecuación diferencial extrínseca de los campos paralelos}
+\end{center}
+\begin{demonstration}
+  PANIC
+\end{demonstration}
+
+\begin{center}
+\textbf{Proposición 1.9, la ecuación diferencial intrínseca de los campos paralelos}
+\end{center}
+\begin{demonstration}
+  PANIC
+\end{demonstration}
+\newpage
+\begin{center}
+\textbf{Teorema 1.10, existencia y unicidad de campos paralelos}\footnote{Hay una demostración extrínseca y otra intrínseca en el libro. He decidido copiar la intrínseca porque leyéndola en diagonal he determinado que sería más sencilla, si queréis buscar la otra (fruto de vuestra curiosidad o esquizofrenia paranoide), está en el libro.}
+\end{center}
+\begin{demonstration}
+
+  Hay que encontrar $V \in \mathfrak{X}(\alpha)$ tal que $D V / d t=\mathbf{0}$.
+
+  Sea $(U, X)$ una parametrización de $S$ con $\alpha\left(t_{0}\right) \in X(U)$, y sea $\alpha(t)=X(u(t), v(t))$. Utilizando la expresión de la demostración de la proposición 1.4 para la derivada covariante de un campo $V \in \mathfrak{X}(\alpha)$, como $D V / d t=\mathbf{0}$, los coeficientes de los vectores $X_{u}$ y $X_{v}$ tienen que anularse; luego si representamos $V$ como $V(t)=a(t) X_{u}(u(t), v(t))+b(t) X_{v}(u(t), v(t))$, se verificará que
+$$
+\left\{\begin{array}{l}
+a^{\prime}+a u^{\prime} \Gamma_{11}^{1}+\left(a v^{\prime}+b u^{\prime}\right) \Gamma_{12}^{1}+b v^{\prime} \Gamma_{22}^{1}=0 \\
+b^{\prime}+a u^{\prime} \Gamma_{11}^{2}+\left(a v^{\prime}+b u^{\prime}\right) \Gamma_{12}^{2}+b v^{\prime} \Gamma_{22}^{2}=0
+\end{array}\right.
+$$
+
+En otras palabras, se prueba que siempre es posible 'fijar un rumbo' en la superficie. Una vez fijado, ya se puede hablar de si se mantiene o no constante la dirección de cualquier otro campo.
+
+Tenemos por tanto un sistema de ecuaciones diferenciales cuya condición inicial es $$V\left(t_{0}\right)=V_{0}=\left(a\left(t_{0}\right), b\left(t_{0}\right)\right)$$ El teorema de existencia y unicidad de soluciones para tales sistemas establece el resultado buscado (además, se puede obtener la solución de forma explícita al resolverlo, siempre y cuando esto sea posible).
+
+\end{demonstration}
+
+
+
+
+
+
+
+
+\chapter{Capítulo 2}
+
+\begin{proposition}
+  { \color{turquoise} \textbf{Proposición exclusiva de \textit{Apuntes PaChito ™}}}
+
+  Sea $\alpha : I \to S \subseteq \mathbb{R}^{ 3 } $ una parametrización. Son equivalentes:
+
+  \begin{enumerate}
+    \item $\alpha$ es pregeodésica
+    \item $\exists \beta (u) = \alpha (h(u))$ una reparametrización de $\alpha /\beta $ es geodésica.
+    \item La reparametrización parametrizada por el arco de $\alpha $ es geodésica.
+  \end{enumerate}
+\end{proposition}
+\begin{demonstration}
+  $$ 1 \implies 2 $$
+
+  Directo por la definición
+
+  $$ 3 \implies 1 $$
+
+  Por la definición directo
+
+  $$ 2 \implies 3 $$
+
+  ¿Te imaginas que es directo por la definición? Pues no. Mala suerte.
+
+  Tomamos una reparametrización de $I$:
+
+  $$ I \to^\alpha S $$
+  $$ J \to^{h(u)} I $$
+  $$ J \to^{\beta (u) = \alpha (h(u)) \text{ que es geodésica}} S $$
+
+  Esto es un triangulito si lo dibujáis... Estaría bien que yo también lo hiciera pero soy un \textit{vago}.
+
+  $$ ||\beta '(u)||= c = h'(u) \cdot ||\alpha '(h(u))|| $$
+
+  Si $c=1 \to \beta (u)$ es la reparametrizavión por arco de $\alpha $
+
+  Si $c \ne 1 \to $ Tomo $\underbrace{ \gamma (s) = \beta(\frac{u}{c}) }_{ GEODESICA } = \alpha (h(\frac{u}{c}))$
+  $$ \gamma '(s) = \dfrac{1}{c} \cdot  \beta'\left(\frac{s}{c}\right) $$
+\end{demonstration}
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Capítulo 3}
+
+
+\end{document}
