@@ -189,6 +189,54 @@
 
 \chapter{Relación 2}
 
+\begin{exercise}
+    $  $
+    Vemos en primer lugar cómo es el recinto del ejercicio:
+    \begin{center}
+        \includegraphics*[scale=0.5]{2-1-1.jpg}
+        
+    \end{center}
+    
+    $$ \alpha_{n.m} = E(X^{n}Y^{m}) = \int\limits_{}^{}x^{n}y^{m} \cdot  \dfrac{1}{y} = \int\limits_{0}^{1}\int\limits_{0}^{y}  = x^{n}x^{m-1}dxdy  = $$ 
+    $$= \int\limits_{0}^{1} y ^{m-1} \left( \dfrac{x^{n+1}}{n+1} \right) \Biggr|_{0}^{y} dy = \dfrac{1}{n+1} \int\limits_{0}^{1} y^{m-1}y^{n+1}dy = \dfrac{1}{n+1} \dfrac{1}{m+n+1} $$
+
+    Con este resultado podemos obtener los valores:
+    $$ E(Y) = \dfrac{1}{2} \hspace{5mm} E(Y^3) = \dfrac{1}{3} \hspace{5mm} E(XY) = \dfrac{1}{6} \hspace{5mm} E(X) = \dfrac{1}{4} $$
+    
+    Entonces tenemos que $ Var(Y) = \dfrac{1}{3}-\dfrac{1}{4} = \dfrac{1}{12} $ y $ Cov(X,Y) = \dfrac{1}{6}-\dfrac{1}{4}\cdot \dfrac{1}{2} = \dfrac{1}{24} $
+
+    Para calcular la recta de regresión obtenemos primero:
+    $$ \beta_{X/Y} = \dfrac{\sigma_{XY}}{\sigma_{Y}^2} = \dfrac{1/24}{1/12} = \dfrac{1}{2} $$
+    
+    Y la recta de regresión que nos piden queda:
+    $$ x - \dfrac{1}{4} = \dfrac{1}{2} \left( y-\dfrac{1}{2} \right) $$
+    $$ x = \dfrac{1}{2}y $$
+
+    Calcularemos ahora la curva de regresión de $ X $ sobre $ Y $:
+    $$  x = m_{1|2}(y) \hspace{5mm} m_{1|2}(y) = E(X|Y=y) = \int\limits_{}^{}x f_{1|2}(x|y)dx $$
+
+    Entonces, para los valores de $ y $ para los que $ f_{2}(y)>0 $ tendremos:
+    $$ f_{1|2}(x|y) = \dfrac{f(x,y)}{f_{2}(y)} $$
+
+    Calcularemos ahora $ f_{2}(y) $:
+
+    $$\text{Si $ y \in (0,1)$: }  f_{2}(y) = \int\limits_{}^{}f(x,y)dx = \int\limits_{0}^{y} \dfrac{1}{y}dx = \dfrac{1}{y}x \Biggr|_{0}^{1} = 1 $$
+
+
+    $$ f_{2}(y) = I_{(0,1)}(y) $$
+
+    Volvemos ahora al cálculo de $ f_{1|2}(x|y) $. Dado $ y \in (0,1) $:
+    $$ f_{1|2}(x|y) = \dfrac{1/y}{1} = \dfrac{1}{y} \hspace{5mm} x \in (0,y) $$
+    $$ f_{1|2}(x|y) = 0 \hspace{5mm} x \not  \in (0,y) $$
+
+    Podemos calcular ahora $ m_{1|2}(y) $:
+    $$ E(X|Y=y) = \int\limits_{0}^{y}x \dfrac{1}{y} dx = \dfrac{1}{y}\dfrac{x^2}{2} \Biggr|_{0}^{y} = \dfrac{y}{2} $$
+
+    Entonces la curva de regresión es $ x = \dfrac{y}{2} $. Notemos que es una recta, en este caso \textbf{necesariamente coincidirá con la recta de regresión}. Entonces, si hubiéramos calculado primero la curva de regresión, no tendríamos que calcular la recta porque sabemos que coincidiría.
+
+    
+\end{exercise}
+
 \setcounter{ex}{2}
 \begin{exercise}
     $  $
@@ -212,10 +260,84 @@
     $$ E(U) = a \dfrac{1}{2}+b \dfrac{1}{2} +c \dfrac{1}{2} = \dfrac{a+b+c}{2} $$
     
     Como las variables son independientes:
-    $$ Var(U) = Var(aX)+Var(bY) + Var(cZ) = (a^2+b^2+c^2)\dfrac{1}{12} $$
+    $$ Var(U) = Var(aX)+Var(bY) + Var(cZ) = (a^2+b^2+c^2) = \dfrac{1}{12} $$
 
     Nos piden también los momentos de orden 3 y 4 respecto de la media. Utilizamos el subapartado de \textbf{Momentos de sumas}. Siguiendo un procedimiento como el de este subapartado llegamos a que solo necesitamos expresiones como $ \mu_{3}(aX) = E\left(aX-\dfrac{a}{2}\right) = 0 $ ya que estas vvaa son simétricas respecto de su media. En definitiva:
-    $$ E((U-E(U))^3) = \mu_{3}(aX)+\mu_{3}(bY)+\mu_{3}(cZ) = 0 $$
+    $$ E((U-E(U))^3) = \mu_{3}(aX)+\mu_{3}(bY)+\mu_{3}(cZ) = a \mu_{3}(X) + b \mu_{3}(Y) + c\mu_{3}(Z) = 0 $$
+
+    $$ \mu_{4}(U) = \mu_{4}(aX) + \mu_{4}(bY) + \mu_{4}(cZ) + 6(\mu_{2}(aX)\mu_{2}(bY)+\mu_{2}(aX)\mu_{2}(cZ) + \mu_{2}(bY)\mu_{2}(cZ)) $$
+    
+    Vamos a hacer el cálculo para un $ n $ general de:
+    $$ \mu_{n}(X) = E\left( \left( X-\dfrac{1}{2}   \right)^2\right) = \int\limits_{0}^{1} \left( x-\dfrac{1}{2} \right) ^{n} dx = \dfrac{(x-1/2)^{n+1}}{n+1} \Biggr|_{0}^{1} = \dfrac{(1/2)^{n+1}}{n+1}-\dfrac{(-1/2)^{n+1}}{n+1} =$$
+    $$ = \dfrac{1}{(n+1)2^{n+1}} (1+(-1)^{n}) $$
+
+    Luego:
+    $$ \mu_{4}(X) = \dfrac{1}{5\cdot 2^{4}} $$
+    $$ \mu_{2}(X) = \dfrac{1}{12} \hspace{5mm} \text{(como ya habíamos calculado antes)} $$
+
+    Volviendo ahora a $ \mu_{4}(U) $:
+    $$ \mu_{4}(U) =  (a^{4}+b^{4}+c^{4})\dfrac{1}{5\cdot 2^{4}} + 6 \Big(a^2b^2+a^2c^2+b^2c^2 \Big ) \dfrac{1}{3^2 2^{4}}$$
+
+    Calculamos ahora la función generatriz de momentos (recordemos que la función generatriz no está definida porque $ X,Y,Z $ toman valores no enteros). Usaremos la independencia de las vvaa:
+
+    $$E(e^{tU}) = E(e^{atX})E(e^{btY}) E(e^{ctZ}) $$
+
+    Tendremos que calcular la función generatriz de momentos de cada vvaa (son todas iguales):
+    $$ E(e^{tX}) = \int\limits_{0}^{1} e^{tx} dx = \dfrac{e^{tx}}{t} \Biggr|_{0}^{1} = \dfrac{e^{t}-1}{t} $$
+    
+    En el caso de $ aX $ (análogamente para $ bY,cZ $):
+    $$ g_{aX}(t) = E(e^{taX}) = \dfrac{e^{at}-1}{at} $$
+
+    Entonces volviendo a la vvaa $ U $:
+    $$ g_{U}(t) = \dfrac{e^{at}-1}{at}\cdot \dfrac{e^{bt}-1}{bt}\cdot \dfrac{e^{ct}-1}{ct} $$
+
+    La función característica de $ U $ será entonces:
+    $$ \varphi_{U} (t) = \dfrac{(e^{iat}-1)(e^{ibt}-1)(e^{ict}-1)}{i\cdot a\cdot b\cdot c t^3}  = \dfrac{-i(e^{iat}-1)(e^{ibt}-1)(e^{ict}-1)}{\cdot a\cdot b\cdot c t^3}$$
+
+\end{exercise}  
+
+\setcounter{ex}{4}
+
+\begin{exercise}
+    $  $
+    \begin{flushright}
+        \textbf{Apartado a)}
+    \end{flushright}
+
+    $$ \alpha (t) = \dfrac{1+\cos(t)+\cos(2t)}{3} $$
+    
+    Comprobemos que es función característica. Si conseguimos expresar $ \alpha $ de la forma $ \sum\limits_{}^{} p_n e^{itx_n} $ ($ \sum\limits_{}^{} p_n = 1  $), tendríamos que $ \alpha $ es función característica de una $ vvaa $ discreta.
+
+    Usaremos que:
+    $$ \cos(t) = \dfrac{1}{2} \left( e^{it} + e^{-it}\right)  $$
+    $$ \cos(2t) = \dfrac{1}{2} \left( e^{ixt}+e^{-ixt} \right) $$
+
+    Entonces nos queda:
+    $$ \alpha(t) = \dfrac{1}{3} e^{0} +\dfrac{1}{3} \dfrac{1}{2} (e^{it}+e^{-it})+\dfrac{1}{3} \dfrac{1}{2} (e^{2it}+e^{-2it}) = $$
+    $$ = \dfrac{1}{3} e^{0} +\dfrac{1}{6} e^{it}+\dfrac{1}{6}e^{-it}+\dfrac{1}{6}e^{2it}+\dfrac{1}{6}e^{-2it} $$
+
+    Entonces todas las constantes que multiplican a exponenciales son no negativas y suman 1. Entonces $ \alpha $ es la función característica de la vvaa que toma valores $ \{0,1,-1,2,-2\} $ con probabilidades:
+    $$ P(X=0) = \dfrac{1}{3}\hspace{10mm} P(X=1)=P(X=-1)=P(X=2)=P(X=-2) = \dfrac{1}{6} $$
+
+    \begin{flushright}
+        \textbf{Apartado b)}
+    \end{flushright}
+
+    $$ \alpha(t) = \dfrac{1}{1+t^3} $$
+    Esta función no esta acotada en -1 por lo que no puede ser función característica.
+
+
+    \begin{flushright}
+        \textbf{Apartado c)}
+    \end{flushright}
+
+    $$ \alpha(t) = \dfrac{1}{1+t^4} $$
+
+    Recordemos la relación entre la existencia de los momentos de orden $ n $ y la existencia de la derivada de orden $ n $ en el origen.
+    $$ \alpha'(t) = -(1+t ^{4})^{-2}4t^3 \hspace{5mm} \alpha'(0) = 0 $$
+    $$ \alpha''(t) = ... \hspace{5mm} \alpha''(0) = 0  $$
+    Entonces si existe $ X $, $E(X)=0\ E(X^2) = i^2 \alpha''(0) = 0 $, entonces la varianza sería nula y la función sería constante, pero la función característica de una distribución uniforme no es $ \alpha $
+
 \end{exercise}
 
 \end{document}
