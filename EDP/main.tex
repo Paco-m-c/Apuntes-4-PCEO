@@ -435,4 +435,79 @@ $$ \dfrac{\partial \Gamma}{\partial t} (t,s) = A(\Gamma(t,s)) \forall s,\forall 
   Y aquí ya no se qué hacemos, un saludo.
 \end{example}
 
+
+
+\begin{minipage}[l]{0.1\textwidth}
+  \includegraphics[scale=0.02]{cosmo}
+  \end{minipage}
+  \begin{minipage}[l]{0.8\textwidth}
+  ¿Qué esta haciendo? Yo que sé.
+  \end{minipage}
+ 
+Tratamos de parametrizar los planos que son tangentes a la esfera unidad. En primer lugar, parametrizamos la esfera como $ (\cos(\theta)\cos(\phi), \sin(\theta)\cos(\phi),\sin(\phi))\ \theta \in [0,2\pi]\ \phi \in [-\dfrac{\pi}{2},\dfrac{\pi}{2}] $.
+
+Para parametrizar el plano, notemos que un punto $ (x,y,z) $ está en el plano si: (consideremos que el punto en el que el plano es tangente es $ (\cos(\theta)\cos(\phi), \sin(\theta)\cos(\phi),\sin(\phi)) $):
+
+$$ (x-\cos(\theta)\cos(\phi),y-\sin(\theta)\cos(\phi),z-\sin(\phi))\cdot (\cos(\theta)\cos(\phi), \sin(\theta)\cos(\phi),\sin(\phi)) = 0 $$
+
+O equivalentemente:
+$$ (\cos(\theta)\cos(\phi))x+(\sin(\theta)\cos(\phi))y+\sin(\phi)z -1 = 0 $$
+
+Si ahora fijamos el parámetro $ \phi $ fijo y derivamos en función de $ \theta $:
+
+$$ -(\sin(\theta)\cos(\phi_0))x+(\cos(\theta)\cos(\phi_0))y = 0 $$
+
+Nos queda la siguiente envolvente:
+
+$$ \left\{
+\begin{array}{l}
+  (\cos(\theta)\cos(\phi_0))x+(\sin(\theta)\cos(\phi_0))y+\sin(\phi_0)z = 1\\ 
+  -(\sin(\theta)\cos(\phi_0))x+(\cos(\theta)\cos(\phi_0))y = 0\\ 
+  \text{objetivo: eliminar }\theta
+\end{array}
+\right. $$
+
+Vamos a suponer que $ \cos(\phi_0) \ne 0 $, entonces:
+$$ \sin(\theta)x = \cos(\theta)y \iff \tan(\theta) = \dfrac{y}{x} $$
+$$ \cos(\theta) = \dfrac{1}{\sqrt{1+\tan(\theta)^2}} = \dfrac{1}{\sqrt{1+(\dfrac{y}{x})^2}} = \dfrac{x}{\sqrt{x^2+y^2}} $$
+$$ \sin(\theta) = \dfrac{\tan(\theta)}{\sqrt{1+\tan(\theta)^2}} = \dfrac{y/x}{\sqrt{1+(y/x)^2}}= \dfrac{y}{\sqrt{x^2+y^2}} $$
+
+Entonces volviendo a las ecuaciones que teníamos:
+$$ (x^2+y^2)\cos(\phi_0) +z\sqrt{x^2+y^2} \sin(\phi_0) = \sqrt{x^2+y^2} $$
+$$ \sqrt{x^2+y^2} \cos(\phi_0) +z \sin(\phi_0) = 1 $$
+$$ \sqrt{x^2+y^2}\cos(\phi_0) = 1-z \sin(\phi_0) $$
+$$ (x^2+y^2)\cos^2(\phi_0) = 1-2z \sin(\phi_0)+z^2 \sin^2(\phi_0) $$
+
+Estas ecuaciones definen un cono doble con el vértice desplazado.
+
+Volvemos ahora a la ecuación inicial sin tomar un parámetro fijo. Trataremos de encontrar la EDP que modeliza nuestro problema. Ahora, $ z = z(x,y),\ p = \dfrac{\partial z}{\partial x},\ q = \dfrac{\partial z}{\partial y} $. Derivamos ahora respecto de x y respecto de y:
+$$ (\cos(\theta)\cos(\phi))x+(\sin(\theta)\cos(\phi))y+\sin(\phi)z -1 = 0 $$
+$$ \cos(\theta)\cos(\phi) + \sin(\theta )p = 0 $$
+$$ \sin(\theta)\cos(\phi) +\sin(\phi)q=0 $$
+
+Nuestro objetivo será eliminar $ \theta,\phi $.
+
+$$ \cos^2(\theta) \cos^2(\phi) = p^2 \sin^2(\phi) $$
+$$ \sin^2(\theta) \cos^2(\phi) = q^2 \sin^2(\phi) $$
+$$ \cos^2(\phi) =  (p^2+q^2)\sin^2(\phi) $$
+$$ \tan(\phi) = \dfrac{1}{\sqrt{p^2+q^2}}  $$
+
+Entonces en nuestra ecuación:
+$$ -px \sin(\phi)-qy \sin(\phi) +z \sin(\phi) = 1 $$
+$$ (z-px-qy) \sin(\phi) = 1 $$
+$$ \dfrac{z-px-qy}{\sqrt{p^2+q^2+1}} = 1 $$
+$$ \sin(\phi) = \dfrac{\tan(\phi)}{\sqrt{1+\tan^2(\phi)}} = \dfrac{\dfrac{1}{\sqrt{p^2+q^2}}}{\sqrt{1+\dfrac{1}{p^2+q^2}}} = \dfrac{1}{p^2+q^2+1}$$
+
+\begin{minipage}[l]{0.1\textwidth}
+  \includegraphics[scale=0.02]{cosmo}
+  \end{minipage}
+  \begin{minipage}[l]{0.8\textwidth}
+  Después de todo esto para nada confuso, tenemos la EDP siguiente por algún motivo totalmente claro para el lector:
+\end{minipage}
+
+
+$$ \dfrac{u-xu_{x}-yu_{y}}{\sqrt{u_{x}^2+u_{y}^2+1}} =1$$
+
+Podemos comprobar que la esfera $ u(x,y)=\sqrt{1-x^2-y^2} $ es solución de esta EDP, queda aquí sin desarrollar pero solo es calcular $ u_{x},u_{y} $ y comprobar que se cumple la EDP escrita anteriormente.
+
 \end{document}
