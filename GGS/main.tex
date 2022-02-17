@@ -287,4 +287,80 @@ Fin de la demostración inciso, comenzamos a demostrar el teorema.
   $$ d(exp_p)_0(w) = \gamma '_w(0) = w \implies d(exp_p)_0 = Id $$
 \end{demonstration}
 
+
+\begin{center}
+\textbf{Lema 3.6, El lema de Gauss}
+\end{center}
+
+Vamos a demostrar una versión más general de lo que viene en los apuntes. En nuestra versión demostraremos
+$$ \forall w \in T_pS \hspace{1cm} <d(exp_p)_v(v), d(exp_p)_v(w)> = <v,w> $$
+\begin{demonstration}
+  Procedo a copiar lo que ponga el sensei en la pizarra. Para demostrar esta propiedad, debemos hacer una cuenta.
+
+  \textbf{Caso fácil:}
+
+  Supongamos $ w=\lambda v $. Entonces, $d(exp_p)_v(w) = \dfrac{d}{dt}_{t=0
+  } exp_p(\alpha (t)) , \  \alpha (t) \ : \ (- \varepsilon , \varepsilon ) \to \mathcal{D}_p$. Tomamos $\alpha (t) = v + tw = v + t \lambda v = (1+ \lambda t) v$
+
+  $$ exp_p(\alpha (t))= exp_p((1+\lambda t)v) = \gamma _v(1+ \lambda t) $$
+  $$ \dfrac{d}{dt} \gamma _v((1+ \lambda t)v) = \lambda \gamma '_v (1+ \lambda t)$$
+  $$ \implies _{t=0} d(exp_p)_v(w)= \lambda \gamma '_v(1) $$
+
+  Ahora, vamos a utilizar que el módulo es constante.
+
+  $$ <d(exp_p)_v(v), d(exp_p)_v(w)> = <\gamma '_v(1), \lambda \gamma '_v(1)> = \lambda ||\gamma '_v(1)||^2 = \lambda ||\gamma '_v(0)||= \lambda ||v||^2 =$$
+  $$ =<v,\lambda v>= <v,w>  $$
+
+  \textbf{Caso chungo:}
+
+  Supongamos ahora que $v$ y $w$ son linealmente independientes, que es una condición más general a que sean ortogonales. Este tiene un poco más de miga.
+
+  Consideramos $\phi(s,t) \ : \ \mathbb{R} \times \mathbb{R} \to T_pS$ tal que
+  $$ \phi(s,t) = s(v+tw) = s \alpha (t) $$
+
+  En este caso,
+  $$ \phi(0,t) = 0 \hspace{0.2cm} \forall t \hspace{1cm} \phi(1,t) = \alpha (t) \hspace{0.2cm}\forall t \footnote{Luis está haciendo un dibujo bastante ilustrativo en la pizarra (hoy es 17 de Febrero, por si os queréis ver la clase). El caso es que el hijo de puta de Paco aún no se ha puesto a tomar apuntes conmigo (es cuestión de tiempo, siempre se mete el jodido) y no me da tiempo a copiar lo que dice y el dibujo, así que... Lector, good luck.}$$
+
+  Si $ \alpha  \in \mathcal{D}_p$ entonces
+  $$ \phi(s,t) \in \mathcal{D}_p , \ \forall s \in [0,1] $$
+  $$ \phi(s,t) \in \mathcal{D}_p , \ \forall s \in (- \varepsilon ', 1+ \varepsilon ') $$
+  $$ \alpha (0) \in \mathcal{D}_p \to \exists \varepsilon >0 | \alpha (t) \in \mathcal{D}_p, \ \forall |t| < \varepsilon  $$
+
+  Por compacidad, $\exists \varepsilon >0 \ | \ \phi(s,t) \in \mathcal{D}_p , \ \forall (s,t) \in (- \varepsilon , 1+\varepsilon ) \times (-\varepsilon , \varepsilon )$. Ahora, considero la siguiente aplicación $$\psi(s,t) = exp_p(\phi(s,t)) = exp_p(s\alpha (t))$$
+  $$ \alpha (t) = v + tw $$
+  $$ \psi \ : \ (-\varepsilon , 1 + \varepsilon ) \times (-\varepsilon , \varepsilon ) \to ^\phi \mathcal{D}_p \to ^{exp_p} S, \text{ que es bien definida y }C^\infty  $$
+  $$ exp_p(s\alpha (t)) = \gamma _ {\alpha(t)}(s) $$
+
+  La derivada fácil de $\psi$ es con respecto de $s$ y por ella vamos a comenzar.
+
+  $$ \dfrac{\partial \psi}{\partial s}(s,t) = \dfrac{d }{ds}_{t=cte}(\gamma _ {\alpha (t)} (s)) = \gamma '_{\alpha (t)}(s) \hspace{1cm} \dfrac{\partial ^2 p}{\partial s^2}  (s,t) = \gamma ''{\alpha (t)}(s) \text{ normal}$$
+  $$ \dfrac{\partial \psi}{\partial s}(s,t) = \dfrac{\partial }{\partial s}(exp_p(s \alpha (t))) = d(exp_p)_{s(\alpha (t))}(\alpha (t))  $$
+  $$ \dfrac{\partial \psi}{\partial s}(s,0) = d(exp_p)_{s,v}(v) = \left\{ \begin{array}{l}
+    d(exp_p)_0(v) = v, \ s=0\\
+    d(exp_p)_v(v) , \ s=1\\
+  \end{array} \right.  $$
+
+  $$ \dfrac{\partial \psi}{\partial s}(1,0) = d(exp_p)_v(v)  $$
+
+
+  Bueno si este ha sido el caso fácil agárrate de los pelos que vamos a derivar con respecto de $t$.
+
+  $$ s=0 \to \psi(0,t) = exp_p(0) = p $$
+  $$ s=1 \to \psi(1,t) = exp_p(\alpha (t)) \to \dfrac{\partial p}{\partial t}(1,t) = d(exp_p)_ {\alpha(t)} (\alpha (t)) = d(exp_p)_{\alpha (t)}(w) $$
+  $$ \dfrac{\partial \psi}{\partial t}(1,0) = d(exp_p)_v(w)  $$
+  $$ <\dfrac{\partial \psi}{\partial s}(1,0), \dfrac{\partial \psi}{\partial t}(1,0)>= ?? $$
+  $$ f(s) = < \dfrac{\partial p}{\partial s}(s,0), \dfrac{\partial \psi}{\partial t}(s,0)> , \ \forall s \in [0,1] $$
+
+  Mi objetivo es calcular $f(1)$.
+  $$ f'(s) = \underbrace{ <\dfrac{\partial ^2 \psi}{\partial s^2}(s,0) , \ \dfrac{\partial \psi}{\partial t}(s,0)> }_{ A } + \underbrace{ <\dfrac{\partial \psi}{\partial s}(s,0), \dfrac{\partial ^2\psi}{\partial t \partial s}(s,0) > }_{ B }   $$
+
+  $$ \dfrac{\partial ^2 \psi}{\partial s^2}(s,t) = \gamma ''_{\alpha (t)}(s)  $$
+  $$ \dfrac{\partial ^2 \psi}{\partial s^2}(s,0) = \gamma ''_v \text{ normal a }S \text{ en } \gamma _v(s) $$
+  $$ \dfrac{\partial \psi}{\partial t}(s,0) = \dfrac{\partial }{\partial t}\left( \psi(s,t) \right) = \beta '_s(0) \in TS=T   $$
+
+  A tomar por culo, 17 de Febrero y 18 de Febrero, os la veis cracks.
+\end{demonstration}
+
+
+
 \end{document}
