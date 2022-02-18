@@ -203,5 +203,164 @@ Tenemos por tanto un sistema de ecuaciones diferenciales cuya condición inicial
 
 \chapter{Capítulo 3}
 
+\begin{center}
+\textbf{Lema 3.2, Lema de homogeneidad de las geodésicas}
+\end{center}
+  Lo más importante del lema son las fórmulas que aparecen centradas en su enunciado.
+\begin{demonstration}
+  Sea $p \in S$ y sea un vector tangente $v \in T_pS$. Entonces, $\exists \gamma _v \ : \ I_v \to S$. Como $\lambda \ne 0$, entonces $ \lambda v \in T_pS $.
+
+  Defino ahora $ \alpha (t) = \gamma _v (\lambda t) $.
+  $$ I_ \alpha = \{ t \in \mathbb{R} \ : \ \lambda t \in I_v  \} $$
+  $$ t \in I_ \alpha \iff \lambda t \in I_v  \iff t \in \dfrac{1}{\lambda } \cdot I_v $$
+
+  Luego otenemos que $\dfrac{1}{\lambda} I_v = I_ \alpha $. De esto deducimos que $\alpha (0) = p = \gamma _v(0)$.
+
+  $$ \alpha '(t) = \lambda \gamma '_v( \lambda t) \implies \alpha '(0) = \lambda \gamma' _v (0() = \lambda v$$
+
+  Y se obtiene que $\alpha$ es una geodésica, por ser reparametrización afín de una geométrica.
+
+  $$ \left\{ \begin{array}{l}
+    \alpha (t) = \gamma _v (\alpha t)\\
+    I_ \alpha  = \dfrac{1}{\lambda} I_v
+  \end{array} \right. \in  \mathcal{J}_{p, \lambda v} = \{ (I_{\alpha , \alpha }), ... \} \implies \dfrac{1}{\lambda} I_v \subseteq I_ {\alpha v}$$
+  $$\forall t \in \dfrac{1}{\lambda} I_v, \ \gamma _{\lambda v}(t) = \lambda _v( \lambda t)$$
+
+  Llamo ahora $w = \lambda v$.
+  $$ \mu = \dfrac{1}{\lambda} \implies \mu w = v $$
+  $$ \dfrac{1}{\mu} \cdot I_w \subseteq I_{\mu w}\ y\ \forall t \in \underbrace{ \dfrac{1}{\mu} I_w }_{ \lambda I_{\lambda v} } $$
+  $$ \gamma _{\mu w}(t) = \gamma _w(\mu t) \hspace{1cm} \dfrac{1}{\mu} \cdot I_w = \lambda I_ \lambda v \subseteq I_v$$
+  $$ I_{\lambda v} \subseteq \dfrac{1}{\lambda} I_v $$
+
+  Al final he tenido que copiar tal cual lo que pone en la pizarra y no tengo ni idea de si he demostrado algo o no.
+\end{demonstration}
+
+\begin{center}
+\textbf{Teorema 3.3, Propiedades de la aplicación exponencial}
+\end{center}
+
+Primero tenemos que demostrar esta propiedad
+$$ p \in S, \ v \in T_pS \implies  iv \in \mathcal{D} _p, \ \forall t \in I_v \supset (- \varepsilon , \varepsilon ) $$
+\begin{demonstration}
+  $$ \left\{ \begin{array}{l}
+    t=0 \to OK\\
+    t \ne 0, \hspace{1cm} tv \in \mathcal{D}_p \iff 1 \in I_{tv} = \dfrac{1}{t} \cdot I_v\ si\ 1=\dfrac{1}{t}t
+  \end{array} \right. $$
+  $$ exp_p(tv) = \gamma _{tv}(1) = \gamma _v (t) , \ \forall t \in I_v $$
+\end{demonstration}
+Fin de la demostración inciso, comenzamos a demostrar el teorema.
+\begin{demonstration}
+  $$ I $$
+  Que sea estrellado nos dice que el segmento que une cualquier punto con el origen no se sale del conjunto. En otras palabras,
+  $$ \forall \underbrace{ v \in \mathcal{D}_p }_{ 1 \in I_v \implies [0,1] \subset I \ \forall t \in [0,1] }, \ [0,v] = \{ tv, \ 0 \leq t \leq 1 \} \subset \mathcal{D}_p $$
+
+  Del inciso se deduce que $t \in I_v \implies tv \in \mathcal{D}_p$. Notamos lo siguiente:
+  $$ \forall v \in T_pS, \ \exists (- \varepsilon , \varepsilon ) \subset I_v $$
+  Y justo debajo ha escrito
+  $$ \exists \varepsilon > 0 \ : \ \forall |t| < \varepsilon , \ tv \in \mathcal{D}_p $$
+  $$ II $$
+  Este dice el sensei Alías que nos lo creamos y yo \textbf{me lo creo.}
+  $$ III $$
+  $$ \exists \underbrace{ U }_{ \text{entorno de }0 }\footnote{Para el sensei Alías, decir entorno implica que es abierto} \in \mathcal{D}_p \ : \ exp_{p|\mathcal{U}} \ : \  \underbrace{ \mathcal{U} }_{ \subset T_pS } \to \underbrace{ V }_{ \subset S } \text{ es difeomorfismo}$$
+
+  Para comprobar si es un difeomorfismo, tenemos que ver que la diferencial es un isomorfismo lineal. Vamos a ver si esto es así:
+
+  $$ \forall v \in \mathcal{D}_p \to d(exp_p)_v \ : \ \underbrace{ T_v(\mathcal{D}_p) }_{ T_v(T_pS) } \to T_{exp_p(v)}S $$
+
+  $$ \forall w  \in T_pS \hspace{1cm} \alpha (t) = v + tw $$
+  $$ \alpha \ : \ I \to \mathcal{D}_p \subset T_pS $$
+  $$ \alpha (0) = v \hspace{1cm} \alpha '(0) = w \hspace{1cm} \to \hspace{1cm}w \in T_v(T_pS)$$
+
+  Vamos al caso particular $v=0$.
+  $$ d(exp_p)_0 \ : \ T_0(TpS) = T_pS \to T_{exp_p(v)}S = T_pS$$
+  $$ \forall w \in T_pS = T_0(T_pS) $$
+  $$ d(exp_p)_v(w) = \dfrac{d}{dt}_{t=0} exp_p(\alpha (t)) $$
+
+  Tenemos que encontrar una curva que cumpla
+  $$ \forall \alpha (t) \ : \ (- \varepsilon , \varepsilon ) \to T_pS $$
+  $$ \left. \begin{array}{l}
+    \alpha (0) = 0\\
+    \alpha '(0) = w
+  \end{array} \right\} \alpha (t) = t w $$
+
+  $$ exp_p(\alpha (t)) = exp_p(tw) = \gamma _{tw}(1) = \gamma _w(t) $$
+  $$ d(exp_p)_0(w) = \gamma '_w(0) = w \implies d(exp_p)_0 = Id $$
+\end{demonstration}
+
+
+\begin{center}
+\textbf{Lema 3.6, El lema de Gauss}
+\end{center}
+
+Vamos a demostrar una versión más general de lo que viene en los apuntes. En nuestra versión demostraremos
+$$ \forall w \in T_pS \hspace{1cm} <d(exp_p)_v(v), d(exp_p)_v(w)> = <v,w> $$
+\begin{demonstration}
+  Procedo a copiar lo que ponga el sensei en la pizarra. Para demostrar esta propiedad, debemos hacer una cuenta.
+
+  \textbf{Caso fácil:}
+
+  Supongamos $ w=\lambda v $. Entonces, $d(exp_p)_v(w) = \dfrac{d}{dt}_{t=0
+  } exp_p(\alpha (t)) , \  \alpha (t) \ : \ (- \varepsilon , \varepsilon ) \to \mathcal{D}_p$. Tomamos $\alpha (t) = v + tw = v + t \lambda v = (1+ \lambda t) v$
+
+  $$ exp_p(\alpha (t))= exp_p((1+\lambda t)v) = \gamma _v(1+ \lambda t) $$
+  $$ \dfrac{d}{dt} \gamma _v((1+ \lambda t)v) = \lambda \gamma '_v (1+ \lambda t)$$
+  $$ \implies _{t=0} d(exp_p)_v(w)= \lambda \gamma '_v(1) $$
+
+  Ahora, vamos a utilizar que el módulo es constante.
+
+  $$ <d(exp_p)_v(v), d(exp_p)_v(w)> = <\gamma '_v(1), \lambda \gamma '_v(1)> = \lambda ||\gamma '_v(1)||^2 = \lambda ||\gamma '_v(0)||= \lambda ||v||^2 =$$
+  $$ =<v,\lambda v>= <v,w>  $$
+
+  \textbf{Caso chungo:}
+
+  Supongamos ahora que $v$ y $w$ son linealmente independientes, que es una condición más general a que sean ortogonales. Este tiene un poco más de miga.
+
+  Consideramos $\phi(s,t) \ : \ \mathbb{R} \times \mathbb{R} \to T_pS$ tal que
+  $$ \phi(s,t) = s(v+tw) = s \alpha (t) $$
+
+  En este caso,
+  $$ \phi(0,t) = 0 \hspace{0.2cm} \forall t \hspace{1cm} \phi(1,t) = \alpha (t) \hspace{0.2cm}\forall t \footnote{Luis está haciendo un dibujo bastante ilustrativo en la pizarra (hoy es 17 de Febrero, por si os queréis ver la clase). El caso es que el hijo de puta de Paco aún no se ha puesto a tomar apuntes conmigo (es cuestión de tiempo, siempre se mete el jodido) y no me da tiempo a copiar lo que dice y el dibujo, así que... Lector, good luck.}$$
+
+  Si $ \alpha  \in \mathcal{D}_p$ entonces
+  $$ \phi(s,t) \in \mathcal{D}_p , \ \forall s \in [0,1] $$
+  $$ \phi(s,t) \in \mathcal{D}_p , \ \forall s \in (- \varepsilon ', 1+ \varepsilon ') $$
+  $$ \alpha (0) \in \mathcal{D}_p \to \exists \varepsilon >0 | \alpha (t) \in \mathcal{D}_p, \ \forall |t| < \varepsilon  $$
+
+  Por compacidad, $\exists \varepsilon >0 \ | \ \phi(s,t) \in \mathcal{D}_p , \ \forall (s,t) \in (- \varepsilon , 1+\varepsilon ) \times (-\varepsilon , \varepsilon )$. Ahora, considero la siguiente aplicación $$\psi(s,t) = exp_p(\phi(s,t)) = exp_p(s\alpha (t))$$
+  $$ \alpha (t) = v + tw $$
+  $$ \psi \ : \ (-\varepsilon , 1 + \varepsilon ) \times (-\varepsilon , \varepsilon ) \to ^\phi \mathcal{D}_p \to ^{exp_p} S, \text{ que es bien definida y }C^\infty  $$
+  $$ exp_p(s\alpha (t)) = \gamma _ {\alpha(t)}(s) $$
+
+  La derivada fácil de $\psi$ es con respecto de $s$ y por ella vamos a comenzar.
+
+  $$ \dfrac{\partial \psi}{\partial s}(s,t) = \dfrac{d }{ds}_{t=cte}(\gamma _ {\alpha (t)} (s)) = \gamma '_{\alpha (t)}(s) \hspace{1cm} \dfrac{\partial ^2 p}{\partial s^2}  (s,t) = \gamma ''{\alpha (t)}(s) \text{ normal}$$
+  $$ \dfrac{\partial \psi}{\partial s}(s,t) = \dfrac{\partial }{\partial s}(exp_p(s \alpha (t))) = d(exp_p)_{s(\alpha (t))}(\alpha (t))  $$
+  $$ \dfrac{\partial \psi}{\partial s}(s,0) = d(exp_p)_{s,v}(v) = \left\{ \begin{array}{l}
+    d(exp_p)_0(v) = v, \ s=0\\
+    d(exp_p)_v(v) , \ s=1\\
+  \end{array} \right.  $$
+
+  $$ \dfrac{\partial \psi}{\partial s}(1,0) = d(exp_p)_v(v)  $$
+
+
+  Bueno si este ha sido el caso fácil agárrate de los pelos que vamos a derivar con respecto de $t$.
+
+  $$ s=0 \to \psi(0,t) = exp_p(0) = p $$
+  $$ s=1 \to \psi(1,t) = exp_p(\alpha (t)) \to \dfrac{\partial p}{\partial t}(1,t) = d(exp_p)_ {\alpha(t)} (\alpha (t)) = d(exp_p)_{\alpha (t)}(w) $$
+  $$ \dfrac{\partial \psi}{\partial t}(1,0) = d(exp_p)_v(w)  $$
+  $$ <\dfrac{\partial \psi}{\partial s}(1,0), \dfrac{\partial \psi}{\partial t}(1,0)>= ?? $$
+  $$ f(s) = < \dfrac{\partial p}{\partial s}(s,0), \dfrac{\partial \psi}{\partial t}(s,0)> , \ \forall s \in [0,1] $$
+
+  Mi objetivo es calcular $f(1)$.
+  $$ f'(s) = \underbrace{ <\dfrac{\partial ^2 \psi}{\partial s^2}(s,0) , \ \dfrac{\partial \psi}{\partial t}(s,0)> }_{ A } + \underbrace{ <\dfrac{\partial \psi}{\partial s}(s,0), \dfrac{\partial ^2\psi}{\partial t \partial s}(s,0) > }_{ B }   $$
+
+  $$ \dfrac{\partial ^2 \psi}{\partial s^2}(s,t) = \gamma ''_{\alpha (t)}(s)  $$
+  $$ \dfrac{\partial ^2 \psi}{\partial s^2}(s,0) = \gamma ''_v \text{ normal a }S \text{ en } \gamma _v(s) $$
+  $$ \dfrac{\partial \psi}{\partial t}(s,0) = \dfrac{\partial }{\partial t}\left( \psi(s,t) \right) = \beta '_s(0) \in TS=T   $$
+
+  A tomar por culo, 17 de Febrero y 18 de Febrero, os la veis cracks.
+\end{demonstration}
+
+
 
 \end{document}
