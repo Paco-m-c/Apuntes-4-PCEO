@@ -155,6 +155,35 @@
 
 \begin{exercise}
     $  $
+    \begin{flushright}
+        \textbf{Aparado a)}
+    \end{flushright}
+
+    Observemos primero que no hay dos pares de la forma $ (a,b),\ (a,c) $ de forma que ambos tengan probabilidad no nula. Igual forma, no hay pares $ (b,a),\ (c,a) $ tales que se tomen ambos valores con probabilidad no nula. Por tanto, para ver la distribución marginal de $ X $ podemos omitir los valores que toma $ Y $:
+    $$ P(X=0) = P(X=1) = P(X=2) = \dfrac{1}{3} $$
+
+    De forma análoga para la v.a. $ Y $: 
+    $$ P(Y=1) = P(Y=2) = P(Y=3) = \dfrac{1}{3} $$
+
+    Las esperanzas entonces de estas vvaa son:
+    $$ E(X) = (0+1+2)\cdot \dfrac{1}{3} = 1 $$
+    $$ E(Y) = (1+2+3)\cdot \dfrac{1}{3} = 2 $$
+
+    Hacemos también los cálculos necesarios para hacer la recta de regresión:
+    $$ E(XY) = (0\cdot 1+1\cdot 2+2\cdot 3) \dfrac{1}{3} = \dfrac{8}{3} $$
+    $$ Cov(X,Y) = E(XY) - E(X)E(Y) = \dfrac{8}{3}*2 =\dfrac{2}{3} $$
+    $$ E(X^2) = (0+1+4)\dfrac{1}{3} = \dfrac{5}{3} $$
+    $$ Var(X) = E(X^2)-E(X)^2 = \dfrac{5}{3}-1 = \dfrac{2}{3} $$
+
+    La recta de regresión de $ Y $ sobre $ X $ es entonces:
+    $$ y-2 = \dfrac{\dfrac{2}{3}}{\dfrac{2}{3}}(x-1) \implies y -2 = x-1 \implies y = x+1 $$
+
+    Calculamos ahora el coeficiente de correlación para poder ver $ Var(Y-X^{*}) $:
+    $$ \rho = \dfrac{\sigma_{XY}}{\sigma_{X}\sigma_{Y}} = \dfrac{\dfrac{2}{3}}{\sqrt{\dfrac{2}{3}}\sqrt{\dfrac{2}{3}}} = 1 $$
+
+    Este valor de $ \rho $ nos indica que $ X $ y $ Y $ son dependientes linealmente. Calculamos ahora $ Var(Y-X^*) $
+
+    $$ Var(Y-X^*) = \sigma_{Y}^2(1-\rho ^2) = 0 $$
 
     \begin{flushright}
         \textbf{Aparado b)}
@@ -179,7 +208,7 @@
     $$ x = -\dfrac{5}{17}y+\dfrac{11}{17} $$
 
     Calcularemos ahora $ Var(Y-X^*) $:
-    $$ Var(Y-X^* ) = \sigma_{Y}^2 (1-\rho ^2) = \dfrac{17}{36} \left( 1-\dfrac{25/36^2}{17^2/36} \right) = \dfrac{17}{36} \left( \dfrac{17^2-25}{17^2} = \dfrac{11}{3\cdot 17} \right) $$
+    $$ Var(Y-X^* ) = \sigma_{Y}^2 (1-\rho ^2) = \dfrac{17}{36} \left( 1-\dfrac{25/36^2}{17^2/36} \right) = \dfrac{17}{36} \left( \dfrac{17^2-25}{17^2}\right) = \dfrac{11}{3\cdot 17}  $$
 
     Para la varianza residual de $ X $ sobre $ Y $, vemos que es igual porque coinciden sus esperanzas y sus varianzas.
 
