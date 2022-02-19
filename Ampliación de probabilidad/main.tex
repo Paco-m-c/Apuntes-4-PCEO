@@ -132,7 +132,7 @@
 
 
 \begin{exercise}
-    $  $
+    $  $\\
     El número de de posibilidades totales es claramente $ \binom{N}{n} $, la distribución de probabilidad es entonces:
 
     $$ P(X_1=r_1,X_2=r_2,X_3=r_3) = \dfrac{\binom{n_1}{r_1}\binom{n_2}{r_2}\binom{n_3}{r_3}}{\binom{N}{n}} $$
@@ -155,6 +155,35 @@
 
 \begin{exercise}
     $  $
+    \begin{flushright}
+        \textbf{Aparado a)}
+    \end{flushright}
+
+    Observemos primero que no hay dos pares de la forma $ (a,b),\ (a,c) $ de forma que ambos tengan probabilidad no nula. Igual forma, no hay pares $ (b,a),\ (c,a) $ tales que se tomen ambos valores con probabilidad no nula. Por tanto, para ver la distribución marginal de $ X $ podemos omitir los valores que toma $ Y $:
+    $$ P(X=0) = P(X=1) = P(X=2) = \dfrac{1}{3} $$
+
+    De forma análoga para la v.a. $ Y $: 
+    $$ P(Y=1) = P(Y=2) = P(Y=3) = \dfrac{1}{3} $$
+
+    Las esperanzas entonces de estas vvaa son:
+    $$ E(X) = (0+1+2)\cdot \dfrac{1}{3} = 1 $$
+    $$ E(Y) = (1+2+3)\cdot \dfrac{1}{3} = 2 $$
+
+    Hacemos también los cálculos necesarios para hacer la recta de regresión:
+    $$ E(XY) = (0\cdot 1+1\cdot 2+2\cdot 3) \dfrac{1}{3} = \dfrac{8}{3} $$
+    $$ Cov(X,Y) = E(XY) - E(X)E(Y) = \dfrac{8}{3}*2 =\dfrac{2}{3} $$
+    $$ E(X^2) = (0+1+4)\dfrac{1}{3} = \dfrac{5}{3} $$
+    $$ Var(X) = E(X^2)-E(X)^2 = \dfrac{5}{3}-1 = \dfrac{2}{3} $$
+
+    La recta de regresión de $ Y $ sobre $ X $ es entonces:
+    $$ y-2 = \dfrac{\dfrac{2}{3}}{\dfrac{2}{3}}(x-1) \implies y -2 = x-1 \implies y = x+1 $$
+
+    Calculamos ahora el coeficiente de correlación para poder ver $ Var(Y-X^{*}) $:
+    $$ \rho = \dfrac{\sigma_{XY}}{\sigma_{X}\sigma_{Y}} = \dfrac{\dfrac{2}{3}}{\sqrt{\dfrac{2}{3}}\sqrt{\dfrac{2}{3}}} = 1 $$
+
+    Este valor de $ \rho $ nos indica que $ X $ y $ Y $ son dependientes linealmente. Calculamos ahora $ Var(Y-X^*) $
+
+    $$ Var(Y-X^*) = \sigma_{Y}^2(1-\rho ^2) = 0 $$
 
     \begin{flushright}
         \textbf{Aparado b)}
@@ -179,7 +208,7 @@
     $$ x = -\dfrac{5}{17}y+\dfrac{11}{17} $$
 
     Calcularemos ahora $ Var(Y-X^*) $:
-    $$ Var(Y-X^* ) = \sigma_{Y}^2 (1-\rho ^2) = \dfrac{17}{36} \left( 1-\dfrac{25/36^2}{17^2/36} \right) = \dfrac{17}{36} \left( \dfrac{17^2-25}{17^2} = \dfrac{11}{3\cdot 17} \right) $$
+    $$ Var(Y-X^* ) = \sigma_{Y}^2 (1-\rho ^2) = \dfrac{17}{36} \left( 1-\dfrac{25/36^2}{17^2/36} \right) = \dfrac{17}{36} \left( \dfrac{17^2-25}{17^2}\right) = \dfrac{11}{3\cdot 17}  $$
 
     Para la varianza residual de $ X $ sobre $ Y $, vemos que es igual porque coinciden sus esperanzas y sus varianzas.
 
@@ -190,7 +219,7 @@
 \chapter{Relación 2}
 
 \begin{exercise}
-    $  $
+    $  $\\ 
     Vemos en primer lugar cómo es el recinto del ejercicio:
     \begin{center}
         \includegraphics*[scale=0.5]{2-1-1.jpg}
@@ -237,9 +266,72 @@
     
 \end{exercise}
 
-\setcounter{ex}{2}
+\setcounter{ex}{1}
+
 \begin{exercise}
-    $  $
+    $$ f(t_1,t_2,t_3,t_4) = \dfrac{1}{4}(t_1+t_2+t_3+t_1t_2t_3) = E(t_1^{X_1}t_2^{X_2}t_3^{X_3}) = \sum\limits_{}^{}p_{i_1i_2i_3}t_1^{i_1}t_2^{i_2}t_3^{i_3} $$
+
+    De este último término, en cada sumando, $ p_{i_1i_2i_3} $ representa $ P(X_1=i_1,X_2=i_2,X_3=i_3) $
+
+    Viendo el valor de $ f $, sabemos que la vvaa $ (X_1,X_2,X_3) $ toma los valores $ (1,0,0),(0,1,0),$  $(0,0,1),(1,1,1) $ con probabilidad de $ \dfrac{1}{4} $ en cada una de ellas.
+
+    Vamos a comprobar si $ X_1,X_2 $ son independientes. Para ello, vemos si $ f_{12}(t_1,t_2) = f_{1}(t_1) \cdot f_{2}(t_2) $. Estas funciones no las conocemos, pero como sabemos que $ f $ se puede representar como $ E(t_1^{X_1}t_2^{X_2}t_3^{X_3}) $, si hacemos $ t_3=1 $:
+    $$ f_{12}(t_1,t_2) = E(t_1^{X_1},t_2^{X_2}) = E(t_1^{X_1}t_2^{X_2}1^{X_3}) = \dfrac{1}{4}(t_1+t_2+1+t_1t_2) $$
+    
+    De igual forma podemos hacer:
+    $$ f_{2}(t_1) = E(t_1^{X_1}) = E(t_1^{X_1}1^{X_2}1^{X_3}) = \dfrac{1}{4}(t_1+1+1+t_1) = \dfrac{1+t_1}{2} $$
+    $$ f_{2}(t_2) = \dfrac{1+t_2}{2} $$
+
+    Para comprobar la independencia solo tenemos que ver si $ f_{12} = f_{1}f_{2} $:
+    $$f_{1}f_{2} = \dfrac{1}{2}(1+t_1) \cdot \dfrac{1}{2}(1+t_2) = \dfrac{1}{4}(t_1+t_2+1+t_1t_2) = f_{12} $$
+
+    Luego $ X_1,X_2 $ son independientes y de forma análoga: $ X_2,X_3 $ son independientes y $ X_2,X_3 $ son independientes. Es decir, son independientes dos a dos.
+    
+    Para comprobar que son independientes, tendremos que ver si $ f(t_1,t_2,t_3) = f_{1}(t_1) \cdot f_{2}(t_2)\cdot f_{3}(t_3) $:
+    $$ f_{1}f_{2}f_{3} = \dfrac{1}{2^3}(1+t_1)(1+t_2)(1+t_3) = \dfrac{1}{2^3}(1+t_1+t_2+t_1t_2)(1+t_3)= $$
+    $$ = \dfrac{1}{2^3}(1+t_1+t_2+t_1t_2+t_3+t_1t_3+t_2t_3+t_1t_2t_3) \ne f(t_1,t_2,t_3) $$
+
+    Por tanto, las vvaa no son independientes.
+
+    Para calcular el apartado c), haremos las parciales:
+    $$ \dfrac{\partial f}{\partial t_1} = \dfrac{1}{4}(t_1+t_2t_3) $$
+    $$ \dfrac{\partial f}{\partial t_1}(1,1,1) = E(X_1) = \dfrac{1}{2} $$
+
+    Por la simetría de $ f $, $ E(X_2) = E(X_3) = \dfrac{1}{2} $. Vamos ahora con las varianzas, que de nuevo bastará con calcular la de $ X_1 $:
+
+    $$ \dfrac{\partial ^2 f}{\partial t_1^2} = E(X_1 ^{(2)}) = E(X_1^2-X_1) = 0 = E(X_1^2)-E(X_1 )\implies E(X_1^2) = \dfrac{1}{2} $$
+
+    $$Var(X_{2}) =Var(X_3) = Var(X_1) = E(X_1^2)-E(X_1)^2 = \dfrac{1}{2}-\dfrac{1}{4}=\dfrac{1}{4} $$
+
+    El cálculo de la covarianza es rápido, como $ X_1,X_2,X_3 $ son independientes \textbf{por parejas}, tenemos que:
+    $$ Cov(X_1,X_2) = Cov(X_1,X_3) = Cov(X_2,X_3) = 0 $$
+
+    En el caso general, es decir, si no fueran independientes:
+    $$ \dfrac{\partial f}{\partial t_1 \partial t_2} = \dfrac{1}{4}t_3 $$
+    $$ \dfrac{\partial f}{\partial t_1 \partial t_2}(1,1) = E(X_1X_2) = \dfrac{1}{4} $$
+    $$ Cov(X_1,X_2) = E(X_1X_2)-E(X_1)E(X_2) = \dfrac{1}{4}-\dfrac{1}{4} = 0 $$
+
+    \begin{flushright}
+        \textbf{Anotación importante)}
+
+    \end{flushright}
+
+    Es importante notar las diferencias entre $ X+Y+Z $ y $ (X,Y,Z) $:
+
+    Sean $ X_1,X_2,X_3 $ independientes con funciones:
+    $$ f_{1}(t) = \dfrac{1}{2}(1+t) $$
+    $$ f_{2}(t) = \dfrac{1}{3}(1+t+t^2) $$
+    $$ f_{3}(t) = \dfrac{1}{2}(1+t) $$
+
+    Entonces la vvaa $ Z = X_1+X_2+X_3 $ unidimensional,  entonces $ f_{Z}(t) = \dfrac{1}{2}(1+t)\dfrac{1}{3}(1+t+t^2)\dfrac{1}{2}(1+t) $ \textbf{con un solo parámetro}.
+
+    Si definimos ahora la vvaa $ X = (X_1,X_2,X_3) $ de tres dimensiones con
+    $$ f_{X}(t_1,t_2,t_3)= dfrac{1}{2}(1+t_1)\dfrac{1}{3}(1+t_2+t_2^2)\dfrac{1}{2}(1+t_3)$$
+
+\end{exercise}
+
+\begin{exercise}
+    $  $\\
     Sabemos que, para $ X,Y,Z $ tenemos:
     $$ f(x)=
     \left\{
@@ -292,11 +384,46 @@
     $$ g_{U}(t) = \dfrac{e^{at}-1}{at}\cdot \dfrac{e^{bt}-1}{bt}\cdot \dfrac{e^{ct}-1}{ct} $$
 
     La función característica de $ U $ será entonces:
-    $$ \varphi_{U} (t) = \dfrac{(e^{iat}-1)(e^{ibt}-1)(e^{ict}-1)}{i\cdot a\cdot b\cdot c t^3}  = \dfrac{-i(e^{iat}-1)(e^{ibt}-1)(e^{ict}-1)}{\cdot a\cdot b\cdot c t^3}$$
+    $$ \varphi_{U} (t) = \dfrac{(e^{iat}-1)(e^{ibt}-1)(e^{ict}-1)}{i\cdot a\cdot b\cdot c t^3}  = \dfrac{-i(e^{iat}-1)(e^{ibt}-1)(e^{ict}-1)}{ a\cdot b\cdot c \cdot  t^3}$$
+
+    Nos piden comprobar si es simétrica:
+    $$ E(e^{itU}) = E(e^{it(aX+bY+cZ)}) = E(e^{iatX})E(e^{ibtX})E(e^{ictX}) = \dfrac{e^{iat}-1}{iat} \cdot \dfrac{e^{ibt}-1}{ibt} \cdot  \dfrac{e^{ict}-1}{ict} = $$
+    $$=e^{iat/2}e^{ibt/2}e^{ict/2} 2^3 $$
+    % TODO por copiar 17/2
 
 \end{exercise}  
 
-\setcounter{ex}{4}
+
+\begin{exercise}
+    $  $ \\ 
+
+    Para calcular $ A $:
+    $$ 1 = \sum\limits_{r=0}^{+\infty} \dfrac{A}{(2r)!} = A \sum\limits_{r=0}^{+\infty}\dfrac{1}{(2r)!} = A \dfrac{1}{2} \left(\sum\limits_{k=0}^{+\infty} \dfrac{(1)^{k}}{k!}+ \sum\limits_{k=0}^{+\infty} \dfrac{(-1)^{k}}{k!} \right) = A \dfrac{1}{2} (e+e^{-1}) \implies A = \dfrac{2}{e+e ^{-1}} $$
+
+    $ B $ se saca de forma análoga:
+    $$ 1 = \sum\limits_{r=0}^{+\infty} \dfrac{B}{(2r+1)!} = B \dfrac{1}{2}\left( \sum\limits_{k=0}^{+\infty}\dfrac{1^{k}}{k!} - \sum\limits_{k=0}^{+\infty} \dfrac{(-1)^{k}}{k!} \right) = B \dfrac{1}{2}(e-e ^{-1}) \implies B = \dfrac{2}{e-e ^{-1}} $$
+
+    Calculamos ahora las funciones generatrices:
+    $$ f_{X}(t) = \sum\limits_{r=0}^{+\infty} \dfrac{A}{(2r)!} t ^{2r} = \dfrac{2}{e+e ^{-1}} \sum\limits_{r=0}^{+\infty} \dfrac{t ^{2r}}{(2r)!} = \dfrac{2}{e + e ^{-1}}\cdot \dfrac{e ^{t}+e^{-t}}{e+e ^{-1}}$$
+
+    Igualmente:
+    $$ f_{Y}(t) = \dfrac{e^{t}-e^{-t}}{e-e ^{-1}} $$
+
+    Como $ X,Y $ son independientes:
+    $$ f_{Z}(t) = f_{X}(t)\cdot f_{Y}(t) = \dfrac{e^{t}+e^{-t}}{e+e ^{-1}} \cdot \dfrac{e^{t}-e^{-t}}{e-e ^{-1}} = \dfrac{e^{2t}-e^{-2t}}{e^2-e^{-2}} = $$
+    $$=  \dfrac{1}{e^2-e^{-2}} \left( \sum\limits_{k=0}^{+\infty} \dfrac{(2t)^{k}}{k!} - \sum\limits_{k=0}^{+\infty} \dfrac{(-2t)^{k}}{k!} \right) = \dfrac{1}{e^2-e^{-2}} \sum\limits_{r=0}^{+\infty} \dfrac{2(2t)^{2r+1}}{(2r+1)!} = \dfrac{1}{e^2e^{-2}} \sum\limits_{r=0}^{+\infty} \dfrac{2\cdot 2^{r+1}}{(2r+1)!} t ^{2r+1}  $$
+
+    Luego tenemos que, para $ r=0,1,2,... $:
+
+    $$ P(Z=2r+1) = \dfrac{1}{e^2-e^{-2}} \dfrac{2\cdot 2^{2r+1}}{(2r+1)!} $$
+
+    El último apartado lo haremos derivando la expresión sin desarrollar las exponenciales:
+    $$ E(Z) = 2 \dfrac{e^2+e^{-2}}{e^2-e^{e-2}} $$
+    $$ E(Z(Z-1)) = f''_{Z}(1) = 4 $$
+    $$ Var(Z) = 2 \dfrac{e^{4}-8-e^{-4}}{(e^2-e^{-2})^2} $$
+
+\end{exercise}
+
 
 \begin{exercise}
     $  $
@@ -337,6 +464,8 @@
     $$ \alpha'(t) = -(1+t ^{4})^{-2}4t^3 \hspace{5mm} \alpha'(0) = 0 $$
     $$ \alpha''(t) = ... \hspace{5mm} \alpha''(0) = 0  $$
     Entonces si existe $ X $, $E(X)=0\ E(X^2) = i^2 \alpha''(0) = 0 $, entonces la varianza sería nula y la función sería constante, pero la función característica de una distribución uniforme no es $ \alpha $
+
+
 
 \end{exercise}
 

@@ -5,4 +5,7 @@
 \contentsline {subsubsection}{Ecuación de ondas}{4}{subsection.1.0.2}%
 \contentsline {subsection}{\numberline {1.0.3}Ecuación de calor.Procesos de difusión}{6}{subsection.1.0.3}%
 \contentsline {section}{\numberline {1.1}Qué es una EDP}{7}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Factor integrante en 3 variables}{12}{subsection.1.1.1}%
+\contentsline {chapter}{\numberline {2}Ejercicios Resueltos}{16}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Hoja 1}{16}{section.2.1}%
 \contentsfinish 

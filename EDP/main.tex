@@ -510,4 +510,183 @@ $$ \dfrac{u-xu_{x}-yu_{y}}{\sqrt{u_{x}^2+u_{y}^2+1}} =1$$
 
 Podemos comprobar que la esfera $ u(x,y)=\sqrt{1-x^2-y^2} $ es solución de esta EDP, queda aquí sin desarrollar pero solo es calcular $ u_{x},u_{y} $ y comprobar que se cumple la EDP escrita anteriormente.
 
+
+\subsection{Factor integrante en 3 variables}
+
+Tratamos de resolver el problema:
+\begin{equation}
+  A(x,y,z)dx + B(x,y,z)dy + C(x,y,z)dz = 0 
+  \label{(1)}
+\end{equation}
+
+Es decir, encontrar una superficie de nivel en la que $ F(x,y,z)=c $ constante y en la que se cumpla \ref{(1)}
+
+Suponemos una 2-forma $ \omega = \mu dF $ y la 3-forma:
+$$ d\omega = d\mu \wedge dF + \underbrace{\mu d^2F}_{=0} $$
+$$ \omega \wedge d\omega = \omega \wedge (d\mu dF) = \omega \wedge (d\mu\wedge (\dfrac{1}{\mu}\omega)) = $$
+$$ = d\mu \wedge \underbrace{\left( \dfrac{1}{\mu}\omega \wedge \omega \right)}_{=0} $$
+
+Luego $ \omega \wedge d\omega = 0 $.
+
+Recordemos que $ d\omega \sim rot(A,B,C) $ que se calculaba como:
+
+$$ 
+\begin{bmatrix} 
+i & j & k\\ 
+\dfrac{\partial }{\partial x} & \dfrac{\partial }{\partial y} & \dfrac{\partial }{\partial z} \\ 
+A & B & C \\ 
+\end{bmatrix} 
+$$
+
+Por tanto:
+\begin{equation}
+  \omega \wedge d\omega \sim A \left( \dfrac{\partial C}{\partial y} - \dfrac{\partial B}{\partial z} \right) + B \left( \dfrac{\partial A}{\partial z}- \dfrac{\partial C}{\partial x} \right) +C \left( \dfrac{\partial B}{\partial x} - \dfrac{\partial A}{\partial y} \right) = 0 
+  \label{factor3}
+\end{equation}
+Esta será una condición suficiente y necesaria para que obtener la solución.
+
+El caso particular en el que tenemos
+$$ A(x,y,z)dx+B(x,y,z)dy -dz = 0 $$
+
+Podemos reescribir la condición \ref{factor3} como
+$$ \dfrac{\partial A}{\partial y}+ \dfrac{\partial A}{\partial z}B = \dfrac{\partial B}{\partial x} + \dfrac{\partial B}{\partial z}A $$ 
+
+
+\begin{method}
+  Resolución $ F(x,y,z,p,q)=0 $ apoyándonos en $ G(x,y,z,p,q)=C_1 $
+
+  Tratamos de encontrar esa función $ G $ para poder eliminar las variables $ p,q $ de la ecuación.
+
+  La ecuación que tenemos es de la forma $ dz = p dx +qdy \to f(x,y,z) = C_2 $. Con lo que acabamos de ver se nos queda
+  $$ \dfrac{\partial p}{\partial y}+ \dfrac{\partial p}{\partial z}q = \dfrac{\partial q}{\partial x} + \dfrac{\partial q}{\partial z}p $$
+  
+
+  En primer lugar derivamos con respecto de $ y $
+  $$ \left\{
+  \begin{array}{l}
+    F_{y}+F_{p} \dfrac{\partial p}{\partial y} + F_{q} \dfrac{\partial q}{\partial y} = 0\\ 
+    G_{y} + G_{p} \dfrac{\partial p}{\partial y} + G_{q} \dfrac{\partial q}{\partial y} = 0 
+  \end{array}
+  \right. $$
+
+  Utilizando la regla de Cramer:
+  $$ \dfrac{\partial p}{\partial y} = \dfrac{G_{y}F_{q}-G_{q}F_{y}}{F_{p}G_{q}-F_{q}G_{p}} $$
+  
+  De forma análoga obtenemos:
+  $$ \dfrac{\partial q}{\partial x} = \dfrac{F_{x}G_{p}-F_{p}G_{x}}{F_{p}G_{q}-F_{q}G_{p}} $$
+  $$ \dfrac{\partial p}{\partial z} = \dfrac{G_{z}F_{q}-G_{q}F_{z}}{F_{p}G_{q}-F_{q}G_{p}} $$
+  $$ \dfrac{\partial q}{\partial z} = \dfrac{F_{z}G_{p}-F_{p}G_{z}}{F_{p}G_{q}-F_{q}G_{p}} $$
+
+  Volviendo a la ecuación que teníamos (y quitando los denominadores porque son iguales):
+  $$ G_{y}F_{q}-G_{q}F_{y} + (G_{2}F_{q}-G_{q}F_{z})q = F_{x}G_{p}-F_{p}G_{x}+(F_{z}G_{p}-F_{p}G_{z})p $$
+  $$ F_{p} \dfrac{\partial G}{\partial x} + F_{q} \dfrac{\partial G}{\partial y} + (F_{q}q+F_{p}p)  \dfrac{\partial G}{\partial z} - (F_{x}+F_{z}p) \dfrac{\partial G}{\partial p} - (F_{y}+F_{z}q) \dfrac{\partial G}{\partial q} = 0$$
+
+  Esto es una ecuación lineal en $ G $ de 5 variables con sistema autónomo:
+  $$ \left\{
+  \begin{array}{l}
+    x'=F_{p}\\ 
+    y' = F_{q} \\ 
+    z' = qF_{q}+pF_{p}\\ 
+    p' = -F_{x}-pF_{z}\\ 
+    q' = -F_{y}-qF_{z}
+  \end{array}
+  \right. $$
+  
+\end{method}
+\vspace{10mm}
+\textbf{Aplicación de este método a las ecuaciones cuasi-lineales}
+
+Dada la ecuación $ A(x,y,z)p+B(x,y,z)q-C(x,y,z)=0 $, si aplicamos el procedimiento que acabamos de ver obtenemos el sistema (teniendo en cuenta que $ x'=A\ y'=B\ z'=C $):
+$$ \left\{
+\begin{array}{l}
+  F_{p} = A\\ 
+  F_{q} = B\\ 
+  qF_{q}+pF_{p} = qB+pA = C
+\end{array}
+\right. $$
+
+De esta forma podemos obtener una solución general para la ecuación cuasi lineal.
+
+\begin{example}
+  Comprobar que la siguiente ecuación es integrable e integrar:
+  $$ (x-r)dx + (y-r)dy + (z-r)dz = 0 $$
+
+  Donde $ r = \sqrt{x^2+y^2+z^2} $.
+
+  Llamamos $ F=(A,B,C) = (x-r,y-r,z-r) $ al campo de vectores. Recordemos que:
+  $$ rot F = \left( \dfrac{\partial C}{\partial y}- \dfrac{\partial B}{\partial z}, \dfrac{\partial A}{\partial z} -  \dfrac{\partial C}{\partial x}, \dfrac{\partial B}{\partial x}- \dfrac{\partial A}{\partial y} \right) $$
+
+  Para calcularlo primero obtenemos:
+  $$ \dfrac{\partial r}{\partial x} = \dfrac{x}{r} \hspace{5mm} \dfrac{\partial r}{\partial y} = \dfrac{y}{r} \hspace{5mm} \dfrac{\partial r}{\partial z} = \dfrac{z}{r} $$
+
+  Entonces el rotacional es:
+  $$ rot F = \left( -\dfrac{y}{r}+\dfrac{z}{r},-\dfrac{z}{r}+\dfrac{x}{r},-\dfrac{x}{r}+\dfrac{y}{r} \right) = \dfrac{1}{r} (z-y,x-z,y-x) $$
+
+  Calculamos ahora $ F \cdot rot F $ para comprobar que se anule y que por tanto se cumple la condición de Frobenius:
+  $$ F \cdot  rot F =\dfrac{1}{r} [(x-r)(z-y) + (y-r)(x-z)+(z-r)(y-x)] = 0 \iff  $$
+  $$ (x-r)(z-y) + (y-r)(x-z)+(z-r)(y-x) = 0 \iff $$
+  $$\underbrace{x(z-y)+y(x-z)+z(y-x)}_{=0} -r[\underbrace{(z-y)+(x-z)+(y-x)}_{=0}] = 0 $$
+  
+  Luego $ F \cdot  rot F=0 $, sí se cumple la condición de Frobenius, y el sistema podrá resolverse.
+  
+  Buscamos un factor integrante, supongamos $ z =cte $. En este caso:
+
+  $$ (x-r)dx + (y-r)dy = 0 $$
+  $$ \left(\dfrac{x}{r}-1\right)dx + \left(\dfrac{y}{r}-1\right)dy = 0 $$
+
+  Encontrar una solución puede ser directo, en este caso vemos que $ f(x,y)=r-x-y $ es solución: $ f_{x} = r-x,\ f_{y} = r-y $
+
+  Volviendo a nuestro caso, supongamos que la solución es de la forma $ r-x-y-C(z) = F(x,y,z) $. Entonces si escribimos la ecuación de la forma:
+  $$ \left(\dfrac{x}{r}-1\right) dx +\left(\dfrac{y}{r}-1\right)dy +\left(\dfrac{z}{r}-c'(z)\right) dz $$
+  Tendremos que $ \cancel{z}-rC'(z) =\cancel{z}-r $, luego $ C'(z)=1 \to C(z) = z+cte $
+
+\end{example}
+
+
+\chapter{Ejercicios Resueltos}
+\section{Hoja 1}
+\setcounter{ex}{1}
+\begin{exercise}
+
+  \begin{flushright}
+    \textbf{Apartado inventado)}
+  \end{flushright}
+
+  Esferas de radio 1 con centro en el plano $ XY $.
+
+  Las ecuaciones de estas esferas son de la forma:
+  $$ (x-a)^2+(y-b)^2+z^2 $$
+
+  $$ \left\{
+  \begin{array}{ll}
+    \dfrac{\partial }{\partial x} & 2(x-a)+2zp = 0\\ 
+    \dfrac{\partial }{\partial y} & 2(y-b) + 2zq = 0
+  \end{array}
+  \right. $$
+
+  $$ x-a = -zp \hspace{5mm} y-b = -zq $$
+  $$  z^2p^2+z^2q^2+z^2=1 \hspace{5mm} z^2\underbrace{(p^2+q^2+1)}_{\geq  1} = 1 \implies z^2 \leq  1$$
+
+  \begin{flushright}
+    \textbf{Apartado d)}
+  \end{flushright}
+
+  $$ z = xy+A(x^2-y^2) $$
+  
+  $$ \left\{
+  \begin{array}{ll}
+    \dfrac{\partial }{\partial x} & p = y+A'(x^2-y^2)2x\\ 
+    \dfrac{\partial }{\partial y} & q = x + A'(x^2-y^2)2y\\ 
+  \end{array}
+  \right. $$
+
+  $$ yp = y^2+2xyA'(^2-y^2) $$
+  $$ xq = x^2+2xyA'(^2-y^2) $$
+  Restando ambas:
+  $$ yp - xq = y^2-x^2 $$
+
+  Y tendremos una ecuación lineal
+\end{exercise}
+
+
 \end{document}
