@@ -361,6 +361,54 @@ $$ \forall w \in T_pS \hspace{1cm} <d(exp_p)_v(v), d(exp_p)_v(w)> = <v,w> $$
   A tomar por culo, 17 de Febrero y 18 de Febrero, os la veis cracks.
 \end{demonstration}
 
+\begin{center}
+\textbf{Teorema 3.8, Propiedad minimizante de las geodésicas}
+\end{center}
+Vamos a demostrar la primera parte, antes de tomar un disco geodésico.
+\begin{demonstration}
+  Tomamos $ \alpha [a,b] \to V \hspace{0.5cm} \left\{ \begin{array}{l}
+    \alpha (a)=p_0\\
+    \alpha (b)=p
+  \end{array} \right. $
+
+  El caso $p=p_0$ es sencillo pero no lo he podido copiar.
+
+  El caso $p \ne p_0$ nos da que $\alpha (a) \ne \alpha (b)$, y tenemos que $\exists t_0 \in [a,b]$ de tal modo que $\alpha (t_0) = p_0$ y $\alpha (t) \ne p_0\ \forall t>t_0$.
+
+  $$ L(\alpha )= \int_{a}^{b}||\alpha '|| \geq \int_{t_0}^{b}||\alpha '|| $$
+
+  Consideramos $\alpha $ restringiéndonos a $[t_0,b]$. Lo reparametrizamos para que esté definido entre $[0,1]$, y vuelvo a llamar $\alpha $ a ese trozo. Ahora tenemos:
+  $$ \alpha_2 :[0,1] \to V \hspace{1cm} \left\{ \begin{array}{l}
+    \alpha_2 (0) = p_0\\
+    \alpha_2 (1) = p\\
+    \alpha_2 (t) \ne p_0\ \forall t > 0
+  \end{array} \right. $$
+
+  $$ L(\alpha ) \geq L(\alpha _2) = \int_{0}^{1}||\alpha _2(t)||dt $$
+
+  Defino ahora $\alpha _3(t)$ tal que
+  $$ \alpha _3(t) = (exp_{p_0}|_ \mathcal{U})^{-1} (\alpha _3)(t) \in \mathcal{U} , \ \forall t \in [0,1] $$
+
+  $$ \left\{ \begin{array}{l}
+    \alpha _3(0) = 0\\
+    \alpha _3(1) = v_p\\
+    \alpha _3(t) \ne 0 , \ \forall t > 0
+  \end{array} \right.  \hspace{1cm} r(t) = ||\alpha _3(t)||>0 , \ \forall t \in (0,1]$$
+
+  $$ V(t) = \dfrac{\alpha _3(t)}{||\alpha _3(t)||} = \dfrac{\alpha _3(t)}{r(t)} , \ t>0 $$
+
+  $$ \alpha _3(t) = r(t) \cdot V(t) \hspace{1cm} \alpha_2 (t) ) exo_{p_0}(r(t) \cdot V(t))$$
+
+  $$ \alpha _2'(t) = d(exp_{p_0})_{r(t) \cdot V(t)}(r'(t) \cdot V(t) + r(t) \cdot V'(t)) = r'(t) \cdot d(exp_{p_0})_{r(t)  \cdot V(t)} (V(t)) + r(t) \cdot d(exp_{p_0})_{r(t) \cdot V(t)}(V'(t)) $$
+
+  %$$ ||\alpha _2'(t)||^2=r'(t)^2 \cdot ||d(exp_{p_0})_{r(t) \cdot V(t)}(V(t))||^2 + 2\cdot r(t) \cdot r'(t)<d(exp_{p_0}_{r(t) \cdot V(t)})(V(t)), d(exp_{p_0}_{r(t) \cdot V(t)})(V'(t))>$$
+%TODO DA ERROR
+  %$$+ r(t)^2 ||d(exp_{p_0}_{r(t) \cdot V(t)})(V'(t))||^2$$
+
+  Esto se está emporrando
+
+
+\end{demonstration}
 
 
 \end{document}
