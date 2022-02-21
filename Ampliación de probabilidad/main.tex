@@ -469,5 +469,61 @@
 
 \end{exercise}
 
+
+\begin{exercise}
+    \textbf{Primer ejercicio de la primera tarea}
+    $$ f (x,y) = k y I_{D}\hspace{5mm} D = \{(x,y) \in \mathbb{R}^2:\ 0<x<1,\ 0<y<x\} $$
+    
+    \begin{flushright}
+        \textbf{Apartado a)}
+    \end{flushright}
+    \textbf{Calcular $ k $, y $ E(Y^{n}(1-Y)^{m}) $ y con esto los momentos $ \alpha_{r} $. Con esto calcular, si se puede, la función generatriz de momentos.}
+
+
+    Dejamos el cálculo de $ k $ para luego. Vamos con $ f_{2} $:
+    $$ f_{2}(y) = \int\limits_{\mathbb{R}}^{}f(x,y)dx = \int\limits_{y}^{1} ky dx = ky(1-y)\ y \in (0,1) $$
+
+    $$ E(Y^{n}(1-y)^{m}) = \int\limits_{0}^{1}k y ^{m}(1-y)^{n} y (1-y)dy = kB(m+2,n+2) = k \dfrac{\Gamma(m+2)\Gamma(n+2)}{\Gamma(m+n+4)} = $$
+    $$ = k \dfrac{(m+1)!(n+1!)}{(m+n+3)!} $$
+
+    Haciendo $ n = 0 $ obtenemos $ \alpha_{r} = E(Y^{r}) $
+    $$ \alpha_{r} = k \dfrac{(r+1)!}{(r+3)!} = \dfrac{k}{(r+3)(r+2)} $$
+
+    Para obtener el valor de $ k $ podemos haciendo $ m = n = 0 $:
+    $$ m = n = 0 \implies \int\limits_{0}^{1}k f_{2}(y)dy = k \dfrac{1}{3!} = \dfrac{k}{6} = 1 \implies k = 6 $$
+
+    Como $ Y $ es acotada entre 0 y 1, $ E(e^{aY}) = E(e^{-aY}) $ son finitos, con lo que podemos expresar $ g(t) $ como la siguiente serie que será convergente:
+    $$ g(t) = 6\sum\limits_{r=0}^{+\infty} \dfrac{1}{(r+3)(r+2)r!} t ^{r} $$
+
+
+    \begin{flushright}
+        \textbf{Apartado b)}
+    \end{flushright}
+
+    \textbf{Calcular la curva de regresión de $ X $ sobre $ Y $}
+
+    $$ x = m_{1|2}(y) = E(X|Y = y) = \int\limits_{}^{} x f_{1|2(x|y)}dx $$
+
+    Dado $ y \in (0,1) $
+    $$ f_{1|2}(x|y) = \left\{
+    \begin{array}{lr}
+        \dfrac{6y}{6y(1-y)} = \dfrac{1}{1-y} & x \in (y,1)\\ 
+        0 & x \not \in (y,1)
+    \end{array}
+    \right.$$
+
+    $$ \int\limits_{}^{} x f_{1|2(x|y)}dx = \int\limits_{y}^{1} \dfrac{x}{1-y}dx = \dfrac{1}{2} \dfrac{1-y^2}{1+y} = \dfrac{1}{2}(1+y) $$
+    
+    \begin{flushright}
+        \textbf{Sabiendo la recta de regresión de $ Y $ sobre $ X $, $ x = \dfrac{2}{3}x $ y la anterior curva, calcular $ E(X),\ \rho $}
+    \end{flushright}
+
+    Ambas rectas se cortan en el punto $ (E(X),E(Y)) $. 
+
+    Utilizando las dos anteriores rectas tenemos las pendientes $ \beta_{X/Y},\ \beta_{Y/X} $, con esto podemos calcular $ \rho $ despejando.
+
+
+\end{exercise}
+
 \end{document}
 
