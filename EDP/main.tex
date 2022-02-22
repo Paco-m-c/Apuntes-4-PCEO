@@ -643,6 +643,59 @@ De esta forma podemos obtener una solución general para la ecuación cuasi line
 \end{example}
 
 
+\section{EDP's de segundo orden}
+
+Las ecuaciones de la forma:
+$$ A_{11} \dfrac{\partial ^2}{\partial x^2} + A_{12} \dfrac{\partial ^2}{\partial x \partial y} + A_{22} \dfrac{\partial ^2}{\partial y^2} +A_{01} \dfrac{\partial }{\partial x} + A_{02} \dfrac{\partial }{\partial y} + A_0 $$
+
+Las trataremos de ver como polinomios:
+$$ A_{11} x^2 + A_{12} xy + A_{22} y^2 +A_{01} x + A_{02} y + A_0 $$
+
+Por ejemplo, la ecuación de ondas:
+
+$$ \dfrac{\partial ^2u}{\partial x^2}- \dfrac{\partial ^2u}{\partial y^2} = 0 $$
+$$ \dfrac{\partial ^2}{\partial x^2}- \dfrac{\partial ^2}{\partial y^2} = \left( \dfrac{\partial }{\partial x} + \dfrac{\partial }{\partial y} \right) \left( \dfrac{\partial }{\partial x}- \dfrac{\partial }{\partial y}  \right) $$
+
+\begin{method}
+  \textbf{Cambio de variable}\\
+
+  A partir de la ecuación en $ u(x,y) $, haremos los cambios de variable de la forma:
+  $$ \left\{
+  \begin{array}{l}
+    t = \alpha x + \beta y\\ 
+    s = \gamma x + \delta y 
+  \end{array}
+  \right.\hspace{5mm} \begin{vmatrix} \alpha & \beta \\ \gamma & \delta  \end{vmatrix} \ne 0 $$
+  
+  Este cambio nos proporciona las siguientes ecuaciones en $ \overline{u}(s,t) $:\footnote{Las erratas en estas cuentas no son probables, son seguras}
+  $$ \dfrac{\partial u}{\partial x} = \dfrac{\partial \overline{u}}{\partial t} \dfrac{\partial  t}{\partial x} + \dfrac{\partial \overline{u}}{\partial s} \dfrac{\partial s}{\partial x} = \alpha \dfrac{\partial \overline{u}}{\partial t} + \gamma \dfrac{\partial \overline{u}}{\partial s}$$
+  $$ \dfrac{\partial u}{\partial y} = ... = \beta \dfrac{\partial \overline{u}}{\partial t}+\delta \dfrac{\partial \overline{u}}{\partial s} $$
+  $$ \dfrac{\partial ^2 u}{\partial x^2} = \alpha \dfrac{\partial }{\partial x} \left( \dfrac{\partial \overline{u}}{\partial t}\right) + \gamma \dfrac{\partial }{\partial x} \left( \dfrac{\partial \overline{u}}{\partial s}\right) = \alpha \left( \alpha \dfrac{\partial ^2 \overline{u}}{\partial t^2}+\gamma \dfrac{\partial ^2\overline{u}}{ \partial s^2}\right) = \alpha^2 \dfrac{\partial ^2 \overline{u}}{\partial t^2} + 2alfa \gamma \dfrac{\partial ^2 \overline{u}}{\partial t \partial s} +\gamma^2 \dfrac{\partial ^2 \overline{u}}{\partial s^2}  $$
+  $$ \dfrac{\partial ^2 u}{\partial y^2} = \beta^2 \dfrac{\partial ^2 \overline{u}}{\partial t^2}+2 \beta \delta \dfrac{\partial ^2\overline{u}}{\partial t\partial s} +\delta ^2 \dfrac{\partial^2 \overline{u}}{\partial s} $$
+  $$ \dfrac{\partial ^2u}{\partial x \partial y} = \alpha \left(\beta \dfrac{\partial ^2\overline{u}}{\partial t^2}+\delta \dfrac{\partial ^2\overline{u}}{\partial t \partial s}\right) + \gamma \left(\beta \dfrac{\partial ^2 \overline{u}}{\partial t \partial s} + \delta \dfrac{\partial ^2 \overline{u}}{\partial s^2}\right) = \alpha \beta \dfrac{\partial \overline{u}}{\partial t^2} + (\alpha \delta + \gamma \beta) \dfrac{\partial ^2 \overline{u}}{\partial t \partial s} + \gamma \delta \dfrac{\partial ^2 \overline{u}}{\partial s^2} $$
+
+  Sustituyendo en $ Au_{xx} + Bu_{yy} + Cu_{xy} $ tenemos:
+  $$ (A \alpha ^2+B \alpha \beta +C \beta^2)\overline{u}_{tt} + (A_2 \alpha \gamma +B(\alpha \delta + \beta \gamma)+C 2 \beta \delta)\overline{u}_{ts} + (A \gamma ^2  +B\gamma \delta + C \delta ^2 )\overline{u}_{ss}$$
+
+  Tomando el coeficiente de $ \overline{u}_{tt} $ y suponiendo $ \beta \ne 0 $ nos queda al igualar a 0 una ecuación de segundo grado:
+  $$ A \left(\dfrac{\alpha}{\beta}\right)^2 + B\left(\dfrac{\alpha}{\beta}\right) +C = 0 $$
+  $$ A z^2 +Bz +C  =0 \implies \left\{
+  \begin{matrix}
+    z_1 = \dfrac{\alpha}{\beta}\\ 
+    z_2 = \dfrac{\gamma}{\delta} & (\text{al hacer lo mismo en $ \overline{u}_{ss} $})
+  \end{matrix}
+  \right. $$
+
+  Aquí me reperdí, copio:
+  $$ \gamma(2A \alpha + B \beta) = 0 $$
+  $$ \gamma (\underbrace{B \alpha +2C \beta})_{0} $$
+
+\end{method}
+
+
+
+
+
 \chapter{Ejercicios Resueltos}
 \section{Hoja 1}
 \setcounter{ex}{1}
@@ -686,7 +739,7 @@ De esta forma podemos obtener una solución general para la ecuación cuasi line
   $$ yp - xq = y^2-x^2 $$
 
   Y tendremos una ecuación lineal
-\end{exercise}
 
+\end{exercise}
 
 \end{document}
