@@ -692,6 +692,94 @@ $$ \dfrac{\partial ^2}{\partial x^2}- \dfrac{\partial ^2}{\partial y^2} = \left(
 
 \end{method}
 
+\chapter{Fourier}
+%de forma no ironica asi le ha llamado a la seccion
+
+\section{Serie trigonométrica}
+
+\begin{definition}
+  Una \textbf{serie trigonométrica} es de la forma:
+  $$ \dfrac{a_0}{2} + \sum\limits_{n=1}^{+\infty} (a_n \cos(nx)+b_n \sin(nx)) $$
+
+  Estas series son $ 2\pi- $periódicas y las definimos en $ [-\pi,\pi] $ o $ [0,2\pi] $.
+\end{definition}
+
+Si consiguiéramos demostrar que las series de Fourier son convergentes de manera uniforme:
+
+Fijamos un $ n $ y multiplicamos por $ \cos(nx) $
+$$ f(x) \cos(nx) = \dfrac{a_0}{2} \cos(nx) + \sum\limits_{k=1}^{\infty} a_{k}\cos(kx)\cos(nx) + b_{k} \sin(kx) \cos(nx) $$
+
+Integrando ahora:
+$$ \int\limits_{0}^{2 \pi} f(x) \cos(nx)dx = \underbrace{\int\limits_{0}^{2 \pi} \dfrac{a_0}{2} \cos(nx) dx}_{\substack{\text{
+si $ n = 0 \implies \pi a_0 $}\\\text{si $ n \ne 0 \implies 0 $}}} + \sum\limits_{k=1}^{\infty} \int\limits_{0}^{2 \pi}a_{k}\cos(kx)\cos(nx)dx + \int\limits_{0}^{2 \pi}b_{k} \sin(kx) \cos(nx)dx $$
+
+Usando identidades trigonométricas podemos ver que:
+$$ \int\limits_{0}^{2 \pi}a_{k} \cos(kx)\cos(nx)dx = \left\{
+\begin{array}{lr}
+  0 &  k \ne n\\ 
+  2\pi  & k = n
+\end{array}
+\right. $$
+
+$$ \int\limits_{0}^{2\pi}b_{k} \sin(kx) \cos(nx) dx = 0 $$
+
+Luego podremos despejar $ a_n $ como:
+$$  a_n = \dfrac{1}{\pi} \int\limits_{0}^{2\pi}f(x) \cos(nx)dx  $$
+
+Con cuentas análogas podemos hacer:
+$$ b_n = \dfrac{1}{\pi} \int\limits_{0}^{2\pi}f(x) \sin(nx)dx $$
+
+\begin{definition}
+  \textbf{Espacio de Hilbert}\\ 
+  Definimos $ H $ el espacio de Hilbert como un espacio vectorial con producto escalar que cumple las siguientes propiedades:
+  \begin{itemize}
+    \item Es simétrico
+    \item $ <x,x> \geq  0 $
+    \item $ <x,x> =0 \implies x = 0 $
+    \item Es $ \mathbb{R}-$lineal
+    \item Es $ \mathbb{C}-$hermítico
+  \end{itemize}
+  Esto último quiere decir que se cumple:
+  $$ <\lambda x,y> = \lambda <x,y> $$
+  $$ <x,\lambda y> = \overline{\lambda} <x,y> $$
+  $$ <x,y> = \overline{<y,x>} $$
+\end{definition}
+
+Con esta definición de producto escalar podemos llegar a esta propiedad:
+$$ <x+y,x+y> = \underbrace{<x,x>}_{\geq 0} + \underbrace{<x,y> + <y,x>}_{\substack{<x,y>+\overline{<x,y>}\\2Re(<x,y>)}} + \underbrace{<y,y>}_{\geq  0} $$
+
+Otras propiedades de este producto son:
+
+\begin{itemize}
+  \item $ \sqrt{<x,x>} $ define una norma $ \|x\|  $ que cumple $ \left\{
+  \begin{array}{l}
+    \|\lambda x\| = |\lambda|\|x\|\\ 
+    \|x\| = 0 \iff x = 0\\
+    \|x+y\| \leq  \|x\| + \|y\|
+  \end{array}
+  \right. $
+  \item Desigualdad de Cauchy-Schwarz:
+    $$ |<x,y>|^2 \leq  <x,x><y,y> $$
+\end{itemize}
+
+
+
+
+
+\begin{definition}
+  \textbf{Polinomio trigonométrico}
+
+  Llamamos \textbf{polinomios trigonométricos} a las sumas de la forma:
+  $$ \dfrac{a_0}{2} = \sum\limits_{n=1}^{N}(a_n \cos(nx)+b_n \sin(nx) $$
+
+\end{definition}
+
+\begin{theorem}
+  \textbf{Stone-Weierstrass ($ \mathbb{R} $)}
+
+  Sea $ K $ compacto  y $ A \subset C(K) $ una álgebra (subespacio vectorial tal que $ f,g \in A \implies fg \in A $) tal que $ A  $ contiene las constantes y $ A $ separa puntos de $ K $, es decir, $ \forall t,s \in K,\ t\ne s,\ \exists f \in A f(t) \ne f(s) $. Entonces $ A $ es denso en $ (C(K),\|\cdot \|_{\infty}) $.
+\end{theorem}
+
 
 
 
@@ -739,6 +827,133 @@ $$ \dfrac{\partial ^2}{\partial x^2}- \dfrac{\partial ^2}{\partial y^2} = \left(
   $$ yp - xq = y^2-x^2 $$
 
   Y tendremos una ecuación lineal
+
+\end{exercise}
+
+\setcounter{ex}{8}
+
+\begin{exercise}
+  Recordemos el procedimiento, tenemos la ecuación de primer orden no lineal $ u_{x}u_{y}-u $. El método dado para resolver esto consiste en un sistema de bandas características en 5 variables. En este sistema encontraremos una solución que dependa de un parámetro para poder expresar $ p,q $ en función de ese parámetro e integrar la igualdad $ dz = pdx+qdy $ y llegar a una función de la forma $ f(x,y,z,c_1,c_2) $.
+
+  Primero definimos $ F(x,y,z,p,q) = pq-z = 0 $ y tomamos el sistema:
+  $$ \left\{
+  \begin{array}{l}
+    x' = F_{p} \\ 
+    y' = F_{q} \\ 
+    z ' = pF_{p} +qF_{q} \\ 
+    p' = -F_{x}+pF_{z}\\ 
+    q' = -F_{y}-qF_{z} 
+  \end{array}
+  \right. $$
+  Este será el sistema autónomo que tenemos que resolver:
+
+  $$ \left\{
+    \begin{array}{lll}
+      x' = F_{p} &  = q\\ 
+      y' = F_{q} & = p\\ 
+      z ' = pF_{p} +qF_{q} & = 2pq \\ 
+      p' = -F_{x}+pF_{z} & = p & \to p(t) = \alpha e^{t}\\ 
+      q' = -F_{y}-qF_{z} & = q  & \to q(t) = \beta e^{t}
+    \end{array}
+    \right. $$
+
+    Con las dos últimas líneas podemos solucionar las tres primeras:
+    $$ \left\{
+    \begin{array}{ll}
+      x' = \beta e^{t} & x = \beta e^{t}\delta\\ 
+      y' = \alpha e^{t} & y = \alpha e^{t}+\delta\\ 
+      z' = 2 \alpha \beta e^{2t} & z = \alpha \beta e^{2t} + \eta 
+    \end{array}
+    \right. $$
+
+    Tenemos que encontrar una relación $ H(x,y,z,p,q,c_1) = 0 $. Podemos tomar que $ x-q = c_1 $, $ H(x,y,z,p,q,c_1) = x-q-x_1 = 0 $. Despejamos ahora $ p,q $ de igualar $ F $ y $ H $ a 0:
+    $$ \left\{
+    \begin{array}{lll}
+      F = 0 & pq = z & p = \dfrac{z}{x-c_1}\\ 
+      H = 0 & x-q = c_1 & q = x-c_1
+    \end{array}
+    \right.  $$
+
+    Tenemos entonces la 3-forma:
+    $$ dz = \dfrac{z}{x-c_1}dx + (x-c_1)dy $$
+
+    Podemos comprobar que esto es integrable viendo que $ (\dfrac{z}{x-c_1}.x-c_1,-1) $ es ortogonal a su rotacional:
+
+    $$ rot =  \begin{vmatrix} i & j & k \\ 
+    \dfrac{\partial }{\partial x} & \dfrac{\partial }{\partial y} & \dfrac{\partial }{\partial z} \\ 
+  \dfrac{z}{x-c_1} &  x-c_1 & -1  \end{vmatrix} = \left(0,\dfrac{1}{x-c_1},1\right) $$
+
+    Entonces estos dos campos sí son ortogonales, lo que nos indica que no nos hemos equivocado con las cuentas hasta ahora.
+
+    Para resolver la 3-forma tomamos $ z = cte $, resolvemos y aplicamos el método de variación de las constantes.
+
+      $$ \dfrac{z}{x-c_1} dx + (x-c_1)dy = 0 $$
+      $$ \dfrac{z}{(x-c_1)^2}dx +dy = 0 $$
+      $$ \int \dfrac{z}{(x-c_1)^2}dx +\int dy = 0 $$
+      $$ -\dfrac{z}{x-c_1} + y = g\ (cte)  $$
+      
+      Para usar variación de las constantes hacemos $ g = g(z) $:
+      $$ G(x,y,z) = -\dfrac{z}{x-c_1} + y - g(z)  $$
+
+      Calculamos la derivadas parciales respecto de cada variable:
+      $$ \dfrac{z}{(x-c_1)^2}dx + dy + \left( \dfrac{-1}{x-c_1}-g'(z) \right)dz $$
+      
+      Multiplicamos por $ (x-c_1) $ y comparamos el término de $ dz $:
+      $$ \dfrac{z}{(x-c_1)}dx + (x-c_1)dy + \left( {-1}-g'(z)(x-c_1) \right)dz $$
+      $$ -1 -(x-c_1)g'(z) = -1 \implies (x-c_1)g'(z) = 0 \implies g'(z) = 0 \implies g(z) = c_2 $$
+
+      Entonces llegamos a la ecuación de la solución completa:
+      $$ 0 = f(x,y,z,c_1,c_2) = \dfrac{-z}{x-c_1} + y -c_2  $$
+
+      O análogamente:
+      $$ z = (x-c_1)(y-c_2)\hspace{10mm} z-(x-c_1)(y-c_2) = 0 $$
+
+      Buscamos ahora la solución que contiene a la recta $ x = t,\ y = 1-t,\ z = 1 $. Nos tiene que salir una familia que dependa de un solo parámetro $ \lambda $ en vez de $ c_1,c_2 $.
+      
+      La solución tiene el vector normal $ (y-c_2,x-c_1,-1) $ que sustituyendo con las ecuaciones de la recta queda $ (1-t-c_2,t-c_1,-1) $. Este vector tendrá que ser normal al normal de la recta: $ (1,-1,0) $. El producto escalar deberá de anularse lo que nos queda:
+      $$ 1-t-c_2-t+c_1 = 0  $$
+      $$ 1-t-c_2=t-c_1 $$
+      $$ 1 = (t-c_1)(1-t-c_2) $$
+      Dos números que son iguales cuyo producto es 1, ambos son 1 o -1, supongamos que son 1:
+      $$ \left\{
+      \begin{array}{l}
+        t-c_1 = 1\\ 
+        1-t-c_2 = 1
+      \end{array}
+      \right. $$
+      $$  1-c_1-c_2 = 2 $$
+      $$ c_1+c_2+1 = 0 \implies \left\{
+      \begin{array}{l}
+        c_1 = \lambda\\ 
+        c_2 = -1-\lambda 
+      \end{array}
+      \right.$$
+
+      Sustituimos en la solución que teníamos:
+      
+      $$ z = (x-\lambda)(y+\lambda +1) $$
+
+      Derivando con respecto de $ \lambda $:
+      $$  0 = -(y+\lambda +1 )+ x -\lambda = -y-\lambda-1+x-\lambda $$
+      $$  \lambda = \dfrac{1}{2}(x-y-1) $$
+
+      Volviendo a la solución de nuevo:
+      $$ z = (x-\dfrac{1}{2}(x-y-1))(y+\dfrac{1}{2}(x-y-1)+1) $$
+      $$ 4z = (2x-x+y+1)(2y+x-y-1+2)=(x+y+1)(x+y+1) $$
+      $$ z = \dfrac{1}{4}(x+y+1)^2 $$
+
+      Alternativamente, podríamos haber tomado -1 en lugar de 1. En este caso habríamos llegado a una solución alternativa:
+      $$ z = \dfrac{1}{4}(x+y-3)^2 $$
+
+      % Para que la recta que nos pidan sea tangente a la superficie necesitamos que los siguientes vectores sean ortogonales:
+      % $$ \left\{
+      % \begin{array}{l}
+      %   \bigtriangledown (z-(x-c_1)(y-c_2)) = (y-c_2,x-c_1,-1)\\ 
+      %   \dfrac{d}{dt} (1-t-c_2,t-c_1,-1) = (1,-1,0)
+      % \end{array}
+      % \right. $$
+
+      % $$ 1-t-c_2-t+c_1 = 0 $$
 
 \end{exercise}
 

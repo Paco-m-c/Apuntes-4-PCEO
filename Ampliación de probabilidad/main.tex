@@ -469,15 +469,14 @@
 
 \end{exercise}
 
+\chapter{Relación 3}
 
 \begin{exercise}
-    \textbf{Primer ejercicio de la primera tarea}
     $$ f (x,y) = k y I_{D}\hspace{5mm} D = \{(x,y) \in \mathbb{R}^2:\ 0<x<1,\ 0<y<x\} $$
     
     \begin{flushright}
         \textbf{Apartado a)}
     \end{flushright}
-    \textbf{Calcular $ k $, y $ E(Y^{n}(1-Y)^{m}) $ y con esto los momentos $ \alpha_{r} $. Con esto calcular, si se puede, la función generatriz de momentos.}
 
 
     Dejamos el cálculo de $ k $ para luego. Vamos con $ f_{2} $:
@@ -500,7 +499,6 @@
         \textbf{Apartado b)}
     \end{flushright}
 
-    \textbf{Calcular la curva de regresión de $ X $ sobre $ Y $}
 
     $$ x = m_{1|2}(y) = E(X|Y = y) = \int\limits_{}^{} x f_{1|2(x|y)}dx $$
 
@@ -515,13 +513,78 @@
     $$ \int\limits_{}^{} x f_{1|2(x|y)}dx = \int\limits_{y}^{1} \dfrac{x}{1-y}dx = \dfrac{1}{2} \dfrac{1-y^2}{1+y} = \dfrac{1}{2}(1+y) $$
     
     \begin{flushright}
-        \textbf{Sabiendo la recta de regresión de $ Y $ sobre $ X $, $ x = \dfrac{2}{3}x $ y la anterior curva, calcular $ E(X),\ \rho $}
+        \textbf{Apartado c)}
     \end{flushright}
 
-    Ambas rectas se cortan en el punto $ (E(X),E(Y)) $. 
+    Ambas rectas se cortan en el punto $ (E(X),E(Y)) $, calculando la intersección obtenemos que las rectas se cortan en el punto $ (E(X),E(Y) = (\dfrac{3}{4},\dfrac{1}{2})$. Otra forma de calcularlo sería utilizar que ya sabemos $ E(Y) $ entonces podemos ver qué valor toma la recta $ x = \dfrac{1}{2}(1+y) $ para calcular $ E(X) $. 
 
     Utilizando las dos anteriores rectas tenemos las pendientes $ \beta_{X/Y},\ \beta_{Y/X} $, con esto podemos calcular $ \rho $ despejando.
 
+    $$ \beta_{Y/X} = \dfrac{\sigma_{XY}}{\sigma_{X}^2}\hspace{10mm} \beta_{X/Y} = \dfrac{\sigma_{XY}}{\sigma_{Y}^2} $$
+
+    Entonces, como $ \rho = \dfrac{\sigma_{XY}}{\sigma_{X}\sigma_{Y}} $, tenemos que $ \rho^2 = \beta_{Y/X}\beta_{X/Y} $:
+    $$ \rho ^2 = \dfrac{2}{3}\dfrac{1}{3} = \dfrac{1}{3} \implies \rho = \dfrac{1}{\sqrt{3}} $$
+
+\end{exercise}
+
+\begin{exercise}
+
+    \begin{flushright}
+        \textbf{Apartado a)}
+    \end{flushright}
+
+    $$ X = (X_1,X_2,X_3) \hspace{5mm} f(t_1,t_2,t_3) = \dfrac{1}{3}(t_1^2t_2+t_1t_3+t_1t_2t_3) $$
+    
+    Para calcular la función generatriz de $ X_{13} = (X_1,X_3) $, que es $ E(t_1^{X_1}t_3^{X_3}) $ usamos $ f(t_1,1,t_3) $:
+    $$ f_{13}(t_1,t_3) = \dfrac{1}{3}(t_1^2+2t_1t_3) $$
+
+    La distribución de $ X $ y la de $ X_{13} $ es fácil de expresar teniendo la función generatriz de probabilidad:
+    $$ p(2,1,0) = p(1,0,1) = p(1,1,1) = \dfrac{1}{3} \hspace{5mm} p(i,j,k) = 0\ resto $$
+    $$ p_{13}(2,0) = \dfrac{1}{3} \hspace{5mm} p_{13}(1,1) = \dfrac{2}{3} $$
+
+    Para estudiar la independencia entre $ X_1 $ y $ X_3 $ tendremos que calcular las funciones generatrices de probabilidad de esas vvaa:
+    $$ f_{1}(t_1) = f_{13}(t_1,1) = \dfrac{1}{3}(t_1^2+2t_1) $$
+    $$ f_{3}(t_3) = f_{13}(1,t_3) = \dfrac{1}{3}(1+2t_3) $$
+
+    Para demostrar la dependencia vemos que $ f_{1}f_{3} \ne f_{13} $
+
+\begin{flushright}
+    \textbf{Apartado b)}
+\end{flushright}
+
+    Por la independencia de los $ Z_i $ tenemos que la función generatriz de probabilidad de $ Z $ es:
+    $$ g(t_1,t_3) = (\dfrac{1}{3}(t_1^2+2t_1t_3))^{n} = \dfrac{1}{3^{n}}(t_1^2+2t_1t_3)^{n} $$
+
+    Tratamos de expresar esto como una serie o una suma finita para ver cómo es la distribución de $ Z $. Para ello, utilizaremos el Binomio de Newton.
+    $$ g(t_1,t_3) =\dfrac{1}{3^{n}} \sum\limits_{r=0}^{n} \binom{n}{r} t_1^{2r}(2t_1t_3)^{n-r} = \sum\limits_{r=0}^{n} \dfrac{1}{3^{n}} \binom{n}{r} t_1^{2r}2^{n-r}t_1^{n-r}t_3^{n-r} = $$
+    $$ = \sum\limits_{r=0}^{n} \dfrac{2^{n-r}}{3^{n}} \binom{n}{r} t_1^{n+r}t_3^{n-r} $$
+
+    Por tanto tenemos la distribución de $ Z $:
+    $$ P(X_1 = n+r,X_3 = n-r) = \dfrac{2^{n-r}}{3^{n}} \binom{n}{r} \ con \ r = 0,1,2,...,n $$
+
+
+\end{exercise}
+
+\begin{exercise}
+    \begin{flushright}
+        \textbf{Apartado a)}
+    \end{flushright}
+    Lo haces tú en tu casita crack.
+
+    \begin{flushright}
+        \textbf{Apartado b)}
+    \end{flushright}
+    Calcularemos los $ P(Z=r) $, primero tomemos $ r \geq 0 $:
+    $$ P (Z=r) = P(X-Y = r) = \sum\limits_{s=r}^{+\infty} P(X=s,Y=s+r) = \sum\limits_{s=r}^{+\infty} P (X=s)P(Y=s r) = p q ^{s} p q^{s-r} = \sum\limits_{s=0}^{+\infty}p^2q^{2s-r} = p^2 \sum\limits_{s=r}^{+\infty}q^{2s-r}  $$
+
+    Esto es una geométrica de razón $ q^2 $:
+    $$ P(Z=r) = \dfrac{p^2q^{r}}{1-q^2} = \dfrac{p^2q^{r}}{\underbrace{(1-q)}_{=p}(1+q)} = \dfrac{pq^{r}}{1+q} $$
+
+    Para calcular el caso $ r<0 $ y como $ X $ e $ Y $ tienen la misma distribución:
+    $$ P(Z=r) = P(X-Y = r) = P(Y-X = -r) = \dfrac{p^{q-r}}{1+q} $$
+
+    Y en general:
+    $$ P(Z=r) = \dfrac{pq^{|r|}}{1+q} $$
 
 \end{exercise}
 
