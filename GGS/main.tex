@@ -43,7 +43,7 @@
   \begin{array}{lllllll}
     \dfrac{D}{dt} : &  \mathfrak{X} & \to & \mathfrak{X} &&&\\
     & V & \sim & \dfrac{DV}{dt}: & I & \to & \mathbb{R}^{ 3 } \\
-    &&&&t & \sim & V'(t)<V'(t), N(t)>N(t)
+    &&&&t & \sim & V'(t) - <V'(t), N(t)>N(t)
   \end{array}
   $$
 Este operador es independiente de la orientación elegida para la superficie, pues estamos tomando sólo la parte tangente de $V^{\prime}$ (obsérvese que si cambiamos $N$ por $-N$ en la fórmula, el resultado es el mismo).
@@ -107,29 +107,35 @@ $$
 
   Esto demuestra que $\langle V, W\rangle$ es constante.
 \end{demonstration}
-
+\newpage
 \begin{center}
 \textbf{Proposición 1.8, la ecuación diferencial extrínseca de los campos paralelos}
 \end{center}
 \begin{demonstration}
-  PANIC
+  Como $ \dfrac{DV}{dt}(t) = V'(t) - <V'(t), N(t)>N(t) $, se tiene:
+  $$ \dfrac{DV}{dt}(t) = 0 \iff V'(t) = <V'(t), N(t)>N(t)  $$
+  Por otro lado, como $V$ y $N$ son ortogonales, $<V(t), N(t)>=0$ y derivando esta expresión obtenemos
+\begin{center}
+  \textbf{\color{red} RESULTADO IMPORTANTE}
+\end{center}
+  $$ <V'(t), N(t)> = -<V(t), N'(t)>  $$
+
+Por lo tanto,
+$$ \dfrac{DV}{dt}(t) = 0 \iff V'(t) + <V(t), N'(t)>N(t)=0 $$
 \end{demonstration}
+
 
 \begin{center}
 \textbf{Proposición 1.9, la ecuación diferencial intrínseca de los campos paralelos}
 \end{center}
 \begin{demonstration}
-  PANIC
-\end{demonstration}
-\newpage
-\begin{center}
-\textbf{Teorema 1.10, existencia y unicidad de campos paralelos}\footnote{Hay una demostración extrínseca y otra intrínseca en el libro. He decidido copiar la intrínseca porque leyéndola en diagonal he determinado que sería más sencilla, si queréis buscar la otra (fruto de vuestra curiosidad o esquizofrenia paranoide), está en el libro.}
-\end{center}
-\begin{demonstration}
 
-  Hay que encontrar $V \in \mathfrak{X}(\alpha)$ tal que $D V / d t=\mathbf{0}$.
+  Utilizando la fórmula que vimos en la primera proposición del tema,
+  $$
+  V^{\prime}=\left(a^{\prime}+a u^{\prime} \Gamma_{11}^{1}+a v^{\prime} \Gamma_{12}^{1}+b u^{\prime} \Gamma_{12}^{1}+b v^{\prime} \Gamma_{22}^{1}\right) X_{u} + \left(b^{\prime}+a u^{\prime} \Gamma_{11}^{2}+a v^{\prime} \Gamma_{12}^{2}+b u^{\prime} \Gamma_{12}^{2}+b v^{\prime} \Gamma_{22}^{2}\right) X_{v}
+  $$
 
-  Sea $(U, X)$ una parametrización de $S$ con $\alpha\left(t_{0}\right) \in X(U)$, y sea $\alpha(t)=X(u(t), v(t))$. Utilizando la expresión de la demostración de la proposición 1.4 para la derivada covariante de un campo $V \in \mathfrak{X}(\alpha)$, como $D V / d t=\mathbf{0}$, los coeficientes de los vectores $X_{u}$ y $X_{v}$ tienen que anularse; luego si representamos $V$ como $V(t)=a(t) X_{u}(u(t), v(t))+b(t) X_{v}(u(t), v(t))$, se verificará que
+  Para la derivada covariante de un campo $V \in  \mathfrak{X}$, los coeficientes de los vectores $X_u$ y $X_v$ tienen que anularse si queremos que sea paralelo; luego si representamos $V$ como $V(t)=a(t) X_{u}(u(t), v(t))+b(t) X_{v}(u(t), v(t))$, se verificará que
 $$
 \left\{\begin{array}{l}
 a^{\prime}+a u^{\prime} \Gamma_{11}^{1}+\left(a v^{\prime}+b u^{\prime}\right) \Gamma_{12}^{1}+b v^{\prime} \Gamma_{22}^{1}=0 \\
@@ -137,20 +143,120 @@ b^{\prime}+a u^{\prime} \Gamma_{11}^{2}+\left(a v^{\prime}+b u^{\prime}\right) \
 \end{array}\right.
 $$
 
-En otras palabras, se prueba que siempre es posible 'fijar un rumbo' en la superficie. Una vez fijado, ya se puede hablar de si se mantiene o no constante la dirección de cualquier otro campo.
+\end{demonstration}
+\newpage
+\begin{center}
+\textbf{Teorema 1.10, existencia y unicidad de campos paralelos}\footnote{Hay una demostración extrínseca y otra intrínseca en el libro. He decidido copiar la extrínseca porque es la que hizo en clase, si queréis buscar la otra (fruto de vuestra curiosidad o esquizofrenia paranoide), está en el libro.}
+\end{center}
+\begin{demonstration}
 
-Tenemos por tanto un sistema de ecuaciones diferenciales cuya condición inicial es $$V\left(t_{0}\right)=V_{0}=\left(a\left(t_{0}\right), b\left(t_{0}\right)\right)$$ El teorema de existencia y unicidad de soluciones para tales sistemas establece el resultado buscado (además, se puede obtener la solución de forma explícita al resolverlo, siempre y cuando esto sea posible).
+  Escribiendo $V=\left(V_{1}, V_{2}, V_{3}\right)$ y $N=\left(N_{1}, N_{2}, N_{3}\right)$, la ecuación $$V'(t)+<V(t),N'(t)>N(t)=0$$ se traduce en
+  $$
+  0=V_{i}^{\prime}(t)+\left(\sum_{j=1}^{3} V_{j}(t) N_{j}^{\prime}(t)\right) N_{i}(t)=V_{i}^{\prime}(t)+\sum_{j=1}^{3} N_{j}^{\prime}(t) N_{i}(t) V_{j}(t), \quad i=1,2,3 .
+  $$
+  Si representamos por $M(t)$ la matriz $M(t)=\left(N_{j}^{\prime}(t) N_{i}(t)\right)_{i, j=1}^{3}$, la expresión anterior se reescribe $V^{\prime}+M V=0$. Entonces, el teorema de existencia y unicidad de soluciones de ecuaciones diferenciales de primer orden garantiza la existencia de un único campo de vectores diferenciable $V$, solución de dicha ecuación (y por tanto de nuestra ecuación oroginal) con condición inicial $V\left(t_{0}\right)=V_{0}$.
 
+  Desde luego, $V$ es un campo paralelo ya que satisface $V'(t)+<V(t),N'(t)>N(t)=0$. Para concluir la demostración tenemos que probar que $V$ es tangente a $S$ a lo largo de $\alpha$; es decir, hay que ver que $\langle V(t), N(t)\rangle=0$ para todo $t \in I$.
+
+  Como $V_{0} \in T_{\alpha\left(t_{0}\right)} S$, claramente $\left\langle V_{0}, N\left(t_{0}\right)\right\rangle=0$. Por otro lado, dado que $V$ verifica la ecuación original, se tiene que $\left\langle V^{\prime}(t), N(t)\right\rangle+\left\langle V(t), N^{\prime}(t)\right\rangle=0$. Derivando entonces $\langle V(t), N(t)\rangle$ y utilizando dicha expresión obtenemos
+  $$
+  \langle V(t), N(t)\rangle^{\prime}=\left\langle V^{\prime}(t), N(t)\right\rangle+\left\langle V(t), N^{\prime}(t)\right\rangle=0 .
+  $$
+  En consecuencia, $\langle V(t), N(t)\rangle$ es constante y se anula en $t_{0}$, lo que demuestra que, en efecto, $\langle V(t), N(t)\rangle=0$.
 \end{demonstration}
 
+\begin{center}
+\textbf{Teorema 1.12}\footnote{El teorema 5.1.6 al que se refiere es el de existencia y unicidad de campos paralelos.}
+\end{center}
 
-
+\includegraphics[width=\textwidth]{1.12}
 
 
 
 
 
 \chapter{Capítulo 2}
+
+\begin{center}
+\textbf{Proposición 2.2, la ecuación diferencial extrínseca de las geodésicas}
+\end{center}
+\begin{demonstration}
+  Tenemos la descomposición, por la fórmula extrínseca del campo paralelo,
+  $$ \alpha '' (t) = \dfrac{D \alpha '}{dt}(t) +  <\alpha ''(t), N(t)>N(t) \footnote{La manera de obtener esto es considerar $\alpha '$ en lugar de $V$.}$$
+  Además, como $\left\langle\alpha^{\prime}(t), N(t)\right\rangle=0$, se tiene $\left\langle\alpha^{\prime \prime}(t), N(t)\right\rangle=-\left\langle\alpha^{\prime}(t), N^{\prime}(t)\right\rangle$. Luego
+$$
+\frac{D \alpha}{d t}(t)=\alpha^{\prime \prime}(t)+\left\langle\alpha'(t), N^{\prime}(t)\right\rangle N(t) .
+$$
+  Por lo tanto,
+  $$ \alpha \text{ geodésica} \iff \alpha ''(t) + <\alpha '(t), N'(t)>N(t) = \mathbf{0} $$
+\end{demonstration}
+
+\begin{center}
+\textbf{Proposición 2.6, ecuación diferencial intrínseca de las geodésicas}
+\end{center}
+
+\begin{demonstration}
+  Utilizando la fórmula que vimos en la primera proposición del tema,
+  $$
+  V^{\prime}=\left(a^{\prime}+a u^{\prime} \Gamma_{11}^{1}+a v^{\prime} \Gamma_{12}^{1}+b u^{\prime} \Gamma_{12}^{1}+b v^{\prime} \Gamma_{22}^{1}\right) X_{u} + \left(b^{\prime}+a u^{\prime} \Gamma_{11}^{2}+a v^{\prime} \Gamma_{12}^{2}+b u^{\prime} \Gamma_{12}^{2}+b v^{\prime} \Gamma_{22}^{2}\right) X_{v}
+  $$
+
+  Ahora, si en lugar de utilizar $V'$ utilizamos $\alpha'$, se tiene $a=u'$ y $b=v'$, y por lo tanto
+
+  $$
+  \left\{\begin{array}{l}
+  u''+ (u^{\prime})^2 \Gamma_{11}^{1}+2u'v' \Gamma_{12}^{1}+(v^{\prime})^2 \Gamma_{22}^{1}=0 \\
+  v''+ (u^{\prime})^2 \Gamma_{11}^{2}+2u'v' \Gamma_{12}^{2}+(v^{\prime})^2 \Gamma_{22}^{2}=0
+  \end{array}\right.
+  $$
+\end{demonstration}
+\begin{center}
+\textbf{Teorema 2.7, existencia y unicidad de geodésicas}
+\end{center}
+\textit{En palabras del sensei Alías, 'Hay mejores cosas que preguntar en un examen a parte de este resultado'. Igualmente, os dejo su demostración:}
+
+\includepdf[pages=-]{PDFs/2.7.pdf}
+
+\begin{center}
+\textbf{Proposición 2.10}
+\end{center}
+\includegraphics[width=\textwidth]{2.10}
+
+\begin{center}
+\textbf{Lema 2.11}
+\end{center}
+\begin{demonstration}
+  Sea $ \beta  $ una reparametrización de $ \alpha  $ que cumpla
+
+  $$ \left\{ \begin{array}{l}
+    \beta (s) = \alpha (t(s))\\
+    \alpha (t) = \beta (s(t))
+  \end{array} \right. $$
+
+$$ k_g^\alpha (t) = k_g^\beta (s(t)) \hspace{1cm} k_g^\beta (t) = <\beta '', J \beta'> = det(\beta '', N, \beta ') $$
+$$ \beta (s) = \alpha (t(s)) \to \beta '(s) = t'(s) \alpha '(t(s)) $$
+
+Como $\beta $ está parametrizado por la longitud de arco, entonces
+
+$$ 1=||\beta '(s)||=t'(s) \cdot ||\alpha '(t(s))|| \hspace{1cm}t'(s) = \dfrac{1}{||\alpha '||} $$
+
+$$ \beta '' = t''(s) \alpha '(t(s))  + (t'(s))^2 \alpha ''(t(s))$$
+
+Por lo tanto, $N(s) = N(\beta (s))= N(\alpha (t(s)))$.
+$$ k_g^\beta (s) = (t'(s))^3 \cdot det(\alpha ''(t(s)), N(\alpha (t(s))), \alpha '(t(s))) $$
+$$ k_g^\beta (s) = \dfrac{det(\alpha '', N \alpha , \alpha ' )}{||\alpha '||^3}(t(s))  $$
+$$ k_g^\alpha (t) = k_g^\beta (s(t)) = \dfrac{det(\alpha '', N , \alpha ' )}{||\alpha '||^3}(t)  $$
+
+No entiendo un carajo pero espero que ustedes lo hagan, un saludo.
+\end{demonstration}
+
+\begin{center}
+\textbf{2.13}
+\end{center}
+
+\includegraphics[width=\textwidth]{2.13}
+
+
 
 \begin{proposition}
   { \color{turquoise} \textbf{Proposición exclusiva de \textit{Apuntes PaChito ™}}}
@@ -208,34 +314,9 @@ Tenemos por tanto un sistema de ecuaciones diferenciales cuya condición inicial
 \textbf{Lema 3.2, Lema de homogeneidad de las geodésicas}
 \end{center}
   Lo más importante del lema son las fórmulas que aparecen centradas en su enunciado.
-\begin{demonstration}
-  Sea $p \in S$ y sea un vector tangente $v \in T_pS$. Entonces, $\exists \gamma _v \ : \ I_v \to S$. Como $\lambda \ne 0$, entonces $ \lambda v \in T_pS $.
 
-  Defino ahora $ \alpha (t) = \gamma _v (\lambda t) $.
-  $$ I_ \alpha = \{ t \in \mathbb{R} \ : \ \lambda t \in I_v  \} $$
-  $$ t \in I_ \alpha \iff \lambda t \in I_v  \iff t \in \dfrac{1}{\lambda } \cdot I_v $$
-
-  Luego otenemos que $\dfrac{1}{\lambda} I_v = I_ \alpha $. De esto deducimos que $\alpha (0) = p = \gamma _v(0)$.
-
-  $$ \alpha '(t) = \lambda \gamma '_v( \lambda t) \implies \alpha '(0) = \lambda \gamma' _v (0() = \lambda v$$
-
-  Y se obtiene que $\alpha$ es una geodésica, por ser reparametrización afín de una geométrica.
-
-  $$ \left\{ \begin{array}{l}
-    \alpha (t) = \gamma _v (\alpha t)\\
-    I_ \alpha  = \dfrac{1}{\lambda} I_v
-  \end{array} \right. \in  \mathcal{J}_{p, \lambda v} = \{ (I_{\alpha , \alpha }), ... \} \implies \dfrac{1}{\lambda} I_v \subseteq I_ {\alpha v}$$
-  $$\forall t \in \dfrac{1}{\lambda} I_v, \ \gamma _{\lambda v}(t) = \lambda _v( \lambda t)$$
-
-  Llamo ahora $w = \lambda v$.
-  $$ \mu = \dfrac{1}{\lambda} \implies \mu w = v $$
-  $$ \dfrac{1}{\mu} \cdot I_w \subseteq I_{\mu w}\ y\ \forall t \in \underbrace{ \dfrac{1}{\mu} I_w }_{ \lambda I_{\lambda v} } $$
-  $$ \gamma _{\mu w}(t) = \gamma _w(\mu t) \hspace{1cm} \dfrac{1}{\mu} \cdot I_w = \lambda I_ \lambda v \subseteq I_v$$
-  $$ I_{\lambda v} \subseteq \dfrac{1}{\lambda} I_v $$
-
-  Al final he tenido que copiar tal cual lo que pone en la pizarra y no tengo ni idea de si he demostrado algo o no.
-\end{demonstration}
-
+\includegraphics[width=\textwidth]{3.2}
+\newpage
 \begin{center}
 \textbf{Teorema 3.3, Propiedades de la aplicación exponencial}
 \end{center}
@@ -359,8 +440,13 @@ $$ \forall w \in T_pS \hspace{1cm} <d(exp_p)_v(v), d(exp_p)_v(w)> = <v,w> $$
   $$ \dfrac{\partial ^2 \psi}{\partial s^2}(s,0) = \gamma ''_v \text{ normal a }S \text{ en } \gamma _v(s) $$
   $$ \dfrac{\partial \psi}{\partial t}(s,0) = \dfrac{\partial }{\partial t}\left( \psi(s,t) \right) = \beta '_s(0) \in TS=T   $$
 
-  A tomar por culo, 17 de Febrero y 18 de Febrero, os la veis cracks.
+  A tomar por culo, os lo copio del libro:
 \end{demonstration}
+
+\includepdf[pages=-]{PDFs/3.6.pdf}
+
+\hspace*{-4cm}\includegraphics[width=\paperwidth]{3.6}
+
 
 \begin{center}
 \textbf{Teorema 3.8, Propiedad minimizante de las geodésicas}
@@ -389,6 +475,14 @@ Os animo a hacer un dibujo libre en lo que queda de página y enviármelo por tw
 \hspace*{-4cm}\includegraphics[width=\paperwidth]{3.9 2}
 \hspace*{-4cm}\includegraphics[width=\paperwidth]{3.9 3}
 \hspace*{-4cm}\includegraphics[width=\paperwidth]{3.9 4}
+
+\begin{center}
+\textbf{Teorema de Minding}
+\end{center}
+\includegraphics[width=\textwidth]{minding}
+\includepdf[pages=-]{PDFs/minding.pdf}
+
+
 
 
 
