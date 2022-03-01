@@ -780,8 +780,55 @@ Otras propiedades de este producto son:
   Sea $ K $ compacto  y $ A \subset C(K) $ una álgebra (subespacio vectorial tal que $ f,g \in A \implies fg \in A $) tal que $ A  $ contiene las constantes y $ A $ separa puntos de $ K $, es decir, $ \forall t,s \in K,\ t\ne s,\ \exists f \in A f(t) \ne f(s) $. Entonces $ A $ es denso en $ (C(K),\|\cdot \|_{\infty}) $.
 \end{theorem}
 
+\begin{definition}$  $\\
+  Sea $ (\Omega,\Sigma,\mu) $ un espacio de medida, denotamos a $ \mathcal{L}^2(\mu) $ a:
+  $$ \mathcal{L}^2(\mu) = \{f: \Omega \to [-\infty,+\infty]\ medible\ \int\limits_{\Omega}^{} |f|^2d \mu < +\infty\} $$
 
+  En este conjunto podemos definir la relación de equivalencia coincidir en casi todo punto:
+  $$ f \sim g \iff \mu(\{t:\ f(t) = g(t)\}) = 0  $$
 
+  Definimos $ L^2(\mu):= \mathcal{L}^2(\mu) / \sim $
+  
+
+\end{definition}
+
+\begin{proposition}
+  $ L^2(\mu) $ es un espacio vectorial en el que se define $ <f,g> = \int\limits_{}^{}fg d\mu $ y se cumple que:
+  \begin{itemize}
+    \item $ 0\leq  |f+g|^2 \leq  2|f|^2+2|g|^2 $
+    \item $|fg|\leq \dfrac{1}{4}((f+g)^2+(f-g)^2)$
+    \item $ \|f\|_{2} = \sqrt{<f,f>} $ es una norma
+    \item $ (L^2(\mu),\|\cdot \|_{2}) $ es completo
+  \end{itemize}
+  
+\end{proposition}
+
+La demostración del último punto puede encontrarse en el segundo apéndice de los apuntes de FVV3
+
+\begin{proposition}
+  Sea $ X $ un espacio normado, $ F \subset X $ un subespacio de dimensión finita. Entonces para cada $ x \in X $ existe $ y \in F $ tal que:
+  $$ \|x-y\| = \inf \{\|x-z\|\ :\ z \in F\} = d(x,F) $$
+  Es decir, el ínfimo es un mínimo
+\end{proposition}
+
+\begin{demonstration}
+  Si el punto $ x $ está en $ F $, tomaremos $ y = x $.
+
+  Si $ x \not \in F $, la bola $ B[x,\|x\|] $ corta a $ F $ ya que $ 0 \in F $. Por tanto sabemos que $ d(x,F) \leq \|x\| $.
+  
+  Además, si $ z \not \in B[x,\|x\|] \implies \|x-z\| \geq  \|x\|$, y no lo tendremos en cuenta para calcular el ínfimo.
+
+  Al tener $ F $ dimensión finita es completo, lo que implica que:
+  $$ A \subset F\ \text{con $ A $ cerrado relativo a $ F $} \implies A\ \text{cerrado en $ X $} $$
+
+  Entonces si $ s \in \overline{A},\ \exists (s_n)\subset A \|s_n-s\| \to 0 \implies (s_n)$ es de Cauchy. Lo cual implica que también es de Cauchy en $ F $ y al ser $ F $ completo, $ (s_n) $ converge en $ F $:
+  $$ \exists r \in F\ |\ \|s_n - r\| \to 0 \implies r = s \implies s \in F $$
+
+  Luego si $ A $ fuera cerrado, $ s \in A $
+
+  Si $ z_n \in B[x,\|x\|] \cap F $, entonces $ \|x-z_n\| \to d(x,F) $, luego podemos encontrar una subsucesión convergente $ (z_{n_{k}}) $, $ z_{n_{k}} \to y $, de forma que:
+  $$ \|x-z_{n_{k}}\| \to \|x-y\|$$
+\end{demonstration}
 
 
 \chapter{Ejercicios Resueltos}
