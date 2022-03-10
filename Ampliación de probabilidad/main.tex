@@ -575,7 +575,8 @@
         \textbf{Apartado b)}
     \end{flushright}
     Calcularemos los $ P(Z=r) $, primero tomemos $ r \geq 0 $:
-    $$ P (Z=r) = P(X-Y = r) = \sum\limits_{s=r}^{+\infty} P(X=s,Y=s+r) = \sum\limits_{s=r}^{+\infty} P (X=s)P(Y=s r) = p q ^{s} p q^{s-r} = \sum\limits_{s=0}^{+\infty}p^2q^{2s-r} = p^2 \sum\limits_{s=r}^{+\infty}q^{2s-r}  $$
+    $$ P (Z=r) = P(X-Y = r) = \sum\limits_{s=r}^{+\infty} P(X=s,Y=s+r) = \sum\limits_{s=r}^{+\infty} P (X=s)P(Y=s r)  = $$
+    $$ = p q ^{s} p q^{s-r} = \sum\limits_{s=0}^{+\infty}p^2q^{2s-r} = p^2 \sum\limits_{s=r}^{+\infty}q^{2s-r}  $$
 
     Esto es una geométrica de razón $ q^2 $:
     $$ P(Z=r) = \dfrac{p^2q^{r}}{1-q^2} = \dfrac{p^2q^{r}}{\underbrace{(1-q)}_{=p}(1+q)} = \dfrac{pq^{r}}{1+q} $$
@@ -585,6 +586,116 @@
 
     Y en general:
     $$ P(Z=r) = \dfrac{pq^{|r|}}{1+q} $$
+
+\end{exercise}
+
+\begin{exercise}
+%TODO faltan muchas cosas aqui
+Este ejercicio está incompleto
+
+% $$ \phi_n(t) = E(e^{itS_n}) = \dfrac{\sin(t)}{n \sin(\dfrac{t}{n})}\hspace{5mm} \psi_n(t) = E(e^{iT_n}) = e^{\dfrac{it(n-1)}{n}} \dfrac{\sin(t)}{n \sin(\dfrac{t}{n})} $$
+
+% El otro día llegamos a:
+% $$ \psi_n(t) = E(e^{itT_n}) = \dfrac{1-e^{2it}}{n(1-e^{2it/n})} $$
+
+Veamos la distribución que corresponde a $ \psi_n(t) $. Después, intentaremos expresar $ \phi_n $ en función de $ \psi_n $
+
+Nos fijamos primero en que la parte $ \dfrac{1-e^{2it}}{1-e^{2it/n}} $ se puede ver como la suma de una progresión geométrica en la que el primer término es 1 y de razón $ e^{2it/n} $:
+$$ \psi_n(t) = \dfrac{1-e^{2it}}{n(1-e^{2it/n})} \dfrac{1}{n} (1+e^{2it/n} + e^{2\cdot 2it/n} + ... + e^{(n-1)2it/n}) = \sum\limits_{n=0}^{n-1}\dfrac{1}{n} e^{it \dfrac{2r}{n}} = E(e^{itT_n}) $$
+
+Por tanto, la distribución de $ T_n $ es de la forma:
+$$ P(T_n = \dfrac{2r}{n}) = \dfrac{1}{n},\ r = 0,1,...,n-1 $$
+
+Para $ \phi_n $ hacemos la siguiente transformación:
+$$ \phi_n(t) = \dfrac{\sin(t)}{n \sin(\dfrac{t}{n})} = \dfrac{1}{n} \dfrac{e^{it}-e^{-it}}{e^{it/n}-e^{-it/n}} = \dfrac{1}{n} \dfrac{e^{-it}-e^{it}}{e^{-it/n}-e^{it/n}} = $$
+$$ = \dfrac{1}{n} \dfrac{e^{-it}}{e^{-it/n}} \cdot  \dfrac{1-e^{2it}}{1-e^{2it/n}} = e^{it(1/n-1)} \dfrac{1}{n} \dfrac{1-e^{2it}}{1-e^{2it/n}} = e^{it(\dfrac{1-n}{n})} \psi_n(t) $$
+
+Como sabemos que dada una vvaa $ X $ y otra vvaa $ Y $ tal que $ Y = aX+b $, se cumple que:
+$$ \phi_{Y}(t) = e^{ibt}\phi_{X}(at) $$
+
+En nuestro caso podemos llegar a que $ S_n = T_n+ \dfrac{1-n}{n} $, por tanto, llegamos a la siguiente distribución para $ S_n $:
+
+$$ 
+\begin{matrix}
+    P(S_n = \dfrac{2r+1-n}{n}) = P(T_n = \dfrac{2r}{n}) = \dfrac{1}{n} &  r = 0,1,2,...,n-1 \\
+    P(S_n = \dfrac{k}{n}) = \dfrac{1}{n} & k = 1-n,3-n,...,n-1
+\end{matrix}
+$$
+
+Donde cada $ k  $ es de la forma $ 2\cdot r+1-n $ con $ r = 0,1,...,n-1 $
+
+% $$ P(S_n = \dfrac{2r+1-n}{n}) = P(T_n = \dfrac{2r}{n}) = \dfrac{1}{n} \hspace{5mm} r = 0,1,2,...,n-1 $$
+% $$ P(S_n = \dfrac{k}{n}) = \dfrac{1}{n} \hspace{5mm}  $$
+
+Si $ n $ es impar, la vvaa $ S_n $ toma el valor 0, y los valores de $ k  $ son de la forma $ 0,\pm 2,\pm  4,...,\pm n-1 $
+
+Si $ n  $ es par, $ k $ toma los valores $ \pm 1,\pm 3,\pm 5,...,\pm n-1 $
+
+    
+\end{exercise}
+
+
+\begin{exercise}
+    $  $\\ 
+    Nos fijamos primero en que $ \phi $ debe de ser continua para $ t \in \mathbb{R} $, incluido en los puntos en los que se anule el denominador (en estos puntos, definiremos $\phi$ por continuidad). Por tanto, cuando el denominador se anula, el numerador se ha de anular también para que exista el límite y sea finito. 
+
+    Los puntos en los que se anula el denominador son:
+    $$ \sin(\dfrac{t}{a}) = 0 \iff \dfrac{t}{a} = k \pi \hspace{5mm} k = 0,1,2,3,... $$
+    En estos puntos se tiene que cumplir también que:
+    $$ \sin(t) = \sin(k a \pi) = 0 \iff k\cdot a \in \mathbb{Z}\ ( \text{para cualquier }a) \iff a \in \mathbb{Z} $$
+\end{exercise}
+
+\begin{exercise}
+    $  $\\ 
+    Utilizaremos que $ \sin(2 \alpha ) = 2 \sin(\alpha )\cos(\alpha) $. Entonces podemos escribir:
+    $$ \sin\left(\dfrac{2^{n}t}{2^{n}}\right) = \sin\left(2 \dfrac{e^{n-1}t}{2^{n}}\right) = 2 \sin\left(\dfrac{2^{n-1}t}{2^{n}}\right) \cos\left(\dfrac{2^{n-1}t}{2^{n}}\right) = 2^2 \sin\left(\dfrac{2^{n-2}t}{2^{n}}\right) \cos\left(\dfrac{t}{2}\right) \cos\left(\dfrac{t}{2^2}\right) $$
+
+    Iterando llegamos a:
+    $$ \sin(t) = 2^{n}\sin\left(\dfrac{t}{2^{n}}\right) \prod_{j=1}^{n} \cos\left(\dfrac{t}{2^{j}}\right) $$
+    
+    Por tanto, $ \phi_n(t) = \dfrac{\sin(t)}{2^{n}\sin\left(\dfrac{t}{2^{n}}\right)} $
+
+    Para saber la distribución de la vvaa seguimos un procedimiento como en el ejercicio 4:
+    $$ P \left(X_n = \dfrac{k}{n'}\right) = \dfrac{1}{n'} $$
+
+    Donde $ n' = 2^{n} $ es par, con lo que $ k $ toma los valores $ \pm 1, \pm 3,\pm 5,...,\pm n-1 $:
+    $$ P\left(Z_n = \dfrac{k}{2^{n}}\right) = \dfrac{1}{2^{n}}\hspace{5mm} k = \pm 1, \pm 3,\pm 5, ...,\pm 2^{n}-1$$
+    
+    \begin{flushright}
+        \textbf{Otra forma de aproximarnos al problema}
+    \end{flushright}
+
+    Sabemos que para una función característica $ \phi $, si existe $ t_0 \ne  $ tal que $ \phi(t_0) = e^{i \alpha} ( \iff |\phi(t_0)| = 1) $, la va asociada a esa función característica, $ X $, será discreta y tomará valores dentro del conjunto:
+    $$ \{ \dfrac{\alpha +2k \pi}{t_0}\ :\ k = 0,\pm 1,\pm 2,...\} $$
+
+    En nuestro caso, tomando $ t_0 = 2^{n}\pi $ tenemos que :
+    $$ \phi_n(2^{n}\pi) = \cos(2^{n-1}\pi) \cdots \cos(pi) = -1 = e^{i \alpha } = \cos(\alpha)+i \sin(\alpha) $$
+    
+    Por tanto, tenemos que la va $ X $ valores en el conjunto
+    $$ \{ \dfrac{\pi+2k \pi}{2^{n}\pi}\ :\ k = 0,\pm 1,\pm 2,...\} = \{ \dfrac{1+2k}{2^{n}}\ :\ k = 0,\pm 1,\pm 2,...\} = \{\pm \dfrac{1}{2^{n}},\ \pm \dfrac{3}{2^{n}},\ \pm \dfrac{t}{2^{n}}\} $$
+
+    Que no es tan restrictivo como al conjunto en el que llegamos de la otra manera, pero es una manera interesante de abordar el problema.
+\end{exercise}
+
+\begin{exercise}
+    $  $\\ 
+    Intentaremos ver si la va buscada es suma de vvaa independientes. Buscaremos que cada elemento del producto sea función característica:
+    $$ \prod_{r=1}^{n}\dfrac{1}{3} (1+2 \cos(\dfrac{t}{3^{r}})) = \prod_{r=1}^{n}\dfrac{1}{3} \left( 1+e^{i \dfrac{t}{3^{r}}} + e^{-i \dfrac{t}{3^{r}}} \right) $$
+
+    Luego $ g_{r}(t)  $ es la f. característica de una v.a. $ Z_{r} $ que toma los valores $ 0,\dfrac{1}{3^{r}},-\dfrac{1}{3^{r}} $ con probabilidad $ \dfrac{1}{3} $ en cada una de ellas.
+
+    Sabemos además que la función $ \phi $
+    $$ \psi_n(t) = \dfrac{\sin(t)}{n \sin(\dfrac{t}{n})} $$
+    es función característica de una v.a. que toma los valores ($ n  $ impar) 
+    $$ 0, \pm \dfrac{2}{n}, \pm \dfrac{4}{n},..., \pm \dfrac{n-1}{n} $$
+
+    Cada uno con probabilidad $ \dfrac{1}{n} $. 
+
+    Esta v.a. no nos coincide mucho con las $ g_{r} $ que tenemos. Sin embargo, si tomamos $ n = 3 $ tenemos la v.a. $ X_3 $ que toma los valores $ \{0,\dfrac{2}{3},-\dfrac{2}{3}\} $. Ahora, tomamos la v.a. $ Z_1 = \dfrac{X_3}{3} $. Esta v.a. toma los valores $ \{0,\dfrac{1}{3},-\dfrac{1}{3}\} $ con probabilidad $ \dfrac{1}{3} $ en cada una de ellos. Entonces la f. característica de $ Z_1 $ es $ g_1 $ y:
+    $$ g_1(t) = \phi_{Z_1}(t) = E(e^{itZ_1}) = E(e^{it^{X_3/2}}) = E(e^{it/3X_3}) = \psi_{3}(\dfrac{t}{2}) = \dfrac{\sin\left(\dfrac{t}{2}\right)}{3 \sin\left(\dfrac{t}{6}\right)} $$ 
+
+    Análogamente llegamos a que:
+    $$ g_{r}(t) = \dfrac{\sin(\dfrac{t}{3^{r-1}2})}{3^{r}\sin(\dfrac{t}{2\cdot 3^{r}})} $$
 
 \end{exercise}
 
