@@ -4,6 +4,7 @@
 \usepackage[hypertexnames=false]{hyperref}
 \usepackage{amstext} 
 \usepackage{array}   
+% \usepackage{nath}
 \newcolumntype{C}{>{$}c<{$}} 
 
 
@@ -680,23 +681,106 @@ Si $ n  $ es par, $ k $ toma los valores $ \pm 1,\pm 3,\pm 5,...,\pm n-1 $
 \begin{exercise}
     $  $\\ 
     Intentaremos ver si la va buscada es suma de vvaa independientes. Buscaremos que cada elemento del producto sea función característica:
-    $$ \prod_{r=1}^{n}\dfrac{1}{3} (1+2 \cos(\dfrac{t}{3^{r}})) = \prod_{r=1}^{n}\dfrac{1}{3} \left( 1+e^{i \dfrac{t}{3^{r}}} + e^{-i \dfrac{t}{3^{r}}} \right) $$
+    $$ \prod_{r=1}^{n}\dfrac{1}{3} \left(1+2 \cos\left(\dfrac{t}{3^{r}}\right)\right) = \prod_{r=1}^{n}\dfrac{1}{3} \left( 1+e^{i \dfrac{t}{3^{r}}} + e^{-i \dfrac{t}{3^{r}}} \right) $$
 
     Luego $ g_{r}(t)  $ es la f. característica de una v.a. $ Z_{r} $ que toma los valores $ 0,\dfrac{1}{3^{r}},-\dfrac{1}{3^{r}} $ con probabilidad $ \dfrac{1}{3} $ en cada una de ellas.
 
-    Sabemos además que la función $ \phi $
-    $$ \psi_n(t) = \dfrac{\sin(t)}{n \sin(\dfrac{t}{n})} $$
+    Sabemos además que la función $ \psi_n $:
+    $$ \psi_n(t) = \dfrac{\sin(t)}{n \sin\left(\dfrac{t}{n}\right)} $$
     es función característica de una v.a. que toma los valores ($ n  $ impar) 
     $$ 0, \pm \dfrac{2}{n}, \pm \dfrac{4}{n},..., \pm \dfrac{n-1}{n} $$
 
     Cada uno con probabilidad $ \dfrac{1}{n} $. 
 
     Esta v.a. no nos coincide mucho con las $ g_{r} $ que tenemos. Sin embargo, si tomamos $ n = 3 $ tenemos la v.a. $ X_3 $ que toma los valores $ \{0,\dfrac{2}{3},-\dfrac{2}{3}\} $. Ahora, tomamos la v.a. $ Z_1 = \dfrac{X_3}{3} $. Esta v.a. toma los valores $ \{0,\dfrac{1}{3},-\dfrac{1}{3}\} $ con probabilidad $ \dfrac{1}{3} $ en cada una de ellos. Entonces la f. característica de $ Z_1 $ es $ g_1 $ y:
-    $$ g_1(t) = \phi_{Z_1}(t) = E(e^{itZ_1}) = E(e^{it^{X_3/2}}) = E(e^{it/3X_3}) = \psi_{3}(\dfrac{t}{2}) = \dfrac{\sin\left(\dfrac{t}{2}\right)}{3 \sin\left(\dfrac{t}{6}\right)} $$ 
+    $$ g_1(t) = \phi_{Z_1}(t) = E(e^{itZ_1}) = E(e^{it^{X_3/2}}) = E(e^{it/3X_3}) = \psi_{3}\left(\dfrac{t}{2}\right) = \dfrac{\sin\left(\dfrac{t}{2}\right)}{3 \sin\left(\dfrac{t}{6}\right)} $$ 
 
     Análogamente llegamos a que:
-    $$ g_{r}(t) = \dfrac{\sin(\dfrac{t}{3^{r-1}2})}{3^{r}\sin(\dfrac{t}{2\cdot 3^{r}})} $$
+    $$ g_{r}(t) = \dfrac{\sin\left(\dfrac{t}{2\cdot 3^{r-1}}\right)}{3^{r}\sin\left(\dfrac{t}{2\cdot 3^{r}}\right)} $$
 
+    Entonces, $ \phi_n(t) $ queda:
+    $$ \phi_n(t) = \prod_{r=1}^{n}g_{r}(t) = \dfrac{\sin\left(\dfrac{t}{2}\right)}{3 \sin\left(\dfrac{t}{2}\right)} \cdot  \dfrac{\sin(\dfrac{t}{2\cdot 3})}{3 \sin\left(\dfrac{t}{2\cdot 3^2}\right)}\cdots \dfrac{\sin\left(\dfrac{t}{2\cdot 3^{n-1}}\right)}{3 \sin\left(\dfrac{t}{2\cdot 3^{n}}\right)} = \dfrac{1}{3^{n}} \dfrac{\sin(\dfrac{t}{2})}{\sin(\dfrac{t}{2\cdot 3^{n}})} $$
+
+    Sea $ Y $ la v.a. con f. característica $ \psi_{3^{n}} $ que toma los valores $ \{0,\pm \dfrac{2}{3^{n}},\pm \dfrac{2\cdot 2}{3^{n}},\pm \dfrac{2\cdot 3}{3^{n}},..., \pm \dfrac{3^{n}-1}{3^{n}}\} $ con probabilidad $ \dfrac{1}{3^{n}} $.
+    
+    Entonces $ \psi_n $ es la f.característica de $ Y/2 $. Por tanto, corresponde a una v.a. que toma los valores $ \{0,\pm \dfrac{1}{3^{n}},\pm \dfrac{2}{3^{n}},\pm \dfrac{3}{3^{n}},...,\pm \dfrac{\dfrac{(3^{n-1})}{2}}{3^{n}}\} $.
 \end{exercise}
+
+
+\chapter{Relación 4}
+
+\setcounter{ex}{3} 
+\begin{exercise}
+    $  $\\
+
+    Calculamos en primer lugar $ f_{1}(x) $ para $ x>0 $:
+    $$f_{1}(x) = \dfrac{1}{\pi} \int\limits_{0}^{+\infty} e^{-\dfrac{x^2+y^2}{2}}dy = \dfrac{1}{\pi}\int\limits_{0}^{+\infty}e^{-x^2/2}e^{-y^2/2}dy = \dfrac{1}{\pi} e^{-x^2/2} \int\limits_{0}^{+\infty}e^{-y^2/2} $$
+
+    Hacemos el cambio $ \dfrac{y^2}{2} = t $, con lo que tenemos $ y^2 = 2t $, $ y\ dy =dt  $:
+    $$ f_{1}(x) = \dfrac{1}{\pi}e^{x^2/2} \int\limits_{0}^{+\infty}e^{-t}\dfrac{1}{\sqrt{2}}t^{-1/2} dt = \dfrac{1}{\sqrt{2}\pi} e^{-x^2/2}\int\limits_{0}^{+\infty}e^{-t}t^{-1/2}dt = \dfrac{\Gamma(\dfrac{1}{2})}{\sqrt{2}n}e^{-x^2/2} = \dfrac{1}{\sqrt{2\pi}}e^{-x^2/2} $$
+
+    En el caso de $ x<0 $:
+    $$ f_{1}(x) = \dfrac{1}{\pi}\int\limits_{-\infty}^{0}e^{-x^2/2}e^{-y^2/2}dy = \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{-\infty}^{0}e^{-y^2/2}dy = \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{-\infty}^{0}e^{-u^2/2}(-du) = $$
+    $$ =  \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{0}^{+\infty}e^{-u^2/2}du = \dfrac{1}{\sqrt{2\pi}}e^{-\dfrac{x^2}{2}} $$
+
+    Luego en ambos casos: $ f_{1}(x) = \dfrac{1}{\sqrt{2\pi}}e^{-x^2/2} \implies X \sim \mathcal{N}(0,1) $. Análogamente: $ Y \sim \mathcal{N}(0,1) $. Podríamos pensar en poner $ (X,Y) $ como una normal de algún tipo. Pero esto nos resultará imposible pues las funciones de densidad de las vvaa normales no se anulan en ningún punto y $ (X,Y) $ se anula en $ A ^{c} $
+\end{exercise}
+
+\begin{exercise}
+    Notamos primero que:
+    $$ P(X=1) = 0 $$
+    $$ P(X=2) = P (AA\ o\ BB) = P(AA) + P(BB) = \dfrac{1}{4} + \dfrac{1}{4} = \dfrac{1}{2} \hspace{5mm} P(X>2) = \dfrac{1}{2} $$
+    Para $ X=3 $ partimos de la situación $ AB $ o la $ BA $. Independientemente de la situación inicial y de quien gane el partido, la competición no habrá terminado, $ P(X=3) = 0 $. Para $ X=4 $:
+    $$ AB \left\{
+    \begin{array}{l}
+        ABA \left\{
+        \begin{array}{l}
+            ABAA \to \text{termina}\\
+            ABAB \to \text{sigue}
+        \end{array}
+        \right.\\
+        ABB \left\{
+        \begin{array}{l}
+            ABBB\to \text{termina}\\
+            ABBA \to \text{sigue}
+        \end{array}
+        \right.
+    \end{array}
+    \right.    
+$$
+
+$$ BA \left\{
+\begin{array}{l}
+    ...\\ 
+    ...
+\end{array}
+\right. $$
+
+Con lo que tenemos:
+$$ P(X=2\cdot 2) = P(\text{empate de las 2 primeras})P(AA\ o\ BB) = \dfrac{1}{2} \cdot \dfrac{1}{2} = \dfrac{1}{4} $$
+
+Y en general:
+$$ P(X=2\cdot n) = P(\text{empate en los $ 2\cdot (n-1) $ primeros partidos})P(AA\ o\ BB) = \dfrac{1}{2^{n-1}}\cdot \dfrac{1}{2} = \dfrac{1}{2^{n}} $$
+
+Como la competición termina cuando haya una diferencia de dos puntos, los valores que toma $ (Y_1,Y_2) $ son de la forma $ (n,n+2) $ y $ (n+2,n) $ con $ n = 0,1,2,... $. Vemos además que:
+$$ P(Y_1=n,Y_2=n+2) = P(\text{empate en los $ 2n $ primeros partidos})P(BB) = \dfrac{1}{2^{n}}\cdot \dfrac{1}{4} = \dfrac{1}{2^{n+2}} $$
+$$ P(Y_1=n,Y_2=n+2) = P(\text{empate en los $ 2n $ primeros partidos})P(AA) = \dfrac{1}{2^{n}}\cdot \dfrac{1}{4} = \dfrac{1}{2^{n+2}} $$
+$$ P(Y_1=i,Y_2=j) = 0\ \text{ en el resto de casos} $$
+
+Para calcular la marginal de $ Y_1 $, vamos a orientarnos un poco viendo los valores más bajos para luego pasar al caso general:
+$$ P(Y_1=0) = P(BB) = \dfrac{1}{2^{2}} $$
+$$ P(Y_1 =1) = P(ABBB) + P(BABB) = \dfrac{1}{2^{4}} + \dfrac{1}{2^{4}} = \dfrac{1}{2^3} $$
+$$ P(Y_1 = n) = P(Y_1=n,Y_2=n+2) + P(Y_1=n,Y_2=n-2) = \dfrac{1}{2^{n+2}}+\dfrac{1}{2^{n}} = \dfrac{5}{2^{n-2}}\ (n\geq 2) $$
+
+En el cálculo de la distribución de $ Z $ podemos usar la de $ X $:
+$$ P(Z=n) = P(X=2n-2) = P(X=2(n-1)) = \dfrac{1}{2^{n-1}} $$
+
+
+Calculamos ahora la función generatriz de probabilidad de $ X $:
+$$ g_{x}(t) = E(t^{X}) = \sum\limits_{n=1}^{\infty} \dfrac{1}{2^{n}}t^{2n} = \sum\limits_{n=1}^{\infty}(\dfrac{t^2}{2})^{n} = \dfrac{\dfrac{t^2}{2}}{1-\dfrac{t^2}{2}} = \dfrac{t^2}{2-t^2} $$
+
+Pero esto solo ocurre cuando converja la serie, es decir cuando $ |\dfrac{t^2}{2}| < 1 \iff |t| < \sqrt{2} $ 
+\end{exercise}
+
 
 \end{document}
