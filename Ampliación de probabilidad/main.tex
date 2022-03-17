@@ -777,9 +777,24 @@ $$ P(Z=n) = P(X=2n-2) = P(X=2(n-1)) = \dfrac{1}{2^{n-1}} $$
 
 
 Calculamos ahora la función generatriz de probabilidad de $ X $:
-$$ g_{x}(t) = E(t^{X}) = \sum\limits_{n=1}^{\infty} \dfrac{1}{2^{n}}t^{2n} = \sum\limits_{n=1}^{\infty}(\dfrac{t^2}{2})^{n} = \dfrac{\dfrac{t^2}{2}}{1-\dfrac{t^2}{2}} = \dfrac{t^2}{2-t^2} $$
+$$ g_{x}(t) = E(t^{X}) = \sum\limits_{n=1}^{\infty} \dfrac{1}{2^{n}}t^{2n} = \sum\limits_{n=1}^{\infty}(\dfrac{t^2}{2})^{n} = \dfrac{\dfrac{t^2}{2}}{1-\dfrac{t^2}{2}} = \dfrac{t^2}{2-t^2} = -1+2(2-t^2) ^{-1} $$
 
-Pero esto solo ocurre cuando converja la serie, es decir cuando $ |\dfrac{t^2}{2}| < 1 \iff |t| < \sqrt{2} $ 
+Pero esto solo ocurre cuando converja la serie, es decir cuando $ \left|\dfrac{t^2}{2}\right| < 1 \iff |t| < \sqrt{2} $. Como $ 1 < \sqrt{2} $, podemos usar la derivada de $ g $ para calcular los momentos factoriales de orden $ n $, y con ellos, $ E(X),\ E(X^2) $ y $ Var(X) $:
+
+$$ g'(t) = 4(t_2-t^2)^{-2} $$
+$$ g''(t) = 4(2-t^2)^{-2} + 16t^2 (2-t^2)^{-3} $$
+
+Entonces, como 1 está en el interior del dominio de $ g $:
+$$ E(X) = g'(1) = 4 $$
+$$ E(X(X-1)) = E(X^2)-E(X) = g''(1) = 20 \implies E(X^2) = 20 + 4 $$
+$$ Var(X) = E(X^2)-E(X)^2 = 24-4^2 = 8 $$
+
+
+
+
+
+
+
 \end{exercise}
 
 
