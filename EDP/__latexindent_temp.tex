@@ -892,31 +892,6 @@ Ahora estamos en condiciones de demostrar Stone-Weierstrass:
   converge en sentido de la norma $ \|\cdot \|_{2} $
 \end{theorem}
 
-\begin{demonstration}
-  Cada término es de la forma:
-  $$ a_n = \dfrac{1}{2\pi} \int\limits_{0}^{2\pi} fte^{-int}dt $$
-
-  Integrando por partes:
-  $$ a_n = \dfrac{1}{2\pi} \left( \underbrace{f(t)\dfrac{e^{-int}}{-in}\Biggr|_{0}^{2\pi} }_{0} - \int\limits_{0}^{2\pi}f'(t) \dfrac{e^{-int}}{-in}dt\right) = \dfrac{1}{2\pi i n} \int\limits_{0}^{2\pi}f'(t)e^{-int}dt  $$
-
-  De nuevo integramos por partes:
-  $$ a_n = \dfrac{1}{2\pi i n} \left( f'(t) \dfrac{e^{-int}}{-in} \Biggr|_{0}^{2\pi} - \int\limits_{0}^{2\pi}f''(t)\dfrac{e^{-int}}{-in}dt \right) = -\dfrac{1}{2\pi n^2} \int\limits_{0}^{2\pi}f''(t) e^{-int} $$
-
-  Luego tenemos convergencia. Necesitamos que $ f $ sea dos veces derivable, esto quizás es 'pedir demasiado'. Vamos a intentar aplicar Weierstrass:
-  $$ \sum\limits_{n=1}^{\infty} |a_n| < +\infty \implies \text{Serie de Fourier converge unif.} $$
-
-  De la cadena de igualdades anteriores, sabemos que:
-  $$ b_n := \dfrac{1}{2\pi} \int\limits_{0}^{\pi}f'(t)e^{-int}dt \implies |a_n| = \dfrac{|b_n|}{n} $$
-
-  Entonces:
-  $$ |a_1|+|a_2|+...+|a_n| = |b_1|+\dfrac{1}{2}|b_2|+...+\dfrac{1}{n}|b_n| \leq  \left( \sum\limits_{k=1}^{n} \dfrac{1}{k^2} \right) ^{1/2} \left( \sum\limits_{k=1}^{n} |b_k|^2 \right)^{1/2} \to \dfrac{\pi}{\sqrt{6}}\sqrt{\|f'\|_{2}} $$
-
-  Luego hemos eliminado la hipótesis de que sea dos veces derivable, ahora solo necesitamos que sea derivable una vez.
-
-  
-
-\end{demonstration}
-
 
 \chapter{Ejercicios Resueltos}
 \section{Hoja 1}
@@ -1094,76 +1069,8 @@ Ahora estamos en condiciones de demostrar Stone-Weierstrass:
 \setcounter{ex}{3}
 
 \begin{exercise}
- $  $\\
- Si integramos respecto de $ y $ en la ecuación:
- $$ (1+x)u_{x} + u = xy - y^2 + A(x) $$
-
- Nuestra ecuación homogénea es entonces:
- $$ (1+x)u_{x} +u = 0 $$
-
- Si tuviéramos una EDO, tendríamos la ecuación:
- $$ (1+x)z'+z = 0 $$
- $$ (1+x)\dfrac{dz}{dx} = -z $$
- $$ \int\limits_{}^{}\dfrac{dz}{z} = - \int\limits_{}^{}\dfrac{dx}{1+x} $$
- $$ \log{z} = -\log{1+x} +cte $$
- $$ z = \dfrac{cte}{1+x} $$
-
- Volviendo a nuestro caso, nos queda que $ u(x,y) = \dfrac{B(x,y)}{1+x} $
- $$ u_{x} = \dfrac{-B(x,y)}{(1+x)^2} + \dfrac{B_{x}(x,y)}{1+x} $$
- $$ (1+x)u_{x}+u = \dfrac{-B(x,y)}{1+x} + B_{x}(x,y) + \dfrac{B(x,y)}{1+x} = xy-y^2+A(x) $$
-
- Integrando ahora con respecto de $ x $:
- $$ B(x,y) = \dfrac{x^2y}{2}-xy^2+ \underbrace{ \int\limits_{}^{}A(x)dx}_{A(x)} + C(y) $$
- $$ u(x,y) = \dfrac{\dfrac{x^2}{y}-xy^2+A(x)+C(y)}{1+x} $$
-
- Para comprobar que vamos por el buen camino, vamos a ver que satisface la EDP que teníamos en primer lugar:
- $$ u_{y} = \dfrac{\dfrac{x^2}{2}-2xy+C(y)}{1+x} $$
- $$ u_{yx} = - \dfrac{\dfrac{x^2}{2}-2xy+C'(y)}{(1+x)^2} + \dfrac{x-2y}{1+x} $$
- $$ (1+x)u_{xy} = \dfrac{\dfrac{x^2}{2}-2xy+C'(y)}{1+x} + x -2y $$
- $$ (1+x)u_{xy}+u_{y} = x-2y $$
-
- Luego por ahora no nos hemos equivocado. Tratamos de encontrar ahora $ A $ y $ C $.
- 
- $$ u(x,0) = \dfrac{A(x)+C(0)}{1+x} = 1 $$
- $$ u(0,y) = \dfrac{A(0)+C(y)}{1} = A(0)+C(y) = \cos(y) $$
- $$ \left\{
- \begin{array}{l}
-   A(x) = x\\ 
-   C(y) = \cos(y)
- \end{array}
- \right. $$
+    
 \end{exercise}
 
-
-\setcounter{ex}{5}
-\begin{exercise}
-  $  $\\ 
-  La ecuación alternativa es:
-  $$ xu_{x}+yu_{y} = 2(x^2+y^2)u $$
-
-  Tendremos el sistema autónomo:
-  $$ \left\{
-  \begin{array}{ll}
-    x' = x & \alpha e^{t}\\ 
-    y' = y & \beta e^{t}\\ 
-    z' = 2(x^2+y^2) = 2(\alpha^2+\beta ^2)e^{2t} & z = (\alpha^2+\beta^2)e^{2t}+ \gamma 
-  \end{array}
-  \right. $$
-
-  Como nuestra solución pasara por $ \eta(s) = (1,s,e) $, tenemos que $ \alpha = 1,\ \beta = s $ y:
-  $$ (\alpha^2+\beta^2) + \gamma = e \implies (1+s^2)+ \gamma = e $$
-  
-  La solución queda entonces $ (e^{t},se^{t},(1+s^2)e^{2t}+e-1-s^2) $. Para resolver el ejercicio nos queda eliminar los dos parámetros:
-  $$ \left\{
-  \begin{array}{l}
-    t = \log{x}\\ 
-    s = \dfrac{y}{x}
-  \end{array}
-  \right. $$
-
-  Entonces nos queda:
-  $$ z = \left(1+\dfrac{y^2}{x^2}\right)x^2+e-1-\dfrac{y^2}{x^2} $$
-  $$ u(x,y) = x^2+y^2-\dfrac{y^2}{x^2}+e-1 $$
-\end{exercise}
 
 \end{document}
