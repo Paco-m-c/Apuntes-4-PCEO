@@ -483,14 +483,14 @@
     Dejamos el cálculo de $ k $ para luego. Vamos con $ f_{2} $:
     $$ f_{2}(y) = \int\limits_{\mathbb{R}}^{}f(x,y)dx = \int\limits_{y}^{1} ky dx = ky(1-y)\ y \in (0,1) $$
 
-    $$ E(Y^{n}(1-y)^{m}) = \int\limits_{0}^{1}k y ^{m}(1-y)^{n} y (1-y)dy = kB(m+2,n+2) = k \dfrac{\Gamma(m+2)\Gamma(n+2)}{\Gamma(m+n+4)} = $$
+    $$ E(Y^{m}(1-Y)^{n}) = \int\limits_{0}^{1}k y ^{m}(1-y)^{n} y (1-y)dy = kB(m+2,n+2) = k \dfrac{\Gamma(m+2)\Gamma(n+2)}{\Gamma(m+n+4)} = $$
     $$ = k \dfrac{(m+1)!(n+1!)}{(m+n+3)!} $$
 
     Haciendo $ n = 0 $ obtenemos $ \alpha_{r} = E(Y^{r}) $
     $$ \alpha_{r} = k \dfrac{(r+1)!}{(r+3)!} = \dfrac{k}{(r+3)(r+2)} $$
 
     Para obtener el valor de $ k $ podemos haciendo $ m = n = 0 $:
-    $$ m = n = 0 \implies \int\limits_{0}^{1}k f_{2}(y)dy = k \dfrac{1}{3!} = \dfrac{k}{6} = 1 \implies k = 6 $$
+    $$ m = n = 0 \implies \int\limits_{0}^{1} f_{2}(y)dy = k \dfrac{1}{3!} = \dfrac{k}{6} = 1 \implies k = 6 $$
 
     Como $ Y $ es acotada entre 0 y 1, $ E(e^{aY}) = E(e^{-aY}) $ son finitos, con lo que podemos expresar $ g(t) $ como la siguiente serie que será convergente:
     $$ g(t) = 6\sum\limits_{r=0}^{+\infty} \dfrac{1}{(r+3)(r+2)r!} t ^{r} $$
@@ -511,7 +511,7 @@
     \end{array}
     \right.$$
 
-    $$ \int\limits_{}^{} x f_{1|2(x|y)}dx = \int\limits_{y}^{1} \dfrac{x}{1-y}dx = \dfrac{1}{2} \dfrac{1-y^2}{1+y} = \dfrac{1}{2}(1+y) $$
+    $$ \int\limits_{}^{} x f_{1|2(x|y)}dx = \int\limits_{y}^{1} \dfrac{x}{1-y}dx = \dfrac{1}{2} \dfrac{1-y^2}{1-y} = \dfrac{1}{2}(1+y) $$
     
     \begin{flushright}
         \textbf{Apartado c)}
@@ -524,7 +524,7 @@
     $$ \beta_{Y/X} = \dfrac{\sigma_{XY}}{\sigma_{X}^2}\hspace{10mm} \beta_{X/Y} = \dfrac{\sigma_{XY}}{\sigma_{Y}^2} $$
 
     Entonces, como $ \rho = \dfrac{\sigma_{XY}}{\sigma_{X}\sigma_{Y}} $, tenemos que $ \rho^2 = \beta_{Y/X}\beta_{X/Y} $:
-    $$ \rho ^2 = \dfrac{2}{3}\dfrac{1}{3} = \dfrac{1}{3} \implies \rho = \dfrac{1}{\sqrt{3}} $$
+    $$ \rho ^2 = \dfrac{2}{3}\dfrac{1}{2} = \dfrac{1}{3} \implies \rho = \dfrac{1}{\sqrt{3}} $$
 
 \end{exercise}
 
@@ -591,8 +591,7 @@
 \end{exercise}
 
 \begin{exercise}
-%TODO faltan muchas cosas aqui
-Este ejercicio está incompleto
+
 
 % $$ \phi_n(t) = E(e^{itS_n}) = \dfrac{\sin(t)}{n \sin(\dfrac{t}{n})}\hspace{5mm} \psi_n(t) = E(e^{iT_n}) = e^{\dfrac{it(n-1)}{n}} \dfrac{\sin(t)}{n \sin(\dfrac{t}{n})} $$
 
@@ -649,7 +648,7 @@ Si $ n  $ es par, $ k $ toma los valores $ \pm 1,\pm 3,\pm 5,...,\pm n-1 $
 \begin{exercise}
     $  $\\ 
     Utilizaremos que $ \sin(2 \alpha ) = 2 \sin(\alpha )\cos(\alpha) $. Entonces podemos escribir:
-    $$ \sin\left(\dfrac{2^{n}t}{2^{n}}\right) = \sin\left(2 \dfrac{e^{n-1}t}{2^{n}}\right) = 2 \sin\left(\dfrac{2^{n-1}t}{2^{n}}\right) \cos\left(\dfrac{2^{n-1}t}{2^{n}}\right) = 2^2 \sin\left(\dfrac{2^{n-2}t}{2^{n}}\right) \cos\left(\dfrac{t}{2}\right) \cos\left(\dfrac{t}{2^2}\right) $$
+    $$ \sin\left(\dfrac{2^{n}t}{2^{n}}\right) = \sin\left(2 \dfrac{2^{n-1}t}{2^{n}}\right) = 2 \sin\left(\dfrac{2^{n-1}t}{2^{n}}\right) \cos\left(\dfrac{2^{n-1}t}{2^{n}}\right) = 2^2 \sin\left(\dfrac{2^{n-2}t}{2^{n}}\right) \cos\left(\dfrac{t}{2}\right) \cos\left(\dfrac{t}{2^2}\right) $$
 
     Iterando llegamos a:
     $$ \sin(t) = 2^{n}\sin\left(\dfrac{t}{2^{n}}\right) \prod_{j=1}^{n} \cos\left(\dfrac{t}{2^{j}}\right) $$
@@ -708,23 +707,6 @@ Si $ n  $ es par, $ k $ toma los valores $ \pm 1,\pm 3,\pm 5,...,\pm n-1 $
 
 
 \chapter{Relación 4}
-
-\setcounter{ex}{3} 
-\begin{exercise}
-    $  $\\
-
-    Calculamos en primer lugar $ f_{1}(x) $ para $ x>0 $:
-    $$f_{1}(x) = \dfrac{1}{\pi} \int\limits_{0}^{+\infty} e^{-\dfrac{x^2+y^2}{2}}dy = \dfrac{1}{\pi}\int\limits_{0}^{+\infty}e^{-x^2/2}e^{-y^2/2}dy = \dfrac{1}{\pi} e^{-x^2/2} \int\limits_{0}^{+\infty}e^{-y^2/2} $$
-
-    Hacemos el cambio $ \dfrac{y^2}{2} = t $, con lo que tenemos $ y^2 = 2t $, $ y\ dy =dt  $:
-    $$ f_{1}(x) = \dfrac{1}{\pi}e^{x^2/2} \int\limits_{0}^{+\infty}e^{-t}\dfrac{1}{\sqrt{2}}t^{-1/2} dt = \dfrac{1}{\sqrt{2}\pi} e^{-x^2/2}\int\limits_{0}^{+\infty}e^{-t}t^{-1/2}dt = \dfrac{\Gamma(\dfrac{1}{2})}{\sqrt{2}n}e^{-x^2/2} = \dfrac{1}{\sqrt{2\pi}}e^{-x^2/2} $$
-
-    En el caso de $ x<0 $:
-    $$ f_{1}(x) = \dfrac{1}{\pi}\int\limits_{-\infty}^{0}e^{-x^2/2}e^{-y^2/2}dy = \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{-\infty}^{0}e^{-y^2/2}dy = \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{-\infty}^{0}e^{-u^2/2}(-du) = $$
-    $$ =  \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{0}^{+\infty}e^{-u^2/2}du = \dfrac{1}{\sqrt{2\pi}}e^{-\dfrac{x^2}{2}} $$
-
-    Luego en ambos casos: $ f_{1}(x) = \dfrac{1}{\sqrt{2\pi}}e^{-x^2/2} \implies X \sim \mathcal{N}(0,1) $. Análogamente: $ Y \sim \mathcal{N}(0,1) $. Podríamos pensar en poner $ (X,Y) $ como una normal de algún tipo. Pero esto nos resultará imposible pues las funciones de densidad de las vvaa normales no se anulan en ningún punto y $ (X,Y) $ se anula en $ A ^{c} $
-\end{exercise}
 
 \begin{exercise}
     Notamos primero que:
@@ -789,12 +771,44 @@ $$ E(X) = g'(1) = 4 $$
 $$ E(X(X-1)) = E(X^2)-E(X) = g''(1) = 20 \implies E(X^2) = 20 + 4 $$
 $$ Var(X) = E(X^2)-E(X)^2 = 24-4^2 = 8 $$
 
+Calculamos ahora la función generatriz de probabilidad de $ (Y_1,Y_2) $:
+
+$$ E(t_1^{Y_1}t_2^{Y_2}) = \sum\limits_{}^{}P(Y_1=r,Y_2=s)t_1^{r}t_2^{s} $$
+
+Los pares $ (r,s) $ que tome la v.a. $ (Y_1,Y_2) $ son de la forma $ (n,n+2) $ y $ (n+2,n) $. Por tanto:
+$$ E(t_1^{Y_1}t_2^{Y_2}) = \sum\limits_{0}^{+\infty}\dfrac{1}{2^{n+2}}t_1^{n}t_2^{n+2} + \sum\limits_{0}^{\infty}t_1^{n+2}t_2^{n} = t_2^2 \sum\limits_{0}^{+\infty} \dfrac{1}{2^{n+2}}t_1^{n}t_2^{n} + t_1^2\sum\limits_{0}^{+\infty} \dfrac{1}{2^{n+2}}t_1^{n}t_2^{n} =$$
+$$ =  (t_1^2+t_2^2) \sum\limits_{0}^{+\infty} \dfrac{1}{2^{n+2}}t_1^{n}t_2^{n} = \dfrac{t_1^2+t_2^2}{2^2} \sum\limits_{0}^{\infty} \left( \dfrac{t_1t_2}{2} \right)^{n} = \dfrac{t_1^2+t_2^2}{2^2} \cdot \dfrac{1}{1-\dfrac{t_1t_2}{2}} $$
+
+Esto último cuando $ |\dfrac{t_1t_2}{2}| < 1 \implies |t_1t_2| < 2 $
+
+Para calcular $ E(Y_1),\ E(Y_1)(Y_1-1) $ podemos usar la función generatriz de probabilidad:
+$$ \dfrac{\partial g}{\partial t_1} = E(Y_1,t_1^{Y-1}t_2^{Y_2}) = t_1(2-t_1t_2) + \dfrac{t_1^2+t_2^2}{2}t_2(2-t_1t_2) $$
+
+Evaluando en $ (1,1) $ obtenemos $ E(Y_1) = 2 $ (e igualmente, $ E(Y_2)=2 $). Análogamente, $ \dfrac{\partial ^2 g}{\partial t_1^2}(1,1) = E(Y_1(Y_1-1)) = 5 $, con lo que $ Var(Y_1) = 7-4=3 $. Por último, como $ \dfrac{\partial ^2 g}{\partial t_1 \partial t_2}(1,1) = E(Y_1,Y_2) $, tenemos que $ E(Y_1,Y_2) = 5 $, con lo que obtenemos que $ Cov(Y_1,Y_2) = 5-2\cdot 2 = 1 $\\
+
+El cálculo de la recta de regresión ahora es directo, hacemos la recta de regresión de $ Y_2 $ con respecto de $ Y_1 $ (la otra será igual cambiando las variables):
+$$ y_2-E(Y_2) = \dfrac{Cov(Y_1,Y_2)}{Var(Y_1)}(y_1-E(Y_1)) \implies y_2 -2 = \dfrac{1}{3}(y_1-2) $$
+
+
+\end{exercise}
 
 
 
+\setcounter{ex}{3} 
+\begin{exercise}
+    $  $\\
 
+    Calculamos en primer lugar $ f_{1}(x) $ para $ x>0 $:
+    $$f_{1}(x) = \dfrac{1}{\pi} \int\limits_{0}^{+\infty} e^{-\dfrac{x^2+y^2}{2}}dy = \dfrac{1}{\pi}\int\limits_{0}^{+\infty}e^{-x^2/2}e^{-y^2/2}dy = \dfrac{1}{\pi} e^{-x^2/2} \int\limits_{0}^{+\infty}e^{-y^2/2} $$
 
+    Hacemos el cambio $ \dfrac{y^2}{2} = t $, con lo que tenemos $ y^2 = 2t $, $ y\ dy =dt  $:
+    $$ f_{1}(x) = \dfrac{1}{\pi}e^{x^2/2} \int\limits_{0}^{+\infty}e^{-t}\dfrac{1}{\sqrt{2}}t^{-1/2} dt = \dfrac{1}{\sqrt{2}\pi} e^{-x^2/2}\int\limits_{0}^{+\infty}e^{-t}t^{-1/2}dt = \dfrac{\Gamma(\dfrac{1}{2})}{\sqrt{2}n}e^{-x^2/2} = \dfrac{1}{\sqrt{2\pi}}e^{-x^2/2} $$
 
+    En el caso de $ x<0 $:
+    $$ f_{1}(x) = \dfrac{1}{\pi}\int\limits_{-\infty}^{0}e^{-x^2/2}e^{-y^2/2}dy = \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{-\infty}^{0}e^{-y^2/2}dy = \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{-\infty}^{0}e^{-u^2/2}(-du) = $$
+    $$ =  \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{0}^{+\infty}e^{-u^2/2}du = \dfrac{1}{\sqrt{2\pi}}e^{-\dfrac{x^2}{2}} $$
+
+    Luego en ambos casos: $ f_{1}(x) = \dfrac{1}{\sqrt{2\pi}}e^{-x^2/2} \implies X \sim \mathcal{N}(0,1) $. Análogamente: $ Y \sim \mathcal{N}(0,1) $. Podríamos pensar en poner $ (X,Y) $ como una normal de algún tipo. Pero esto nos resultará imposible pues las funciones de densidad de las vvaa normales no se anulan en ningún punto y $ (X,Y) $ se anula en $ A ^{c} $
 \end{exercise}
 
 
