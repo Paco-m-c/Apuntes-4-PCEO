@@ -31,6 +31,8 @@
 \maketitle
 \tableofcontents
 
+\part{Parte 1}
+
 \chapter{Capítulo 1}
 
 \begin{center}
@@ -253,8 +255,9 @@ No entiendo un carajo pero espero que ustedes lo hagan, un saludo.
 \begin{center}
 \textbf{2.13}
 \end{center}
-
-\includegraphics[width=\textwidth]{2.13}
+\begin{demonstration}
+  Esta queda por hacer...
+\end{demonstration}
 
 
 
@@ -482,8 +485,83 @@ Os animo a hacer un dibujo libre en lo que queda de página y enviármelo por tw
 \includegraphics[width=\textwidth]{minding}
 \includepdf[pages=-]{PDFs/minding.pdf}
 
+\part{Parte 2}
+
+\begin{center}
+\textbf{Lema 4.3}
+\end{center}
+\begin{demonstration}
+  a
+\end{demonstration}
 
 
 
 
+
+
+
+
+\begin{center}
+\textbf{Propiedad del corolario 5.4}
+\end{center}
+\begin{demonstration}
+
+  Quiero demostrar que si $ \alpha  \in [a,b] \to  V$ es un segmento de geodésica tal que $\alpha (a) = p_0$ y $\alpha (b) = p$, entonces $\alpha $ es una reparametrización de $\gamma _p$.
+
+  Reparametrizamos $\alpha $ para que esté definida entre $0$ y $1$, en primer lugar. Defino $$\beta (t)=\alpha ((1-t)a+tb):[0,1] \to V \hspace{1cm} \left\{\begin{array}{l}
+    \beta (0)=p_0\\
+    \beta (1)=p
+  \end{array}\right.$$
+
+  Sabemos que $\gamma _p(t) = exp_{p_0}(t v_p)$. Definimos $w= \beta '(0) \in T_{p_0}S$. Existe entonces $\gamma _w : I_w \to S$ una geodésica maximal.
+
+  ¿Cómo se relacionan $ \beta  $ y $ \gamma _w $? Hasta ahora, sabemos:
+  $$ \left\{\begin{array}{l}
+    \gamma _w(0) = p_0 = \beta (0)\\
+    \gamma'_w(0) = w = \beta (0)
+  \end{array}\right. \implies [0,1] \subset I_w \text{ y además } \beta (t) = \gamma _w (t)\ \forall t \in [0,1]$$
+
+  Tenemos tres sucesos elementales ahora:
+
+  $$ exp_0(v_p)=p \hspace{1cm} exp_{p_0}(w) = \beta (1) = p \hspace{1cm}exp_{p_0|\mathcal{U}}: U \to V \text{ es un difeomorfismo.} $$
+
+  Nos falta demostrar que $w \in \mathcal{U}$. Vamos a probarlo.
+
+  \begin{center}
+  \textbf{Prueba de que w está en U}
+  \end{center}
+
+  Sé que $\beta (t) \in V, \ \forall t \in [0,1]$. Tenemos $\overline{\beta }(t) = \left( exp_{p_0 | \mathcal{U}} \right)^{-1} (\beta (t)) : [0,1] \to \mathcal{U}$.
+
+  $$ \beta (t) = exp_{p_0}(\overline{\beta }(t)) , \ \forall t \in [0,1] $$
+
+  Mi objetivo es demostrar que $\overline{\beta }(t) = tw, \ \forall t \in [0,1]$. Entonces, podría argumentar que $\overline{\beta }(1) = w \in \mathcal{U}$.
+
+  Llamo $A= \{ t \in [0,1) \ : \  \overline{\beta }(t) = tw  \}$.
+    \begin{enumerate}
+      \item $0 \in A$, luego $A \ne \emptyset$, $\overline{\beta}'(0) = 0=0 \cdot w$.
+      \item $A$ es cerrado, $f(t) = ||\overline{\beta }(t) - tw || , \ f:[0,1] \to \mathbb{R}$, $A= f ^{-1} (0)$.
+      \item $A$ es abierto, esto es más complicado.
+
+      Dado $t_0 \in A$, ¿$\exists \varepsilon >0 | (t_0 - \varepsilon , t_0 + \varepsilon ) \subset A$?
+
+      $$ t_0 \in A \implies \overline{\beta }(t_0) = t_0 w \in \mathcal{U} $$
+      $$ \exists \varepsilon >0 \ | \ tw \in \mathcal{U} , \ \forall t \in (t_0 \pm \varepsilon )$$
+      $$ \beta (t) = exp_{p_0}(tw) = exp_{p_0}(\overline{\beta }(t))\in \mathcal{U} \hspace{0.4cm} \forall t \in (t_0 \pm \varepsilon ) \implies $$
+      $$ \implies \overline{\beta }(t) = tw \hspace{0.4cm} \forall t \in (t_0 - \varepsilon , t_0 + \varepsilon )  $$
+    \end{enumerate}
+\end{demonstration}
+
+Espero que hayáis entendido algo porque yo no tengo lo que es ni mierdas.
+
+\begin{center}
+\textbf{Corolario 5.4}
+\end{center}
+\begin{demonstration}
+  Tomo $W$ un entorno convexo de $ p $. Tenemos garantizado que $\exists a<b \ : \ \gamma (a) \in W$. $W$ es también, ahora, un entorno normal de $\gamma (a)$.
+
+  Tomamos una reparametrización $\alpha = \gamma |_{[a,b]}: [0,1] \to W$, que es un segmento de geodésica que une $\gamma (a)$ con $\gamma (b)$.
+
+  Definamos ahora $\gamma _p: [0,1 + \varepsilon) \to W$ segmento de geodésica radial que une $\gamma (a)$ con $\gamma (b)$.
+\end{demonstration}
 \end{document}
