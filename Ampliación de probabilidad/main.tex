@@ -157,7 +157,7 @@
 \begin{exercise}
     $  $
     \begin{flushright}
-        \textbf{Aparado a)}
+        \textbf{Apartado a)}
     \end{flushright}
 
     Observemos primero que no hay dos pares de la forma $ (a,b),\ (a,c) $ de forma que ambos tengan probabilidad no nula. Igual forma, no hay pares $ (b,a),\ (c,a) $ tales que se tomen ambos valores con probabilidad no nula. Por tanto, para ver la distribución marginal de $ X $ podemos omitir los valores que toma $ Y $:
@@ -187,7 +187,7 @@
     $$ Var(Y-X^*) = \sigma_{Y}^2(1-\rho ^2) = 0 $$
 
     \begin{flushright}
-        \textbf{Aparado b)}
+        \textbf{Apartado b)}
     \end{flushright}
 
     Para calcular las $ vvaa $ marginales solo tenemos que sumar los elementos de la misma fila o columna. Por ejemplo:
@@ -792,9 +792,64 @@ $$ y_2-E(Y_2) = \dfrac{Cov(Y_1,Y_2)}{Var(Y_1)}(y_1-E(Y_1)) \implies y_2 -2 = \df
 
 \end{exercise}
 
+\begin{exercise}
+    Calculamos primero las distribuciones marginales:
+
+     $$ f_{1}(x) = \int\limits_{-\infty}^{a} e^{y-x}dy = e^{a-x}\ \text{si } x \in  (a,+\infty) $$
 
 
-\setcounter{ex}{3} 
+     $$ f_{2}(y) = \int\limits_{a}^{+\infty} e^{y-x}dy = e^{y-a}\ \text{si } y \in  (-\infty,a) $$
+
+    Vemos entonces que las variables $ X,\ Y $ son independientes (lo podíamos ver previamente ya que ve $ f(x,y) $ puede expresarse como $ g(x)\cdot h(y) $ con $ g,\ h $ ciertas funciones que solo dependen de $ x $ y de $ y $ respectivamente y $ f $ está definida en un rectángulo) 
+
+    La función característica de la suma la podemos obtener como el producto de las funciones características de $ X $ e $ Y $:
+    $$ \phi_{X}(t) = E(e^{itX}) = \int\limits_{a }^{\infty} e^{itx}e^{a-x}dx = e^{a} \int\limits_{a}^{+\infty}e^{-x(1-it)}dx = e^{a} \dfrac{e^{-x(1-it)}}{-(1-it)} \Biggr|_{a}^{+\infty} = e^{a} \dfrac{e^{-a(1-it)}}{1-it} = \dfrac{e^{ait}}{1-it}$$
+
+    $$ \phi_{Y}(t) = E(e^{itY}) = ... = \dfrac{e^{ait}}{1+it}$$
+
+    Entonces tenemos:
+    $$ \phi_{Z}(z) = \dfrac{e^{ait}}{1-it} \cdot \dfrac{e^{ait}}{1+it} = \dfrac{e^{2ait}}{1+t^2} $$
+
+    Tratamos de encontrar ahora un $ c $ tal que $ U=Z-c $ sea simétrica respecto del origen (es decir, que su f. característica sea real):
+    $$ \phi_{U}(t) = E(e^{it(Z-c)}) = e^{-ict}\phi_{Z}(t) = e^{-ict}\dfrac{e^{2ait}}{1+t^2} = \dfrac{e^{it(2a-c)}}{1+t^2} =_{c:= 2a} \dfrac{1}{1+t^2} $$
+
+    Entonces $ Z $ es simetría respecto de $ 2a $.\\ 
+
+    Calculamos ahora $ \alpha_{r} $ de $ Z $ (usamos que la media es $ 2a $ ya que es simétrica respecto de ese punto):
+
+    $$ E((Z-E(Z))^{n}) = E((Z-a)^{n} = E(U^{n})) $$
+
+    Trataremos de expresar en serie de potenicas $ \phi_{U} $:
+
+    $$ \phi_{U}(t) = \dfrac{1}{1+t^2} = \sum\limits_{}^{} \dfrac{\alpha_n}{n!}(it)^{n} = \dfrac{1}{1-(it)^2} $$
+
+    Como esto es la suma de los términos de una serie geométrica cuyo primer término es 1 y la razón es $ (it)^2 $:
+
+    $$ \phi_{U}(t) = \sum\limits_{n=0}^{+\infty}(it)^{2n} $$
+
+    Entonces los momentos centrales de orden $ r $ son:
+
+    $$ \alpha_{r} = \left\{
+    \begin{array}{ll}
+        0 & r=2k+1 \\ 
+        r! & r = 2k
+    \end{array}
+    \right. $$
+
+\end{exercise}
+
+\begin{exercise}
+    $  $\\ 
+    Por uno de los teoremas vistos en clase, si $ X,\ Y $ son vvaa como las descritas, tenemos que $ X/Y $ y $ X+Y $ son independientes: la primera, $ U=X/Y $ es una transformada de beta y $ Z_2=X+Y\sim \Gamma(1,p_1+p_2) $. Entonces:
+    $$ Z_1 = \dfrac{X}{X+Y} = \dfrac{X}{Z_2} $$
+    
+    Donde sabemos que $ Z_1 $ es entonces una transformada de la beta. Además:
+    $$ Z_1 = \dfrac{\dfrac{X}{Y}}{\dfrac{X+Y}{Y}} = \dfrac{\dfrac{X}{Y}}{1+\dfrac{X}{Y}} = \dfrac{U}{1+U}$$
+
+    Como $ U $ y $ Z_2 $ son independientes, por la última igualdad tenemos que $ Z_1 $ y $ Z_2 $ son independientes.
+\end{exercise}
+
+
 \begin{exercise}
     $  $\\
 
@@ -808,8 +863,123 @@ $$ y_2-E(Y_2) = \dfrac{Cov(Y_1,Y_2)}{Var(Y_1)}(y_1-E(Y_1)) \implies y_2 -2 = \df
     $$ f_{1}(x) = \dfrac{1}{\pi}\int\limits_{-\infty}^{0}e^{-x^2/2}e^{-y^2/2}dy = \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{-\infty}^{0}e^{-y^2/2}dy = \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{-\infty}^{0}e^{-u^2/2}(-du) = $$
     $$ =  \dfrac{1}{\pi}e^{-x^2/2}\int\limits_{0}^{+\infty}e^{-u^2/2}du = \dfrac{1}{\sqrt{2\pi}}e^{-\dfrac{x^2}{2}} $$
 
-    Luego en ambos casos: $ f_{1}(x) = \dfrac{1}{\sqrt{2\pi}}e^{-x^2/2} \implies X \sim \mathcal{N}(0,1) $. Análogamente: $ Y \sim \mathcal{N}(0,1) $. Podríamos pensar en poner $ (X,Y) $ como una normal de algún tipo. Pero esto nos resultará imposible pues las funciones de densidad de las vvaa normales no se anulan en ningún punto y $ (X,Y) $ se anula en $ A ^{c} $
+    Luego en ambos casos: $ f_{1}(x) = \dfrac{1}{\sqrt{2\pi}}e^{-x^2/2} \implies X \sim \mathcal{N}(0,1) $. Análogamente: $ Y \sim \mathcal{N}(0,1) $. Podríamos pensar en poner $ (X,Y) $ como una normal de algún tipo. Pero esto nos resultará imposible pues las funciones de densidad de las vvaa normales no se anulan en ningún punto y $ (X,Y) $ se anula en $ A ^{c} $. Además, podemos expresar $ U $ como:
+    $$ U = \dfrac{Z_1}{1-Z_1} $$
+
+    Por tanto, $ Z_1 $ es la beta con la que se hace la transformada para $ U $. Es decir, $ Z_1 $ tiene una distribución beta $ B(p_1,p_2) $. Para resumir, hemos llegado a estas conclusiones:
+
+    $$ \left\{
+    \begin{array}{l}
+        Z_1 \sim B(p_1,p_2) \\ 
+        Z_2 \sim \Gamma(1,p_1+p_2) \\ 
+        Z_1,\ Z_2\ \text{son independientes}
+    \end{array}
+    \right. $$
+
+    Para calcular $ \alpha_{n,m} $ podemos usar que:
+    $$ \alpha_{n,m} = E(Z_1^{n}Z_2^{m}) = E(Z_1^{n})E(Z_2^{m}) $$
+
+    $$ E(Z_1^{n}) = \int\limits_{0}^{1}\dfrac{1}{B(p_1,p_2)}z_1^{n}z_1^{p_1-1}(1-z_1)^{p_2-1}dz_1 = \dfrac{1}{B(p_1,p_2)} \int\limits_{0}^{1} z_1^{n+p_1-1}z_1^{p_2-1}dz_1 = $$
+    $$= \dfrac{1}{B(p_1,p_2)} B(n+p_1,p_2) = \dfrac{\Gamma(p_1+p_2)}{\Gamma(p_1)\Gamma(p_2)} \dfrac{\Gamma(n+p_1)\Gamma(p_2)}{\Gamma(n+p_1+p_2)} = $$
+    $$ =\dfrac{(n+p_1-1)\cdots p_1 \cancel{\Gamma(p_1)\Gamma(p_1+p_2)}}{(n-1+p_1+p_2)\cdots (p_1+p_2)\cancel{\Gamma(p_1+p_2)\Gamma(p_1)}}  $$
+
+    Para calcular la distribución conjunta podemos usar que son independientes, luego la función de densidad de $(Z_1,Z_2) $ es el producto de las funciones de densidad de $ Z_1 $ y de $ Z_2 $.
+
+
+\end{exercise}
+
+
+\chapter{Relación 5}
+
+
+\begin{exercise}
+    
+    $  $\\ 
+    Claramente, en el caso de que $ x< 0 $ tenemos que $ G_n(x) = 0 \to 0 $ y si $ x >  1 $ tenemos $ G_n(x)=1 \to 1$\\ 
+
+    Para $ 0<x<1 $, $ G_n(x) = 1 $ si $ n $ es suficientemente grande. Por tanto, $ G_n \to G $ con:
+    $$ G(x) = \left\{
+        \begin{array}{ll}
+    0 & x < 0 \\ 
+    0 \leq  \alpha \leq  1 & x = 0\\ 
+    1 & x > 0
+\end{array}
+    \right. $$
+
+    Como $ F_n $ tiene que ser continua por la derecha, la definimos como:
+    $$ F_n(x) = \left\{
+    \begin{array}{ll}
+    0 & x < 1/n \\ 
+    1 & x = 1/n \\ 
+    1 & x > 1/n
+    \end{array}
+    \right. $$
+
+    $ F_n $ sigue teniendo el mismo límite que $ G_n $
+
+
+    \begin{flushright}
+    \textbf{Apartado b)}
+    \end{flushright}
+
+    $$ G_n(x) = \left\{
+    \begin{array}{ll}
+    0 & x < n\\ 
+    1/n & x = n \\ 
+     1 & x > n
+    \end{array}
+    \right. $$
+
+    Vemos si esta sucesión de funciones converge débilmente. Vemos que $ G_n(x) = 0 $ para $ n  $ suficientemente grande, luego $ G_n(x) \to 0 \forall x \in \mathbb{R}$. Además, $ G_n(-\infty) = 0 $ y $ G_n(+\infty) $, luego $ G_n $ no converge completamente
+        
+\end{exercise}
+    
+\begin{exercise}
+    $  $\\ 
+    \begin{flushright}
+        \textbf{Apartado a)}
+    \end{flushright}
+    
+    Definimos $ X_i $ que indica el número de bolas blancas que salen de la urna $ U_i $, $ (i=1,2,3) $. Entonces, si $ X = X_1+X_2+X_3 $, entonces $ X $ indica el número de bolas blancas que hay en la urna $ U_4 $. Definimos las funciones generatrices de probabilidad de cada $ X_i $:
+    $$ f_{1}(t) = E(t^{X_1}) = \dfrac{1}{2}t^{0} + \dfrac{1}{2}t^{1} = \dfrac{1}{2} +\dfrac{1}{2}t $$
+    $$ f_{2}(t) = E(t^{X_2}) = \dfrac{2}{3}t^{0} + \dfrac{1}{3}t^{1} =\dfrac{2}{3} + \dfrac{1}{3}t$$
+    $$ f_{3}(t) = E(t^{X_3}) = \dfrac{3}{4}t^{0} + \dfrac{1}{4}t^{1} = \dfrac{3}{4}+\dfrac{1}{4}t$$
+
+    Entonces la función generatriz de probabilidad de $ X $ es:
+    $$ f_{X}(t) = E(t^{X}) = E(t^{X_1})E(t^{X_2})E(t^{X_3}) = ... = \dfrac{1}{24}(6+11t+6t^2+t^3) $$
+    
+    Entonces los valores que puede tomar $ X $ son 0,1,2 y 3. En concreto:
+    $$ P(X=0) = \dfrac{6}{24} = \dfrac{1}{4} $$
+    $$ P(X=1) = \dfrac{11}{24} $$
+    $$ P(X=2) = \dfrac{6}{24} = \dfrac{1}{4} $$
+    $$ P(X=3) = \dfrac{1}{24} $$
+
+\begin{flushright}
+    \textbf{Apartado b)}
+\end{flushright}
+
+Utilizaremos el teorema de la probabilidad total para hacer este apartado. Si $ B_2 $ es la probabilidad de sacar 2 bolas blancas de $ U_4 $ (no escribimos los sumandos que se anulan):
+$$ P(B_2) = P(B_2|\{X=2\}) \cdot P(X=2)+P(B_2|\{X=3\}) \cdot P(X=2) = \dfrac{1}{3}\cdot \dfrac{1}{4} + 1\cdot \dfrac{1}{24} = \dfrac{3}{24}$$
+
+Nos falta calcular solo $ P(B_2|\{X=2\}) = \dfrac{1}{\binom{3}{2}} = \dfrac{2}{3\cdot 2} = \dfrac{1}{3} $
+
+\end{exercise}
+
+\begin{exercise}
+    \textbf{Este ejercicio no sé de dónde sale}\\ 
+
+    Sean $ X,Y $ independientes. $ X $ es uniforme en el conjunto $ \{0,h,...,nh\} $ e $ Y $ es uniforme en $ (a,a+h) $. Nos piden calcular las funciones características  de $ Z = X+Y $ y de $ (X,Y) $.\\ 
+
+    Calculamos la función característica de $ X $:
+    $$ E(e^{itX}) = \sum\limits_{r=0}^{n}\dfrac{1}{n+1} e^{itrh} = \dfrac{1}{n+1} \dfrac{1-e^{it(n+1)h}}{1-e^{ith}} $$
+    $$ E(e^{itY}) = \int\limits_{a}^{a+h} e^{itx}\dfrac{1}{h}dx = \dfrac{1}{h} \dfrac{e^{itx}}{it} \Biggr|_{a}^{a+h} = \dfrac{e^{it(a+h)}-e^{iat}}{iht} = e^{iat}\dfrac{e^{ith}-1}{iht} $$
+
+    Entonces la función característica de la suma es:
+    $$ E(eit(X+Y)) = \dfrac{e^{iat}}{n+1}\dfrac{e^{it(n+1)h}-1}{iht} $$
+
+    La de $ (X,Y) $ sería igual pero con dos variables distintas. Queda una expresión algo mas fea.
 \end{exercise}
 
 
 \end{document}
+                
