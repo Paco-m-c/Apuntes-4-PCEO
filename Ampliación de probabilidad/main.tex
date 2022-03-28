@@ -966,9 +966,9 @@ Nos falta calcular solo $ P(B_2|\{X=2\}) = \dfrac{1}{\binom{3}{2}} = \dfrac{2}{3
 \end{exercise}
 
 \begin{exercise}
-    \textbf{Este ejercicio no sé de dónde sale}\\ 
+    \textbf{Este ejercicio no sé de dónde sale}
 
-    Sean $ X,Y $ independientes. $ X $ es uniforme en el conjunto $ \{0,h,...,nh\} $ e $ Y $ es uniforme en $ (a,a+h) $. Nos piden calcular las funciones características  de $ Z = X+Y $ y de $ (X,Y) $.\\ 
+    Sean $ X,Y $ independientes. $ X $ es uniforme en el conjunto $ \{0,h,...,nh\} $ e $ Y $ es uniforme en $ (a,a+h) $. Nos piden calcular las funciones características  de $ Z = X+Y $ y de $ (X,Y) $. 
 
     Calculamos la función característica de $ X $:
     $$ E(e^{itX}) = \sum\limits_{r=0}^{n}\dfrac{1}{n+1} e^{itrh} = \dfrac{1}{n+1} \dfrac{1-e^{it(n+1)h}}{1-e^{ith}} $$
@@ -978,6 +978,172 @@ Nos falta calcular solo $ P(B_2|\{X=2\}) = \dfrac{1}{\binom{3}{2}} = \dfrac{2}{3
     $$ E(eit(X+Y)) = \dfrac{e^{iat}}{n+1}\dfrac{e^{it(n+1)h}-1}{iht} $$
 
     La de $ (X,Y) $ sería igual pero con dos variables distintas. Queda una expresión algo mas fea.
+\end{exercise}
+
+
+\chapter{Relación 6}
+
+\begin{exercise}
+    $$ X_n\equiv \left\{
+    \begin{array}{ll}
+        P(X_n=1+\dfrac{1}{n}) = P(X_n=2+\dfrac{1}{2}) = \dfrac{1}{2} & n\ par\\\\
+        P(X_n=1-\dfrac{1}{n}) = P(X_n=2-\dfrac{1}{2}) = \dfrac{1}{2} & n\ impar\\
+    \end{array}
+    \right. $$
+
+    Si $ n $ es par tenemos las funciones de distribución:
+    $$ F_n (x) = \left\{
+    \begin{array}{ll}
+        0 & x<1+\dfrac{1}{n} \\ \\
+        \dfrac{1}{2} & 1+\dfrac{1}{n} \leq  x < 2+\dfrac{1}{n}\\\\
+        1 & 2+\dfrac{1}{n} \leq  x
+    \end{array}
+    \right. $$
+
+    Cuando $ n $ es impar:
+    $$ F_n (x) = \left\{
+    \begin{array}{ll}
+        0 & x<1-\dfrac{1}{n} \\ \\
+        \dfrac{1}{2} & 1-\dfrac{1}{n} \leq  x < 2-\dfrac{1}{n}\\\\
+        1 & 2-\dfrac{1}{n} \leq  x
+    \end{array}
+    \right. 
+    $$
+
+    \begin{center}
+        \includegraphics[scale=0.2]{6-1.jpg}
+    \end{center}
+    
+
+    Notamos que:
+    $$ \left\{
+    \begin{array}{ll}
+        x < 0 &  F_n(x) = 0 \to 0\\ 
+        0<x<1 & \left\{
+        \begin{array}{l}
+            F_n(x) = 0\ n\ par\\ 
+            \text{Si $ n $ impar y suf. grande, $ x<1-\dfrac{1}{n} $, por tanto }F_n(x) = 0
+        \end{array}
+        \right\} F_n(x) \to 0\\ 
+        1<x<2 & \left\{
+        \begin{array}{l}
+            \text{Si $ n $ par y suf. grande, $ 1+\dfrac{1}{n}<x \implies F_n(x)=\dfrac{1}{2} $}\\
+            \text{Si $ n $ impar, $ x<2-\dfrac{1}{2} $} \implies F_n(x)=\dfrac{1}{2}
+        \end{array}
+        \right\} F_n(x) \to \dfrac{1}{2}\\ 
+        x>2 & \left\{
+        \begin{array}{l}
+            \text{Si $ n $ par y suf. grande, $ 2+\dfrac{1}{n}<x $} \implies F_n(x)=1\\ 
+            \text{Si $ n $ impar,\ }F_n(x)=1
+        \end{array}
+        \right\} F_n(x) \to 1
+
+    \end{array}
+    \right. $$
+
+
+    Por tanto, tenemos que:
+    $$ F_n(x) \to F(x) = \left\{
+    \begin{array}{ll}
+        0 & x < 1 \\ 
+        \dfrac{1}{2} & 1<x<2 \\ 
+        1 & x>2
+    \end{array}
+    \right. $$
+
+    Nos faltaría por definir el valor en 1 y 2. Para que $ F $ sea función de distribución hacemos que sea continua por la derecha:
+$$F(x) = \left\{
+    \begin{array}{ll}
+        0 & x < 1 \\ 
+        \dfrac{1}{2} & 1\leq x<2 \\ 
+        1 & x\geq 2
+    \end{array}
+    \right. $$
+    
+\end{exercise}
+
+\begin{exercise}
+    Claramente tenemos que:
+    $$ f(x)= \left\{
+    \begin{array}{ll}
+        \dfrac{1}{2} & x \in (0,2)\\ 
+        0 & x \not \in (0,2)
+    \end{array}
+    \right. $$
+
+    Entonces la función característica es:
+    $$ \phi(t) = E(e^{itX_n}) = \int\limits_{0}^{2}e^{itx}\dfrac{1}{2}dx = \dfrac{1}{2} \dfrac{e^{itx}}{it} \Biggr|_{0}^{2} = \dfrac{e^{2it}-1}{2it} $$
+
+    Por la independencia de los $ X_n $ tenemos que:
+    $$ \phi_{Y_n}(t) = E(e^{itY_n}) = E(e^{itX_n})E(e^{it2X_{n+1}})E(e^{itX_{n+2}}) = \phi_n(t)\phi_{n+1}(2t)\phi_{n+2}(t) = \left(\dfrac{e^{2it}-1}{2it}\right)^2 \dfrac{e^{2i2t}-1}{2i2t} = \dfrac{(e^{2it}-1)^2}{-4t^2} \dfrac{e^{4it}-1}{4it}$$
+
+    Si $ Y_n-c $ es respecta respecto del origen, tenemos que $ E(Y_n-c)=0 \iff E(Y_n) = c $. Calculamos entonces $ E(Y_n) $:
+    $$ c = E(Y_n) = E(X_n) +2(X_{n+1}) + E(X_{n+2}) = 1+2+1=4 $$
+
+    Ya que $ E(X_n) = 1 $ (el punto medio del intervalo).
+
+    Para comprobar si efectivamente $ Y_n-4 $ es simétrica, vemos si $ \phi_{Y_n-4}(t) $ es real:
+    $$ \phi_{Y_n-4}(t) = E(e^{it(Y_n-4)}) = e^{-it4}E(itY_n) = e^{-it 4} \dfrac{(e^{2it-1}-1)}{2it} \dfrac{(e^{2it-1}-1)}{2it} \dfrac{e^{4it}-1}{4it} =$$ 
+     $$ e^{-4it} e^{it} \dfrac{e^{it}-e^{-it}}{2it} e^{it}\dfrac{e^{it}-e^{-it}}{2it} e^{2it} \dfrac{e^{2it}-e^{-2it}}{4it}  = e^{-4it}e^{4it} \left( \dfrac{2i \sin(t)}{2it} \right)^2 \dfrac{2i \sin(2t)}{4it} = \dfrac{\sin^2(t)}{t^2} \dfrac{\sin(2t)}{2t} $$
+
+    Luego sí es real y $ Y_n-4 $ es simétrica respecto del origen.
+
+\end{exercise}
+
+\begin{exercise}
+    Consideramos las vvaa $ (X_i,Y_i,Z_i) $ donde:
+    $$ X_i = \left\{
+    \begin{array}{ll}
+        1 & \text{si A gana el partido $ i$-ésimo}\\ 
+        0 & \text{otro caso}
+    \end{array}
+    \right. $$
+    $$ Y_i = \left\{
+    \begin{array}{ll}
+        1 & \text{si B gana el partido $ i$-ésimo}\\ 
+        0 & \text{otro caso}
+    \end{array}
+    \right. $$
+    $$ Z_i = \left\{
+    \begin{array}{ll}
+        1 & \text{si el partido $ i$-ésimo se empata}\\ 
+        0 & \text{otro caso}
+    \end{array}
+    \right. $$
+    Tenemos entonces que $ (X,Y,Z) = \sum\limits_{i=1}^{n}(X_i,Y_i,Z_i) $, que $ P((X_i,Y_i,Z_i)=(1,0,0)) = P((X_i,Y_i,Z_i)=(0,1,0)) = P((X_i,Y_i,Z_i)=(0,0,1)) = \dfrac{1}{3} $ y que son independientes las $ (X_i,Y_i,Z_i) $. Además:
+    $$ f_i(t_1,t_2,t_3) = \dfrac{1}{3}(t_1+t_2+t_3) $$
+
+    Por lo que $ f(t_1,t_2,t_3) $ vale:
+    $$ f(t_1,t_2,t_3) = \left( \dfrac{1}{3}  \right)^{n} (t_1+t_2+t_3)^{n}  $$
+
+    Utilizando la fórmula de Leibniz:
+
+    $$ f(t_1,t_2,t_3) = \dfrac{1}{3^{n}} \sum\limits_{r_1+r_2+r_3=n}^{} \dfrac{n!}{r_1!r_2!r_3!} t_1^{r_1}t_2^{r_2}t_3^{r_3} $$
+
+    Esta construcción corresponde a la distribución \textbf{multinomial}. La distribución que nos queda en base a $ f $ de $ (X,Y,Z)  $ es:
+    $$ P((X,Y,Z)=(r_1,r_2,r_3)) = \dfrac{1}{3^{n}} \dfrac{n!}{r_1!r_2!r_3!} $$
+
+    Con $ r_1+r_2+r_3=n $. enteros no negativos.
+
+    Para el siguiente apartado usaremos que el dominio de $ f $ es todo $ \mathbb{R}^3 $, luego (1,1,1) es interior al dominio. Podemos ahora calcular las esperanzas que nos piden usando las derivadas parciales y evaluando en $ (1,1,1) $.
+
+    $$ \dfrac{\partial f}{\partial t_1} = \dfrac{1}{3^{n}}n (t_1+t_2+t_3)^{n-1}  $$
+    $$ \dfrac{\partial ^2f}{\partial t_1 \partial t_2} = \dfrac{1}{3^{n}}n(n-1) (t_1+t_2+t_3)^{n-2} $$
+    $$ \dfrac{\partial ^3f}{\partial t_1 \partial t_2 \partial t_3} = \dfrac{1}{3^{n}}n(n-1)(n-2) (t_1+t_2+t_3)^{n-3} $$
+
+    Evaluando en $ (1,1,1) $:
+    $$ E(X) = \dfrac{\partial f}{\partial t_1}(1,1,1) = \dfrac{n}{3}  $$
+    $$ E(XY) = \dfrac{\partial ^2 f}{\partial t_1 \partial t_2} (1,1,1) = \dfrac{n(n-1)}{3^2} $$
+    $$ E(XY) = \dfrac{\partial ^3 f}{\partial t_1 \partial t_2 \partial t_3} (1,1,1) = \dfrac{n(n-1)(n-2)}{3^3} $$
+
+\end{exercise}
+
+
+\begin{exercise}
+    Haciendo el cambio de variable quedaba al final que $$ g(u,v) = v e^{-v-u} $$ y las marginales quedaban que eran distribuciones Gamma. Se ve además que $ U,V $ son independientes, con lo que la función característica es el producto de las funciones característica de las marginales (que se pueden calcular con la integral Gamma). Para calcular la función característica de $ (X,Y) $ hacemos:
+    $$ \phi_{(X,Y)}(t_1,t_2) = E(e^{i(t_1X+t_2Y)}) = E(e^{i(t_1(U+V))+t_2(U+2V)}) = E(e^{it_1U}e^{it_1V}e^{it_2U}e^{it_2 2V}) = $$ 
+     $$=E(e^{(t_1+t_2)U}e^{i(t_1+2t_2)V})= \phi_{U}(t_1+t_2) \phi_{V}(t_1+2t_2) = \dfrac{1}{1-i(t_1+t_2)} \dfrac{1}{(1-i(t_1+2t_2))^2} $$ 
+
 \end{exercise}
 
 
