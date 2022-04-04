@@ -1075,7 +1075,8 @@ $$F(x) = \left\{
     $$ \phi(t) = E(e^{itX_n}) = \int\limits_{0}^{2}e^{itx}\dfrac{1}{2}dx = \dfrac{1}{2} \dfrac{e^{itx}}{it} \Biggr|_{0}^{2} = \dfrac{e^{2it}-1}{2it} $$
 
     Por la independencia de los $ X_n $ tenemos que:
-    $$ \phi_{Y_n}(t) = E(e^{itY_n}) = E(e^{itX_n})E(e^{it2X_{n+1}})E(e^{itX_{n+2}}) = \phi_n(t)\phi_{n+1}(2t)\phi_{n+2}(t) = \left(\dfrac{e^{2it}-1}{2it}\right)^2 \dfrac{e^{2i2t}-1}{2i2t} = \dfrac{(e^{2it}-1)^2}{-4t^2} \dfrac{e^{4it}-1}{4it}$$
+    $$ \phi_{Y_n}(t) = E(e^{itY_n}) = E(e^{itX_n})E(e^{it2X_{n+1}})E(e^{itX_{n+2}}) = \phi_n(t)\phi_{n+1}(2t)\phi_{n+2}(t) =$$ 
+     $$ =  \left(\dfrac{e^{2it}-1}{2it}\right)^2 \dfrac{e^{2i2t}-1}{2i2t} = \dfrac{(e^{2it}-1)^2}{-4t^2} \dfrac{e^{4it}-1}{4it}$$
 
     Si $ Y_n-c $ es respecta respecto del origen, tenemos que $ E(Y_n-c)=0 \iff E(Y_n) = c $. Calculamos entonces $ E(Y_n) $:
     $$ c = E(Y_n) = E(X_n) +2(X_{n+1}) + E(X_{n+2}) = 1+2+1=4 $$
@@ -1147,5 +1148,192 @@ $$F(x) = \left\{
 \end{exercise}
 
 
+
+\chapter{Relación 7}
+
+\begin{exercise}$  $
+  \begin{flushright}
+    \textbf{Apartado a)}
+  \end{flushright}
+
+  $$ F_n(x) = P(X_n\leq x) = \left\{
+  \begin{array}{ll}
+    0 & x<0\\ 
+    \dfrac{1}{n} & 0\leq  x < a\\ 
+    1 & x\geq a
+  \end{array}
+  \right. $$
+
+  $$ \left\{
+  \begin{array}{ll}
+    F_n(x) = 0 \to 0 & x<0 \\ 
+    F_n(x) = \dfrac{1}{n} \to 0 & 0<x<a \\ 
+    F_n(x) = 1 \to 1 & x>a
+  \end{array}
+  \right. $$
+
+  Estas funciones de distribución convergen entonces débilmente a la función
+
+  $$ F(x) = \left\{
+  \begin{array}{ll}
+    0 & x<a \\ 
+    1 & x>a
+  \end{array}
+  \right. $$
+  
+  Para que $ F $ sea una función de distribución, haremos que $ F(a) = 1 $. Nos preguntamos si hay convergencia en ese punto $ x=a $. Como $ F_n(a) = 1 $ siempre, sí hay convergencia en ese punto (aunque no nos haría falta al ser un punto de discontinuidad de $ F $). Por tanto, hemos llegado a que $ X_n $ converge en distribución a la v.a. de $ F $, es decir, la variable aleatoria $ X=a $ constante.
+
+
+  \begin{flushright}
+    \textbf{Apartado b)}
+  \end{flushright}
+  
+  Para ver la convergencia en probabilidad, sabemos que si la hay, es ha $ X=a $ constante ya que tiene que coincidir con la convergencia en distribución. Además, sabemos que si $ X_n \to^{\mathcal{D}} a $, con $ a $ constante, entonces $ X_n \to^{P} a $
+
+\begin{flushright}
+    \textbf{Apartado c)}
+\end{flushright}
+
+Utilizaremos el Lema de Borel-Cantelli: si $ \sum\limits_{}^{}P(A_n) $ convergente $ \implies P(\limsup A_n) = 0 $ y si es divergente y los sucesos $ A_n $ son independientes, entonces $ P(\limsup A_n) = 1 $
+
+Lo que nos piden es $ P(\limsup A_n) $ donde $ A_n = \{X_n = 0\} $. Además tenemos que $ P(A_n) = P(X_n  =0) = \dfrac{1}{n} \implies \sum\limits_{}^{}P(A_n) = \sum\limits_{}^{}\dfrac{1}{n} $ divergente. Además, los $ A_n $ son independientes, con lo que $ P(\limsup A_n) = P(X_n = 0,\ \text{infinitos valores de $ n $}) = 1 $
+
+Para la segunda parte, sustituiríamos $ \dfrac{1}{n}  $ por $ \dfrac{n-1}{n} $, la cual también es divergente. Por tanto, la probabilidad buscada en este caso des de nuevo 0.
+
+\begin{flushright}
+    \textbf{Apartado d)}
+\end{flushright}
+
+Si convergiera, sería al límite en probabilidad (la variable aleatoria constante igual a $ a $). Usaremos que $ X_n $ converge casi seguramente si:
+$$ \lim_{n \to \infty} P (\cap_{p\geq n} \{|X_{p}-a|<\varepsilon\}) = 1 $$
+
+Observamos que:
+$$ P(\cap_{p=n}^{\infty}\{|X_{p}-a|<\varepsilon\}) = \lim_{M \to \infty} P(\cap_{p=n}^{M}\{|X_{p}-a|<\varepsilon\}) =_{X_n\ indep} \lim_{M \to \infty} \prod_{p=n}^{M}P(|X_{p}-a|<\varepsilon) =_{Si\ \varepsilon<a}   $$
+$$ = \lim_{M \to \infty} \prod_{p=n}^{M}\left(1-\dfrac{1}{p}\right) = \lim_{M \to \infty}\dfrac{n-1}{n} \dfrac{n-2}{n-1} \cdots \dfrac{M-1}{M} = \lim_{M \to \infty} \dfrac{n-1}{M} = 0  $$
+
+Por tanto, $ X_n \cancel{\xrightarrow{cs}}\ a $
+
+\begin{flushright}
+    \textbf{Apartado e)}
+\end{flushright}
+
+
+Como la convergencia en media de orden $ p $ implica la convergencia en probabilidad tenemos que $ X_n $ solo tiene un candidato a límite en convergencia en media de orden $ p $, la v.a. constante $ a $. Buscamos entonces:
+$$ E(|X_n-a|^{p}) \xrightarrow{n \to \infty} 0 $$
+
+
+$$ |X_n-a|^{p} = \left\{
+\begin{array}{ll}
+    a^{p} & X_n = 0 \implies P(|X_n-a|^{p} = a^{p}) = P(X_n = 0) = \dfrac{1}{n}\\ 
+    0 & X_n = a \implies P(|X_n-a|^{p}=0) = P(X_n = a) = \dfrac{n-1}{n}
+\end{array}
+\right. $$
+
+Por tanto, $ E(|X_n-a|^{p}) = a^{p}\dfrac{1}{n} + 0 \dfrac{n-1}{n} = \dfrac{a^{p}}{n} \to 0 $, luego $ X_n \xrightarrow{m.a.p} a $
+
+
+\begin{flushright}
+    \textbf{Apartado f)}
+\end{flushright}
+Por la definición que tenemos de $ X_n $:
+$$ E(X_n) = a \dfrac{n-1}{n} $$
+$$ E(X_n^2) = a^2 \dfrac{n-1}{n} $$
+
+Luego tenemos:
+$$ Var(X_n) = a^2 \dfrac{n-1}{n}-a^2 \dfrac{(n-1)^2}{n^2} = a^2 \left( \dfrac{n(n-1)}{n^2} - \dfrac{(n-1)^2}{n^2} \right) = a^2 \dfrac{(n-1)}{n^2} $$
+\begin{flushright}
+    \textbf{Apartado g)}
+\end{flushright}
+
+Usaremos la regla de Stolz.
+
+$$ \lim_{n \to \infty} \dfrac{E(S_n)}{n} = \dfrac{\sum\limits_{j=1}^{n}a \dfrac{j-1}{j}}{n} $$
+
+Calculamos el siguiente límite, si existe el límite pedido y el calculado coincidirá:
+
+$$\lim_{n \to \infty} \dfrac{E(S_n)-E(S_{n-1})}{n-(n-1)} = \lim_{n \to \infty} \dfrac{E(X_n)}{1} = \lim_{n \to \infty}a \dfrac{n-1}{n} = a$$
+
+Entonces:
+$$ \lim_{x \to \infty} \dfrac{E(S_n)}{n} = a $$
+
+Haremos el mismo procedimiento para el otro límite:
+
+$$ \lim_{n \to \infty} \dfrac{Var(S_n)-Var(S_{n-1})}{n^2-(n-1)^2} = \lim_{n \to \infty} \dfrac{Var(X_n)}{n^2-(n^2-2n+1)} = \lim_{n \to \infty} \dfrac{a^2 \dfrac{n-1}{n^2}}{2n-1} = 0$$
+
+Por tanto:
+$$ \lim_{n \to \infty} \dfrac{Var(S_n)}{n^2} = 0 $$
+
+
+\begin{flushright}
+    \textbf{Apartado h)}
+\end{flushright}
+
+Como $ \dfrac{Var(S_n)}{n^2}\to 0  $ entonces:
+$$ \dfrac{S_n-E(S_n)}{n} \xrightarrow{P}0 $$
+
+Además sabemos que $ \lim_{n \to \infty} \dfrac{E(S_n)}{n} = a $, por lo tanto tenemos que:
+$$ \lim_{n \to \infty} \dfrac{S_n}{a} 0\ \text{ en probabilidad} $$
+
+Y los $ a_n $ valen:
+$$ a_n = E(S_n ) = \sum\limits_{j=1}^{n}a \dfrac{j-1}{j} $$
+
+\end{exercise}
+
+\newpage
+
+\begin{exercise}
+    $  $
+    \begin{flushright}
+        \textbf{Apartado a)}
+    \end{flushright}
+    
+    
+    Notamos que para $ x \in \left(0,\dfrac{1}{2}\right) $, $ x \in \left(0,\dfrac{1}{2}-\dfrac{1}{n}\right) $ para $ n $ suf. grande. Entonces $ X_n(x) =e^{-n}\to 0 $.
+    
+    En el caso $x \in  \left[\dfrac{1}{2},1\right)  $, $ x \in \left[\dfrac{1}{2},1-\dfrac{1}{n}\right) $ para $ n  $ suf. grande. Entonces $ X_n(x) = 1 \to 1 $.
+    
+    Por tanto, $ X_n $ converge casi seguramente a $ X $ con:
+    $$ X(x) = \left\{
+    \begin{array}{ll}
+        0 & x \in \left(0,\dfrac{1}{2}\right)\\ 
+        1 & x \in \left[\dfrac{1}{2},1\right)
+    \end{array}
+    \right. $$
+
+    Ya que $ P(\lim_{n \to \infty}X_n = X) = P((0,1)) = 1 $
+
+\end{exercise}
+
+
+
 \end{document}
                 
+
+
+% Esto no se si es importante lo copio aqui fuera
+
+
+% Un expermiento se puede repetir un gran numero de veecs en condiciones similares pudiendo obtener como resultado $ A $ o su complementario
+
+% $$ \Epsilon_1,...,\Epsilon_n $$
+
+% Frecuenica absoluta de $ A $ a lo largo de los $ n $ experimentos $ n_{A} $: $ fr(A,n) = \dfrac{n_{A}}{n} $
+
+% La frencuencia relativa de $ A $ se basa en la ley de regularidad de frecuencias:
+
+% La frecuencia relativa de un suceso $ A $ se aproxima a un valor cuando el numero de repeticiones es grande. A este valor le llamamos probabilidad de $ A $.
+
+% $$ X_j = \left\{
+% \begin{array}{ll}
+%     1 & \text{si en el experimento j-ésimo se obiene }A\\ 
+%     0 & \text{si en el experimento j-ésimo no se obiene }A\\ 
+% \end{array}
+% \right. $$
+
+% $ X_j \sim $ Bernoulli de parametros $ P(X_j=1)=p=P(A) $ independientes.
+
+% $$ S_n = X_1+X_2+...+X_n $$ representa 
+
+% $$ \dfrac{S_n}{n} \xrightarrow{P} \mu = p = P(A) $$
+% $$ \dfrac{n_{A}}{n} \xrightarrow{P} \mu  = P(A) $$
+

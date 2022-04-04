@@ -3,6 +3,7 @@
 \usepackage{verbatim}
 \input{structure}
 \usepackage{geometry}
+\usepackage{esint}
 \geometry{
     top=3cm,
     bottom=3cm,
@@ -166,11 +167,11 @@ $  $\\
 \textbf{Ecuación de los fluidos}\\
 %dibujo del Karbajo
 Tenemos una corriente en un fluido no compresible y nos fijamos en una seccion (S) orientada (tenemos un vector normal) y queremos medir que cantidad de fluido atraviesa S. Tenemos que la velocidad del fluido (v) depende de la posicion (x,y,z) y del tiempo. Y para modelar la masa que atraviesa la seccion (masa saliente de la seccion) por unidad de tiempo hacemos este calculo:
-$$ \underbrace{\rho \overrightarrow{S} \overrightarrow{v}\Delta t }_{\text{masa saliente}} \to \underbrace{\iint_{\partial D} \rho \overrightarrow{v}d \overrightarrow{S}}_{\text{integral de flujo}} $$
+$$ \underbrace{\rho \overrightarrow{S} \overrightarrow{v}\Delta t }_{\text{masa saliente}} \to \underbrace{\iint\limits_{\partial D} \rho \overrightarrow{v}d \overrightarrow{S}}_{\text{integral de flujo}} $$
 
 Podemos aplicar el teorema de Gauss-Ostrogadsky para convertir esta integral en una integral triple.
 
-$$ \iint_{\partial D}\rho \overrightarrow{v}d \overrightarrow{S} = \iiint_D \rho dV  $$
+$$ \iint\limits_{\partial D}\rho \overrightarrow{v}d \overrightarrow{S} = \iiint\limits_D \rho dV  $$
 
 \subsection{Ecuación de calor.Procesos de difusión}
 
@@ -178,11 +179,11 @@ Tomemos una región confinada de moléculas que se mueven de manera caótica, ca
 
 Sean $ X,Y $ una variables aleatorias. Cuando son independientes sus funciones de densidad $ f(x),g(y) $ cumplen que $ f(x)\cdot g(y) $ el densidad conjunta.
 Como consecuencia, si tenemos un conjunto
-$$P((X,Y \in A)) = \iint_A f(x,y) dxdy $$
+$$P((X,Y \in A)) = \iint\limits_A f(x,y) dxdy $$
 
 Para calcular la función de distribución de $ X+Y $ (es decir, $P(X+Y \leq Z$) se procede de este modo:
 
-$$ P (X+Y \leq z) = \iint_{x+y \leq  z} f(x)g(y)dxdy $$
+$$ P (X+Y \leq z) = \iint\limits_{x+y \leq  z} f(x)g(y)dxdy $$
 
 Para calcular esta integral podemos hacer el cambio de variable $ x=s,\ x+y=z $, de forma que la integral queda:
 
@@ -918,6 +919,78 @@ Ahora estamos en condiciones de demostrar Stone-Weierstrass:
 \end{demonstration}
 
 
+\chapter{La ecuación de ondas}
+
+\section{La ecuación de ondas en una dimensión}
+
+$$ \dfrac{\partial ^2 u}{\partial t^2}- c^2 \dfrac{\partial ^2 u}{\partial x ^2} = 0 \hspace{5mm} c>0 $$
+
+Hay varias formas de resolver este tipo de ecuaciones, algunas de ellas son el método de D'Alembert y el de Bernoulli-Fourier. La primera consiste en expresar $ u(x,t) = f(x+ct) + g(x-ct) $ y en el segundo usaremos $ s(x) = u(x,0),\ v(x)=u_{t}(x,0) $
+
+Podemos buscar una relación entre estos dos métodos:
+
+$$ f(x)+g(x) = s(x) $$
+$$ u_{t}(x,t)  = cf'(x+ct) - cg'(x-ct) \implies cf'(x)-cg'(x) = v(x)$$
+
+Y derivando en la primera igualdad nos queda el sistema:
+$$ \left\{
+\begin{array}{l}
+  f'(x)-g'(x) = \dfrac{v(x)}{c}\\ 
+  f'(x) + g'(x) = s'(x)
+\end{array}
+\right. $$
+
+Que nos lleva a:
+$$ \left\{
+\begin{array}{l}
+  f'(x) = \dfrac{v(x)/c + s'(x)}{2} \\ 
+  g'(x) = \dfrac{cs'(x)-v(x)}{2c}
+\end{array}
+\right. $$
+
+Usando Barrow tenemos entonces que:
+$$ f(x)-f(0) = \int\limits_{0}^{x}f'(z)dz = \dfrac{1}{2} \int\limits_{0}^{x} \left( \dfrac{v(z)}{c}+s'(z) \right)dz = \dfrac{1}{2c} \int\limits_{0}^{x}v(z)dz + \dfrac{s(x)-s(0)}{2} $$
+
+Análogamente:
+$$ g(x)-g(0) = \int\limits_{0}^{x}g'(z)dz = -\dfrac{1}{2c} \int\limits_{0}^{x}v(z)dz + \dfrac{s(x)-s(0)}{2} $$
+
+Si evaluamos estas igualdades en $ x+ct $ y $ x-ct $:
+$$ f(x+ct) -f(0) = \dfrac{1}{2c} \int\limits_{0}^{x+ct} + \dfrac{s(x+ct)-s(0)}{2} $$
+$$ g(x-ct)-g(0) = -\dfrac{1}{2c} \int\limits_{0}^{x-ct}v(z)dz + \dfrac{s(x-ct)-s(0)}{2} $$
+
+Al sumar estas dos expresiones, como $ f(0)+g(0) = s(0) $, se cancelarán estos términos. Cambiaremos también la segunda integral para 'darle la vuelta' a los extremos. La suma queda:
+$$ u(x,t)= f(x+ct)+g(x-ct) = \dfrac{1}{2c} \int\limits_{x-ct}^{x+ct}v(z)dz + \dfrac{s(x+ct)+s(x-ct)}{2} $$
+
+\section{La ecuación de ondas en varias dimensiones}
+
+Recordemos que en el caso unidimensional tenemos la ecuación:
+$$ \dfrac{\partial ^2 u}{\partial t^2}-c^2 \dfrac{\partial ^2u}{\partial x^2} = 0 $$
+
+Para pasar al caso de varias dimensiones tendremos:
+$$ \dfrac{\partial ^2 u}{\partial t^2}-c \Delta u = 0 $$
+
+Para el caso de dimensión 3 recordemos que podemos tomar la media de los puntos en una circunferencia como:
+
+$$ M_{f}(x,r) = \dfrac{1}{4 \pi} \iint\limits_{S^2} f(x+ry)dS(y) $$
+
+$$ \dfrac{\partial }{\partial r} (M_{f}(x,r)) = \dfrac{1}{4\pi} \iint _{S^2} \dfrac{\partial }{\partial r}(f(x+ry))dS(y) $$
+
+El integrando de la última expresión lo podemos desarrollar como:
+$$ \dfrac{\partial f}{\partial x_1}(x+ry)y_1+ \dfrac{\partial f}{\partial x_2}(x+ry)y_2+ \dfrac{\partial f}{\partial x_3}(x+ry)y_3 $$
+
+Entonces tenemos que:
+$$ \dfrac{\partial }{\partial r} (M_{f}(x,r)) = \dfrac{1}{4\pi} \oiint   \bigtriangledown f(x+ry)ydS(y) = \dfrac{1}{4\pi} \iiint\limits_{B}\Delta f(x+ry)dV $$
+
+Donde la última igualdad se consigue con Gauss-Ostrogadsky. Además:
+
+$$ \dfrac{1}{4\pi} \iiint\limits_{B}\Delta f(x+ry)dV = \dfrac{1}{4\pi}\iiint\limits_{B(x,1)} \Delta f(ry)dV = \dfrac{1}{4 r^3\pi} \iiint _{B(x,r)}\Delta f(y)dV $$
+
+Integramos ahora por secciones circulares:
+
+$$ \dfrac{1}{4\pi} \iiint\limits_{B}\Delta f(x+ry)dV  = \dfrac{1}{4\pi} \int\limits_{0}^{r} \rho^2 \left( \iint_{S^2} \underbrace{\Delta f(x+\rho y)} _{\substack{M_{\Delta f}(x,\rho)\\\Delta M_{f}(x,\rho)}}dS(y) \right)d\rho = \int\limits_{0}^{r}\rho^2 \Delta M_{f}(x,\rho)d\rho $$
+
+
+
 \chapter{Ejercicios Resueltos}
 \section{Hoja 1}
 \setcounter{ex}{1}
@@ -1165,5 +1238,7 @@ Ahora estamos en condiciones de demostrar Stone-Weierstrass:
   $$ z = \left(1+\dfrac{y^2}{x^2}\right)x^2+e-1-\dfrac{y^2}{x^2} $$
   $$ u(x,y) = x^2+y^2-\dfrac{y^2}{x^2}+e-1 $$
 \end{exercise}
+
+
 
 \end{document}
