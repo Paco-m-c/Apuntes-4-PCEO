@@ -990,6 +990,74 @@ Integramos ahora por secciones circulares:
 $$ \dfrac{1}{4\pi} \iiint\limits_{B}\Delta f(x+ry)dV  = \dfrac{1}{4\pi} \int\limits_{0}^{r} \rho^2 \left( \iint_{S^2} \underbrace{\Delta f(x+\rho y)} _{\substack{M_{\Delta f}(x,\rho)\\\Delta M_{f}(x,\rho)}}dS(y) \right)d\rho = \int\limits_{0}^{r}\rho^2 \Delta M_{f}(x,\rho)d\rho $$
 
 
+\begin{minipage}[l]{0.1\textwidth}
+  \includegraphics[scale=0.02]{cosmo}
+  \end{minipage}
+  \begin{minipage}[l]{0.8\textwidth}
+  De nuevo, no sé qué es esto
+\end{minipage}
+
+\begin{method}
+  Separación de variables en la Ecuación del Calor
+  
+  Vamos a tomar una ecuación de calor:
+  $$ \dfrac{\partial u}{\partial t} = \dfrac{\partial ^2 u}{\partial x^2} $$
+  
+  Con solución $ u(x,t) $ y suponemos $ u(0,t) = u(\pi,t) = 0 \forall t $ y $ u(x,0) = f(x) $
+  
+  Veamos el método de separación de variables. Si la ecuación la podemos expresar de la forma:
+  $$ u(x,t) = A(x)B(t)$$
+  
+  Tendremos que
+  $$ u_{t}(x,t) = A(x)B'(t) $$
+  $$ u_{(x)}(x,t) = A''(x)B(t) $$
+  
+  Entonces igualando ambas ecuaciones (por al ecuación del calor que las relaciona)
+  
+  $$ \dfrac{A''(x)}{A(x)} = \dfrac{B'(x)}{B(x)} = cte <0$$
+  
+  Entonces podemos obtener que
+  $$ A(x) = cte \sin(nx) $$
+
+  De donde obtenemos que $ cte = -n^2 $
+
+  Tenemos ahora una EDO que podemos resolver:
+  $$ B'(t) = -n^2B(t) \implies B(t) = cte e^{-n^2t} $$
+
+  Nos preguntamos ahora si $ u(x,t) $ lo podemos poner como una combinación de estas funciones:
+  $$ \sum\limits_{n=1}^{\infty}a_ne^{-n^2t}\sin(nx) \stackrel{?}{=} u(x,t) $$
+  
+  En concreto, sabemos que:
+  $$ f(x) = \sum\limits_{n=1}^{\infty}a_n \sin(nx) $$
+  
+  Usaremos esta proposición:
+  
+  \begin{proposition}
+    Si tenemos la siguiente serie
+    $$ \sum\limits_{n=1}^{\infty}g_n(x) = G(x) $$
+    
+    Su derivada resulta ser
+    $$ \sum\limits_{n=1}^{\infty}g_n'(x) = H(x) $$
+    
+  \end{proposition}
+  
+  \begin{demonstration}
+    $$ \int\limits_{a}^{x}H(s)ds = \int\limits_{a}^{x} \sum\limits_{n=1}^{\infty} g_n'(s)ds = \sum\limits_{n=1}^{\infty} \int\limits_{a}^{x} g_n'(s)ds $$
+    $$ G(x)-G(a) = \sum\limits_{n=1}^{\infty}g_n(x) - \sum\limits_{n=1}^{\infty}g_n(a) = \sum\limits_{n=1}^{\infty}(g_n(x)-g_n(a)) $$
+    
+    Luego la $ G $ es derivable con $ G'(x) = H(x) $
+  \end{demonstration}
+  
+  \begin{minipage}[l]{0.1\textwidth}
+    \includegraphics[scale=0.02]{cosmo}
+    \end{minipage}
+    \begin{minipage}[l]{0.8\textwidth}
+    El final te lo imaginas, un saludo.
+  \end{minipage}
+    
+  
+\end{method}
+
 
 \chapter{Ejercicios Resueltos}
 \section{Hoja 1}

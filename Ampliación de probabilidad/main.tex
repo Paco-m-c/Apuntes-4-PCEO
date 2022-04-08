@@ -1302,6 +1302,75 @@ $$ a_n = E(S_n ) = \sum\limits_{j=1}^{n}a \dfrac{j-1}{j} $$
 
     Ya que $ P(\lim_{n \to \infty}X_n = X) = P((0,1)) = 1 $
 
+    Luego $ X_n $ también converge en probabilidad a $ X $.
+
+    Notamos ahora que la función de distribución de $  X $ es:
+    $$ F(x) = \left\{
+    \begin{array}{ll}
+        0 & x<0\\\\ 
+        \dfrac{1}{2} & 0 \leq x < 1 \\\\ 
+        1 & x>1
+    \end{array}
+    \right. $$
+
+    \begin{flushright}
+        \textbf{Apartado b)}
+    \end{flushright}
+    Como la convergencia en media de orden $ p $ implica la convergencia en probabilidad tenemos que $ X_n $ solo puede converger en media de orden $ p $ a $ X $ (o a otra casi seguramente igual).
+
+    Notamos en primer lugar que $ E(|X_n|^{p}) <+\infty $ y $ E(|X|^{p}) <+\infty $. Calculamos ahora la esperanza de $ |X_n-X|^{p} $
+    $$ E(|X_n-X|^{p}) = |e^{-n}-0|^{p}\cdot \left(\dfrac{1}{2}-\dfrac{1}{n}\right)+|1-0|^{p} \dfrac{1}{n} + |1-1|^{p}\left(\dfrac{1}{2}-\dfrac{1}{n}\right) + |e^{n}-1|^{p} \dfrac{1}{n} = $$ 
+    $$ =  e^{-np}\left(\dfrac{1}{2}-\dfrac{1}{n}\right) +\dfrac{1}{n}+(e^{n}-1)^{p}\dfrac{1}{n} \to \infty  $$
+
+    Por tanto, no hay convergencia en media de orden $ p $
+
+    \begin{flushright}
+        \textbf{Apartado c)}
+    \end{flushright}
+    Escribimos primero $ F_n $ la función de distribución de $ X_n $:
+    $$ F_n(x) = \left\{
+    \begin{array}{ll}
+        0 & x<e^{-n}\\ \\ 
+        \dfrac{1}{2}-\dfrac{1}{n} & e^{-n}\leq  x <1\\\\ 
+        1-\dfrac{1}{n} & 1\leq x<e^{n}\\\\ 
+        1 & e^{n}\leq  x 
+    \end{array}
+    \right. $$
+
+    Estudiaremos la convergencia punto a punto de las $ F_n $. $ F_n $ converge a:
+    $$G(x) =  \left\{
+    \begin{array}{ll}
+        0 & x\leq  0\\ \\
+        \dfrac{1}{2} & 0<x<1\\ \\
+        1 & x\geq 1
+
+    \end{array}
+    \right. $$
+
+    Entonces tenemos que $ F_n\xrightarrow{d}G $ pero no podemos hablar de convergencia en distribución aún ya que $ G $ no es continua por la derecha. Tenemos que modificar $ G $ para que sea una función de distribución. El cambio obvio nos da la $ F $ que vimos previamente, la que es la función de distribución de $ X $. Por tanto $ X_n \xrightarrow{\mathcal{D}}X $.
+
+    Notemos que la modificación que hacemos en $ G $ no importa para la convergencia débil de $ F_n $ ya que el punto que cambiamos no pertenece a $Cont\ G $
+
+
+    \textbf{Observación}
+
+    Podemos definir variables aleatorias que converjan en distribución a $ X $. Haremos que sus funciones de distribución coincidan con $ F $:
+
+    $$ Y_n(x) = \left\{
+    \begin{array}{ll}
+        0 & \dfrac{1}{2} <x<1 \\ \\ 
+        1 & 0 \leq x < \dfrac{1}{2}
+    \end{array}
+    \right. $$
+
+    $$ Z_n(x) = \left\{
+    \begin{array}{ll}
+        0 & x \in \left(\dfrac{1}{4},\dfrac{2}{4}\right) \cup \left(\dfrac{3}{4},1\right)\\ \\ 
+        1 & x \in \left(0,\dfrac{1}{4}\right) \cup \left(\dfrac{2}{3},\dfrac{3}{4}\right)\\ \\ 
+        17 & x \in \left\{\dfrac{1}{4},\dfrac{2}{4},\dfrac{3}{4}\right\}
+    \end{array}
+    \right. $$
+
 \end{exercise}
 
 
@@ -1337,3 +1406,50 @@ $$ a_n = E(S_n ) = \sum\limits_{j=1}^{n}a \dfrac{j-1}{j} $$
 % $$ \dfrac{S_n}{n} \xrightarrow{P} \mu = p = P(A) $$
 % $$ \dfrac{n_{A}}{n} \xrightarrow{P} \mu  = P(A) $$
 
+% No sé qué es esto. Creo que es una anotacion de la ultima demo de la parte de ley debil
+
+% Sea $ f $ una función derivable en el origen, entonces $ f'(0)=0 $:
+% $$ \lim_{h \to 0} \dfrac{f(0+h)-f(0)}{h} = \left\{
+% \begin{array}{l}
+%     \lim _{\substack{h \to 0\\ h>0}}} \dfrac{f(0+h)-f(0)}{h} =  \lim_{h \to 0} \dfrac{f(h)-f(0)}{h} = L_1\\ 
+%     \lim _{\substack{h \to 0\\ h<0}}} \dfrac{f(0+h)-f(0)}{h} =  \lim_{h \to 0} -\dfrac{f(-h)-f(0)}{-h} = \lim_{h \to 0} \dfrac{f(-h)-f(0)}{-h} = -L_1\\ 
+
+    
+% \end{array}
+% \right. \implies L_1=-L_1 \implies L_1 = 0$$
+
+
+% Comentario de la definicion de ley fuerte
+
+$$ \left\{
+\begin{array}{l}
+    \dfrac{S_n-a_n}{n} \xrightarrow{cs}a\\ 
+    \dfrac{a_n}{n} \to a
+\end{array}
+\right.\implies \dfrac{S_n}{n} \to a $$
+
+Además:
+
+$$ \left\{
+\begin{array}{l}
+    \dfrac{S_n}{n} \to a\\ 
+    \dfrac{a_n}{n} \to a
+\end{array}
+\right. \implies \dfrac{S_n-a_n}{n} \xrightarrow{cs}a$$
+
+
+%Un par de teoremas enunciados antes del primer teorema de ley fuerte. (El teorema nos da ambos resultados)
+
+\begin{theorem}
+    Teorema de Borel
+
+    $ X_1,X_2,... $ independientes Bernoulli de parámetro $ p $, $ S_n = X_1+X_2+...+X_n $
+
+    $$ \lim_{n \to \infty} P(\bigcap_{r\geq n} \{|\dfrac{S_{r}}{p}|<\varepsilon\}) = 1\hspace{5mm} \forall \varepsilon>0 $$
+\end{theorem}
+
+
+\begin{proposition}
+    Condición necesaria y suficiente para que $ X_n\xrightarrow{cs}X  $
+    $$ \lim_{n \to \infty}P( \{\cap_{p\geq n}|X_{p}-X|<\varepsilon\}) = 1 \hspace{5mm} \forall \varepsilon>0 $$
+\end{proposition}
