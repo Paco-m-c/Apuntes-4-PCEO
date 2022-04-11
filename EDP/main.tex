@@ -1307,6 +1307,139 @@ $$ \dfrac{1}{4\pi} \iiint\limits_{B}\Delta f(x+ry)dV  = \dfrac{1}{4\pi} \int\lim
   $$ u(x,y) = x^2+y^2-\dfrac{y^2}{x^2}+e-1 $$
 \end{exercise}
 
+% \begin{exercise}
+%   $  $
+%   $$ \left\{
+%   \begin{array}{l}
+%     pz+q = 1\\ 
+%     x=y \ x = \dfrac{x}{2}\ 0\leq x\leq 1
+%   \end{array}
+%   \right. $$
 
+%   Planteamos entonces el sistema autónomo:
+%   $$ A(x,y,z)p + B(x,y,z)q = C(x,y,z) $$
+
+%   Y el sistema:
+%   $$ \left\{
+%   \begin{array}{l}
+%     x' = A(x,y,z)\\ 
+%     y' = B(x,y,z)\\ 
+%     z' = C(x,y,z)
+%   \end{array}
+%   \right. $$
+
+%   Buscaremos ahora la solución que se obtiene como una superficie en paramétricas (intentaremos pasarlo a una ecuación implícita pero no siempre podremos)
+
+%   Con las condiciones iniciales tendemos los puntos $ (2s,2s,s) $. Buscamos entonces las soluciones:
+
+%   $$ \left\{
+%   \begin{array}{l}
+%     x' = z\\ 
+%     y' = 1 \to y(t,s) = t+2s\\ 
+%     z' = 1 \to z(t,s) = t+s
+%   \end{array}
+%   \right. $$
+
+%   Con $  z(t,s)$ esto podemos obtener entonces $ x(t,s) = \dfrac{t^2}{2}+st+2s  $
+
+%   % Para tratar de despejar $ t $ hacemos:
+
+%   % $$ x-y = \dfrac{t^2}{2}+st-t \implies \dfrac{t^2}{2}+(s-1)t+(y-x) = 0 $$
+
+%   % Resolviendo la ecuación de segundo grado:
+
+%   % $$ t = -(s-1)\pm \sqrt{(s-1)^2-2(y-x)} $$
+
+%   % Tenemos que $ t $ es real ya que $ 0\leq x\leq 1 \implies s \in [0,\dfrac{1}{2}] $
+
+%   % Además, sabemos que $ t  $ se tiene que anular en $ (x,y) = (0,0) $. Por tanto,
+%   % $$ -(s-1) \pm |1-s| = 0 \implies_{s\leq 1/2} -(s-1)\pm (1-s) = 0 $$
+
+%   % Luego tomaremos el signo menos para nuestra solución $ t $. Entonces tenemos que:
+%   % $$ z = t+s = t+\dfrac{y-t}{2} = \dfrac{y+t}{2} $$
+
+
+% \end{exercise}
+
+\section{Hoja 3}
+
+\begin{exercise} Este ejercicio no sé cuál es.
+
+  $$ \left\{
+  \begin{array}{ll}
+    \dfrac{\partial ^2}{\partial t^2}- \Delta t = 0 & (x,y) \in (0,\pi)^2\\ 
+    u(0,y,t) = u(\pi,y,t) = u(x,0,t) = u(x,\pi,t) = 0 & \forall  (x,y) \in [0,\pi]^2\ \forall t\\ 
+    u(x,y,0) = xy(\pi-x)(\pi-y)\\ 
+    u_{t}(x,y,0) = 0
+  \end{array}
+  \right. $$
+
+  Vamos a tratar de separar las tres variables para resolver la ecuación. Buscaremos una solución de la forma:
+  $$ u(x,y,t) = A(x)B(y)C(t) $$
+
+  Entonces derivando por cada variable tenemos:
+  $$ \dfrac{\partial ^2 u}{\partial t^2} = A(x)B(y)C''(t) $$
+  $$ \dfrac{\partial ^2 u}{\partial x^2} = A''(x)B(y)C(t) $$
+  $$ \dfrac{\partial ^2u}{\partial y^2} = A(x)B''(y)C(t) $$
+
+  Tenemos entonces la igualdad:
+  $$ A(x)B(y)C''(t) = A''(x)B(y)C(t) + A(x)B''(y)C(t) $$
+
+  $$ \dfrac{C''(t)}{C(t)} = \dfrac{A''(x)}{A(x)} + \dfrac{B''(y)}{B(y)} $$
+
+  Como tenemos una igualdad que depende de distintas variables, tenemos entonces que ambos miembros han de ser constantes. Por tanto, cada sumando del miembro derecho es constante también.
+
+  Por las condiciones de contorno que tenemos sabemos que esta constante será negativa. Podemos resolver el $ A(x) $ y $ B(y) $:
+
+  $$ \left\{
+  \begin{array}{l}
+    A(x) = \sin(nx)\\ 
+    B(y) = \sin(my)
+  \end{array}
+  \right.\hspace{5mm} m,n \in \mathbb{N}  $$
+
+  Tenemos entonces:
+  $$\dfrac{C''(t)}{C(t)}  =  \dfrac{A''(x)}{A(x)} + \dfrac{B''(y)}{B(y)} = -n^2-m^2 $$
+
+  Luego $ C(t)  $ es combinación de $ \sin(\sqrt{n^2+m^2}t) $ y $ \cos(\sqrt{n^2+m^2}t) $.
+
+  Esto sería una solución sin tomar las condiciones iniciales (solución general para las dos primeras igualdades del enunciado). Comprobamos que esta solución nos sirve para nuestras condiciones iniciales.
+
+  Usando que en $ t=0 $, $ u_{t} $ se tiene que anular, usaremos como solución de $ C $, $ \cos(\sqrt{n^2+m^2}t) $. Entonces nuestra solución es de la forma:
+
+  $$ u(x,y,t) = \sum\limits_{n,m}^{}a_{nm}\sin(nx)\sin(my) \cos(\sqrt{n^2+m^2}t) $$
+
+  Para simplificar el problema vemos que podemos separar $ a_{nm} $ en $ a_na_m $ por el caso en el que trabajamos:
+  $$ u(x,y,0) = xy(\pi-x)(\pi-y) = x(\pi-x)y(\pi-y) $$
+
+  Vemos que en este caso las funciones en las que se separan son iguales, por eso escribimos $ a_na_m $ y no $ a_nb_m $. En definitiva, tenemos la serie:
+  $$ u(x,y,t) =  \sum\limits_{n,m}^{} a_na_m \sin(nx) \sin(my) \cos(\sqrt{n^2+m^2}t) = $$ 
+  $$ =\left( \sum\limits_{n}^{}\sin(nx) \right) \left( \sum\limits_{m}^{}a_m \sin(mx) \right) \sum\limits_{n,m}^{} \cos(\sqrt{n^2+m^2}t) $$
+
+  Definimos ahora $ f \in \mathcal{C}^1$:
+  $$ f(x) = \left\{
+  \begin{array}{ll}
+    x(\pi-x) & x\geq 0 \\ 
+    x(\pi+x) & x<0
+  \end{array}
+  \right. $$
+  
+  Con esta $ f $ podemos calcular entonces los coeficientes de las series:
+  $$ a_n = \dfrac{1}{\pi} \int\limits_{-\pi}^{\pi}f(x) \sin(nx)dx = \dfrac{2}{\pi} \int\limits_{0}^{\pi}x (\pi-x)\sin(nx) = 2 \int\limits_{0}^{\pi}x \sin(nx)dx -\dfrac{2}{\pi} \int\limits_{0}^{\pi}x^2 \sin(nx)dx = $$
+  $$  = 2 \left( -x \dfrac{1}{n}\cos(nx) \Biggr|_{0}^{\pi} + \int\limits_{0}^{\pi} \dfrac{\cos(nx)x}{dx} \right) \dfrac{\sin(nx)}{n^2} \Biggr|_{0}^{\pi}  = ...$$
+
+  Después de unas cuentas infumables llegamos a:
+  $$ a_n = \left\{
+  \begin{array}{ll}
+    \dfrac{8}{\pi n^3} & n\ impar\\ 
+    0 & n\ par
+  \end{array}
+  \right. $$
+  
+  Luego nuestras solución es:
+
+  $$ u(x,y,t) = \sum\limits _{\substack{n,m\\ impares}}^{} \dfrac{64}{\pi^2n ^3m^3} \sin(nx)\sin(mx)\cos(\sqrt{n^2+m^2}t) $$
+
+\end{exercise}
 
 \end{document}

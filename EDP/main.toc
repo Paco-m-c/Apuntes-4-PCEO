@@ -14,4 +14,5 @@
 \contentsline {section}{\numberline {3.2}La ecuación de ondas en varias dimensiones}{24}{section.3.2}%
 \contentsline {chapter}{\numberline {4}Ejercicios Resueltos}{27}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Hoja 1}{27}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Hoja 3}{32}{section.4.2}%
 \contentsfinish 
