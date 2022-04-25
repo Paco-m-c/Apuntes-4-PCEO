@@ -919,6 +919,8 @@ Ahora estamos en condiciones de demostrar Stone-Weierstrass:
 \end{demonstration}
 
 
+
+
 \chapter{La ecuación de ondas}
 
 \section{La ecuación de ondas en una dimensión}
@@ -1058,6 +1060,85 @@ $$ \dfrac{1}{4\pi} \iiint\limits_{B}\Delta f(x+ry)dV  = \dfrac{1}{4\pi} \int\lim
   
 \end{method}
 
+\section{Resolución de la Ecuación del Calor}
+
+\begin{minipage}[l]{0.1\textwidth}
+  \includegraphics[scale=0.02]{cosmo}
+  \end{minipage}
+  \begin{minipage}[l]{0.8\textwidth}
+  Ni idea del origen de esto.
+\end{minipage}
+
+
+Dado el sistema:
+$$ \left\{
+\begin{array}{ll}
+  \dfrac{\partial u}{\partial t} = k \dfrac{\partial ^2u}{\partial x^2} & t>0 \\ 
+  u(x,0) = f(x)
+\end{array}
+\right. $$
+
+La solución viene dada por 
+$$ u(x,t) = \dfrac{1}{\sqrt{4\pi kt}} \int\limits_{-\infty}^{+\infty} e^{-\dfrac{(x-s)^2}{4kt}}f(s)ds  $$
+
+
+\chapter{Ecuación de Laplace}
+
+\begin{definition}
+  La ecuación de Laplace es de la forma
+  $$ \left\{
+  \begin{array}{ll}
+    \bigtriangleup u = 0 & x \in D\\ 
+    u(x) = f(x) & \forall x \in \partial D
+  \end{array}
+  \right. $$
+  con $ x \in \mathbb{R}^{n} $
+\end{definition}
+
+
+\begin{example}
+  En dimensión 1, $ D $ será de la forma $ [a,b] $ y su frontera será $ \{a,b\} $. Entonces el problema es:
+  $$ \left\{
+  \begin{array}{l}
+    u''=0 \\ 
+    u(a) = f(a)\ u(b) = f(b)
+  \end{array}
+  \right. $$
+
+  Y la solución general sera de la forma $ u(x) = \alpha x + \beta  $
+\end{example}
+
+Recordemos ahora que el Laplaciano es independiente por rotaciones. Hacemos entonces:
+$$ u(x) = \phi(r) \hspace{5mm}r = \sqrt{x_1^2+x_2^2+...+x_n^2} \hspace{5mm} \dfrac{\partial r}{\partial x_i} = \dfrac{x_i}{r} $$
+
+$$ \dfrac{\partial u}{\partial x_i} = \dfrac{d\phi}{\partial r} \dfrac{\partial r}{\partial x_i} = \phi'(r)\dfrac{x_i}{r} $$
+
+$$ \dfrac{\partial ^2u}{\partial x_i^2} = ... = \phi''(r) \dfrac{x_i^2}{r^2}+\phi'(r) \dfrac{r^2-x_i^2}{r^3} $$
+
+$$ \bigtriangleup u = \phi''(r) \dfrac{x_1^2+...+x_n^2}{r^2} +\phi'(r) \dfrac{nr^2-(x_1^2+...+x_n^2)}{r^3} = \phi''(r) + \dfrac{n-1}{r}\phi(r) $$
+
+Como este Laplaciano tiene que anularse,
+% las soluciones son de la forma:
+
+$$ \phi''(r) + \dfrac{n-1}{r}\phi(r) = 0 $$
+$$ \left\{
+\begin{array}{l}
+  y = \phi'(r)\\ 
+  y' = -\dfrac{n-1}{r}y
+\end{array}
+\right. $$
+
+$$ \int\limits_{}^{}\dfrac{y'}{y} = - \int\limits_{n-1}^{r} $$
+$$ \log{y} = (1-n)\log{r}+cte $$
+$$ y = cte\ r^{1-n} $$
+$$ \phi(r) = cte\ \int\limits_{}^{}r^{1-n}dr + cte_{2} $$
+
+Entonces $ \phi $ es de la forma:
+
+$$ n= 2 \hspace{5mm} \phi(r) = \alpha \log{r}+\beta  $$
+$$ n= 3 \hspace{5mm} \phi(r) = \alpha e^{2-n}+\beta  $$
+
+etc.
 
 \chapter{Ejercicios Resueltos}
 \section{Hoja 1}

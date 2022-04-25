@@ -12,7 +12,9 @@
 \contentsline {chapter}{\numberline {3}La ecuación de ondas}{23}{chapter.3}%
 \contentsline {section}{\numberline {3.1}La ecuación de ondas en una dimensión}{23}{section.3.1}%
 \contentsline {section}{\numberline {3.2}La ecuación de ondas en varias dimensiones}{24}{section.3.2}%
-\contentsline {chapter}{\numberline {4}Ejercicios Resueltos}{27}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Hoja 1}{27}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Hoja 3}{32}{section.4.2}%
+\contentsline {section}{\numberline {3.3}Resolución de la Ecuación del Calor}{26}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Ecuación de Laplace}{27}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Ejercicios Resueltos}{29}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Hoja 1}{29}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Hoja 3}{34}{section.5.2}%
 \contentsfinish 
