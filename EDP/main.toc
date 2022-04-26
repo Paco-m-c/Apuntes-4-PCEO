@@ -16,5 +16,5 @@
 \contentsline {chapter}{\numberline {4}Ecuación de Laplace}{27}{chapter.4}%
 \contentsline {chapter}{\numberline {5}Ejercicios Resueltos}{29}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Hoja 1}{29}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Hoja 3}{34}{section.5.2}%
+\contentsline {section}{\numberline {5.2}Hoja 3}{36}{section.5.2}%
 \contentsfinish 

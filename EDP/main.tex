@@ -1442,9 +1442,99 @@ etc.
 
 % \end{exercise}
 
+
+\setcounter{ex}{9}
+\begin{exercise}
+  $  $
+
+  Dividimos por $ y $ la ecuación que tenemos:
+  $$ (\dfrac{1}{x^2}-1)p^2 +\dfrac{q}{y} = 0 $$
+
+  Ahora usamos el método que conocemos para ecuaciones de primer orden:
+  $$ \left\{
+  \begin{array}{l}
+    x'=2\left(\dfrac{1}{x^2}-1\right)p\\ 
+    y'=\dfrac{1}{y}\\ 
+    z'=2\left(\dfrac{1}{x^2}-1\right)p^2+\dfrac{q}{y}\\ 
+    p'=\dfrac{2}{x^3}p^2\\ 
+    q'=\dfrac{q}{y^2}
+  \end{array}
+  \right. $$
+
+  Buscamos en este caso una relación entre $ x $ y $ p $
+  $$ \dfrac{dx}{2\left(\dfrac{1}{x^2}-1\right)p} = \dfrac{dp}{\dfrac{2}{x^3}p^2} $$
+
+  Multiplicando por $ x^3 $ y cancelando\footnote{Dios me perdone} $ p $:
+  $$ \dfrac{dx}{x-x^2} = \dfrac{dp}{p} $$
+
+  $$ \int\limits_{}^{}\dfrac{dx}{x-x^2}= \int\limits_{}^{}\dfrac{dp}{p} $$
+
+
+  Para hacer la primera integral, notamos que:
+  $$ \dfrac{1}{x-x^2} = \dfrac{1}{x(1-x^2)} = \dfrac{1}{x}+\dfrac{x}{1-x^2} $$
+
+  Entonces tenemos:
+  $$ \log{x}-\dfrac{1}{2}\log{1-x^2}=\log{p}+cte $$
+  $$ \log{\left(\dfrac{x}{\sqrt{1-x^2}}\right)} = \log{p}+cte $$
+  $$ p = \alpha \dfrac{x}{\sqrt{1-x^2}} $$
+
+  Notamos entonces que:
+  $$ \alpha = \dfrac{\sqrt{1-x^2}}{x}p $$
+
+  Podemos reescribir entonces la ecuación inicial:
+  $$ \alpha ^2p^2+\dfrac{q}{y} = 0 $$
+
+  Entonces, $ q = -\alpha ^2y $. Ya tenemos despejadas $ p,q $, resolvemos ahora $ dz=pdx+qdy $.
+
+  $$ dz = \alpha \dfrac{x}{\sqrt{1-x^2}} -\alpha^2ydy $$
+
+  Podemos usar variables separables (la $ x $ solo aparece en el término de $ dx $ e igual para la $ y $). Integramos entonces:
+  $$ z = -\alpha \sqrt{1-x^2} - \dfrac{\alpha^2}{2}y+\beta  $$
+
+
+
+\end{exercise}
+
+
 \section{Hoja 3}
 
-\begin{exercise} Este ejercicio no sé cuál es.
+\setcounter{ex}{0}
+
+\begin{exercise}
+  Tomamos $ \phi,\ \psi $ funciones arbitrarias:
+  $$ u(x,t) = \phi(x+t) + \psi(x-t) $$
+
+  Tendremos que determinar estas funciones para resolver el ejercicio.
+  $$ u(x,x) = \phi(2x)+\psi(0) = f(x) $$
+  $$ \dfrac{\partial u}{\partial x} = \phi'(x+t)+\psi'(x-t) $$
+  $$ \dfrac{\partial u}{\partial t} = \phi'(x+t)-\psi'(x-t) $$
+  $$ u_{x}(x,-x)-u_{t}(x,-x) = \phi'(0)+\psi'(2x)-\phi'(0)+\psi'(2x) = 2\psi'(2x) = g(x) $$
+  
+  Hacemos $ s = 2x $
+  $$ \psi'(s) = \dfrac{1}{2}g\left(\dfrac{s}{2}\right) $$
+  $$ \psi(x) = \psi(0)+ \int\limits_{0}^{x}\dfrac{1}{2}g\left(\dfrac{s}{2}\right)ds $$
+
+  Supongamos que $ \psi(x)=0 $ (lo que nos fijará el valor de $ \phi(0) $). Entonces tenemos:
+  $$ \left\{
+  \begin{array}{l}
+    \psi(x) = \int\limits_{0}^{x}\dfrac{1}{2}g\left(\dfrac{s}{2}\right)ds\\ 
+    \phi(x) = f\left(\dfrac{x}{2}\right)  
+  \end{array}
+  \right. $$
+
+
+\end{exercise}
+\setcounter{ex}{3}
+\begin{exercise}
+  $  $
+
+  En la hoja hay una errata, tenemos $ u_{t}(x,0) = (1-x)^2 $ y no $ u_{t}(0,x) $
+  
+  % Supongamos una solución de la forma $ u(x,t) = A(x)B(t) $, tenemos entonces:
+  % $$ \dfrac{A''(x)}{A(x)} = \dfrac{B''(t)}{B(t)} $$
+\end{exercise}
+
+\begin{example}
 
   $$ \left\{
   \begin{array}{ll}
@@ -1521,6 +1611,6 @@ etc.
 
   $$ u(x,y,t) = \sum\limits _{\substack{n,m\\ impares}}^{} \dfrac{64}{\pi^2n ^3m^3} \sin(nx)\sin(mx)\cos(\sqrt{n^2+m^2}t) $$
 
-\end{exercise}
+\end{example}
 
 \end{document}
