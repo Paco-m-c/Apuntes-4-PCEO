@@ -1374,6 +1374,84 @@ $$ a_n = E(S_n ) = \sum\limits_{j=1}^{n}a \dfrac{j-1}{j} $$
 \end{exercise}
 
 
+\chapter{Relación 8}
+
+\setcounter{ex}{1}
+\begin{exercise}
+    $  $
+
+    \begin{flushright}
+        \textbf{Apartado a)}
+    \end{flushright}
+    
+
+    Recordemos primero que los límites en probabilidad a una constante son equivalentes a los límites en distribución.
+
+    Para abordar este teorema, expresaremos $ X_n $ de forma más compacta, aprovechando la aleatoriedad de su definición. Para ello, definimos una variable aleatoria $ Z_n $ que represente lo que obtenemos al lanzar la moneda.
+
+    $$ Z_n = \left\{
+    \begin{array}{ll}
+        0 & \text{si cara en $ n $-ésimo lanzamiento}\\ 
+        1 & \text{si cruz en $ n $-ésimo lanzamiento}\\ 
+    \end{array}
+    \right. $$
+
+    Entonces tenemos:
+    $$ X_n = Y_n+Z_nY_{n+1} $$
+
+    Sabemos además que las vvaa $ Y_n,Z_m $ son independientes. Haremos los cálculos necesarios para obtener $ E(S_n)$:
+
+    $$ E(Y_n) = \int\limits_{0}^{2} y\cdot \dfrac{1}{2}dy = \dfrac{1}{2} \dfrac{y^2}{2} \Biggr|_{0}^{2} = 1 $$
+    $$ E(Z_n) = 0\cdot \dfrac{1}{2} + 1\cdot \dfrac{1}{2} = \dfrac{1}{2} $$
+    $$ E(Y_n^2) = \int\limits_{0}^{2}y^2\dfrac{1}{2}dy = \dfrac{1}{2} \dfrac{y^3}{3} \Biggr|_{0}^{2} = \dfrac{4}{3} $$
+    $$ E(Z_n^2) = \dfrac{1}{2} $$
+    $$ E(X_{n}) = E(X_n+Z_nY_{n+1}) = E(Y_n)+E(Z_n)E(Y_{n+1}) = 1+\dfrac{1}{2} = \dfrac{3}{2} $$
+
+
+    Finalmente llegamos a:
+    $$ E(S_n) = E\left(\sum\limits_{r=1}^{n}X_{r}\right) = \sum\limits_{r=1}^{n}E(X_{r}) = \dfrac{3}{2}n $$
+
+    Tenemos que calcular ahora $ Var(S_n) $:
+    $$ Var(S_n) = \sum\limits_{r=1}^{n}Var(X_{r}) +2 \sum\limits_{r<s}^{}Cov(X_{r},X_{s}) $$
+
+    Entonces tenemos
+    $$ Var(X_n) = Var(Y_n+Z_nY_{n+1}) = Var(Y_n)+Var(Z_nY_{n+1}) +\cancelto{0}{2Cov(Y_n,Z_nY_{n+1})} $$
+    $$ Var(Y_n) = E(Y_n^2)-(E(Y_n))^2 = \dfrac{4}{3}-1 = \dfrac{1}{3}$$
+    $$ Var(Z_nY_{n+1}) = E(Z_n^2Y_{n+1}^2)-E(Z_nY_{n+1})^2 = \dfrac{1}{2}\dfrac{4}{3}-\left(\dfrac{1}{2}\cdot 1\right)^2 = \dfrac{2}{3}-\dfrac{1}{4} = \dfrac{5}{12} $$
+
+    Luego $ Var(X_n) $ vale:
+    $$ Var(X_n) = \dfrac{1}{3}+\dfrac{5}{12} = \dfrac{3}{4} $$
+
+    Nos falta calcular $ Cov(X_{r},X_{s}) $
+
+    $$ Cov(X_{r},X_{s}) = Cov(Y_{r}+Z_{r}Y_{r+1},Y_{s}+Z_{s}Y_{s+1}) $$
+
+    Podríamos pensar que se va a anular siempre por la independencia, pero nos tendremos que detener en el caso $ r=s-1 $ ya que en ese caso tendremos $ (Y_{s-1}+Z_{s-1}Y_{s},Y_{s}+Z_{s}Y_{s+1}) $ y no son independientes (en principio).
+
+    Por tanto, el sumatorio $ \sum\limits_{r<s}^{}Cov(X_{r},X_{s}) $ lo podemos cambiar por $ \sum\limits_{s=1}^{n}Cov(X_{s},X_{s+1}) $. Vamos a calcular esas covarianzas.
+
+    $$ Cov(X_{s},X_{s+1}) = Cov(Y_{s}+Z_{s}Y_{s+1},Y_{s+1}+Z_{s+1}Y_{s+2}) =\footnote{La covarianza es bilineal}$$ 
+    $$ =\cancel{Cov(Y_{s},Y_{s+1})} + \cancel{Cov(Y_{s},Z_{s+1}Y_{s+2})} + Cov(Z_{s}Y_{s+1},Y_{s+1}) + \cancel{Cov(Z_{s}Y_{s+1},Z_{s+1}Y_{s+2})} =$$ 
+    $$= E(Z_{s}Y_{s+1}^2)-E(Z_{s}Y_{s+1})E(Y_{s+1}) = E(Z_{s})E(Y_{s+1}^2)-E(Z_{s})E(Y_{s+1}^2) = \dfrac{1}{2}\dfrac{4}{3}-\dfrac{1}{2}1 = \dfrac{1}{6}$$
+
+    Podemos finalmente calcular $ Var(S_n) $:
+    $$ Var(S_n) = \dfrac{3}{4}n +2 \dfrac{1}{6}(n-1) = \dfrac{13n-4}{12} $$
+
+    \begin{flushright}
+        \textbf{Apartado b)}
+    \end{flushright}
+
+    Como tenemos:
+    $$ \dfrac{Var(S_n)}{n^2} = \dfrac{\dfrac{13n-4}{12}}{n^2} \to 0 $$
+
+    Entonces tenemos un teorema que nos dice que $ \dfrac{S_n-E(S_n)}{n}\xrightarrow[]{P}0 $ y que si $ \dfrac{E(S_n)}{n} $ converge, entonces $ \dfrac{S_n}{n} $ converge a lo mismo. Es fácil ver que:
+
+    $$ \dfrac{E(S_n)}{n}\to \dfrac{3}{2} $$
+
+\end{exercise}
+
+
+
 
 \end{document}
                 
