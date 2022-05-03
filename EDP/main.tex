@@ -989,7 +989,7 @@ $$ \dfrac{1}{4\pi} \iiint\limits_{B}\Delta f(x+ry)dV = \dfrac{1}{4\pi}\iiint\lim
 
 Integramos ahora por secciones circulares:
 
-$$ \dfrac{1}{4\pi} \iiint\limits_{B}\Delta f(x+ry)dV  = \dfrac{1}{4\pi} \int\limits_{0}^{r} \rho^2 \left( \iint_{S^2} \underbrace{\Delta f(x+\rho y)} _{\substack{M_{\Delta f}(x,\rho)\\\Delta M_{f}(x,\rho)}}dS(y) \right)d\rho = \int\limits_{0}^{r}\rho^2 \Delta M_{f}(x,\rho)d\rho $$
+$$ \dfrac{1}{4\pi} \iiint\limits_{B}\Delta f(x+ry)dV  = \dfrac{1}{4\pi} \int\limits_{0}^{r} \rho^2 \left( \iint\limits_{S^2} \underbrace{\Delta f(x+\rho y)} _{\substack{M_{\Delta f}(x,\rho)\\\Delta M_{f}(x,\rho)}}dS(y) \right)d\rho = \int\limits_{0}^{r}\rho^2 \Delta M_{f}(x,\rho)d\rho $$
 
 
 \begin{minipage}[l]{0.1\textwidth}
@@ -1139,6 +1139,77 @@ $$ n= 2 \hspace{5mm} \phi(r) = \alpha \log{r}+\beta  $$
 $$ n= 3 \hspace{5mm} \phi(r) = \alpha e^{2-n}+\beta  $$
 
 etc.
+
+
+\begin{minipage}[l]{0.1\textwidth}
+  \includegraphics[scale=0.02]{cosmo}
+  \end{minipage}
+  \begin{minipage}[l]{0.8\textwidth}
+  Nuevo día, nuevas cosas que no sé lo que son.
+\end{minipage}
+
+''El otro día llegamos a la fórmula'':
+
+$$ \iiint_{D}g \Delta f dV + \iiint_{D}\bigtriangledown g \bigtriangledown f dV = \iint\limits_{\partial D} g \bigtriangledown f d\overrightarrow{S} $$
+$$ \iiint_{D}f \Delta g dV + \iiint_{D}\bigtriangledown f \bigtriangledown g dV = \iint\limits_{\partial D} f \bigtriangledown g d\overrightarrow{S} $$
+
+Restando ambas expresiones:
+
+$$ \implies\iiint_{D}(f\bigtriangleup g - g\bigtriangleup f)dV = \iint\limits_{\partial D} (f\bigtriangledown g-g\bigtriangledown f)d\overrightarrow{S}$$
+
+
+Esto es válido para dimensión $ \geq 2 $, fijamos $ n = 3 $:
+
+Definimos $ \psi (r) = \dfrac{1}{r} $ armónica (es decir, $\bigtriangleup \psi = 0$) en $ \mathbb{R}^3 $, en particular, lo es en $ D_{\varepsilon} $.
+
+Definimos $ D_{\varepsilon} = D \setminus b(x_0,\varepsilon) $
+
+Hacemos $ g(x) = \psi(x-x_0) $, con lo que llegamos a:
+
+$$ \iint\limits_{D_{\varepsilon}} (f \bigtriangleup \underbrace{g}_{0} - g\bigtriangleup f)dV = \iint\limits_{\partial D_{\varepsilon}} (f\bigtriangledown g-g \bigtriangledown f)d\overrightarrow{S}$$
+$$ \iint\limits_{D_{\varepsilon}} g\bigtriangleup fdV = \iint\limits_{\partial D_{\varepsilon}} (f\bigtriangledown g-g \bigtriangledown f)d\overrightarrow{S}$$
+
+Además, al tomar $ \partial D_{\varepsilon} = \partial D- \partial B(x_0,\varepsilon) $ tenemos:
+
+$$ \iint\limits_{\partial D_{\varepsilon}} (f\bigtriangledown g-g \bigtriangledown f)d\overrightarrow{S} = \iint\limits_{\partial D} (f\bigtriangledown g-g \bigtriangledown f)d\overrightarrow{S} - \iint\limits_{\partial B(x_0,\varepsilon)}(g \bigtriangledown f-f\bigtriangledown g)d\overrightarrow{S} = *$$
+
+Como además tenemos que (en $ \partial B(x_0,\varepsilon) $):
+
+$$ \bigtriangledown g = \dfrac{x-x_0}{\|x-x_0\|^3} = \dfrac{\overrightarrow{N}}{\|x-x_0\|^2} $$
+
+LLegamos a:
+
+
+
+$$ *= \iint\limits_{\partial D}(g \bigtriangledown f-f\bigtriangledown g )d \overrightarrow{S} -\dfrac{1}{\varepsilon} \iint\limits_{\partial B(x_0,\varepsilon)}\bigtriangledown f d\overrightarrow{S} + \iint\limits_{\partial B(x_0,\varepsilon)} f \dfrac{\overrightarrow{N}}{\varepsilon^2}d\overrightarrow{S} $$
+
+Vemos el primero de los términos:
+$$ \dfrac{1}{\varepsilon} \iiint\limits_{B(x_0,\varepsilon)}\bigtriangleup f dV = \dfrac{1}{\varepsilon} \dfrac{4 \pi}{3} \varepsilon f(x_0) \xrightarrow[]{\varepsilon \to 0} 0  $$
+
+Para el segundo término:
+
+$$ \iint\limits_{\partial B(x_0,\varepsilon)} f \dfrac{\overrightarrow{N}}{\varepsilon^2}d\overrightarrow{S} = \dfrac{1}{\varepsilon^2} \iint\limits_{\partial B(x_0,\varepsilon)} fdS = 4 \pi f(x_0) $$
+
+
+Luego haciendo $ \varepsilon \to 0 $ tenemos finalmente:
+
+$$ 4 \pi f(x_0) = \iiint_{D} g \bigtriangleup f dV - \iint_{\partial D}(g \bigtriangledown f--f \bigtriangledown g)d\overrightarrow{S} = \iint_{\partial D} f \dfrac{\partial g}{\partial n} d\overrightarrow{S} - \iint_{\partial D}g \dfrac{\partial f}{\partial n}d \overrightarrow{S} $$
+
+\begin{theorem}
+  No sé de dónde sale esto.
+
+  Sea $ h \in C(\overline{D}) $, no hay más de una función $ f $ tal que:
+  $$ \left\{
+  \begin{array}{l}
+    \bigtriangleup f = 0 \text{ en } $ D $\\ 
+    f |_{\partial D} = h |_{\partial D}
+  \end{array}
+  \right. $$
+
+  Luego el problema de Drichlet o tiene solución única o no tiene.
+\end{theorem}
+
+
 
 \chapter{Ejercicios Resueltos}
 \section{Hoja 1}
