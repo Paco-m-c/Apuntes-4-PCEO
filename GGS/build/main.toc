@@ -8,4 +8,6 @@
 \contentsline {chapter}{\numberline {2}Capítulo 5}{31}{chapter.19}%
 \contentsline {part}{III\hspace {1em}Parte 3}{33}{part.23}%
 \contentsline {chapter}{\numberline {1}Capítulo 6}{34}{chapter.24}%
+\contentsline {chapter}{\numberline {2}Capitulo 7}{43}{chapter.26}%
+\contentsline {chapter}{\numberline {3}Capítulo 8}{46}{chapter.27}%
 \contentsfinish 
