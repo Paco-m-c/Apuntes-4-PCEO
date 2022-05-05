@@ -1376,7 +1376,55 @@ $$ a_n = E(S_n ) = \sum\limits_{j=1}^{n}a \dfrac{j-1}{j} $$
 
 \chapter{Relación 8}
 
-\setcounter{ex}{1}
+\begin{exercise}
+    $  $
+
+    Recordemos que decimos que $ X_n\xrightarrow[]{P}X $ si $ P(|X_n-X|<\varepsilon) \to 1 \forall \varepsilon>0 $ o bien $ P(|X_n-X|>\varepsilon) \to 0 \forall \varepsilon>0 $. Como no sabemos muy bien qué $ X $ tomar, tratar de buscar el límite en distribución de $ X_n $. Entonces podríamos tomar $ X $ como ese límite. Si no existiera convergencia en distribución, ya sabríamos que no existe convergencia en probabilidad.
+
+    Para obtener entonces la convergencia en distribución, necesitamos las distribuciones de las $ X_n $:
+    $$ P(X_n = 0) = P((-\infty,\dfrac{1}{n})) = \int\limits_{-\infty}^{1/n}f(t)dt = \int\limits_{0}^{1/n} \lambda e^{-\lambda t}dt = -e^{-\lambda t} \Biggr|_{0}^{1/n} = -e^{-\lambda/n}+1 = 1-e^{-\lambda/n}$$
+    $$ P(X_n = 3) = P\left(\left\{\dfrac{1}{n}\right\}\right) = 0 $$
+    $$ P(X_n = 1) = P\left(\left(\dfrac{1}{n},n\right]\right) = \int\limits_{1/n}^{n} \lambda e^{-\lambda t}dt = -e^{-\lambda t} \Biggr|_{1/n}^{n} = e^{-\lambda/n} - e^{-\lambda n} $$
+    $$ P(X_n = e^{n \lambda}) = e^{-n \lambda} $$
+
+    Luego la función de distribución de $ X_n $ es:
+    $$ F_n(x) = \left\{
+    \begin{array}{ll}
+        0 & x < 0 \\ 
+        1-e^{-\lambda/n} & 0\leq  x< 1\\ 
+        1-e^{-n \lambda} & 1\leq  x< e^{n \lambda}\\ 
+        1 & x \geq  e^{n \lambda}
+    \end{array}
+    \right. $$
+    
+    Si $ \lambda $ es muy pequeño, los primeros valores de $ n $ no estarán ordenados así exactamente, pero a partir de cierto $ n $, $ e^{n\lambda} > 1 $ y no tendríamos problemas. Vemos la convergencia ahora de $ F_n $:
+    $$ \left\{
+    \begin{array}{ll}
+        
+        F_n(x) = 0 \to 0 & x<0 \\ 
+        F_n(x) = 1-e^{-\lambda/n} \to 0 & 0<x<1 \\ 
+        F_n(x) = 1-e^{-n \lambda} \to 1 & x>1\\ 
+    \end{array}
+    \right. $$
+
+    Entonces 
+    $$ F_n(x) \to F(x) = \left\{
+    \begin{array}{ll}
+        0 & x<1 \\ 
+        1 & x\geq  1
+    \end{array}
+    \right. \implies X = 1 c.s. $$
+    
+    Como $ X = d $ con $ d $ constante y $ X_n \xrightarrow[]{\mathcal{D}} X = 1 $, entonces $ X_n \xrightarrow[]{P} X=1 $.
+
+    Vamos ahora con la convergencia de orden 2. Como $ X $ converge en probabilidad, si $ X_n $ tiene convergencia en media de orden 2, entonces es a $ X $. Calculamos las siguientes esperanzas para ver si tienden a cero cuando $ n\to\infty $:
+    $$ E(|X_n-1|^2) = (0-1)^2 (1-e^{-\lambda/n})+(3-1)^2\cdot 0 + (1-1)^2\cdot (...) + (e^{n\lambda}-1)^2 e^{-\lambda n} = $$ 
+    $$=1(1-e^{-\lambda/n}) + (e^{n\lambda}-1)^2e^{-\lambda n} = 1-e^{-\lambda/n} +(e^{2n\lambda}-2e^{n\lambda}+1)e^{-n\lambda} = $$
+    $$ = 1-e^{-\lambda/n} + e^{n\lambda}-2+e^{-n\lambda} \cancel{\to} 0 $$
+
+    Luego no hay convergencia cuadrática.
+\end{exercise}
+
 \begin{exercise}
     $  $
 
@@ -1450,6 +1498,47 @@ $$ a_n = E(S_n ) = \sum\limits_{j=1}^{n}a \dfrac{j-1}{j} $$
 
 \end{exercise}
 
+\begin{exercise}
+    Al ser las $ X_n $ suma de normales, las $ X_n $ son normales. La media de la $ X_n $ es claramente $ 2\mu +\mu +2\mu = 5\mu $. Además, como las $ Y_n $ son independientes, la varianza de las $ X_n $ es $ 4\rho ^2 $.
+
+    Vamos a trabajar ahora con las $ S_n $, observamos en primer lugar que:
+    $$ S_n = \sum\limits_{r=1}^{n}X_{r} = \sum\limits_{r=1}^{n} (Y_{2r-1}+Y_{2r}+Y_{2r+1}) = \sum\limits_{r=1}^{n}Y_{2r-1}+ \sum\limits_{r=1}^{n}Y_{2r}+\sum\limits_{r=1}^{n}Y_{2r+1} = $$ 
+    $$ = Y_1 + \sum\limits_{r=2}^{n} Y_{2r-1} + \sum\limits_{r=1}^{n}Y_{2r} + \sum\limits_{r=1}^{n-1}Y_{2r+1} + Y_{2n+1} = Y_1+ 2 \sum\limits_{r=1}^{n-1} Y_{2r+1} + \sum\limits_{r=1}^{n}Y_{2r} + Y_{2n+1} =$$
+    $$ =  Y_1+ \sum\limits_{r=1}^{n-1} 2Y_{2r+1} + \sum\limits_{r=1}^{n}Y_{2r} + Y_{2n+1}$$
+
+    Luego los $ S_n $ son sumas de normales independientes. Buscaremos su media y su varianza (recordemos que $ Var(aX) = a^2Var(X) $).
+
+    $$ E(S_n) = 2\mu +2\mu +(n-1)2\cdot 2\mu + n\mu = 5n\mu $$
+    $$ Var(S_n) = 2\sigma ^2 +2\sigma ^2 +(n-1)2^2\cdot 2\sigma ^2+n\sigma ^2 =  (9n-4)\sigma ^2$$
+
+    Otra forma para de calcular $ Var(S_n) $ sería la siguiente:
+    $$ Var(S_n) = \sum\limits_{r=1}^{n}Var(X_{r})+2 \sum\limits_{r<s}^{}Cov(X_{r},X_{s}) $$
+
+    Entonces veríamos que:
+    $$ Cov(X_{r},X_{s}) = \left\{
+    \begin{array}{ll}
+        0 & s \ne r+1\\ 
+        Cov(X_{r}X_{r+1}) & s = r+1
+    \end{array}
+    \right. $$
+
+    Luego podríamos reescribir $ Var(S_n) $ como:
+    $$ Var(S_n) = \sum\limits_{r=1}^{n}Var(X_{r})+2 \sum\limits_{r=1}^{n-1}Cov(X_{r},X_{r+1}) $$
+
+    $$ Cov(X_{r},X_{r+1}) = Cov(Y_{2r+1}+Y_{2r}+Y_{2r+1},Y_{2r+1}+Y_{2r+2}+Y_{2r+3}) =\footnote{Por la bilinealidad de $ Cov $} Cov(Y_{2r+1},Y_{2r+1}) = $$ 
+    $$=Var(Y_{2r+1}) = 2\sigma ^2 $$
+
+    Luego finalmente:
+
+    $$ Var(S_n) = n\cdot 5\cdot \sigma ^2 + 2(n-1)2\sigma ^2 = (9n-4)\sigma ^2 $$
+
+    Volviendo a lo que nos pedía el problema, sabemos que:
+    $$ \dfrac{S_n-E(S_n)}{\sqrt{Var(S_n)}} = \dfrac{S_n-5n\mu}{\sqrt{9n-4}\sigma} \sim \mathcal{N}(0,1) $$
+
+    Luego esa sucesión converge en distribución a $ \mathcal{N}(0,1) $.
+
+
+\end{exercise}
 
 
 
