@@ -1542,6 +1542,177 @@ $$ a_n = E(S_n ) = \sum\limits_{j=1}^{n}a \dfrac{j-1}{j} $$
 
 
 
+\chapter{Relación 9}
+
+\begin{exercise}
+    $  $
+    \begin{flushright}
+        \textbf{Apartado a)}
+    \end{flushright}
+
+    \begin{flushright}
+        \textbf{Apartado b)}
+    \end{flushright}
+    
+    Veremos que en este caso $ Z_n $ no es una cadena de Markov. Comprobaremos que para un $ (k,j)  $ concreto, no se da la igualdad:
+    $$ P_{kj} = P(Z_n = j|Z_0 = 0,Z_1=j_1,...,Z_{n-1} = k) = P(Z_n=j|Z_{n-1} = k) $$
+
+    Observamos que:
+    $$ P(Z_m = 0 |Z_{m-1} = 0) = P(Z_m = 0| X_{m-1} = 1,X_{m-2} = 0) = p $$
+    $$ P(Z_m = 1 | Z_{m-1} = 0) = 1-P(Z_m = 0 |Z_{m-1} = 0) = 1-p = q $$
+
+    $$ P(Z_m = 0|Z_{m-1} = 1) = P(Z_m = 0|\{X_{m-1} = 0,X_{m-2} = 1\} \cup \{X_{m-1} = 1,X_{m-2} = 0\}\cup $$  
+    $$\cup \{X_{m-1}=0\cup X_{m-2} = 0\}) = $$  
+    $$\dfrac{P(\{X_{m-1} = 1,X_m = 1\}\cap \{X_{m-1} = 0,X_{m-2} = 1\ \acute o\ X_{m-1} = 1,X_{m-2} = 0\ \acute o\ X_{m-1} = 0,X_{m-2} = 0\})}{P(\{X_{m-1}=1,X_{m-2}=0\}\cup\{X_{m-1}=0,X_{m-2}=1\}\cup \{X_{m-1}=0,X_{m-2}=0\})} $$
+
+    $$ = \dfrac{P(\emptyset)+P(\{X_{m-2}=0,X_{m-1}=1,X_{m}=1\}) + P(\emptyset)}{P(\{X_{m-1} = 1,X_{m-2} =1\}^{c})} = \dfrac{qp^2}{1-p^2} = \dfrac{\cancel{q}p^2}{\cancel{(1-p)}(1+p)}$$
+    
+    Entonces vemos que:
+    $$ P(Z_m = 0|Z_{m-1} = 0,Z_{m-2} = 0) = $$  
+    $$=  P\left(X_{m-1}=1,X_m = 1 \Biggr| \left\{
+    \begin{array}{cc}
+        X_{m-1} & X_{m-2}\\0 & 1\\ 1 & 0 \\ 0 & 0
+    \end{array}
+    \right\},X_{m-2} = 1,X_{m_3} = 1\right) =$$ 
+    $$=P(X_{m-1} = 0,X_{m}=1|X_{m-1} = 0,X_{m-2} = 1,X_{m-3} = 1) = 0 \ne \dfrac{p^2}{1+p} $$
+
+    Donde las llaves representan los posibles valores que pueden tomar $ (X_{m-1},X_{m-2}) $ para que $ Z_{m-1} = 0 $
+
+    
+\end{exercise}
+
+\begin{exercise}
+    $  $
+
+    Observamos primero que $ X_n $ puede tomar los valores $ \{0,1,2,3,4,5,6\} $. Obtenemos los valores:
+    $$ P_{00} = \dfrac{1}{6} $$
+    
+    Los resultados de los dados en este caso son $ (1,j),(1,j') $
+    $$ P_{01} = \dfrac{5}{6}\dfrac{1}{6} $$
+
+    Para este caso tendremos $ (1,j),(i\ne 1,2) $. Análogamente tendremos:
+    $$ P_{02} = \dfrac{5}{6}\dfrac{1}{6} \dots\ P_{06}= \dfrac{5}{6}\dfrac{1}{6} $$
+
+    Calcularemos ahora $ P_{10} $, la secuencia de valores obtenidos ha de ser $ (i\ne 1,1),(1,j) $:
+    $$ P_{10}  = \dfrac{1}{6} $$
+
+    Para $ P_{11} $ tendremos $ (i\ne 1,1),(i\ne 1,1) $ y de forma análoga obtenemos $ P_{1n} $:
+    $$ P_{11} = P_{12} = ... = P_{16} = \dfrac{5}{6}\dfrac{1}{6} $$
+
+    Supongamos que estamos ahora en el estado 2. Por tanto, tenemos una sucesión de valores que comienza con una tirada de la forma $ (1,j) $ a la que sigue una secuencia de tiradas de la forma $ (i\ne 1,j') $ con $ j' = 1,2 $. Alguno de estos $ j' $ toma el valor 2. 
+
+    Para el estado $ P_{20} $, sabemos directamente que $ P_{20} = \dfrac{1}{6} $.
+    
+    Por otro lado, $ P_{21} = 0 $ ya que en las tiradas anteriores ya hemos conseguido al menos un 2 en el dado rojo (y ninguno mayor). Por tanto, aunque obtengamos un 1 en el dado rojo ahora, seguiremos en el estado 2.
+    
+    De forma parecida, obtenemos que $ P_{22} $ es la probabilidad de no sacar un 1 en el dado negro y la de sacar un 1 o un 2 en el estado rojo en la próxima tirada. En definitiva, $ P_{22} = \dfrac{5}{6}\dfrac{2}{6} $.
+
+    Por último, $ P_{2j} $ para $ j \geq  3 $ tendremos que hacer una tirada de la forma $ (i\ne 1,j) $, luego $ P_{23} = ... = P_{26} = \dfrac{5}{6}\dfrac{1}{6} $
+
+    Supongamos ahora que estamos en el estado 3, con los mismo razonamientos que en el caso anterior, podemos obtener los siguientes valores:
+    $$ 
+    \begin{matrix}
+        P_{20} = \dfrac{1}{6} & P_{31} = 0 & P_{32} = 0 & P_{33} = \dfrac{5}{6}\dfrac{3}{6} & P_{34} = \dfrac{5}{6}\dfrac{1}{6}  & P_{35} = \dfrac{5}{6}\dfrac{1}{6} & P_{36} = \dfrac{5}{6}\dfrac{1}{6}
+    \end{matrix}
+    $$ 
+
+    Es una cadena de Markov porque solo dependemos del estado anterior para pasar al siguiente.
+
+    Entones la matriz de probabilidades de transición sería:
+    $$
+    \begin{pmatrix} 
+    \dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6}& \dfrac{5}{6}\dfrac{1}{6}& \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6}\\ \\
+    \dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} \\ \\
+    \dfrac{1}{6} & 0 & \dfrac{5}{6}\dfrac{2}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6}\\ \\ 
+    \dfrac{1}{6} & 0 & 0 & \dfrac{5}{6}\dfrac{3}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6} \\ \\
+    \dfrac{1}{6} & 0 & 0 & 0 & \dfrac{5}{6}\dfrac{4}{6} & \dfrac{5}{6}\dfrac{1}{6} & \dfrac{5}{6}\dfrac{1}{6}\\ \\ 
+    \dfrac{1}{6} & 0 & 0 & 0 & 0 & \dfrac{5}{6} \dfrac{5}{6} & \dfrac{5}{6}\dfrac{1}{6} \\ \\ 
+    \dfrac{1}{6} & 0 & 0 & 0 & 0 & 0 & \dfrac{5}{6}
+    \end{pmatrix}  $$
+    
+    \begin{flushright}
+    \textbf{Apartado extra)}
+\end{flushright}
+
+\textbf{Obtener la matriz de probabilidades iniciales en los siguientes casos:}
+
+\begin{flushright}
+    \textbf{Apartado a)}
+\end{flushright}
+El estado inicial de la cadena lo determina el valor obtenido en un dado en un lanzamiento cero.
+
+$$ a = \left[ 0 \ \dfrac{1}{6} \ \dfrac{1}{6} \ \dfrac{1}{6} \ \dfrac{1}{6} \ \dfrac{1}{6} \ \dfrac{1}{6} \right] $$
+
+\begin{flushright}
+    \textbf{Apartado b)}
+\end{flushright}
+El estado inicial se determina de forma totalmente aleatoria:
+$$ a = \left[ \dfrac{1}{7} \ \dfrac{1}{7} \ \dfrac{1}{7} \ \dfrac{1}{7} \ \dfrac{1}{7} \ \dfrac{1}{7} \ \dfrac{1}{7} \right] $$
+
+
+\begin{flushright}
+    \textbf{Apartado c)}
+\end{flushright}
+
+El estado inicial se determina en un lanzamiento cero de un dado siendo 0 si en el dado se obtiene 1 y 1 en caso contrario.
+$$ a = \left[\dfrac{1}{6}\ \dfrac{5}{6}\ 0\ 0\ 0\ 0\ 0\right] $$
+
+
+\end{exercise}
+
+\begin{exercise}
+    \textbf{Ejercicio extra}
+
+    Supongamos que tenemos una cadena de Markov que representa un movimiento aleatorio sobre los puntos de la recta de coordenadas:
+    
+    $$S = \{...,-2,-1,0,1,2,3,4,...\} $$
+
+    Siendo las probabilidades de transición:
+    $$ 
+    \begin{matrix}
+        P_{jj+1} = p & P_{jj-1} = q = 1-p  
+    \end{matrix}$$
+
+    Buscaremos los estados de no retorno, de retorno, transitorios y persistentes. Recordemos que:
+    $$ \left\{
+    \begin{array}{ccc}
+        \text{de no retorno} &  f_{jj} = 0 \iff P_{jj}^{n} = 0 & \forall  n \geq  1      \\ 
+        \text{de retorno} &  f_{jj} > 0 \iff P_{jj}^{n} > 0 & \text{algún}  n \geq  1 \\ 
+        \text{transitorio} &  f_{jj} < 1 \iff \sum\limits_{}^{} P_{jj}^{n}  & \text{convergente}\\ 
+        \text{persistente} &  f_{jj} = 1 \iff \sum\limits_{}^{} P_{jj}^{n}  & \text{divergente}
+    \end{array}
+    \right\} $$
+
+    Usaremos también la fórmula de Stirling 
+    $$ \lim_{n \to \infty} \dfrac{n! }{n^{n}e^{-n}\sqrt{2\pi n}} = 1 \iff n ! \sim n^{n}e^{-n} \sqrt{2\pi n} $$
+
+
+    Calcularemos ahora los $ P_{jj}^{n} $
+    $$ P_{jj}^{n} = \sum\limits_{}^{} P_{jk_1}P_{k_1k_2}\cdots P_{k_nj} $$
+
+    Como si avanzamos $ m $ posiciones, tendremos que retroceder otras $ m $, necesitaremos que $ n $ sea par para que la probabilidad sea no nula:
+    $$ P_{jj}^{n} = 0\ \forall n \ne 2m $$
+    $$ P_{jj}^{2m} = \sum\limits_{}^{} p^{m}q^{m} $$
+
+    El número de sumandos serán las formas de ordenar los pasos a derecha e izquierda, es decir, $ \binom{2m}{m} $. Por tanto:
+    $$ P_{jj}^{2m} = \binom{2m}{m}p^{m}(1-p)^{m} $$
+
+    Por tanto, en el caso de que $ p = 0,1 $, todos los estados son de no retorno.
+
+    En el resto de casos, los estados serán de retorno.
+
+    Tendremos que estudiar ahora la convergencia de la serie usando la fórmula de Stirling:
+    $$ \sum P_{jj}^{2m} = \sum\limits_{m=1}^{\infty} \dfrac{(2m)!}{m!m!}p^{m}(1-p)^{m}  = \sum\limits_{m=1}^{\infty} \dfrac{(2m)^{2m}e^{-2m}\sqrt{2\pi 2m}}{m^{2m}e^{-2m}2\pi m}p ^{m}(1-p)^{m} =$$
+    $$ = \sum\limits_{m=1}^{\infty} \dfrac{2^{2m}2 \sqrt{\pi m}}{2 \pi m} p^{m}(1-p)^{m}= \sum\limits_{m=1}^{\infty} \dfrac{4^{m}}{\sqrt{\pi m}} p^{m}q^{m} =$$
+    $$  = \sum \dfrac{(4pq)^{m}}{\sqrt{\pi m}} \leq  \sum\limits_{}^{} (4pq)^{m} $$
+
+    Usando que $ f(p) = p(1-p) $ es una parábola con máximo en $ p=\dfrac{1}{2} $ con valor $ f\left(\dfrac{1}{2}\right) = \dfrac{1}{4} $ y que se anula en $ p=0,1 $, tenemos que la serie converge cuando $ p \ne \dfrac{1}{2} $ (serie geométrica de razón menor que 1). En ese caso los estados son transitorios.
+
+    En el caso $ p = \dfrac{1}{2} $ tendremos que la serie es de la forma $ \sum\limits_{}^{} \dfrac{1}{m^{1/2}} $, que es divergente. Por lo tanto, en este caso todos los estados son persistentes.
+
+
+\end{exercise}
+
 \end{document}
                 
 
