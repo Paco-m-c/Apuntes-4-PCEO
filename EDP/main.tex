@@ -4,6 +4,7 @@
 \input{structure}
 \usepackage{geometry}
 \usepackage{esint}
+\usepackage{tikz}
 \geometry{
     top=3cm,
     bottom=3cm,
@@ -1595,15 +1596,43 @@ $$ 4 \pi f(x_0) = \iiint_{D} g \bigtriangleup f dV - \iint_{\partial D}(g \bigtr
 
 
 \end{exercise}
-\setcounter{ex}{3}
-\begin{exercise}
-  $  $
+\setcounter{ex}{2}
 
-  En la hoja hay una errata, tenemos $ u_{t}(x,0) = (1-x)^2 $ y no $ u_{t}(0,x) $
+\begin{exercise}
+  Buscaremos una solución de la forma $ u(x,t) = A(x)B(t) $ para después tratar de buscar una solución general como una serie de con combinaciones lineales de esta solución particular.
+  $$ u(x,t) = A(x)B(t) $$
+  $$ u_{tt}(x,t) = A(x)B''(t) $$
+  $$ u_{xx}(x,t) = A''(x)B(t) $$
   
-  % Supongamos una solución de la forma $ u(x,t) = A(x)B(t) $, tenemos entonces:
-  % $$ \dfrac{A''(x)}{A(x)} = \dfrac{B''(t)}{B(t)} $$
+  Entonces usando la ecuación que teníamos:
+  $$ A(x)B''(t) = A''(x)B(t) - A(x)B(t) $$
+  $$ \dfrac{B''(t)}{B(t)} = \dfrac{A''(x)}{A(x)}-1 = -\lambda $$
+
+  La última igualdad viene porque tenemos una igualdad de dos funciones de variables distintas, luego tienen que valer constantes.
+  $$ A''(x) +(\underbrace{\lambda -1}>0)A(x) = 0 $$
+  
+  Con las condiciones iniciales ($ u(0,t)=u(\pi,t) = 0 $) llegamos a:
+  $$ A(x) = \sin(\sqrt{\lambda-1}x) $$
+
+  Además, $ \sqrt{\lambda-1} = n \in \mathbb{N}  $, luego $ \lambda = n^2+1 $
+
+  Análogamente tenemos:
+  $$ B''(t) +(n^2+1)B(t) = 0 \implies B(t) = \cos(\sqrt{n^2+1}t) $$
+
+  La solución viene entonces de la forma:
+  $$ \sum\limits_{n=1}^{\infty} (a_n \sin(nx)) \sin(\sqrt{n^2+1}t)+b_n \cos(nx)\cos(\sqrt{n^2+1}t) $$
+
+  Sabemos además que:
+  $$ \sum\limits_{n=1}^{\infty} b_n \sin(nx)f(x) $$
+  $$ \sum\limits_{n=1}^{\infty} a_n \sqrt{n^2+1} \sin(nx) = 0 $$
+
+  Como solución de la última igualdad, tomaremos $ a_n = 0 \ \forall  n \in \mathbb{N} $.
+
+  Tendremos que exigir que $ f  $ sea $ C^2 $ a trozos para que la serie sea convergente y podamos calcular $ b_n $
+
 \end{exercise}
+
+
 
 \begin{example}
 
@@ -1683,5 +1712,93 @@ $$ 4 \pi f(x_0) = \iiint_{D} g \bigtriangleup f dV - \iint_{\partial D}(g \bigtr
   $$ u(x,y,t) = \sum\limits _{\substack{n,m\\ impares}}^{} \dfrac{64}{\pi^2n ^3m^3} \sin(nx)\sin(mx)\cos(\sqrt{n^2+m^2}t) $$
 
 \end{example}
+
+\section{Hoja 4}
+
+\setcounter{ex}{0}
+
+\begin{exercise}
+  $$ \Phi _{t} (x) = \dfrac{1}{\sqrt{4 \pi t}}e^{\dfrac{-x^2}{4\pi t}} $$
+  $$  (\Phi_{t} * T_2) = \int\limits_{\infty}^{\infty} \Phi_{t}(x-s)T_2ds = \int\limits_{\infty}^{\infty} \Phi_{t}(x-s) = T_2 $$
+
+  Entonces:
+  $$ u(x,t) = (\Phi_{t} * f)(x) = T_2+(T_1-T_2) \int\limits_{\mathbb{I}}^{} \Phi_{t}(x-s)ds $$
+
+
+\end{exercise}
+
+
+\begin{exercise}
+  Esto ya no sé ni qué es. Problema de Drichlet.
+
+  $$ \left\{
+  \begin{array}{ll}
+    \bigtriangleup u = 0 & D\\ 
+    u(x) = f(x) & x \in \partial D 
+  \end{array}
+  \right. $$
+
+  Al final del día 9/5 ''llegamos'' a:
+
+  $$ u(x) = \dfrac{1}{4\pi} \iint_{\partial D} \left(\dfrac{1}{\|y-x\|} \dfrac{\partial u}{\partial n}(y) - u(y) \dfrac{\partial \dfrac{1}{\|y-x\|}}{\partial n}\right) ds $$
+
+  Haciendo el cambio que lleva la circunferencia a una recta tenemos:
+  $$ u(x) = \dfrac{1}{2\pi } \int_{\partial D} (\log{\|y-x\|}) \dfrac{\partial u}{\partial n}-u(y) \dfrac{\partial \log{(\|y-x\|)}}{\partial n}dL $$
+  $$ u(x) = -\dfrac{1}{2\pi} \int\limits_{-\infty}^{+\infty} u(y) (\log{\|y-x\|}-\log{\|y-\overline{x}}) dy$$
+
+  Calculamos la parcial respecto de $ \eta $:
+  $$ - \dfrac{\partial }{\partial \eta} \left( \dfrac{1}{2} \log{((x_1-\xi)^2+(x_2-\eta)^2)}-\dfrac{1}{2}\log{((x_1-\xi)^2+(x_2+\eta)^2)} \right) =$$
+  $$ = - \left( \dfrac{x_2-\eta}{(x_1-\xi)^2+(x_2-\eta)^2} + \dfrac{x_2+\eta}{(x_1-\xi)^2+(x_2+\eta)^2} \right) $$
+
+  Para $ \eta = 0 $ llegamos a:
+  $$ \dfrac{2x_2}{(x_1-\xi)^2+x_2^2} $$
+
+  Luego la solución queda:
+  $$ u(x_1,x_2) = \dfrac{1}{\pi} \int\limits_{-\infty}^{\infty} u(\xi,0) \dfrac{x_2}{(x_1-\xi)^2+x_2^2} $$
+
+
+\end{exercise}
+
+\setcounter{ex}{5}
+
+\begin{exercise}
+$  $
+
+
+\begin{center}
+  \begin{tikzpicture}
+    \draw[black, very thick] (0,0) rectangle (3,2);
+    % \filldraw [gray] (0,0) circle (2pt);
+    \node[circle,inner sep=1pt,fill=red,label=left:{$0$}] at (0,0) {};
+    % \filldraw [gray] (3,0) circle (2pt);
+    \node[circle,inner sep=1pt,fill=red,label=right:{$a$}] at (3,0) {};
+    % \filldraw [gray] (0,2) circle (2pt);
+    \node[circle,inner sep=1pt,fill=red,label=left:{$b$}] at (0,2) {};
+  
+  \end{tikzpicture}
+  
+\end{center}
+
+
+Como se tiene que cumplir la ecuación de Laplace tendremos que si la solución es de la forma $ A(x)B(y) $
+
+
+$$ \dfrac{A''(x)}{A(x)} = -\dfrac{B''(y)}{B(y)} = cte $$
+
+Con las condiciones iniciales obtenemos $ B(y) = \cos(ny) $, con lo que tendremos:
+$$ A''(x) -n^2A(x) \implies A(x) = \left\{
+\begin{array}{l}
+  e^{nx}\\ 
+  e^{-nx}
+
+\end{array}
+\right. $$
+
+Luego nuestra solución del problema será de la forma 
+
+$$ \sum\limits_{n \in \mathbb{Z}}^{} a_n e^{nx}\cos(ny) $$
+El resto lo pondrá en el AV, un saludo
+
+\end{exercise}
 
 \end{document}
