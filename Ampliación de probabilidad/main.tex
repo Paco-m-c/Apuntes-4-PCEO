@@ -4,6 +4,7 @@
 \usepackage[hypertexnames=false]{hyperref}
 \usepackage{amstext} 
 \usepackage{array}   
+\usepackage{multirow}
 % \usepackage{nath}
 \newcolumntype{C}{>{$}c<{$}} 
 
@@ -1423,6 +1424,19 @@ $$ a_n = E(S_n ) = \sum\limits_{j=1}^{n}a \dfrac{j-1}{j} $$
     $$ = 1-e^{-\lambda/n} + e^{n\lambda}-2+e^{-n\lambda} \cancel{\to} 0 $$
 
     Luego no hay convergencia cuadrática.
+
+    Vemos ahora la convergencia casi segura:
+    $$ \lim_{m \to \infty} P \left( \bigcup_{n = m}^{+\infty} \{|X_n-1|>\varepsilon\} \right) =? 0 $$
+
+    Tomamos $ 0 < \varepsilon <1 $:
+    $$ \{|X_n-1|>\varepsilon\} = \{x \in \mathbb{R}\ :\ |X_n(x)-1|>\varepsilon\} = \{x \in \mathbb{R}\ :\ X_n(x) = 0\ \acute o\ X_n (x) = e^{n\lambda}\} =$$
+    $$  = (-\infty,\dfrac{1}{n}) \cup (n,+\infty) =: A_n $$
+
+    Es fácil ver entonces que $ A_{n+1}\subset A_n $ luego tendremos:
+    $$ \bigcup_{n=m}^{\infty} A_n = \bigcup_{n=m}^{\infty}\{|X_n-1|>\varepsilon\} = \{|X_m-1|>\varepsilon\}$$
+
+    Con lo que llegamos a:
+    $$ \lim_{m \to \infty}P(\{|X_m-1|>\varepsilon\}) = \lim_{m \to \infty}P(X_m = 0\ \acute o\ X_m = e^{m\lambda}) = \lim_{m \to \infty}(1-e^{-\lambda m}+e^{-m\lambda}) = 0 $$
 \end{exercise}
 
 \begin{exercise}
@@ -1544,17 +1558,60 @@ $$ a_n = E(S_n ) = \sum\limits_{j=1}^{n}a \dfrac{j-1}{j} $$
 
 \chapter{Relación 9}
 
+
 \begin{exercise}
     $  $
     \begin{flushright}
         \textbf{Apartado a)}
     \end{flushright}
+    Vemos en la siguiente tabla que conocer los estados anteriores a $ Y_n $ no afecta al calcular $ Y_{n+1} $:
+    % Please add the following required packages to your document preamble:
+
+ 
+    \begin{tabular}{l|l|l|l|l}
+                              & $X_{n-1} $        &$ X_n    $           & $X_{n+1}$ &$Y_{n+1}$ \\ \hline
+    \multicolumn{1}{c|}{\multirow{2}{*}{$Y_n = 0$}} & \multirow{2}{*}{1} & \multirow{2}{*}{1} & 0 & 1 \\
+    \multicolumn{1}{c|}{}     &                    &                    & 1          & 0          \\ \hline
+    \multirow{2}{*}{$Y_n = 1$} & \multirow{2}{*}{1} & \multirow{2}{*}{0} & 0          & 3          \\
+                              &                    &                    & 1          & 2          \\ \hline
+    \multirow{2}{*}{$Y_n=2$}   & \multirow{2}{*}{0} & \multirow{2}{*}{1} & 0          & 1          \\
+                              &                    &                    & 1          & 0          \\ \hline
+    \multirow{2}{*}{$Y_n=3$}   & \multirow{2}{*}{0} & \multirow{2}{*}{0} & 0          & 3          \\
+                              &                    &                    & 1          & 2         
+    \end{tabular}
+
+    Con lo que se trata de una cadena de Markov y la matriz de probabilidades de transición es:
+    $$ P = \begin{pmatrix} p & q & 0 & 0 \\ 0 & 0 & p & q \\ p & q & 0 & 0\\0 & 0 & p & q \end{pmatrix}  $$
+
+    Calculamos ahora $ P(Y_{n+2}=0|Y_n=1)$:
+    $$P(Y_{n+2}=0|Y_n=1) = P_10^2 = \sum\limits_{n=0}^{3}P_{1n}P_{n0} = pp = p^2 $$
+
+    Otra forma de calcula esta probabilidad sería hacer el cuadrado de la matriz $ P $ y mirar el elemento $ (1,0) $
 
     \begin{flushright}
         \textbf{Apartado b)}
     \end{flushright}
     
-    Veremos que en este caso $ Z_n $ no es una cadena de Markov. Comprobaremos que para un $ (k,j)  $ concreto, no se da la igualdad:
+    Si tratamos de hacer la misma tabla que en el apartado anterior intuimos que no se trata de una cadena de Markov:
+
+    % Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+
+    \begin{tabular}{ll|l|l|l}
+    \multicolumn{1}{l|}{}                          & $X_{n-1}$         & $X_n  $             & $X_{n+1}$ & $Z_{n+1}$ \\ \hline
+    \multicolumn{1}{c|}{\multirow{2}{*}{$Z_n = 0$}} & \multirow{2}{*}{1} & \multirow{2}{*}{1} & 0          & 1          \\
+    \multicolumn{1}{c|}{}                          &                    &                    & 1          & 0          \\ \hline
+    \multicolumn{1}{l|}{\multirow{6}{*}{$Z_n = 1$}} & \multirow{2}{*}{1} & \multirow{2}{*}{0} & 0          & 1          \\
+    \multicolumn{1}{l|}{}                          &                    &                    & 1          & 1          \\ \cline{2-5} 
+    \multicolumn{1}{l|}{}                          & \multirow{2}{*}{0} & \multirow{2}{*}{1} & 0          & 1          \\
+    \multicolumn{1}{l|}{}                          &                    &                    & 1          & 0          \\ \cline{2-5} 
+    \multicolumn{1}{l|}{}                          & \multirow{2}{*}{0} & \multirow{2}{*}{0} & 0          & 1          \\
+    \multicolumn{1}{l|}{}                          &                    &                    & 1          & 1         
+    \end{tabular}
+
+
+
+    Esta ''intuición'' no prueba nada, veremos formalmente que en este caso $ Z_n $ no es una cadena de Markov. Comprobaremos que para un $ (k,j)  $ concreto, no se da la igualdad:
     $$ P_{kj} = P(Z_n = j|Z_0 = 0,Z_1=j_1,...,Z_{n-1} = k) = P(Z_n=j|Z_{n-1} = k) $$
 
     Observamos que:
