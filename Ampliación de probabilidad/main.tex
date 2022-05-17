@@ -59,7 +59,7 @@
     \right. $$
 
     Pasamos ahora a $ f_{2}(y) $, cuando $ y \in (0,1) $:
-    $$ f_{2}(y) = \int\limits_{}^{}f(x,y)dx = \int\limits_{0}^{1-y^{1/2}} = k (1-y)^{1/2} $$
+    $$ f_{2}(y) = \int\limits_{}^{}f(x,y)dx = \int\limits_{0}^{1-y^{1/2}} = k (1-y^{1/2}) $$
 
     $$ f_{2}(y) = \left\{
     \begin{array}{lr}
@@ -1436,7 +1436,9 @@ $$ a_n = E(S_n ) = \sum\limits_{j=1}^{n}a \dfrac{j-1}{j} $$
     $$ \bigcup_{n=m}^{\infty} A_n = \bigcup_{n=m}^{\infty}\{|X_n-1|>\varepsilon\} = \{|X_m-1|>\varepsilon\}$$
 
     Con lo que llegamos a:
-    $$ \lim_{m \to \infty}P(\{|X_m-1|>\varepsilon\}) = \lim_{m \to \infty}P(X_m = 0\ \acute o\ X_m = e^{m\lambda}) = \lim_{m \to \infty}(1-e^{-\lambda m}+e^{-m\lambda}) = 0 $$
+    $$ \lim_{m \to \infty}P(\{|X_m-1|>\varepsilon\}) = \lim_{m \to \infty}P(X_m = 0\ \acute o\ X_m = e^{m\lambda}) = \lim_{m \to \infty}(1-e^{-\lambda/m}+e^{-m\lambda}) = 1-1+0=0 $$
+
+    Luego sí hay convergencia casi segura.
 \end{exercise}
 
 \begin{exercise}
